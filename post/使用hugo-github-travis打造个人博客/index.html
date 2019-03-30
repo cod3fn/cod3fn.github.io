@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>使用hugo Github Travis打造个人博客 - 香取</title>
+    <title>使用hugo Github Travis打造个人博客</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="使用hugo Github Travis打造个人博客">
@@ -139,12 +139,83 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读:</span>
-<span class="leancloud-visitors-count">0 字 ~0分钟</span>
+<span class="leancloud-visitors-count">661 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
+
+<h3 id="markdown渲染设置">markdown渲染设置</h3>
+
+<p>hugo使用blackfriday渲染markdown文件,默认的设置有几个不好的地方</p>
+
+<ul>
+<li>没有硬换行,只需使用<code>\</code>来表示换行.<br /></li>
+<li>标题和<code>#</code>之间必须有空格<br /></li>
+<li>代码块前面必须有空行<br />
+<br /></li>
+</ul>
+
+<p>在config.toml可以修改这些配置:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#008000"># markdown解析引擎blackfriday配置, </span>
+<span style="color:#008000"># extensions :  noEmptyLineBeforeBlock-代码块前面无需空行,hardLineBreak-段落直接无需空行</span>
+<span style="color:#008000"># extensionsmask spaceHeaders-标题之间无需空格</span>
+[blackfriday]
+  angledQuotes = <span style="color:#00f">true</span>
+  extensions = [<span style="color:#a31515">&#34;hardLineBreak&#34;</span>,<span style="color:#a31515">&#34;noEmptyLineBeforeBlock&#34;</span>]
+  extensionsmask = [<span style="color:#a31515">&#34;spaceHeaders&#34;</span>]
+  fractions = <span style="color:#00f">false</span>
+  plainIDAnchors = <span style="color:#00f">true</span></code></pre></div>
+<h3 id="travis-ci配置">travis-ci配置</h3>
+
+<p>就是从一个私有的源码仓库编译,然后将编译后的文件强制覆盖到个人主页(即username.github.io这个仓库)的仓库中.具体的配置就不说了,注意是需要一个github的personal-access-key. 下面是.travis.yml内容:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">dist: xenial
+language: python
+python: 3.7
+
+<span style="color:#008000"># Handle git submodules yourself</span>
+git:
+    submodules: <span style="color:#00f">false</span>
+<span style="color:#008000"># Use sed to replace the SSH URL with the public URL, then initialize submodules</span>
+before_install:
+  - sudo apt update -qq
+  - sudo apt -yq install apt-transport-https
+  - echo -e <span style="color:#a31515">&#34;Host github.com\n\tStrictHostKeyChecking no\n&#34;</span> &gt;&gt; ~/.ssh/config
+  - git config --global user.email ${GITHUB_EMAIL}
+  - git config --global user.name ${GITHUB_USERNAME}
+  - sed -i <span style="color:#a31515">&#39;s/git@github.com:/https:\/\/github.com\//&#39;</span> .gitmodules
+  - git submodule update --init --recursive
+
+install:
+  <span style="color:#008000"># install latest hugo release version</span>
+  <span style="color:#008000"># - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n &#39;/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*&#34;([^&#34;]*)&#34;.*@\1@g;p;q}}&#39; | xargs wget</span>
+  <span style="color:#008000"># use local hugo pkg for speed</span>
+  - sudo dpkg -i hugo<span style="color:#00f">*.deb</span>
+  - rm -rf public 2&gt; /dev/<span style="color:#00f">null</span>
+
+  <span style="color:#008000"># compile src to dist</span>
+script:
+  - hugo -d ./dist/
+
+after_success:
+  - git clone https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git
+  - cd xiongdahu.github.io 
+  - git rm -rf . <span style="color:#00f">&amp;&amp;</span> git clean -fxd 
+  - mv -v ../dist/* .
+  - git add .
+  - git commit -m <span style="color:#a31515">&#34;update site&#34;</span>
+  - git remote set-url origin https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git
+  - git remote -v
+  - git push -q -f</code></pre></div>
+<p>要点:</p>
+
+<ul>
+<li>在项目的源码中放了hugo的deb安装包,省去下载的过程<br /></li>
+<li>主题以submodules放在themes目录中,所以编译前一定要<code>git submodule update --init --recursive</code>更新主题到本地.<br /></li>
+<li>目标repo的远程仓库一定要在push前重新设置:<code>git remote set-url origin xxx</code><br /></li>
+</ul>
+
     </div>
     <footer class="post-footer">
      
@@ -152,6 +223,8 @@
 <div class="post-tags">     
      
     <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    
+    <a href="https://xiongdahu.github.io/tags/github" rel="tag" title="github">#github#</a>
     
 </div>
 
@@ -244,7 +317,7 @@
     <div class="site-state-item site-state-tags">
         <a href="https://xiongdahu.github.io/tags/">
          
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -276,7 +349,18 @@
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
     <div class="post-toc">
-        <div class="post-toc-content"></div>
+        <div class="post-toc-content"><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#markdown渲染设置">markdown渲染设置</a></li>
+<li><a href="#travis-ci配置">travis-ci配置</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
     </div>
 </section>
 
@@ -290,7 +374,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   <span itemprop="copyrightYear">  &copy; 
-  2009 - 2019</span>
+  2017 - 2019</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>

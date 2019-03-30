@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on 香取</title>
+    <link>https://xiongdahu.github.io/tags/github/</link>
+    <description>Recent content in Github on 香取</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 30 Mar 2019 10:56:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiongdahu.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用hugo Github Travis打造个人博客</title>
+      <link>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8hugo-github-travis%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Sat, 30 Mar 2019 10:56:47 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8hugo-github-travis%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

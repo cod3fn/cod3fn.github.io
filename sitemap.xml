@@ -8,9 +8,19 @@
           <category>编程</category>
         </categories>
         <tags>
-          <tag>code</tag>
+          <tag>code</tag><tag>github</tag>
         </tags>
-        <content type="html"> </content>
+        <content type="html">  markdown渲染设置 hugo使用blackfriday渲染markdown文件,默认的设置有几个不好的地方
+ 没有硬换行,只需使用\来表示换行.
+ 标题和#之间必须有空格
+ 代码块前面必须有空行
+  在config.toml可以修改这些配置:
+# markdown解析引擎blackfriday配置,  # extensions : noEmptyLineBeforeBlock-代码块前面无需空行,hardLineBreak-段落直接无需空行 # extensionsmask spaceHeaders-标题之间无需空格 [blackfriday] angledQuotes = true extensions = [&amp;#34;hardLineBreak&amp;#34;,&amp;#34;noEmptyLineBeforeBlock&amp;#34;] extensionsmask = [&amp;#34;spaceHeaders&amp;#34;] fractions = false plainIDAnchors = true travis-ci配置 就是从一个私有的源码仓库编译,然后将编译后的文件强制覆盖到个人主页(即username.github.io这个仓库)的仓库中.具体的配置就不说了,注意是需要一个github的personal-access-key. 下面是.travis.yml内容:
+dist: xenial language: python python: 3.7 # Handle git submodules yourself git: submodules: false # Use sed to replace the SSH URL with the public URL, then initialize submodules before_install: - sudo apt update -qq - sudo apt -yq install apt-transport-https - echo -e &amp;#34;Host github.com\n\tStrictHostKeyChecking no\n&amp;#34; &amp;gt;&amp;gt; ~/.ssh/config - git config --global user.email ${GITHUB_EMAIL} - git config --global user.name ${GITHUB_USERNAME} - sed -i &amp;#39;s/git@github.com:/https:\/\/github.com\//&amp;#39; .gitmodules - git submodule update --init --recursive install: # install latest hugo release version # - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n &amp;#39;/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*&amp;#34;([^&amp;#34;]*)&amp;#34;.*@\1@g;p;q}}&amp;#39; | xargs wget # use local hugo pkg for speed - sudo dpkg -i hugo*.deb - rm -rf public 2&amp;gt; /dev/null # compile src to dist script: - hugo -d ./dist/ after_success: - git clone https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git - cd xiongdahu.github.io - git rm -rf . &amp;amp;&amp;amp; git clean -fxd - mv -v ../dist/* . - git add . - git commit -m &amp;#34;update site&amp;#34; - git remote set-url origin https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git - git remote -v - git push -q -f 要点:
+ 在项目的源码中放了hugo的deb安装包,省去下载的过程
+ 主题以submodules放在themes目录中,所以编译前一定要git submodule update --init --recursive更新主题到本地.
+ 目标repo的远程仓库一定要在push前重新设置:git remote set-url origin xxx
+  </content>
     </entry>
     
      <entry>
