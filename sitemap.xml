@@ -10,7 +10,8 @@
         <tags>
           <tag>code</tag><tag>github</tag>
         </tags>
-        <content type="html">  markdown渲染设置 hugo使用blackfriday渲染markdown文件,默认的设置有几个不好的地方
+        <content type="html"> 详细步骤见: https://zhuanlan.zhihu.com/p/59587169
+markdown渲染设置 hugo使用blackfriday渲染markdown文件,默认的设置有几个不好的地方
  没有硬换行,只需使用\来表示换行.
  标题和#之间必须有空格
  代码块前面必须有空行
@@ -20,7 +21,7 @@ dist: xenial language: python python: 3.7 # Handle git submodules yourself git: 
  在项目的源码中放了hugo的deb安装包,省去下载的过程
  主题以submodules放在themes目录中,所以编译前一定要git submodule update --init --recursive更新主题到本地.
  目标repo的远程仓库一定要在push前重新设置:git remote set-url origin xxx
-  </content>
+ </content>
     </entry>
     
      <entry>
