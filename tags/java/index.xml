@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on 香取</title>
+    <link>https://xiongdahu.github.io/tags/java/</link>
+    <description>Recent content in Java on 香取</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 01 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://xiongdahu.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>java generic</title>
+      <link>https://xiongdahu.github.io/post/java-generic/</link>
+      <pubDate>Sun, 01 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-generic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IO-Java-Stream-Write-Reader</title>
+      <link>https://xiongdahu.github.io/post/io-java-stream-write-reader/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/io-java-stream-write-reader/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-6-7-8-文件读写</title>
+      <link>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-==-and-equal</title>
+      <link>https://xiongdahu.github.io/post/java-and-equal/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-and-equal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-AOP-sample</title>
+      <link>https://xiongdahu.github.io/post/java-aop-sample/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-aop-sample/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-concurrency-1-概要</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-concurrency-2-Runnable-Callable-Future-Executor</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-concurrency-3-synchronized-or-Lock</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-concurrency-4-CAS-and-atomic</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-concurrency-5-Synchronizer-and-AQS</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-动态代理</title>
+      <link>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java-注解和注解处理器sample</title>
+      <link>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gradle笔记1-理解build脚本基本语法</title>
+      <link>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>单例模式和序列化</title>
+      <link>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试题-类加载过程和子类重写父类方法的调用</title>
+      <link>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

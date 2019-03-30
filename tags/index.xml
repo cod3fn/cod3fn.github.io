@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 香取</title>
+    <link>https://xiongdahu.github.io/tags/</link>
+    <description>Recent content in Tags on 香取</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 30 Mar 2019 10:56:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiongdahu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code</title>
+      <link>https://xiongdahu.github.io/tags/code/</link>
+      <pubDate>Sat, 30 Mar 2019 10:56:47 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://xiongdahu.github.io/tags/database/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://xiongdahu.github.io/tags/java/</link>
+      <pubDate>Sun, 01 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neo4j</title>
+      <link>https://xiongdahu.github.io/tags/neo4j/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/neo4j/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wsl</title>
+      <link>https://xiongdahu.github.io/tags/wsl/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/wsl/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
