@@ -139,7 +139,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读:</span>
-<span class="leancloud-visitors-count">544 字 ~2分钟</span>
+<span class="leancloud-visitors-count">543 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -151,9 +151,9 @@
 <h3 id="饱汉式">饱汉式</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Singleton</span> {  
     <span style="color:#00f">private</span> <span style="color:#00f">static</span> Singleton instance = <span style="color:#00f">null</span>  
-    <span style="color:#00f">private</span> Singleton (){}  
+    <span style="color:#00f">private</span> Singleton (){}   
 	    <span style="color:#00f">public</span> <span style="color:#00f">static</span> Singleton getInstance() {  
-	        <span style="color:#00f">if</span>(instance == <span style="color:#00f">null</span>)            instance = <span style="color:#00f">new</span> Singleton();        <span style="color:#00f">return</span> instance;  
+	        <span style="color:#00f">if</span>(instance == <span style="color:#00f">null</span>)             instance = <span style="color:#00f">new</span> Singleton();         <span style="color:#00f">return</span> instance;  
     }  
 }  //饱汉式<span style="">，</span>使用时创建</code></pre></div>
 <h3 id="饿汉式">饿汉式</h3>
@@ -167,7 +167,7 @@
     <span style="color:#00f">public</span> <span style="color:#00f">static</span> Singleton getInstance() {  
         <span style="color:#00f">return</span> <span style="color:#00f">this</span>.instance;  
     }  
-}  
+} 
 
 <span style="">```</span>	
 
@@ -184,7 +184,7 @@ public static final Singleton getInstance() {
 <p>}<br />
   //这个比较好，线程安全，也达到了延迟加载效果。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 枚举类</pre></div>
-<p>//这个是最好的这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊</p>
+<p>//这个是最好的 这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public enum Singleton {  
 INSTANCE;  
 public void whateverMethod() {  
@@ -207,7 +207,7 @@ return singleton;
 }  </pre></div>
 <p>}</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 序列化
-使用静态内部类举例，只要提供一个readResolve方法：
+使用静态内部类举例，只要提供一个readResolve方法
 
 ```	
 public class Singleton { 
@@ -221,7 +221,7 @@ public class Singleton {
       return SingletonHolder.INSTANCE;  
     }  
 	    
-    private Object readResolve() throws ObjectStreamException{        
+    private Object readResolve() throws ObjectStreamException{         
            return SingletonHolder.INSTANCE;
     }
 	

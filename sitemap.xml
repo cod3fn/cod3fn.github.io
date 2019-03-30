@@ -2,15 +2,18 @@
 <search>
     
      <entry>
-        <title>使用hugo Github Travis打造个人博客</title>
-        <url>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8hugo-github-travis%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+        <title>使用travis自动发布markdown到博客</title>
+        <url>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</url>
         <categories>
           <category>编程</category>
         </categories>
         <tags>
           <tag>code</tag><tag>github</tag>
         </tags>
-        <content type="html"> 详细步骤见: https://zhuanlan.zhihu.com/p/59587169
+        <content type="html"> github给个人和组织免费提供github pages功能. 就是说如果有个repo的名字为http://xiongdahu.github.io (xiongdahu为你的github username), 那么这个repo里面的master或者gh-page分支的内容如果存在index.html, 那么其他人可以通过 http://xiongdahu.github.io访问这个站点.
+借助于一些static gen工具,你可以将你的markdown转换为一个静态网站(html,js,css). 然后把静态网站的内容上传到刚说的repo中, 就有一个自己的博客站点了. static gen 工具非常多, github推荐的是Jekyll(ruby), 主流的还有hexo(js)和hugo(go), hexo因为是基于js的,所以高质量的主题多(因为做主题是需要js,css技能), hugo的编译快些, 但是好看的主题不多. 高质量的主题除了美观可能还需要考虑移动端(responsive),评论, 访问统计等各种功能. 每个gen工具都有自己的主题站点. hugo的主题在这里找: hugo themes.
+制作github pages站点的一般做法是把代码(放图片和markdown)放在master分支,static gen编译后的(html,js,css,image)内容放在gh-pages分支.然后在settings里面设置. 这样就可以得到一个站点了. 这么做有个缺点,就是markdown文件会被别人整个下载过去,之前就遇到过一次. 正好github现在有3个免费私有仓库. 所以我把源码放在私有仓库xiongdahu.github.io.src里面,而编译后的内容发布的 http://xiongdahu.github.io上面去.
+自动编译发布这个过程就是持续集成(continue integration,CI)了, 即我提交一个markdown文件,我的主页会自动看到这篇文章, 不需要我在本地编译再提交编译结果文件.travis-ci 提供了免费的github CI服务. 使用github账号登录就会有提示操作. 这里勾选私有仓库xiongdahu.github.io.src, 然后在项目里面添加.travis.yml文件告诉travis如何编译和发布内容到个人站点.
 markdown渲染设置 hugo使用blackfriday渲染markdown文件,默认的设置有几个不好的地方
  没有硬换行,只需使用\来表示换行.
  标题和#之间必须有空格
@@ -531,14 +534,14 @@ more tips gradle-tips
           <tag>java</tag><tag>code</tag>
         </tags>
         <content type="html">  参考资料
-饱汉式 public class Singleton { private static Singleton instance = null private Singleton (){} public static Singleton getInstance() { if(instance == null)instance = new Singleton();return instance; } } //饱汉式，使用时创建 饿汉式 //加载时创建对象 static public class Singleton { private Singleton instance = null; static { instance = new Singleton(); } private Singleton (){} public static Singleton getInstance() { return this.instance; } } ```	### 静态内部类 public class Singleton {
+饱汉式 public class Singleton { private static Singleton instance = null private Singleton (){} public static Singleton getInstance() { if(instance == null) instance = new Singleton(); return instance; } } //饱汉式，使用时创建 饿汉式 //加载时创建对象 static public class Singleton { private Singleton instance = null; static { instance = new Singleton(); } private Singleton (){} public static Singleton getInstance() { return this.instance; } } ```	### 静态内部类 public class Singleton {
 private Singleton (){} private static class SingletonHolder { private static final Singleton INSTANCE = new Singleton(); } public static final Singleton getInstance() { return SingletonHolder.INSTANCE; }  }
 //这个比较好，线程安全，也达到了延迟加载效果。
-### 枚举类 //这个是最好的这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊
+### 枚举类 //这个是最好的 这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊
 public enum Singleton { INSTANCE; public void whateverMethod() { }  }
 访问这个单例 Singleton.INSTANCE
 ### 双重校验锁 其实是不安全的，多线程开销很大，甚至死锁。原因在于指令重排序。public class Singleton { private volatile static Singleton singleton; private Singleton (){} public static Singleton getSingleton() { if (singleton == null) { synchronized (Singleton.class) { if (singleton == null) { singleton = new Singleton(); } } } return singleton; }  }
-### 序列化 使用静态内部类举例，只要提供一个readResolve方法：```	public class Singleton { private Singleton (){} private static class SingletonHolder { private static final Singleton INSTANCE = new Singleton(); } public static final Singleton getInstance() { return SingletonHolder.INSTANCE; } private Object readResolve() throws ObjectStreamException{return SingletonHolder.INSTANCE; } } 无论是实现Serializable接口，或是Externalizable接口，当从I/O流中读取对象时，readResolve()方法都会被调用到。实际上就是用readResolve()中返回的对象直接替换在反序列化过程中创建的对象，而被创建的对象则会被垃圾回收掉。
+### 序列化 使用静态内部类举例，只要提供一个readResolve方法 ```	public class Singleton { private Singleton (){} private static class SingletonHolder { private static final Singleton INSTANCE = new Singleton(); } public static final Singleton getInstance() { return SingletonHolder.INSTANCE; } private Object readResolve() throws ObjectStreamException{ return SingletonHolder.INSTANCE; } } 无论是实现Serializable接口，或是Externalizable接口，当从I/O流中读取对象时，readResolve()方法都会被调用到。实际上就是用readResolve()中返回的对象直接替换在反序列化过程中创建的对象，而被创建的对象则会被垃圾回收掉。
 </content>
     </entry>
     
