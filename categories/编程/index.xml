@@ -6,10 +6,37 @@
     <description>Recent content in 编程 on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Mar 2019 10:56:47 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 Mar 2019 13:10:41 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pattern Matching Anonymous Function</title>
+      <link>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</link>
+      <pubDate>Sun, 31 Mar 2019 13:10:41 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</guid>
+      <description>Scala中很多使用if的地方</description>
+    </item>
+    
+    <item>
+      <title>Scala Type Class</title>
+      <link>https://xiongdahu.github.io/post/scala-type-class/</link>
+      <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/scala-type-class/</guid>
+      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys</description>
+    </item>
+    
+    <item>
+      <title>Scala Notes</title>
+      <link>https://xiongdahu.github.io/post/scala-notes/</link>
+      <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/scala-notes/</guid>
+      <description>scala-notes some notes on scala, includes: setup with maven import case class companion object and</description>
+    </item>
     
     <item>
       <title>使用travis自动发布markdown到博客</title>
@@ -21,12 +48,30 @@
     </item>
     
     <item>
+      <title>wsl-docker-environment</title>
+      <link>https://xiongdahu.github.io/post/wsl-docker-environment/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/wsl-docker-environment/</guid>
+      <description>&lt;p&gt;使用wsl,MobaXterm,cmder,docker打造可视化的linux开发环境&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>neo4j intro</title>
       <link>https://xiongdahu.github.io/post/neo4j-intro/</link>
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/neo4j-intro/</guid>
       <description>neo4j图数据库介绍 neo4</description>
+    </item>
+    
+    <item>
+      <title>Spark Basic</title>
+      <link>https://xiongdahu.github.io/post/spark-basic/</link>
+      <pubDate>Sat, 31 Mar 2018 00:17:30 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spark-basic/</guid>
+      <description>引言 大数据计算和普通的程序并无</description>
     </item>
     
     <item>

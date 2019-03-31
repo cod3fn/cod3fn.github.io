@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on 香取</title>
+    <link>https://xiongdahu.github.io/tags/spark/</link>
+    <description>Recent content in Spark on 香取</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 31 Mar 2018 00:17:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiongdahu.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spark Basic</title>
+      <link>https://xiongdahu.github.io/post/spark-basic/</link>
+      <pubDate>Sat, 31 Mar 2018 00:17:30 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spark-basic/</guid>
+      <description>引言 大数据计算和普通的程序并无</description>
+    </item>
+    
+  </channel>
+</rss>

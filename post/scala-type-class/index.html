@@ -1,0 +1,504 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Scala Type Class</title>
+    <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
+    
+    <meta property="og:title" content="Scala Type Class">
+    <meta property="og:site_name" content="香取">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Scala Type Class - 香取" />
+    <meta name="description" content="编程是一门手艺"> 
+    
+    <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+     fancybox: true, 
+    motion: true
+  };
+</script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://xiongdahu.github.io"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">香取</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">胆小认生,沉默寡言</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />编程
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      
+    </ul>
+    
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/scala-type-class/" itemprop="url">
+        Scala Type Class
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间:</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-03-31">
+    2019-03-31
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类:</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
+        <span itemprop="name">编程</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+      <span>
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+    </span>
+    <span class="post-meta-item-text">阅读:</span>
+    <span class="leancloud-visitors-count">1336 字 ~3分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    
+
+<h3 id="intro">intro</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">def</span> insertionSort(xs<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">Int</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">Int</span>] <span style="color:#00f">=</span> {
+
+  <span style="color:#00f">def</span> insert(y<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>, ys<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">Int</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">Int</span>] <span style="color:#00f">=</span>
+    ys <span style="color:#00f">match</span> {
+      <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">List</span>()
+      <span style="color:#2b91af">case</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span> =&gt;
+        <span style="color:#00f">if</span> (y &lt; z) y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span>
+        <span style="color:#00f">else</span> z <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">insert</span>(<span style="color:#2b91af">y</span>, <span style="color:#2b91af">zs</span>)
+    }
+
+  xs <span style="color:#00f">match</span> {
+    <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> <span style="color:#2b91af">List</span>()
+    <span style="color:#00f">case</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">ys</span> =&gt; insert(y, insertionSort(ys))
+  }
+}</code></pre></div>
+<p>假设有个排序算法如上，代码的第一个问题就是没有泛型，只能对Int排序。那如果改成<code>insertionSort[T](xs: List[T]): List[T]</code>显然不行，因为只有Number类型才有<code>y &lt; z</code>方法。为了让这个函数实现多态（polymorphic ），需要将<code>y &lt; z</code>这部分参数化。修改函数形式：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">def</span> insertionSort[<span style="color:#2b91af">T</span>](xs<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])(lessThan<span style="color:#00f">:</span> (<span style="color:#2b91af">T</span>, <span style="color:#2b91af">T</span>) <span style="color:#00f">=&gt;</span> <span style="color:#2b91af">Boolean</span>) <span style="color:#00f">=</span> {
+  <span style="color:#00f">def</span> insert(y<span style="color:#00f">:</span> <span style="color:#2b91af">T</span>, ys<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span>
+    ys <span style="color:#00f">match</span> {
+      <span style="color:#008000">//...omit some lines
+</span><span style="color:#008000"></span>      <span style="color:#00f">case</span> z <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">zs</span> =&gt;
+        <span style="color:#00f">if</span> (lessThan(y, z)) y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span>
+        <span style="color:#00f">else</span> <span style="">…</span>
+    }
+
+  xs <span style="color:#00f">match</span> {
+    <span style="color:#008000">//...omit some lines
+</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">ys</span> =&gt; insert(y, insertionSort(ys)(lessThan))
+  }
+}</code></pre></div>
+<p>这样可以对任意类型排序，只要你提供排序方法lessThan.例如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">val</span> fruits <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(<span style="color:#a31515">&#34;apple&#34;</span>, <span style="color:#a31515">&#34;pear&#34;</span>, <span style="color:#a31515">&#34;orange&#34;</span>, <span style="color:#a31515">&#34;pineapple&#34;</span>)
+insertionSort(fruits)((x<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>, y<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>) <span style="color:#00f">=&gt;</span> x.compareTo(y) &lt; 0)</code></pre></div>
+<p>既然lessThan方法如此重要，我们定义一个trait:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">trait</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">A</span>]{
+  <span style="color:#00f">def</span> lessThan(x<span style="color:#00f">:</span><span style="color:#2b91af">A</span>,y<span style="color:#00f">:</span><span style="color:#2b91af">A</span>)<span style="color:#00f">:</span><span style="color:#2b91af">Int</span>
+}</code></pre></div>
+<p>然后排序函数接受一个Ordering实例进行排序：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">  <span style="color:#00f">def</span> insertionSort[<span style="color:#2b91af">T</span>](xs<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])(ord<span style="color:#00f">:</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span> {
+    <span style="color:#00f">def</span> insert(y<span style="color:#00f">:</span> <span style="color:#2b91af">T</span>, ys<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span>
+      ys <span style="color:#00f">match</span> {
+        <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">List</span>()
+        <span style="color:#2b91af">case</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span> =&gt;
+          <span style="color:#00f">if</span> (ord.lessThan(y, z)) y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span>
+          <span style="color:#00f">else</span> z <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">insert</span>(<span style="color:#2b91af">y</span>, <span style="color:#2b91af">zs</span>)
+      }
+
+    xs <span style="color:#00f">match</span> {
+      <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> <span style="color:#2b91af">List</span>()
+      <span style="color:#00f">case</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">ys</span> =&gt; insert(y, insertionSort(ys)(ord))
+    }
+  }</code></pre></div>
+<p>现在这个排序函数比较完美了，如果借助隐式参数，那么调用可以更简洁：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">  <span style="color:#00f">def</span> insertionSort[<span style="color:#2b91af">T</span>](xs<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])(<span style="color:#00f">implicit</span> ord<span style="color:#00f">:</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span> {
+    <span style="color:#00f">def</span> insert(y<span style="color:#00f">:</span> <span style="color:#2b91af">T</span>, ys<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span>
+      ys <span style="color:#00f">match</span> {
+        <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">List</span>()
+        <span style="color:#2b91af">case</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span> =&gt;
+          <span style="color:#00f">if</span> (ord.lessThan(y, z)) y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span>
+          <span style="color:#00f">else</span> z <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">insert</span>(<span style="color:#2b91af">y</span>, <span style="color:#2b91af">zs</span>)
+      }
+
+    xs <span style="color:#00f">match</span> {
+      <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> <span style="color:#2b91af">List</span>()
+      <span style="color:#00f">case</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">ys</span> =&gt; insert(y, insertionSort(ys))
+    }
+  }
+
+<span style="color:#008000">//implicit val for insertionSort function
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">val</span> stringOrdering<span style="color:#00f">:</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">String</span>] <span style="color:#00f">=</span> <span style="color:#00f">new</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">String</span>] {
+  <span style="color:#00f">def</span> lessThan(x<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>, y<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">Boolean</span> = x.compareTo(y) &lt; 0
+}
+
+<span style="color:#00f">val</span> fruits <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(<span style="color:#a31515">&#34;apple&#34;</span>, <span style="color:#a31515">&#34;pear&#34;</span>, <span style="color:#a31515">&#34;orange&#34;</span>, <span style="color:#a31515">&#34;pineapple&#34;</span>)
+insertionSort(fruits)</code></pre></div>
+<p><code>insertionSort(fruits)</code>的调用形式看上去不够优雅（不够OO),我们希望调用的形式是：<code>fruits.insertionSort</code> 得到排序后的list。通过之前文章的隐式转换很容易想到，我们需要将insertionSort方法作为一个implicit class的方法，这样即可通过隐式转换得到<code>fruits.insertionSort</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008000">//1. 注意原函数的参数改为class参数传入
+</span><span style="color:#008000">//2. 由于原函数用了递归，所以这里加了一层函数
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FruitOps</span>[<span style="color:#2b91af">T</span>](list<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])(<span style="color:#00f">implicit</span> ord<span style="color:#00f">:</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">T</span>]) {
+  <span style="color:#00f">def</span> insertionSort()<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span> {
+    insertSortInternal(list)(ord)
+  }
+
+  <span style="color:#00f">def</span> insertSortInternal[<span style="color:#2b91af">T</span>](xs<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])(<span style="color:#00f">implicit</span> ord<span style="color:#00f">:</span> <span style="color:#2b91af">Ordering</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span> {
+
+    <span style="color:#00f">def</span> insert(y<span style="color:#00f">:</span> <span style="color:#2b91af">T</span>, ys<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">T</span>] <span style="color:#00f">=</span>
+      ys <span style="color:#00f">match</span> {
+        <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">List</span>()
+        <span style="color:#2b91af">case</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span> =&gt;
+          <span style="color:#00f">if</span> (ord.lessThan(y, z)) y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">z</span> <span style="color:#2b91af">::</span> <span style="color:#2b91af">zs</span>
+          <span style="color:#00f">else</span> z <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">insert</span>(<span style="color:#2b91af">y</span>, <span style="color:#2b91af">zs</span>)
+      }
+
+    xs <span style="color:#00f">match</span> {
+      <span style="color:#00f">case</span> <span style="color:#2b91af">List</span>() <span style="color:#00f">=&gt;</span> <span style="color:#2b91af">List</span>()
+      <span style="color:#00f">case</span> y <span style="color:#00f">:</span><span style="color:#2b91af">:</span> <span style="color:#2b91af">ys</span> =&gt; insert(y, insertSortInternal(ys))
+    }
+  }
+
+}
+<span style="color:#008000">//
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> fruits <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(<span style="color:#a31515">&#34;apple&#34;</span>, <span style="color:#a31515">&#34;pear&#34;</span>, <span style="color:#a31515">&#34;orange&#34;</span>, <span style="color:#a31515">&#34;pineapple&#34;</span>)
+fruits.insertionSort //<span style="color:#2b91af">List</span>(pear, apple, orange, pineapple)</code></pre></div>
+<h3 id="type-class">type class</h3>
+
+<p>类型参数化和隐式参数结合即scala的type class，实现在不修改原有代码的前提下对type(这里是List[String])增加行为和属性。例如，已有类型Person，想要增加一个print方法实现打印个人简历。如果通过继承，那么Person代码会被改变，且print方法不能随意替换。如果通过Printer工具类同样Person只能有一种print实现（或者多个Printer工具类）。通过type class和，可以实现<code>person.print</code>的调用格式，且print的具体实现是由当前scope的implicit type class instance决定，在不同的scope可以通过提供不同的type class实例达到不同的print效果。</p>
+
+<p>type class由3部分组件：</p>
+
+<ul>
+<li>type class：a trait with type parameter,即Ordering[T]<br /></li>
+<li>type class instance: 即上面的val stringOrdering: Ordering[String]，一般为implicit<br /></li>
+<li>interface for user: 即上面的FruitOps，是一个implicit class.<br />
+<br /></li>
+</ul>
+
+<h3 id="one-more-example">one more example</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">class</span> <span style="color:#2b91af">Person</span>(<span style="color:#00f">val</span> name<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>, <span style="color:#00f">val</span> address<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>)
+<span style="color:#008000">//type class
+</span><span style="color:#008000"></span><span style="color:#00f">trait</span> <span style="color:#2b91af">HtmlWriter</span>[<span style="color:#2b91af">A</span>] {
+  <span style="color:#00f">def</span> write(data<span style="color:#00f">:</span> <span style="color:#2b91af">A</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>
+}
+
+<span style="color:#008000">// a type class instance
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">object</span> <span style="color:#2b91af">PersonWriter</span> <span style="color:#00f">extends</span> <span style="color:#2b91af">HtmlWriter</span>[<span style="color:#2b91af">Person</span>] {
+  <span style="color:#00f">override</span> <span style="color:#00f">def</span> write(data<span style="color:#00f">:</span> <span style="color:#2b91af">Person</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> = {
+    <span style="color:#a31515">s&#34;&lt;span&gt;</span><span style="color:#a31515">${</span>data.name<span style="color:#a31515">}</span><span style="color:#a31515"> and </span><span style="color:#a31515">${</span>data.address<span style="color:#a31515">}</span><span style="color:#a31515"> &lt;/span&gt; &#34;</span>
+  }
+}
+
+<span style="color:#008000">// type class interface for user
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">HtmlUtil</span>[<span style="color:#2b91af">A</span>](data<span style="color:#00f">:</span><span style="color:#2b91af">A</span>){
+  <span style="color:#00f">def</span> toHtml(<span style="color:#00f">implicit</span> writer<span style="color:#00f">:</span> <span style="color:#2b91af">HtmlWriter</span>[<span style="color:#2b91af">A</span>])<span style="color:#00f">:</span><span style="color:#2b91af">String</span>={
+    writer.write(data)
+  }
+}
+
+<span style="color:#00f">val</span> p <span style="color:#00f">=</span> <span style="color:#00f">new</span> <span style="color:#2b91af">Person</span>(<span style="color:#a31515">&#34;xiongdahu&#34;</span>,<span style="color:#a31515">&#34;beijing&#34;</span>)
+p.toHtml</code></pre></div>
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    
+    <a href="https://xiongdahu.github.io/tags/scala" rel="tag" title="scala">#scala#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-prev post-nav-item">
+        
+        <a href="https://xiongdahu.github.io/post/pattern-matching-anonymous-function/" rel="prev" title="Pattern Matching Anonymous Function">
+            Pattern Matching Anonymous Function <i class="fa fa-chevron-left"></i>
+        </a>
+        
+    </div>
+
+    <div class="post-nav-next post-nav-item">
+        
+        <a href="https://xiongdahu.github.io/post/scala-notes/" rel="next" title="Scala Notes">
+            <i class="fa fa-chevron-right"></i> Scala Notes
+        </a>
+        
+    </div>
+</div>
+     <div class="post-nav">
+    <div
+        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    
+        <div>
+            <br />作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
+            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）
+            </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://xiongdahu.github.io/img/author.jpg"
+        alt="熊打虎" />
+    <p class="site-author-name" itemprop="name">熊打虎</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        the craft of programming</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://xiongdahu.github.io/post/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://xiongdahu.github.io/categories/">      
+         
+        <span class="site-state-item-count">1</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://xiongdahu.github.io/tags/">
+         
+        <span class="site-state-item-count">8</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/xiongdahu/" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/boris-hsiung" target="_blank" title="知乎">
+            <i class="fa fa-fw fa-globe"></i>
+            知乎
+        </a>
+        </span>
+    
+</div>
+
+      
+      
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#intro">intro</a></li>
+<li><a href="#type-class">type class</a></li>
+<li><a href="#one-more-example">one more example</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
+    </div>
+</section>
+
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2017 - 2019</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">香取</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.54.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://xiongdahu.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/post-details.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/toc.js"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
+
+
+
+
+</body>
+</html>
