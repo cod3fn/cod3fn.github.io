@@ -218,5 +218,23 @@
       <description>2017- 杭州 2014-2017 上海 2010-2014 西安</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://xiongdahu.github.io/gallery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/gallery/</guid>
+      <description>相册    生活点滴 Twitter Facebook Instagram 500px Email  --   20160828_西湖  20181013_满觉陇  豫园灯会.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://xiongdahu.github.io/rose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/rose/</guid>
+      <description>玫瑰    var canvas = document.getElementsByTagName(&#39;canvas&#39;)[0]; var context = canvas.getContext(&#39;2d&#39;); var a = context; var b = document.</description>
+    </item>
+    
   </channel>
 </rss>
