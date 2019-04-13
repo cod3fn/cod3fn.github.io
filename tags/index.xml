@@ -6,15 +6,24 @@
     <description>Recent content in Tags on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 31 Mar 2019 13:10:41 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Apr 2019 15:22:05 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Clojure</title>
+      <link>https://xiongdahu.github.io/tags/clojure/</link>
+      <pubDate>Sat, 13 Apr 2019 15:22:05 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/clojure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Code</title>
       <link>https://xiongdahu.github.io/tags/code/</link>
-      <pubDate>Sun, 31 Mar 2019 13:10:41 +0800</pubDate>
+      <pubDate>Sat, 13 Apr 2019 15:22:05 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/code/</guid>
       <description></description>
