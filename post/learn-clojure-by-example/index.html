@@ -145,26 +145,27 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">2595 字 ~6分钟</span>
+    <span class="leancloud-visitors-count">2846 字 ~6分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
 
-<h2 id="这份笔记试图打造最强的clojure小抄-所以的语法知识点通过例子-注释来说明">这份笔记试图打造最强的clojure小抄,所以的语法知识点通过例子+注释来说明.</h2>
+<h2 id="这份笔记试图打造最强的clojure小抄-keep-refactoring-it">这份笔记试图打造最强的clojure小抄,keep refactoring it&hellip;</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>learnclj.core
   (<span style="color:#a31515">:gen-class</span>))
 
-<span style="color:#008000">;Parameter is variable in the declaration of function.</span>
-<span style="color:#008000">;Argument is the actual value of this variable that gets passed to function.</span>
-<span style="color:#008000">;</span>
 <span style="color:#008000">;准备:在leiningen网站下载lein.bat,放到一个目录下</span>
 <span style="color:#008000">;将目录添加到windows的path中</span>
 <span style="color:#008000">;打开cmder,执行 lein self-install</span>
 <span style="color:#008000">;leiningen安装完成后继续执行: lein repl</span>
 (println <span style="color:#a31515">&#34;hello clojure&#34;</span>)
 
+
+<span style="color:#008000">;Parameter is variable in the declaration of function.</span>
+<span style="color:#008000">;Argument is the actual value of this variable that gets passed to function.</span>
+<span style="color:#008000">;</span>
 <span style="color:#008000">;Symbols are used to bind names to values</span>
 <span style="color:#008000">;&#39; will prevent a form from being evaluated</span>
 <span style="color:#008000">;&#39;() same as (quote ())</span>
@@ -305,6 +306,55 @@
   (println request)
   (<span style="color:#00f">let </span>[n (num-lines tempfile)]
     (response (str <span style="color:#a31515">&#34;File &#34;</span> filename <span style="color:#a31515">&#34; has &#34;</span> n <span style="color:#a31515">&#34; lines &#34;</span>))))
+
+<span style="color:#008000">;more destructuring example</span>
+<span style="color:#008000">;https://gist.github.com/john2x/e1dca953548bfdfb9844</span>
+(<span style="color:#00f">def </span>my-vec [1 2 3])
+
+(<span style="color:#00f">let </span>[[a b c d] my-vec]
+  (println a b c d))
+<span style="color:#008000">;1 2 3 nil</span>
+(<span style="color:#00f">let </span>[[a b &amp; the-rest] my-vec]
+  (println <span style="color:#a31515">&#34;a=&#34;</span> a <span style="color:#a31515">&#34;b=&#34;</span> b <span style="color:#a31515">&#34;the-rest=&#34;</span> the-rest))
+<span style="color:#008000">;a= 1 b= 2 the-rest= (3)</span>
+(<span style="color:#00f">let </span>[[<span style="color:#a31515">:as</span> all] my-vec]
+  (println all))
+<span style="color:#008000">;[1 2 3]</span>
+(<span style="color:#00f">let </span>[[a <span style="color:#a31515">:as</span> all] my-vec]
+  (println a all))
+<span style="color:#008000">;1 [1 2 3]</span>
+(<span style="color:#00f">let </span>[[a b &amp; the-rest <span style="color:#a31515">:as</span> all] my-vec]
+  (println a b the-rest all))
+<span style="color:#008000">;1 2 (3) [1 2 3]</span>
+<span style="color:#008000">;note: &amp; the-rest convert vector to list,</span>
+<span style="color:#008000">;but :as preserves them (as a list, or as a vector)</span>
+(<span style="color:#00f">def </span>my-vec [<span style="color:#a31515">&#34;first&#34;</span> <span style="color:#a31515">&#34;second&#34;</span>])
+(<span style="color:#00f">let </span>[{a 0 b 1} my-vec]
+  (println a b)) <span style="color:#008000">;=&gt; &#34;first second&#34;</span>
+
+<span style="color:#008000">;optional arguments to functions</span>
+(<span style="color:#00f">defn </span>foo [a b &amp; more-args]
+  (println a b more-args))
+(foo <span style="color:#a31515">:a</span> <span style="color:#a31515">:b</span>) <span style="color:#008000">;; =&gt; :a :b nil</span>
+(foo <span style="color:#a31515">:a</span> <span style="color:#a31515">:b</span> <span style="color:#a31515">:x</span>) <span style="color:#008000">;; =&gt; :a :b (:x)</span>
+(foo <span style="color:#a31515">:a</span> <span style="color:#a31515">:b</span> <span style="color:#a31515">:x</span> <span style="color:#a31515">:y</span> <span style="color:#a31515">:z</span>) <span style="color:#008000">;; =&gt; :a :b (:x :y :z)</span>
+
+<span style="color:#008000">;map destructuring</span>
+(<span style="color:#00f">def </span>my-hashmap {<span style="color:#a31515">:a</span> <span style="color:#a31515">&#34;A&#34;</span> <span style="color:#a31515">:b</span> <span style="color:#a31515">&#34;B&#34;</span> <span style="color:#a31515">:c</span> <span style="color:#a31515">&#34;C&#34;</span> <span style="color:#a31515">:d</span> <span style="color:#a31515">&#34;D&#34;</span>})
+(<span style="color:#00f">def </span>my-nested-hashmap {<span style="color:#a31515">:a</span> <span style="color:#a31515">&#34;A&#34;</span> <span style="color:#a31515">:b</span> <span style="color:#a31515">&#34;B&#34;</span> <span style="color:#a31515">:c</span> <span style="color:#a31515">&#34;C&#34;</span> <span style="color:#a31515">:d</span> <span style="color:#a31515">&#34;D&#34;</span> <span style="color:#a31515">:q</span> {<span style="color:#a31515">:x</span> <span style="color:#a31515">&#34;X&#34;</span> <span style="color:#a31515">:y</span> <span style="color:#a31515">&#34;Y&#34;</span> <span style="color:#a31515">:z</span> <span style="color:#a31515">&#34;Z&#34;</span>}})
+
+(<span style="color:#00f">let </span>[{a <span style="color:#a31515">:a</span> d <span style="color:#a31515">:d</span>} my-hashmap]
+  (println a d))
+<span style="color:#008000">;; =&gt; A D</span>
+
+(<span style="color:#00f">let </span>[{a <span style="color:#a31515">:a</span>, b <span style="color:#a31515">:b</span>, {x <span style="color:#a31515">:x</span>, y <span style="color:#a31515">:y</span>} <span style="color:#a31515">:q</span>} my-nested-hashmap]
+  (println a b x y))
+<span style="color:#008000">;; =&gt; A B X Y</span>
+(<span style="color:#00f">let </span>[{a <span style="color:#a31515">:a</span>, b <span style="color:#a31515">:b</span>, not-found <span style="color:#a31515">:not-found</span>, <span style="color:#a31515">:or</span> {not-found <span style="color:#a31515">&#34;:)&#34;</span>}, <span style="color:#a31515">:as</span> all} my-hashmap]
+  (println a b not-found all))
+<span style="color:#008000">;; =&gt; A B :) {:a A :b B :c C :d D}</span>
+
+<span style="color:#008000">;!!! There is no &amp; rest for maps.</span>
 
 <span style="color:#008000">;a simple example</span>
 (<span style="color:#00f">defn </span>first-first
@@ -767,6 +817,10 @@
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
+        <a href="https://xiongdahu.github.io/post/spring-boot-notes/" rel="prev" title="Spring Boot Notes">
+            Spring Boot Notes <i class="fa fa-chevron-left"></i>
+        </a>
+        
     </div>
 
     <div class="post-nav-next post-nav-item">
@@ -833,7 +887,7 @@
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -850,7 +904,7 @@
     <div class="site-state-item site-state-tags">
         <a href="https://xiongdahu.github.io/tags/">
          
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -886,7 +940,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#这份笔记试图打造最强的clojure小抄-所以的语法知识点通过例子-注释来说明">这份笔记试图打造最强的clojure小抄,所以的语法知识点通过例子+注释来说明.</a></li>
+<li><a href="#这份笔记试图打造最强的clojure小抄-keep-refactoring-it">这份笔记试图打造最强的clojure小抄,keep refactoring it&hellip;</a></li>
 </ul></li>
 </ul>
 </nav></div>

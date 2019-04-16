@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on 香取</title>
+    <link>https://xiongdahu.github.io/tags/spring/</link>
+    <description>Recent content in Spring on 香取</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 14 Apr 2019 18:33:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://xiongdahu.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring Boot Notes</title>
+      <link>https://xiongdahu.github.io/post/spring-boot-notes/</link>
+      <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spring-boot-notes/</guid>
+      <description>一些容易忘记的spring bo</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,19 @@
     <description>Recent content in 编程 on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 13 Apr 2019 15:22:05 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2019 18:33:22 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Boot Notes</title>
+      <link>https://xiongdahu.github.io/post/spring-boot-notes/</link>
+      <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spring-boot-notes/</guid>
+      <description>一些容易忘记的spring bo</description>
+    </item>
     
     <item>
       <title>Learn Clojure by Example</title>

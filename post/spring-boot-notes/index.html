@@ -1,0 +1,596 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Spring Boot Notes</title>
+    <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
+    
+    <meta property="og:title" content="Spring Boot Notes">
+    <meta property="og:site_name" content="香取">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Spring Boot Notes - 香取" />
+    <meta name="description" content="编程是一门手艺"> 
+    
+    <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://xiongdahu.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+     fancybox: true, 
+    motion: true
+  };
+</script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://xiongdahu.github.io"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">香取</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the craft of programming</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />编程
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/categories/%E7%BF%BB%E8%AF%91/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />翻译
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://xiongdahu.github.io/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      
+    </ul>
+    
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/spring-boot-notes/" itemprop="url">
+        Spring Boot Notes
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间:</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-04-14">
+    2019-04-14
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类:</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
+        <span itemprop="name">编程</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+      <span>
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+    </span>
+    <span class="post-meta-item-text">阅读:</span>
+    <span class="leancloud-visitors-count">1794 字 ~4分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    
+
+<p>一些容易忘记的spring boot知识要点.</p>
+
+<blockquote>
+<p>注意,.yaml和.yml文件没用任何区别.</p>
+</blockquote>
+
+<h1 id="配置">配置</h1>
+
+<h2 id="springbootapplication注解">SpringBootApplication注解</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@SpringBootApplication
+&lt;=等价=&gt;
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration</code></pre></div>
+<h2 id="自动配置">自动配置</h2>
+
+<p>spring的自动配置依赖以下注解:</p>
+
+<p><img src="https://xiongdahu.github.io/spring/spring-boot-autoconfig-conditional.png" alt="spring-boot-autoconfig-conditional" /></p>
+
+<h2 id="配置文件">配置文件</h2>
+
+<p>任何时候硬编码的配置总是不好的,spring支持从很多环境中读取配置: 配置文件,yaml文件,环境变量,命令参数.<br />
+配置可以在<code>@Value</code>注解中使用,也可<code>Environment</code>访问,或者通过<code>@ConfigurationProperties</code>将配置属性绑定到特定的bean(<a href="https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-typesafe-configuration-properties">例子</a>).</p>
+
+<p>spring boot的配置属性读取顺序为:</p>
+
+<ul>
+<li>Devtools global settings properties on your home directory (~/.spring-boot-devtools.properties when devtools is active).<br /></li>
+<li>@TestPropertySource annotations on your tests.<br /></li>
+<li>@SpringBootTest#properties annotation attribute on your tests.<br /></li>
+<li>Command line arguments.<br /></li>
+<li>Properties from SPRING_APPLICATION_JSON (inline JSON embedded in an environment variable or system property)<br /></li>
+<li>ServletConfig init parameters.<br /></li>
+<li>ServletContext init parameters.<br /></li>
+<li>JNDI attributes from java:comp/env.<br /></li>
+<li>Java System properties (System.getProperties()).<br /></li>
+<li>OS environment variables.<br /></li>
+<li>A RandomValuePropertySource that only has properties in random.*.<br /></li>
+<li>Profile-specific application properties outside of your packaged jar (application-{profile}.properties and YAML variants)<br /></li>
+<li>Profile-specific application properties packaged inside your jar (application-{profile}.properties and YAML variants)<br /></li>
+<li>Application properties outside of your packaged jar (application.properties and YAML variants).<br /></li>
+<li>Application properties packaged inside your jar (application.properties and YAML variants).<br /></li>
+<li>@PropertySource annotations on your @Configuration classes.<br /></li>
+<li>Default properties (specified using SpringApplication.setDefaultProperties).<br />
+<br /></li>
+</ul>
+
+<p>因为spring-boot主要使用的<code>application.properties/yaml</code>文件,所以后面主要关注这个文件.</p>
+
+<p>此外,spring代码中使用了大约近千个(300多类)默认值,这些默认值都是可以覆盖的.只需你在你的propeties/yaml文件中用相同的key即可.<br />
+所有的参考值见: <a href="https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/common-application-properties.html">example application.properties</a></p>
+
+<h2 id="application-properties">application.properties</h2>
+
+<p>SpringApplication loads properties from application.properties files in the following locations and adds them to the Spring Environment:</p>
+
+<ul>
+<li>A /config subdirectory of the current directory<br /></li>
+<li>The current directory<br /></li>
+<li>A classpath /config package<br /></li>
+<li>The classpath root<br />
+<br /></li>
+</ul>
+
+<h2 id="application-yml">application.yml</h2>
+
+<p>yaml是json的超集,相比properties文件,有着简洁灵活的优势 例如可以设置数组,设置group概念等.<br />
+yaml文件可以配置数组:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#008000"># 数组功能,等价</span>
+<span style="color:#008000"># my.servers[0]=dev.bar.com</span>
+<span style="color:#008000"># my.servers[1]=foo.bar.com</span>
+my:
+   servers:
+       - dev.bar.com
+	   - foo.bar.com
+
+<span style="color:#008000">#上面的配置可以通过注解绑定到以下bean中,非常强大.</span>
+@ConfigurationProperties(prefix=<span style="color:#a31515">&#34;my&#34;</span>)
+public class Config {
+	private List&lt;String&gt; servers = new ArrayList&lt;String&gt;();
+}
+
+
+<span style="color:#008000"># 在一个yaml文件设置不同的profile配置,properties文件只能通过拆分文件`application-profiles.properties`实现.</span>
+server:
+    address: 192.168.1.100
+---
+spring:
+    profiles: development
+server:
+    address: 127.0.0.1
+---
+spring:
+    profiles: production
+server:
+    address: 192.168.1.120</code></pre></div>
+<h3 id="yaml缺点">yaml缺点:</h3>
+
+<blockquote>
+<p>YAML files cannot be loaded by using the <code>@PropertySource</code> annotation. So, in the case that you need to load values that way, you need to use a properties file.</p>
+</blockquote>
+
+<p>当然使用properties文件缺点也明显,不能分组(yaml的&mdash;功能);同时中文显示容易unicode码.</p>
+
+<h2 id="读取配置文件">读取配置文件</h2>
+
+<p>除了application.properties文件,其他的配置属性文件需要我们自己加载读取.注意,下面的<code>PropertySource</code>无法加载yaml文件.</p>
+
+<h3 id="使用propertysource">使用PropertySource</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Configuration
+@PropertySource(<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span>)
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">PropertiesWithJavaConfig</span> {
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>}
+
+<span style="color:#008000">//or
+</span><span style="color:#008000"></span>@PropertySource({ 
+  <span style="color:#a31515">&#34;classpath:persistence-${envTarget:mysql}.properties&#34;</span>
+})
+
+<span style="color:#008000">//multi files
+</span><span style="color:#008000">//java 8+
+</span><span style="color:#008000"></span>@PropertySource(<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span>)
+@PropertySource(<span style="color:#a31515">&#34;classpath:bar.properties&#34;</span>)
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">PropertiesWithJavaConfig</span> {
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>}
+<span style="color:#008000">//java 6+
+</span><span style="color:#008000"></span>@PropertySources({
+    @PropertySource(<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span>),
+    @PropertySource(<span style="color:#a31515">&#34;classpath:bar.properties&#34;</span>)
+})
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">PropertiesWithJavaConfig</span> {
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>}
+
+<span style="color:#008000">//通过xml加载
+</span><span style="color:#008000">//register file in xml
+</span><span style="color:#008000"></span>&lt;context:property-placeholder location=<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span> /&gt;
+<span style="color:#008000">//foo.properties in src/main/resources
+</span><span style="color:#008000"></span>&lt;context:property-placeholder location=<span style="color:#a31515">&#34;classpath:foo.properties, classpath:bar.properties&#34;</span>/&gt;</code></pre></div>
+<h3 id="如何加载除了application-yml之外的yaml文件">如何加载除了application.yml之外的yaml文件</h3>
+
+<ul>
+<li>避免使用,尽量将你的所以配置放在application.yml里面,因为yml可以有分组功能.<br /></li>
+<li>将你文件命名为<code>application-redis.yml</code>,然后在application.yml使用<code>spring.profiles.include: 'redis'</code> 加载.<br />
+<br /></li>
+</ul>
+
+<p>使用yaml文件的加载可以通过<code>ConfigurationProperties</code>绑定到配置bean中.还要添加2个注解注册到spring:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Configuration
+@EnableConfigurationProperties
+@ConfigurationProperties
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">YAMLConfig</span> {
+  
+    <span style="color:#00f">private</span> String name;
+    <span style="color:#00f">private</span> String environment;
+    <span style="color:#00f">private</span> List&lt;String&gt; servers = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
+ 
+    <span style="color:#008000">// standard getters and setters
+</span><span style="color:#008000"></span>}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
+    profiles: prod
+name: prod-YAML
+environment: production
+servers: 
+    - www.abc.com
+    - www.xyz.com</code></pre></div>
+<h3 id="profiles">profiles</h3>
+
+<p>很多配置希望基于环境,spring boot支持<code>application-profile.properties</code>格式的配置,profile可以是DEV,ST,UAT,PRD,TEST等.<br />
+例如某个class希望只有在<code>PRD</code>环境才有:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Profile(<span style="color:#a31515">&#34;PRD&#34;</span>)
+@Configuration
+@EnableWebSecurity
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">SecurityConfig</span> <span style="color:#00f">extends</span> WebSecurityConfigurerAdapter {}</code></pre></div>
+<p>然后在<code>application.yml/properties</code>设置profile:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
+  profiles:
+    active: PRD</code></pre></div>
+<h3 id="properties文件">properties文件</h3>
+
+<p>对于</p>
+
+<h3 id="yml文件">yml文件</h3>
+
+<p>application.yml既可以像properties文件使用<code>application-DEV.yml</code>来配置,也可以使用<code>---</code>分组.除了第一组,其他2组都有spring.profiles设置.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#008000"># application</span>
+logging:
+  level:
+   root: INFO
+---
+spring:
+  profiles: DEV
+logging:
+  level:
+    root: DEBUG
+---
+spring:
+  profiles: PRD
+logging:
+  path: /tmp/
+  file: BookWorm.log
+  level:
+    root: WARN</code></pre></div>
+<h3 id="激活profiles">激活profiles</h3>
+
+<p>在<code>application.yml/properties</code>文件中激活某个profile:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
+    profiles:
+        active: DEV</code></pre></div>
+<p>如果你设置了<code>SPRING_PROFILES_ACTIVE</code>环境变量,那么会覆盖上面的profile设置.当然你也可以使用自定义环境变量和默认值.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
+    profiles:
+        active: ${ENV_TYP:PRD}
+<span style="color:#008000"># 读取ENV_TYP环境变量的值作为激活profile,如果没用这个环境变量,那么设置为PRD.</span></code></pre></div>
+<h1 id="测试">测试</h1>
+
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    
+    <a href="https://xiongdahu.github.io/tags/spring" rel="tag" title="spring">#spring#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-prev post-nav-item">
+        
+    </div>
+
+    <div class="post-nav-next post-nav-item">
+        
+        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="next" title="Learn Clojure by Example">
+            <i class="fa fa-chevron-right"></i> Learn Clojure by Example
+        </a>
+        
+    </div>
+</div>
+     <div class="post-nav">
+    <div
+        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    
+        <div>
+            <br />作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
+            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）
+            </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://xiongdahu.github.io/img/author.jpg"
+        alt="熊打虎" />
+    <p class="site-author-name" itemprop="name">熊打虎</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        the craft of programming</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://xiongdahu.github.io/post/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://xiongdahu.github.io/categories/">      
+         
+        <span class="site-state-item-count">1</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://xiongdahu.github.io/tags/">
+         
+        <span class="site-state-item-count">10</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/xiongdahu/" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/boris-hsiung" target="_blank" title="知乎">
+            <i class="fa fa-fw fa-globe"></i>
+            知乎
+        </a>
+        </span>
+    
+</div>
+
+      
+      
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+<ul>
+<li><a href="#配置">配置</a>
+<ul>
+<li><a href="#springbootapplication注解">SpringBootApplication注解</a></li>
+<li><a href="#自动配置">自动配置</a></li>
+<li><a href="#配置文件">配置文件</a></li>
+<li><a href="#application-properties">application.properties</a></li>
+<li><a href="#application-yml">application.yml</a>
+<ul>
+<li><a href="#yaml缺点">yaml缺点:</a></li>
+</ul></li>
+<li><a href="#读取配置文件">读取配置文件</a>
+<ul>
+<li><a href="#使用propertysource">使用PropertySource</a></li>
+<li><a href="#如何加载除了application-yml之外的yaml文件">如何加载除了application.yml之外的yaml文件</a></li>
+<li><a href="#profiles">profiles</a></li>
+<li><a href="#properties文件">properties文件</a></li>
+<li><a href="#yml文件">yml文件</a></li>
+<li><a href="#激活profiles">激活profiles</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#测试">测试</a></li>
+</ul>
+</nav></div>
+    </div>
+</section>
+
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2017 - 2019</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">香取</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.54.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://xiongdahu.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/post-details.js"></script>
+<script type="text/javascript" src="https://xiongdahu.github.io/js/toc.js"></script>
+
+<script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
+
+
+
+
+</body>
+</html>
