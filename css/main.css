@@ -500,7 +500,7 @@ pre,
 }
 pre,
 code {
-  font-family: 'dank','dank mono','fira code', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: "dank mono","fira code", monaco, consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
   padding: 0px 0px;
@@ -1049,7 +1049,7 @@ pre .javascript .function {
   }
   .post-body pre,
   .post-body .highlight {
-    padding: 10px;
+    padding: 0px;
   }
   .post-body pre .gutter pre,
   .post-body .highlight .gutter pre {

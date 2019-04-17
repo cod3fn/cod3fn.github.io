@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">6055 字 ~13分钟</span>
+    <span class="leancloud-visitors-count">6054 字 ~13分钟</span>
 </span>
       </div>
     </header>
@@ -173,7 +173,7 @@
 
 <p>目前用sbt的项目比较少,maven的更多. 而且sbt烧cpu. maven项目使用scala参考我的gist:<a href="https://gist.github.com/xiongdahu/db6caeed070bfabe70102e2bace0e5b0">scala_maven_pom.xml</a></p>
 
-<p>学习scala可以使用scala插件的worksheet,一个脚本互动的REPL. 本文后面的代码全部在worksheet中测试.</p>
+<p>学习scala可以使用scala插件的worksheet,这是一个基于脚本互动的REPL. 本文后面的代码全部在worksheet中测试.</p>
 
 <h2 id="import">import</h2>
 
@@ -213,7 +213,7 @@ s2 == s1 <span style="color:#008000">//true
 </span><span style="color:#008000"></span>// 5. 默认的,<span style="color:#00f">case</span> class和case object是可序列化的(实现Serializable),也即是可以网络传输的</code></pre></div>
 <h2 id="companion-object">companion object</h2>
 
-<p>Scala中，除了方法，一切都是对象！函数也是对象,根据参数的个数,函数的类型为FunctionN.<br />
+<p>Scala中，除了方法，一切都是对象！函数也是对象,根据参数的个数,函数的类型为FunctionN.N为函数参数个数.<br />
 伴生对象用于定义一些静态方法(工厂方法),其中apply和unapply方法常用. apply方法用于代替new的工厂方法.<br />
 同时,companion objects can access private fields and methods of their companion trait/class.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">class</span> <span style="color:#2b91af">Person</span>(name<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>, age<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) {
@@ -284,16 +284,17 @@ freeUsr <span style="color:#00f">match</span> {
 <p>先看函数定义</p>
 
 <blockquote>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">  A function can be invoked with a list of arguments to produce a result.
-  A function has a parameter list, a body, and a result type. Functions that are
-  members of a class, trait, or singleton object are called methods.
-  Functions defined inside other functions are called local functions. Functions
-  with the result type of Unit are called procedures. Anonymous functions in
-  source code are called function literals. At run time, function literals are
-  instantiated into objects called function values.
+<p>A function can be invoked with a list of arguments to produce a result.<br />
+A function has a parameter list, a body, and a result type. Functions that are<br />
+members of a class, trait, or singleton object are called methods.<br />
+Functions defined inside other functions are called local functions. Functions<br />
+with the result type of Unit are called procedures. Anonymous functions in<br />
+source code are called function literals. At run time, function literals are<br />
+instantiated into objects called function values.</p>
 
-  quote from：&lt;Programming in Scala Second Edition&gt;
-  Martin Odersky - Lex Spoon - Bill Venners</pre></div></blockquote>
+<p>quote from：<Programming in Scala Second Edition><br />
+Martin Odersky - Lex Spoon - Bill Venners</p>
+</blockquote>
 
 <p>函数由一个参数列表，一个函数体，一个结果类型构成。函数如果作为class，trait或者object（注意，这里的object是scala特有的单例对象，不是Java中的instance）的成员，那么这个函数叫方法。函数和方法的区别就是函数时FunctionN的一个实例,编译后是一个单独的class文件,而方法是依附对象的,调用方法的格式是obj.method(param),而调用函数的格式本质是将调用函数对象的apply方法.<br />
 函数定义在别的函数内部叫局部函数。函数返回值是Unit称为过程（procedures）。<br />

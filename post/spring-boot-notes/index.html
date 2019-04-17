@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1794 字 ~4分钟</span>
+    <span class="leancloud-visitors-count">1956 字 ~4分钟</span>
 </span>
       </div>
     </header>
@@ -294,9 +294,13 @@ server:
 </span><span style="color:#008000"></span>&lt;context:property-placeholder location=<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span> /&gt;
 <span style="color:#008000">//foo.properties in src/main/resources
 </span><span style="color:#008000"></span>&lt;context:property-placeholder location=<span style="color:#a31515">&#34;classpath:foo.properties, classpath:bar.properties&#34;</span>/&gt;</code></pre></div>
-<h3 id="如何加载除了application-yml之外的yaml文件">如何加载除了application.yml之外的yaml文件</h3>
+<h3 id="如何加载自定义的yaml文件">如何加载自定义的yaml文件</h3>
+
+<p>上面提到spring会默认加载<code>application.yml</code>文件的配置.但是其他文件名的yml文件无法通过<code>@PropertySource</code>加载.可以有以下方法.</p>
 
 <ul>
+<li>使用xml,然后在Java Config类加载xml. 个人不推荐使用xml文件,脱离spring boot的初衷了.<br /></li>
+<li>使用yml加载器: The <code>YamlPropertiesFactoryBean</code> will load YAML as <code>Properties</code> and the <code>YamlMapFactoryBean</code> will load YAML as a <code>Map</code>.<br /></li>
 <li>避免使用,尽量将你的所以配置放在application.yml里面,因为yml可以有分组功能.<br /></li>
 <li>将你文件命名为<code>application-redis.yml</code>,然后在application.yml使用<code>spring.profiles.include: 'redis'</code> 加载.<br />
 <br /></li>
@@ -332,11 +336,11 @@ servers:
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
   profiles:
     active: PRD</code></pre></div>
-<h3 id="properties文件">properties文件</h3>
+<h3 id="properties文件设置profile">properties文件设置profile</h3>
 
 <p>对于</p>
 
-<h3 id="yml文件">yml文件</h3>
+<h3 id="yml文件设置profile">yml文件设置profile</h3>
 
 <p>application.yml既可以像properties文件使用<code>application-DEV.yml</code>来配置,也可以使用<code>---</code>分组.除了第一组,其他2组都有spring.profiles设置.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#008000"># application</span>
@@ -517,10 +521,10 @@ logging:
 <li><a href="#读取配置文件">读取配置文件</a>
 <ul>
 <li><a href="#使用propertysource">使用PropertySource</a></li>
-<li><a href="#如何加载除了application-yml之外的yaml文件">如何加载除了application.yml之外的yaml文件</a></li>
+<li><a href="#如何加载自定义的yaml文件">如何加载自定义的yaml文件</a></li>
 <li><a href="#profiles">profiles</a></li>
-<li><a href="#properties文件">properties文件</a></li>
-<li><a href="#yml文件">yml文件</a></li>
+<li><a href="#properties文件设置profile">properties文件设置profile</a></li>
+<li><a href="#yml文件设置profile">yml文件设置profile</a></li>
 <li><a href="#激活profiles">激活profiles</a></li>
 </ul></li>
 </ul></li>
