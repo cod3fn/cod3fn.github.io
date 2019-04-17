@@ -17,7 +17,7 @@
       <pubDate>Sun, 01 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-generic/</guid>
-      <description>泛型 // 类 class Tuple&amp;lt;T, S&amp;gt; { private T first; private S second; }</description>
+      <description>泛型 // 类 class Tuple&amp;lt;T, S&amp;gt; { private T first; private S second; } // 泛型方法也可在非泛</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/io-java-stream-write-reader/</guid>
-      <description>java reader writer stream 上次总结了java 678 中</description>
+      <description>java reader writer stream 上次总结了java 678 中不同读写文件的方法，</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
-      <description>资料：Reading and writing text files 不</description>
+      <description>资料：Reading and writing text files 不要用File对象，改</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-and-equal/</guid>
-      <description>/** * samples for == and equal() * @author hsiung * */ class TestObj {</description>
+      <description>/** * samples for == and equal() * @author hsiung * */ class TestObj { // the class for test == and equal() } public</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-aop-sample/</guid>
-      <description>找到一个最简单的介绍，不怎么想</description>
+      <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</guid>
-      <description>知识点太多了。先列举一些知识点</description>
+      <description>知识点太多了。先列举一些知识点，然后在分别做一点笔</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
-      <description>定义任务的内容 多线程编程的核心</description>
+      <description>定义任务的内容 多线程编程的核心元素就是任务，任务是</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
-      <description>synchronized method和synchro</description>
+      <description>synchronized method和synchronized block</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
-      <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long</description>
+      <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long next = current + 1; if (compareAndSet(current, next)) return next;</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
-      <description>好难，看不懂呀！ 先自己写一个C</description>
+      <description>好难，看不懂呀！ 先自己写一个CountDownLa</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
-      <description>好文 Java 动态代理机制分析及扩展 更</description>
+      <description>好文 Java 动态代理机制分析及扩展 更深入的一篇: java</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/</guid>
-      <description>注解处理 注解是jdk1.5出现</description>
+      <description>注解处理 注解是jdk1.5出现的,但是自定义处理注</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-      <description>在看这个之前，希望你已经用an</description>
+      <description>在看这个之前，希望你已经用ant或者maven的使</description>
     </item>
     
     <item>
@@ -134,7 +134,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
-      <description>参考资料 饱汉式 public class Singleton { private static Singleton instance</description>
+      <description>参考资料 饱汉式 public class Singleton { private static Singleton instance = null private Singleton (){} public static Singleton getInstance() {</description>
     </item>
     
     <item>
@@ -143,7 +143,7 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
-      <description>最近一道非常火的携程面试题: public</description>
+      <description>最近一道非常火的携程面试题: public class Base { private String baseName = &amp;#34;base&amp;#34;; public Base()</description>
     </item>
     
   </channel>

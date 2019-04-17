@@ -17,7 +17,7 @@
       <pubDate>Sun, 31 Mar 2019 13:10:41 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</guid>
-      <description>Scala中很多使用if的地方</description>
+      <description>Scala中很多使用if的地方都可以用match c</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/post/scala-type-class/</guid>
-      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys</description>
+      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z</description>
     </item>
     
   </channel>
