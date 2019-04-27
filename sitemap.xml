@@ -2,6 +2,48 @@
 <search>
     
      <entry>
+        <title>Scala Future</title>
+        <url>https://xiongdahu.github.io/post/scala-future/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>scala</tag>
+        </tags>
+        <content type="html"> some notes on scala future, includes:
+future
+ executor context
+ await future result
+ callback
+ recover
+ [x]
+ [x]
+ [x]
+ [x]
+  future import java.time._ import scala.concurrent._ import ExecutionContext.Implicits.global Future { Thread.sleep(10000) println(s&amp;#34;This is the future at ${LocalTime.now}&amp;#34;) } println(s&amp;#34;This is the present at ${LocalTime.now}&amp;#34;) await for future result // for 10.seconds conversion import scala.concurrent.duration._ val f = Future { Thread.sleep(10000); 42 } val result = Await.result(f, 10.seconds) // if f throw exception, it will rethrow to Await.result // use ready() solve this val f = Future { ... } Await.ready(f, 10.seconds) val Some(t) = f.value // The f.value method returns an Option[Try[T]], // which is None when the future is not completed // and Some(t) when it is is  // t is Try type instance // A Try[T] instance is either a Success(v), where v is a value of type T or a Failure(ex) val t = Some(t).get t match { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } // or if (t.isSuccess) println(s&amp;#34;The answer is ${t.get}&amp;#34;) callback val f = Future { Thread.sleep(10000) if (random() &amp;lt; 0.5) throw new Exception 42 } f.onComplete { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } callback hell val future1 = Future { getData1() } val future2 = Future { getData2() } future1 onComplete { case Success(n1) =&amp;gt; future2 onComplete { case Success(n2) =&amp;gt; { val n = n1 &#43; n2 println(s&amp;#34;Result: $n&amp;#34;) } case Failure(ex) =&amp;gt; ... } case Failure(ex) =&amp;gt; ... } // improve val future1 = Future { getData1() } val combined = future1.map(n1 =&amp;gt; n1 &#43; getData2()) // val future1 = Future { getData1() } val future2 = Future { getData2() } val combined = future1.map(n1 =&amp;gt; future2.map(n2 =&amp;gt; n1 &#43; n2)) // use for-yield  for ( n1 &amp;lt;- future1 n2 &amp;lt;- future2 ) yield n1&#43;n2</content>
+    </entry>
+    
+     <entry>
+        <title>Spring Cache Notes</title>
+        <url>https://xiongdahu.github.io/post/spring-cache-notes/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>spring</tag>
+        </tags>
+        <content type="html"> spring的缓存一些技巧和陷阱
+spring 的缓存
+ 相同方法的缺陷
+ 缓存一个list参数方法
+ sync
+ put evict
+ ehcache的使用
+redis缓存的使用陷阱
+ </content>
+    </entry>
+    
+     <entry>
         <title>Spring Boot Notes</title>
         <url>https://xiongdahu.github.io/post/spring-boot-notes/</url>
         <categories>
@@ -43,7 +85,7 @@ application.properties SpringApplication loads properties from application.prope
  The classpath root
   application.yml yaml是json的超集,相比properties文件,有着简洁灵活的优势 例如可以设置数组,设置group概念等.
 yaml文件可以配置数组:
-# 数组功能,等价 # my.servers[0]=dev.bar.com # my.servers[1]=foo.bar.com my: servers: - dev.bar.com - foo.bar.com #上面的配置可以通过注解绑定到以下bean中,非常强大. @ConfigurationProperties(prefix=&amp;#34;my&amp;#34;) public class Config { private List&amp;lt;String&amp;gt; servers = new ArrayList&amp;lt;String&amp;gt;(); } # 在一个yaml文件设置不同的profile配置,properties文件只能通过拆分文件`application-profiles.properties`实现. server: address: 192.168.1.100 --- spring: profiles: development server: address: 127.0.0.1 --- spring: profiles: production server: address: 192.168.1.120 yaml缺点:  YAML files cannot be loaded by using the @PropertySource annotation. So, in the case that you need to load values that way, you need to use a properties file.
+# 数组功能,等价 # my.servers[0]=dev.bar.com # my.servers[1]=foo.bar.com my: servers: - dev.bar.com - foo.bar.com #上面的配置可以通过注解绑定到以下bean中,非常强大. @ConfigurationProperties(prefix=&amp;#34;my&amp;#34;) public class Config { private List&amp;lt;String&amp;gt; servers = new ArrayList&amp;lt;String&amp;gt;(); } # 在一个yaml文件设置不同的profile配置,properties文件只能通过拆分文件`application-profiles.properties`实现. server: address: 192.168.1.100 --- spring: profiles: DEV server: address: 127.0.0.1 --- spring: profiles: PRD server: address: 192.168.1.120 yaml缺点:  YAML files cannot be loaded by using the @PropertySource annotation. So, in the case that you need to load values that way, you need to use a properties file.
  当然使用properties文件缺点也明显,不能分组(yaml的&amp;mdash;功能);同时中文显示容易unicode码.
 读取配置文件 除了application.properties文件,其他的配置属性文件需要我们自己加载读取.注意,下面的PropertySource无法加载yaml文件.
 使用PropertySource @Configuration @PropertySource(&amp;#34;classpath:foo.properties&amp;#34;) public class PropertiesWithJavaConfig { //... } //or @PropertySource({ &amp;#34;classpath:persistence-${envTarget:mysql}.properties&amp;#34; }) //multi files //java 8&#43; @PropertySource(&amp;#34;classpath:foo.properties&amp;#34;) @PropertySource(&amp;#34;classpath:bar.properties&amp;#34;) public class PropertiesWithJavaConfig { //... } //java 6&#43; @PropertySources({ @PropertySource(&amp;#34;classpath:foo.properties&amp;#34;), @PropertySource(&amp;#34;classpath:bar.properties&amp;#34;) }) public class PropertiesWithJavaConfig { //... } //通过xml加载 //register file in xml &amp;lt;context:property-placeholder location=&amp;#34;classpath:foo.properties&amp;#34; /&amp;gt; //foo.properties in src/main/resources &amp;lt;context:property-placeholder location=&amp;#34;classpath:foo.properties, classpath:bar.properties&amp;#34;/&amp;gt; 如何加载自定义的yaml文件 上面提到spring会默认加载application.yml文件的配置.但是其他文件名的yml文件无法通过@PropertySource加载.可以有以下方法.
@@ -55,10 +97,10 @@ yaml文件可以配置数组:
 @Configuration @EnableConfigurationProperties @ConfigurationProperties public class YAMLConfig { private String name; private String environment; private List&amp;lt;String&amp;gt; servers = new ArrayList&amp;lt;&amp;gt;(); // standard getters and setters }spring: profiles: prod name: prod-YAML environment: production servers: - www.abc.com - www.xyz.com profiles 很多配置希望基于环境,spring boot支持application-profile.properties格式的配置,profile可以是DEV,ST,UAT,PRD,TEST等.
 例如某个class希望只有在PRD环境才有:
 @Profile(&amp;#34;PRD&amp;#34;) @Configuration @EnableWebSecurity public class SecurityConfig extends WebSecurityConfigurerAdapter {} 然后在application.yml/properties设置profile:
-spring: profiles: active: PRD properties文件设置profile 对于
-yml文件设置profile application.yml既可以像properties文件使用application-DEV.yml来配置,也可以使用---分组.除了第一组,其他2组都有spring.profiles设置.
-# application logging: level: root: INFO --- spring: profiles: DEV logging: level: root: DEBUG --- spring: profiles: PRD logging: path: /tmp/ file: BookWorm.log level: root: WARN 激活profiles 在application.yml/properties文件中激活某个profile:
-spring: profiles: active: DEV 如果你设置了SPRING_PROFILES_ACTIVE环境变量,那么会覆盖上面的profile设置.当然你也可以使用自定义环境变量和默认值.
+spring: profiles: active: PRD properties文件设置profile application.properties文件只能使用application-DEV.properties,application-ST.properties设置profile.
+yml文件设置profile application.yml既可以像properties文件使用application-DEV.yml来设置profile,也可以使用---分组.如下示例,logging.level=INFO在所有profile中生效,而在生产环境中增加日志文件设置,DEV环境则使用DEBUG级别日志.
+# application.yml logging: level: root: INFO --- spring: profiles: DEV logging: level: root: DEBUG --- spring: profiles: PRD logging: path: /tmp/ file: BookWorm.log level: root: WARN 激活profiles 在application.yml/properties文件中激活某个profile:
+spring: profiles: active: DEV 如果你设置了SPRING_PROFILES_ACTIVE环境变量,那么会覆盖上面的profile设置.当然你也可以使用自定义环境变量和默认值:
 spring: profiles: active: ${ENV_TYP:PRD} # 读取ENV_TYP环境变量的值作为激活profile,如果没用这个环境变量,那么设置为PRD. 测试 </content>
     </entry>
     
@@ -131,18 +173,25 @@ type class由3部分组件：
         <content type="html">  scala-notes some notes on scala, includes:
 setup with maven
  import
+ == and eq
  case class
+ for&amp;hellip;yield
  companion object and class
  method and function(def val)
  _ in scala
  =&amp;gt; in scala
  () {} in scala
  implicit
+ string
   setup with maven 目前用sbt的项目比较少,maven的更多. 而且sbt烧cpu. maven项目使用scala参考我的gist:scala_maven_pom.xml
 学习scala可以使用scala插件的worksheet,这是一个基于脚本互动的REPL. 本文后面的代码全部在worksheet中测试.
 import scala的import语句很灵活，可以在任何地方导入class内部外部，方法内部，代码块内部，这样做有一个好处，限制导入方法和对象的scope，防止污染变量。在后面学了implicit隐式转换后，就知道import scope有多重要了。
-import scala.math._ // import everything in math package import java.util.{ ArrayList =&amp;gt; _, _} //第一个下划线表示隐藏ArrayList，第二个表示通配符，导入所有  //默认，scala导入: java.lang._ scala._ scala.Predef._ //推荐看一下Predef的源代码包括： //Predef中定义的方法和属性 //常用方法和类 //打印方法 println等 //一些调试和错误方法 //一个特殊的方法表示方法未实现 def ??? : Nothing = throw new NotImplementedError //Predef还有大量的隐式转换和隐式参数 case class case class类似data class,即java的pojo bean,但是提供了更多的方法.
-// 5个特性 // 1.添加companion object,apply方法,unapply方法 // 2.toString, hashCode and equals and copy methods case class Student(name: String, marks: Int) val s1 = Student(&amp;#34;Rams&amp;#34;, 550) val s2 = s1.copy() val s3 = s1.copy(marks = 590) s2 == s1 //true s3 == s1 //false  // 3. 构造函数参数自动成为成员变量,即自动给构造参数添加val前缀 // 4. 可以用于模式匹配 // 5. 默认的,case class和case object是可序列化的(实现Serializable),也即是可以网络传输的 companion object Scala中，除了方法，一切都是对象！函数也是对象,根据参数的个数,函数的类型为FunctionN.N为函数参数个数.
+import scala.math._ // import everything in math package import java.util.{ ArrayList =&amp;gt; _, _} //第一个下划线表示隐藏ArrayList，第二个表示通配符，导入所有  //默认，scala导入: java.lang._ scala._ scala.Predef._ //推荐看一下Predef的源代码包括： //Predef中定义的方法和属性 //常用方法和类 //打印方法 println等 //一些调试和错误方法 //一个特殊的方法表示方法未实现 def ??? : Nothing = throw new NotImplementedError //Predef还有大量的隐式转换和隐式参数 == and eq scala里面==等价于java的equals方法即内容比较,并且可以正确处理null(还记得java规范里面烦人的 &amp;quot;A&amp;quot;.equals(m)规范么?). 而地址(应用)比较使用eq 方法,这个方法其实很少用到,应用代码一般无需比较2个变量的地址.
+case class case class类似data class,即java的pojo bean,但是提供了更多的方法.
+// 5个特性 // 1.添加companion object,apply方法,unapply方法 // 2.toString, hashCode and equals and copy methods case class Student(name: String, marks: Int) val s1 = Student(&amp;#34;Rams&amp;#34;, 550) val s2 = s1.copy() val s3 = s1.copy(marks = 590) s2 == s1 //true s3 == s1 //false  // 3. 构造函数参数自动成为成员变量,即自动给构造参数添加val前缀 // 4. 可以用于模式匹配 // 5. 默认的,case class和case object是可序列化的(实现Serializable),也即是可以网络传输的 for&amp;hellip;yield  Scala’s “for comprehensions” are syntactic sugar for composition of multiple operations with foreach, map, flatMap, filter or withFilter
+scala的for推导其实就是组合多个foreach, map, flatMap, filter or withFilter的语法糖.
+以下代码结果r1,r2完全一致:
+ val c1 = List(1, 2, 3) val c2 = List(&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;) val c3 = List(&amp;#34;!&amp;#34;, &amp;#34;@&amp;#34;, &amp;#34;#&amp;#34;) val r1 = for (x &amp;lt;- c1; y &amp;lt;- c2; z &amp;lt;- c3) yield { x &#43; y &#43; z } //&amp;lt;==&amp;gt; val r2 = c1.flatMap(x =&amp;gt; c2.flatMap(y =&amp;gt; c3.map(z =&amp;gt; { x &#43; y &#43; z }))) assert(r1 == r2)//true companion object Scala中，除了方法，一切都是对象！函数也是对象,根据参数的个数,函数的类型为FunctionN.N为函数参数个数.
 伴生对象用于定义一些静态方法(工厂方法),其中apply和unapply方法常用. apply方法用于代替new的工厂方法.
 同时,companion objects can access private fields and methods of their companion trait/class.
 class Person(name: String, age: Int) { private var skill: String = &amp;#34;no skill&amp;#34; def introduce() = println(s&amp;#34;my name is $name, I am $ageyears old&amp;#34;) } // companion object name should be identical to the class name. object Person { def apply(name: String, age: Int): Person = { new Person(name, age) } //apply method override  def apply(name: String, age: Int, skill: String): Person = { val p = new Person(name, age) p.skill = skill p } } val dahu = Person(&amp;#34;dahu&amp;#34;, 30) dahu.introduce 伴生对象在模式匹配和抽取器的应用
@@ -180,7 +229,7 @@ implicit class RichInt(val self: Int) extends AnyVal { def toHexString: String =
 value class还有其他作用和局限性，可以参考上面链接。如果发现错误，请指出，先谢过。
 Implicit Design Patterns in Scala​www.lihaoyi.com
 The Neophyte&amp;rsquo;s Guide to Scala​
-集合类的implicit转换 //scala集合和java集合的转换是scala编程最常用的,毕竟java有大量第三方库. //scala提供了两种方法,第一种方法就是隐式转换collection.JavaConversions(scala 2.8) //很快意识到隐式转换对于使用者的代码阅读比较复杂,在2.8.1提供了显示转换collection.JavaConverters, //先看JavaConversions隐式转换: object JavaConversions extends WrapAsScala with WrapAsJava //在WrapAsJava  implicit def mapAsJavaMap[A, B](m: Map[A, B]): ju.Map[A, B] = m match { case null =&amp;gt; null case JMapWrapper(wrapped) =&amp;gt; wrapped.asInstanceOf[ju.Map[A, B]] case _ =&amp;gt; new MapWrapper(m) } //然后看下collection.JavaConverters._,稍微复杂一些,但是换汤不换药,底层还是隐式转换, object JavaConverters extends DecorateAsJava with DecorateAsScala //在DecorateAsJava中有很多隐式转换方法,这些方法将scala集合转换为AsJava对象 //(注意下面的ju,是java.util缩写,详情见[征服scala_1](https://zhuanlan.zhihu.com/p/22670426)) implicit def seqAsJavaListConverter[A](b : Seq[A]): AsJava[ju.List[A]] = new AsJava(seqAsJavaList(b)) // 而AsJava中定义了asJava方法,这样我们就可以在scala集合上面调用asJava class AsJava[A](op: =&amp;gt; A) { /** Converts a Scala collection to the corresponding Java collection */ def asJava: A = op } //并且asJava方法的实现是作为构造参数传入AsJava的 //上面的seqAsJavaList就是将scala.Seq转换为ju.List的具体实现 def seqAsJavaList[A](s: Seq[A]): ju.List[A] = s match { case null =&amp;gt; null case JListWrapper(wrapped) =&amp;gt; wrapped.asInstanceOf[ju.List[A]] case _ =&amp;gt; new SeqWrapper(s) } //综上,JavaConverters用的还是隐式转换,只不过增加了一个中间类AsJava/AsScala. 隐式转换的scope //无论是隐式参数还是隐式转换,编译器都要知道去哪里查找这些implicit参数或者方法, //例如import collection.JavaConverters._ //由于scala import可以出现在任何地方,这为控制implicit的scope提供了灵活性 //这一块我不是完全清楚,只提供一个自己的理解 // 1.首先是当前scope的Implicits定义,例如,当前方法内,class内 // 2.显式导入 import collection.JavaConversions.asScalaIterator // 3.通配符导入 import collection.JavaConverters._ // 4.类型的伴生对象内(这个常用) // 5.参数类型的隐式scope (2.9.1添加):class构造参数的隐式转换搜索返回会被应用到 class A(val n: Int) { def &#43;(other: A) = new A(n &#43; other.n) } object A { implicit def fromInt(n: Int) = new A(n) } new A(1) &#43; 2 // new A(1) &#43; A.fromInt(2) //6.类型参数的隐式转换,下面的sorted方法期望有一个Ordering[A], //在伴生对象中提供了一个 A -&amp;gt; Ordering[A] , class A(val n: Int) object A { implicit val ord = new Ordering[A] { def compare(x: A, y: A) = implicitly[Ordering[Int]].compare(x.n, y.n) } } List(new A(5), new A(2)).sorted // 注意implicitly[Ordering[Int]] 表示在当前scope内搜索一个隐式参数值 def implicitly[T](implicit e: T): T = e links https://www.btbytes.com/scala.html
+集合类的implicit转换 //scala集合和java集合的转换是scala编程最常用的,毕竟java有大量第三方库. //scala提供了两种方法,第一种方法就是隐式转换collection.JavaConversions(scala 2.8) //很快意识到隐式转换对于使用者的代码阅读比较复杂,在2.8.1提供了显示转换collection.JavaConverters, //先看JavaConversions隐式转换: object JavaConversions extends WrapAsScala with WrapAsJava //在WrapAsJava  implicit def mapAsJavaMap[A, B](m: Map[A, B]): ju.Map[A, B] = m match { case null =&amp;gt; null case JMapWrapper(wrapped) =&amp;gt; wrapped.asInstanceOf[ju.Map[A, B]] case _ =&amp;gt; new MapWrapper(m) } //然后看下collection.JavaConverters._,稍微复杂一些,但是换汤不换药,底层还是隐式转换, object JavaConverters extends DecorateAsJava with DecorateAsScala //在DecorateAsJava中有很多隐式转换方法,这些方法将scala集合转换为AsJava对象 //(注意下面的ju,是java.util缩写,详情见[征服scala_1](https://zhuanlan.zhihu.com/p/22670426)) implicit def seqAsJavaListConverter[A](b : Seq[A]): AsJava[ju.List[A]] = new AsJava(seqAsJavaList(b)) // 而AsJava中定义了asJava方法,这样我们就可以在scala集合上面调用asJava class AsJava[A](op: =&amp;gt; A) { /** Converts a Scala collection to the corresponding Java collection */ def asJava: A = op } //并且asJava方法的实现是作为构造参数传入AsJava的 //上面的seqAsJavaList就是将scala.Seq转换为ju.List的具体实现 def seqAsJavaList[A](s: Seq[A]): ju.List[A] = s match { case null =&amp;gt; null case JListWrapper(wrapped) =&amp;gt; wrapped.asInstanceOf[ju.List[A]] case _ =&amp;gt; new SeqWrapper(s) } //综上,JavaConverters用的还是隐式转换,只不过增加了一个中间类AsJava/AsScala. 隐式转换的scope //无论是隐式参数还是隐式转换,编译器都要知道去哪里查找这些implicit参数或者方法, //例如import collection.JavaConverters._ //由于scala import可以出现在任何地方,这为控制implicit的scope提供了灵活性 //这一块我不是完全清楚,只提供一个自己的理解 // 1.首先是当前scope的Implicits定义,例如,当前方法内,class内 // 2.显式导入 import collection.JavaConversions.asScalaIterator // 3.通配符导入 import collection.JavaConverters._ // 4.类型的伴生对象内(这个常用) // 5.参数类型的隐式scope (2.9.1添加):class构造参数的隐式转换搜索返回会被应用到 class A(val n: Int) { def &#43;(other: A) = new A(n &#43; other.n) } object A { implicit def fromInt(n: Int) = new A(n) } new A(1) &#43; 2 // new A(1) &#43; A.fromInt(2) //6.类型参数的隐式转换,下面的sorted方法期望有一个Ordering[A], //在伴生对象中提供了一个 A -&amp;gt; Ordering[A] , class A(val n: Int) object A { implicit val ord = new Ordering[A] { def compare(x: A, y: A) = implicitly[Ordering[Int]].compare(x.n, y.n) } } List(new A(5), new A(2)).sorted // 注意implicitly[Ordering[Int]] 表示在当前scope内搜索一个隐式参数值 def implicitly[T](implicit e: T): T = e string // The s String Interpolator: val name = &amp;#34;James&amp;#34; println(s&amp;#34;Hello, $name&amp;#34;) // Hello, James  // The f Interpolator val height = 1.9d val name = &amp;#34;James&amp;#34; println(f&amp;#34;$name%s is $height%2.2f meters tall&amp;#34;) // James is 1.90 meters tall  // The raw Interpolator // The raw interpolator is similar to the s interpolator except that // it performs no escaping of literals within the string. // Here’s an example processed string // 即不翻译转义字符 scala&amp;gt;raw&amp;#34;a\nb&amp;#34; res1: String = a\nb // &amp;#34;&amp;#34;&amp;#34; triple quotes string // triple quotes &amp;#34;&amp;#34;&amp;#34; to escape characters val donutJson4: String = &amp;#34;&amp;#34;&amp;#34; |{ |&amp;#34;donut_name&amp;#34;:&amp;#34;Glazed Donut&amp;#34;, |&amp;#34;taste_level&amp;#34;:&amp;#34;Very Tasty&amp;#34;, |&amp;#34;price&amp;#34;:2.50 |} &amp;#34;&amp;#34;&amp;#34; .stripMargin // |会被忽略 // &amp;#34;&amp;#34;&amp;#34;还有个很好的用处,正则表达式: // 在java中表示一个或多个空格,&amp;#34;\\s&#43;&amp;#34; // 在scala中只要 &amp;#34;&amp;#34;&amp;#34;\s&#43;&amp;#34;&amp;#34;&amp;#34;,对于复杂正则表达式非常有用. links https://www.btbytes.com/scala.html
 https://booksites.artima.com/programming_in_scala_2ed/examples/index.html
 http://blog.higher-order.com/assets/fpiscompanion.pdf
 https://courses.cs.washington.edu/courses/cse341/09au/notes/scala.html

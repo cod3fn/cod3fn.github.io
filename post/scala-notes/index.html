@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">6054 字 ~13分钟</span>
+    <span class="leancloud-visitors-count">6598 字 ~14分钟</span>
 </span>
       </div>
     </header>
@@ -159,13 +159,16 @@
 <ul class="task-list">
 <li><label><input type="checkbox" checked disabled class="task-list-item"> setup with maven<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> import<br /></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> == and eq<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> case class<br /></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> for&hellip;yield<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> companion object and class<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> method and function(def val)<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> _ in scala<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> =&gt; in scala<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> () {} in scala<br /></label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> implicit<br />
+<li><label><input type="checkbox" checked disabled class="task-list-item"> implicit<br /></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> string<br />
 <br /></label></li>
 </ul>
 
@@ -194,6 +197,10 @@ scala.<span style="color:#2b91af">Predef</span>.<span style="color:#00f">_</span
 </span><span style="color:#008000">//一个特殊的方法表示方法未实现  
 </span><span style="color:#008000"></span><span style="color:#00f">def</span> ??? <span style="color:#00f">:</span> <span style="color:#2b91af">Nothing</span> = <span style="color:#00f">throw</span> <span style="color:#00f">new</span> <span style="color:#2b91af">NotImplementedError</span>
 //<span style="color:#2b91af">Predef还有大量的隐式转换和隐式参数</span></code></pre></div>
+<h2 id="and-eq">== and eq</h2>
+
+<p>scala里面<code>==</code>等价于java的<code>equals</code>方法即内容比较,并且可以正确处理<code>null</code>(还记得java规范里面烦人的 <code>&quot;A&quot;.equals(m)</code>规范么?). 而地址(应用)比较使用<code>eq</code> 方法,这个方法其实很少用到,应用代码一般无需比较2个变量的地址.</p>
+
 <h2 id="case-class">case class</h2>
 
 <p>case class类似data class,即java的pojo bean,但是提供了更多的方法.</p>
@@ -211,6 +218,27 @@ s2 == s1 <span style="color:#008000">//true
 <span style="color:#008000">// 3. 构造函数参数自动成为成员变量,即自动给构造参数添加val前缀
 </span><span style="color:#008000">// 4. 可以用于模式匹配
 </span><span style="color:#008000"></span>// 5. 默认的,<span style="color:#00f">case</span> class和case object是可序列化的(实现Serializable),也即是可以网络传输的</code></pre></div>
+<h2 id="for-yield">for&hellip;yield</h2>
+
+<blockquote>
+<p>Scala’s “for comprehensions” are syntactic sugar for composition of multiple operations with <code>foreach, map, flatMap, filter or withFilter</code><br />
+scala的for推导其实就是组合多个<code>foreach, map, flatMap, filter or withFilter</code>的语法糖.<br />
+以下代码结果r1,r2完全一致:</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">val</span> c1 <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(1, 2, 3)
+<span style="color:#00f">val</span> c2 <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(<span style="color:#a31515">&#34;a&#34;</span>, <span style="color:#a31515">&#34;b&#34;</span>, <span style="color:#a31515">&#34;c&#34;</span>)
+<span style="color:#00f">val</span> c3 <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(<span style="color:#a31515">&#34;!&#34;</span>, <span style="color:#a31515">&#34;@&#34;</span>, <span style="color:#a31515">&#34;#&#34;</span>)
+
+<span style="color:#00f">val</span> r1 <span style="color:#00f">=</span> <span style="color:#00f">for</span> (x <span style="color:#00f">&lt;-</span> c1; y <span style="color:#00f">&lt;-</span> c2; z <span style="color:#00f">&lt;-</span> c3) <span style="color:#00f">yield</span> {
+  x + y + z
+}
+
+<span style="color:#008000">//&lt;==&gt;
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> r2 <span style="color:#00f">=</span> c1.flatMap(x <span style="color:#00f">=&gt;</span> c2.flatMap(y <span style="color:#00f">=&gt;</span> c3.map(z <span style="color:#00f">=&gt;</span> {
+  x + y + z
+})))
+
+assert(r1 == r2)//<span style="color:#00f">true</span></code></pre></div>
 <h2 id="companion-object">companion object</h2>
 
 <p>Scala中，除了方法，一切都是对象！函数也是对象,根据参数的个数,函数的类型为FunctionN.N为函数参数个数.<br />
@@ -621,6 +649,39 @@ value class还有其他作用和局限性，可以参考上面链接。如果发
 <span style="color:#2b91af">List</span>(<span style="color:#00f">new</span> A(5), <span style="color:#00f">new</span> A(2)).sorted
 <span style="color:#008000">// 注意implicitly[Ordering[Int]] 表示在当前scope内搜索一个隐式参数值
 </span><span style="color:#008000"></span><span style="color:#00f">def</span> implicitly[<span style="color:#2b91af">T</span>](<span style="color:#00f">implicit</span> e<span style="color:#00f">:</span> <span style="color:#2b91af">T</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">T</span> = e</code></pre></div>
+<h2 id="string">string</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008000">// The s String Interpolator:
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> name <span style="color:#00f">=</span> <span style="color:#a31515">&#34;James&#34;</span>
+println(<span style="color:#a31515">s&#34;Hello, </span><span style="color:#a31515">$name</span><span style="color:#a31515">&#34;</span>)  <span style="color:#008000">// Hello, James
+</span><span style="color:#008000"></span>
+<span style="color:#008000">// The f Interpolator
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> height <span style="color:#00f">=</span> 1.9d
+<span style="color:#00f">val</span> name <span style="color:#00f">=</span> <span style="color:#a31515">&#34;James&#34;</span>
+println(<span style="color:#a31515">f&#34;</span><span style="color:#a31515">$name</span><span style="color:#a31515">%s is </span><span style="color:#a31515">$height</span><span style="color:#a31515">%2.2f meters tall&#34;</span>)  <span style="color:#008000">// James is 1.90 meters tall
+</span><span style="color:#008000"></span>
+<span style="color:#008000">// The raw Interpolator
+</span><span style="color:#008000">// The raw interpolator is similar to the s interpolator except that 
+</span><span style="color:#008000">// it performs no escaping of literals within the string. 
+</span><span style="color:#008000">// Here’s an example processed string
+</span><span style="color:#008000">// 即不翻译转义字符
+</span><span style="color:#008000"></span>scala&gt;<span style="color:#a31515">raw&#34;a\nb&#34;</span>
+res1<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> = a\nb
+
+<span style="color:#008000">// &#34;&#34;&#34; triple quotes string
+</span><span style="color:#008000">// triple quotes &#34;&#34;&#34; to escape characters
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> donutJson4<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> =
+    <span style="color:#a31515">&#34;&#34;&#34;
+</span><span style="color:#a31515">      |{
+</span><span style="color:#a31515">      |&#34;donut_name&#34;:&#34;Glazed Donut&#34;,
+</span><span style="color:#a31515">      |&#34;taste_level&#34;:&#34;Very Tasty&#34;,
+</span><span style="color:#a31515">      |&#34;price&#34;:2.50
+</span><span style="color:#a31515">      |}
+</span><span style="color:#a31515">      &#34;&#34;&#34;</span>
+   .stripMargin
+<span style="color:#008000">// |会被忽略
+</span><span style="color:#008000">// &#34;&#34;&#34;还有个很好的用处,正则表达式:
+</span><span style="color:#008000">// 在java中表示一个或多个空格,&#34;\\s+&#34;
+</span><span style="color:#008000"></span>// 在scala中只要 <span style="color:#a31515">&#34;&#34;&#34;\s+&#34;&#34;&#34;</span>,对于复杂正则表达式非常有用.</code></pre></div>
 <h2 id="links">links</h2>
 
 <p><a href="https://www.btbytes.com/scala.html">https://www.btbytes.com/scala.html</a></p>
@@ -720,7 +781,7 @@ value class还有其他作用和局限性，可以参考上面链接。如果发
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -775,7 +836,9 @@ value class还有其他作用和局限性，可以参考上面链接。如果发
 <ul>
 <li><a href="#setup-with-maven">setup with maven</a></li>
 <li><a href="#import">import</a></li>
+<li><a href="#and-eq">== and eq</a></li>
 <li><a href="#case-class">case class</a></li>
+<li><a href="#for-yield">for&hellip;yield</a></li>
 <li><a href="#companion-object">companion object</a></li>
 <li><a href="#method-and-function-def-val">method and function(def val)</a></li>
 <li><a href="#in-scala">_ in scala</a></li>
@@ -796,6 +859,7 @@ value class还有其他作用和局限性，可以参考上面链接。如果发
 <li><a href="#集合类的implicit转换">集合类的implicit转换</a></li>
 <li><a href="#隐式转换的scope">隐式转换的scope</a></li>
 </ul></li>
+<li><a href="#string">string</a></li>
 <li><a href="#links">links</a></li>
 </ul></li>
 </ul>

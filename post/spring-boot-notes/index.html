@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1956 字 ~4分钟</span>
+    <span class="leancloud-visitors-count">2092 字 ~5分钟</span>
 </span>
       </div>
     </header>
@@ -241,12 +241,12 @@ server:
     address: 192.168.1.100
 ---
 spring:
-    profiles: development
+    profiles: DEV
 server:
     address: 127.0.0.1
 ---
 spring:
-    profiles: production
+    profiles: PRD
 server:
     address: 192.168.1.120</code></pre></div>
 <h3 id="yaml缺点">yaml缺点:</h3>
@@ -317,7 +317,7 @@ server:
     <span style="color:#00f">private</span> List&lt;String&gt; servers = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
  
     <span style="color:#008000">// standard getters and setters
-</span><span style="color:#008000"></span>}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
+</span><span style="color:#008000"></span>}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">spring:
     profiles: prod
 name: prod-YAML
 environment: production
@@ -338,12 +338,12 @@ servers:
     active: PRD</code></pre></div>
 <h3 id="properties文件设置profile">properties文件设置profile</h3>
 
-<p>对于</p>
+<p><code>application.properties</code>文件只能使用<code>application-DEV.properties,application-ST.properties</code>设置profile.</p>
 
 <h3 id="yml文件设置profile">yml文件设置profile</h3>
 
-<p>application.yml既可以像properties文件使用<code>application-DEV.yml</code>来配置,也可以使用<code>---</code>分组.除了第一组,其他2组都有spring.profiles设置.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#008000"># application</span>
+<p><code>application.yml</code>既可以像properties文件使用<code>application-DEV.yml</code>来设置profile,也可以使用<code>---</code>分组.如下示例,<code>logging.level=INFO</code>在所有profile中生效,而在生产环境中增加日志文件设置,DEV环境则使用<code>DEBUG</code>级别日志.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#008000"># application.yml</span>
 logging:
   level:
    root: INFO
@@ -367,7 +367,7 @@ logging:
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
     profiles:
         active: DEV</code></pre></div>
-<p>如果你设置了<code>SPRING_PROFILES_ACTIVE</code>环境变量,那么会覆盖上面的profile设置.当然你也可以使用自定义环境变量和默认值.</p>
+<p>如果你设置了<code>SPRING_PROFILES_ACTIVE</code>环境变量,那么会覆盖上面的profile设置.当然你也可以使用自定义环境变量和默认值:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">spring:
     profiles:
         active: ${ENV_TYP:PRD}
@@ -390,6 +390,10 @@ logging:
 
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
+        
+        <a href="https://xiongdahu.github.io/post/spring-cache-notes/" rel="prev" title="Spring Cache Notes">
+            Spring Cache Notes <i class="fa fa-chevron-left"></i>
+        </a>
         
     </div>
 
@@ -457,7 +461,7 @@ logging:
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>

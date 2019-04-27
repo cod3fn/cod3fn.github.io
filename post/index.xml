@@ -6,10 +6,28 @@
     <description>Recent content in Posts on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 14 Apr 2019 18:33:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2019 14:36:36 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scala Future</title>
+      <link>https://xiongdahu.github.io/post/scala-future/</link>
+      <pubDate>Sun, 21 Apr 2019 14:36:36 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/scala-future/</guid>
+      <description>&lt;p&gt;some notes on scala future, includes:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Cache Notes</title>
+      <link>https://xiongdahu.github.io/post/spring-cache-notes/</link>
+      <pubDate>Thu, 18 Apr 2019 09:42:12 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spring-cache-notes/</guid>
+      <description>&lt;p&gt;spring的缓存一些技巧和陷阱&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring Boot Notes</title>
@@ -53,7 +71,7 @@
       <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/post/scala-notes/</guid>
-      <description>scala-notes some notes on scala, includes: setup with maven import case class companion object and class method and function(def val) _ in scala =&amp;gt; in</description>
+      <description>scala-notes some notes on scala, includes: setup with maven import == and eq case class for&amp;hellip;yield companion object and class method and function(def val) _</description>
     </item>
     
     <item>
