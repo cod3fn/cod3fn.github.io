@@ -2,6 +2,19 @@
 <search>
     
      <entry>
+        <title>Useful Scala Code Snippets</title>
+        <url>https://xiongdahu.github.io/post/useful-scala-code-snippets/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>scala</tag>
+        </tags>
+        <content type="html">  merge two map and sum its values 多个map合并,key相同时则value相加
+val map1 = Map(1 -&amp;gt; 1, 2 -&amp;gt; 2) val map2 = Map(1 -&amp;gt; 11, 3 -&amp;gt; 3) val map3 = Map(1 -&amp;gt; 111, 3 -&amp;gt; 3) val mapList = List(map1, map2, map3) val merged = mapList.reduce((m1, m2) =&amp;gt; m1 &#43;&#43; m2.map { case (k, v) =&amp;gt; k -&amp;gt; (v &#43; m1.getOrElse(k, 0)) } ) 文件读 // &amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;可以避免\\符号 val file = &amp;#34;&amp;#34;&amp;#34;d:\data\file.txt&amp;#34;&amp;#34;&amp;#34; for (line &amp;lt;- Source.fromFile(file, encoding).getLines()) { print(line) } 文件写 //资源管理  def using[A &amp;lt;: {def close() : Unit}, R](resource: A)(fun: A =&amp;gt; R): R = { import scala.language.reflectiveCalls try { fun(resource) } finally { resource.close() } } using(new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8)) { writer =&amp;gt; writer.write(s&amp;#34;&amp;#34;&amp;#34;${line}\n&amp;#34;&amp;#34;&amp;#34;) } 统计词频 val nanoUnit = 1000000 //分词并统计词频  def main(args: Array[String]): Unit = { val path = &amp;#34;&amp;#34;&amp;#34;D:\code\ideaProjects\scala-notes\data\src\out&amp;#34;&amp;#34;&amp;#34; val files: List[File] = new File(path).listFiles.filter(_.isFile).toList val start = System.nanoTime() val wfList = ListBuffer[mutable.Map[String, Long]]() val futures = for (file &amp;lt;- files) yield Future { countWrodsInFile(file, &amp;#34;UTF-8&amp;#34;) } for (f &amp;lt;- futures) { val words: mutable.Map[String, Long] = Await.result(f, Duration.Inf) wfList &#43;= words } //merge the word frequency map  val finalWf = wfList.reduce((m1, m2) =&amp;gt; m1 &#43;&#43; m2.map { case (k, v) =&amp;gt; k -&amp;gt; (v &#43; m1.getOrElse(k, 0L)) } ) val end = System.nanoTime() println(s&amp;#34;container size=${finalWf.size}&amp;#34;) // sort map  val wordsFreq = finalWf.toList.sortWith(_._2 &amp;gt; _._2) write2file(wordsFreq, Paths.get(path, &amp;#34;final.txt&amp;#34;).toFile) println(s&amp;#34;total used time = ${(end - start) / nanoUnit}ms&amp;#34;) println(s&amp;#34;cups = ${Runtime.getRuntime.availableProcessors()}&amp;#34;) } def countWrodsInFile(file: File, encoding: String): mutable.Map[String, Long] = { val wf = mutable.Map[String, Long]().withDefaultValue(0) for (line &amp;lt;- Source.fromFile(file, encoding).getLines()) { val l = line.trim wf.update(l, wf(l) &#43; 1) } println(s&amp;#34;${file.getName}has words:${wf.size}&amp;#34;) wf } def write2file(wf: Seq[(String, Long)], out: File): Unit = { using(new OutputStreamWriter(new FileOutputStream(out), StandardCharsets.UTF_8)) { writer =&amp;gt; for (it &amp;lt;- wf) { writer.write(s&amp;#34;&amp;#34;&amp;#34;${it._1}${it._2}\n&amp;#34;&amp;#34;&amp;#34;) } } }</content>
+    </entry>
+    
+     <entry>
         <title>Scala Future</title>
         <url>https://xiongdahu.github.io/post/scala-future/</url>
         <categories>
@@ -16,31 +29,8 @@ future
  await future result
  callback
  recover
- [x]
- [x]
- [x]
- [x]
-  future import java.time._ import scala.concurrent._ import ExecutionContext.Implicits.global Future { Thread.sleep(10000) println(s&amp;#34;This is the future at ${LocalTime.now}&amp;#34;) } println(s&amp;#34;This is the present at ${LocalTime.now}&amp;#34;) await for future result // for 10.seconds conversion import scala.concurrent.duration._ val f = Future { Thread.sleep(10000); 42 } val result = Await.result(f, 10.seconds) // if f throw exception, it will rethrow to Await.result // use ready() solve this val f = Future { ... } Await.ready(f, 10.seconds) val Some(t) = f.value // The f.value method returns an Option[Try[T]], // which is None when the future is not completed // and Some(t) when it is is  // t is Try type instance // A Try[T] instance is either a Success(v), where v is a value of type T or a Failure(ex) val t = Some(t).get t match { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } // or if (t.isSuccess) println(s&amp;#34;The answer is ${t.get}&amp;#34;) callback val f = Future { Thread.sleep(10000) if (random() &amp;lt; 0.5) throw new Exception 42 } f.onComplete { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } callback hell val future1 = Future { getData1() } val future2 = Future { getData2() } future1 onComplete { case Success(n1) =&amp;gt; future2 onComplete { case Success(n2) =&amp;gt; { val n = n1 &#43; n2 println(s&amp;#34;Result: $n&amp;#34;) } case Failure(ex) =&amp;gt; ... } case Failure(ex) =&amp;gt; ... } // improve val future1 = Future { getData1() } val combined = future1.map(n1 =&amp;gt; n1 &#43; getData2()) // val future1 = Future { getData1() } val future2 = Future { getData2() } val combined = future1.map(n1 =&amp;gt; future2.map(n2 =&amp;gt; n1 &#43; n2)) // use for-yield  for ( n1 &amp;lt;- future1 n2 &amp;lt;- future2 ) yield n1&#43;n2</content>
-    </entry>
-    
-     <entry>
-        <title>Spring Cache Notes</title>
-        <url>https://xiongdahu.github.io/post/spring-cache-notes/</url>
-        <categories>
-          <category>编程</category>
-        </categories>
-        <tags>
-          <tag>code</tag><tag>spring</tag>
-        </tags>
-        <content type="html"> spring的缓存一些技巧和陷阱
-spring 的缓存
- 相同方法的缺陷
- 缓存一个list参数方法
- sync
- put evict
- ehcache的使用
-redis缓存的使用陷阱
- </content>
+  future import java.time._ import scala.concurrent._ import ExecutionContext.Implicits.global Future { Thread.sleep(10000) println(s&amp;#34;This is the future at ${LocalTime.now}&amp;#34;) } println(s&amp;#34;This is the present at ${LocalTime.now}&amp;#34;) executor context future need a new thread to execute it task. import ExecutionContext.Implicits.global is a implicit threadpool.
+await for future result // for 10.seconds conversion import scala.concurrent.duration._ val f = Future { Thread.sleep(10000); 42 } val result = Await.result(f, Duration.Inf) // if f throw exception, it will rethrow to Await.result // use ready() solve this val f = Future { ... } Await.ready(f, 10.seconds) val Some(t) = f.value // The f.value method returns an Option[Try[T]], // which is None when the future is not completed // and Some(t) when it is is  // t is Try type instance // A Try[T] instance is either a Success(v), where v is a value of type T or a Failure(ex) val t = Some(t).get t match { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } // or if (t.isSuccess) println(s&amp;#34;The answer is ${t.get}&amp;#34;) callback val f = Future { Thread.sleep(10000) if (random() &amp;lt; 0.5) throw new Exception 42 } f.onComplete { case Success(v) =&amp;gt; println(s&amp;#34;The answer is $v&amp;#34;) case Failure(ex) =&amp;gt; println(ex.getMessage) } callback hell val future1 = Future { getData1() } val future2 = Future { getData2() } future1 onComplete { case Success(n1) =&amp;gt; future2 onComplete { case Success(n2) =&amp;gt; { val n = n1 &#43; n2 println(s&amp;#34;Result: $n&amp;#34;) } case Failure(ex) =&amp;gt; ... } case Failure(ex) =&amp;gt; ... } // improve val future1 = Future { getData1() } val combined = future1.map(n1 =&amp;gt; n1 &#43; getData2()) // val future1 = Future { getData1() } val future2 = Future { getData2() } val combined = future1.map(n1 =&amp;gt; future2.map(n2 =&amp;gt; n1 &#43; n2)) // use for-yield  for ( n1 &amp;lt;- future1 n2 &amp;lt;- future2 ) yield n1&#43;n2</content>
     </entry>
     
      <entry>
@@ -405,14 +395,12 @@ SparkStreaming&#43;Kafka import org.apache.kafka.clients.consumer.ConsumerRecord
         </tags>
         <content type="html">  泛型 // 类 class Tuple&amp;lt;T, S&amp;gt; { private T first; private S second; } // 泛型方法也可在非泛型类里面 class ArrayAlg { public static &amp;lt;T&amp;gt; T getMiddle(T... a) { return a[a.length / 2]; } }String middle = ArrayAlg.&amp;lt;String&amp;gt;getMiddle(&amp;#34;]ohnM, &amp;#34;Q.n, &amp;#34;Public&amp;#34;);// right,&amp;lt;String&amp;gt;可以省略  String middle = GenericCls.getMiddle(&amp;#34;hello&amp;#34;,0,null);// error  // Errr:(7, 45) java: 不兼容的类型: 推断类型不符合上限 // 推断: java.lang.Object&amp;amp;java.io.Serializable&amp;amp;java.lang.Comparable&amp;lt;? extends java.lang.Object&amp;amp;java.io.Serializable&amp;amp;java.lang.Comparable&amp;lt;?&amp;gt;&amp;gt; // 上限: java.lang.String,java.lang.Object  类型限定 public static &amp;lt;T extends Comparable&amp;gt; T min(T a) // 如果多个类型，则：T extends Comparable &amp;amp; Serializable // 只能有一个类，且类必须紧跟extends，但是可以有多个接口 类型擦除 //Tuple&amp;lt;T,S&amp;gt;在虚拟机变为 class Tuple { private Object first;//当调用getFirst时,则发生强制转换  private Object second; } //泛型方法同样有擦除 public static &amp;lt;T extends Comparable&amp;gt; T min(T a) // =&amp;gt; public static Comparable min(Comparable a) 约束  不能用基本类型实例化泛型,Pair&amp;lt;double&amp;gt;不允许
  运行时参数类型检查只能检查原始类型
- if (a instanceof Pair&amp;lt;String&amp;gt;) // Error if (a instanceof Pair&amp;lt;T&amp;gt;) // Error Pair&amp;lt;String&amp;gt; p = (Pair&amp;lt;String&amp;gt;) a; //warning 
- 不能创建参数化类型的数组
- Pair&amp;lt;String&amp;gt;[] table = new Pair&amp;lt;String&amp;gt;[10]; // Error Pair&amp;lt;String&amp;gt;[] table; //声明是合法的,只是无法实例化 
- 借助@SafeVarargs参数化类型的数组
+  if (a instanceof Pair&amp;lt;String&amp;gt;) // Error if (a instanceof Pair&amp;lt;T&amp;gt;) // Error Pair&amp;lt;String&amp;gt; p = (Pair&amp;lt;String&amp;gt;) a; //warning  不能创建参数化类型的数组
+  Pair&amp;lt;String&amp;gt;[] table = new Pair&amp;lt;String&amp;gt;[10]; // Error Pair&amp;lt;String&amp;gt;[] table; //声明是合法的,只是无法实例化  借助@SafeVarargs参数化类型的数组
 java @SafeVarargs public static &amp;lt;T&amp;gt; void addAll(Collection&amp;lt;T&amp;gt; coll, T... ts) 
  Class类本身是泛型。 例如，String.daSS 是一个 Class 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型
  泛型类的静态上下文中类型变量无效
-  public class Singleton&amp;lt;T&amp;gt; { private static T singlelnstance; // Error public static T getSinglelnstance{// Error if (singleinstance == null) {//construct new instance of T return singlelnstance; } } }  不能抛出或捕获泛型类的实例
+  public class Singleton&amp;lt;T&amp;gt; { private static T singlelnstance; // Error  public static T getSinglelnstance{// Error  if (singleinstance == null) {//construct new instance of T  return singlelnstance; } } }  不能抛出或捕获泛型类的实例
   public class Problem&amp;lt;T&amp;gt; extends Exception { /* . . . */ } // Error can&amp;#39;t extend Throwable  泛型擦除的方法冲突
   public class Pair&amp;lt;T&amp;gt; { T first; T second; public boolean equals(T value) { //error 和Object.equals冲突  return first.equals(value) &amp;amp;&amp;amp; second, equals(value); } } 泛型继承 class Employee class Manager extends Employee //Pair&amp;lt;Employee&amp;gt; 和Pair&amp;lt;Manager&amp;gt; 没用任何继承关系 通配符 和 PECS Pair&amp;lt;? extends Employee〉 Pair&amp;lt;? super Manager 反射和泛型 </content>
     </entry>
@@ -480,7 +468,9 @@ Console console = System.console(); if (console == null) { throw new IllegalStat
         <tags>
           <tag>java</tag><tag>code</tag>
         </tags>
-        <content type="html"> 资料：Reading and writing text files
+        <content type="html"> *[] 重要的类
+*[] 文件读写场景
+资料：Reading and writing text files
 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文件也是路径的一部分），对于以前的File,可以File.toPath()得到一个Path对象。
 Files是一个静态类，操作文件内容。Paths是静态工具类，操作文件路径，例如拼接文件路径，以前要使用平台无关的分隔符表示：File.pathSeparator， File.separator
 现在可以直接使用下面方法
@@ -491,37 +481,8 @@ package angus.java.interview; import java.io.BufferedReader; import java.io.File
     </entry>
     
      <entry>
-        <title>Java-==-and-equal</title>
-        <url>https://xiongdahu.github.io/post/java-and-equal/</url>
-        <categories>
-          <category>编程</category>
-        </categories>
-        <tags>
-          <tag>java</tag><tag>code</tag>
-        </tags>
-        <content type="html"> /** * samples for == and equal() * @author hsiung * */ class TestObj { // the class for test == and equal() } public class EqualAndCompare { public static void main(String[] args) { TestObj obj1 = new TestObj(); TestObj obj2 = new TestObj(); TestObj obj3 = obj1; System.out.println(obj1 == obj2);// false , 	// == Compares references, not values 	System.out.println(obj1 == obj3);// true  System.out.println(obj1.equals(obj2));// false, 	// equal() method is derived from java.lang.Object, if not override,nor 	// in superclass,then equal behave as same as == 	// Always remember to override hashCode if you override equals so as not 	// to &amp;#34;break the contract&amp;#34;. 	// As per the API, the result returned from the hashCode() method for 	// two objects must be the same if their equals methods shows that they 	// are equivalent. The converse is not necessarily true.  String s1 = &amp;#34;haha&amp;#34;;// constant pool 	String s2 = new String(&amp;#34;haha&amp;#34;);// defined in ?heap 	System.out.println(s1 == s2);// false ,== Compares references, not 	// values, there is a exception for 	// static field in class, static String 	// in class == and equal both always 	// return *true* 	// for more infomation，see : 	// http://stackoverflow.com/questions/7520432/what-is-the-difference-between-vs-equals-in-java  System.out.println(s1.equals(s2)); // true compare the 	// value  String s3 = s2.intern();// find the same value String in constant pool 	System.out.println(s1 == s3);// true  int i1 = 2;// primitive type has no equal() method 	Integer i3 = Integer.valueOf(2); System.out.println(i1 == i3);// true, i3 automatic unboxing into int; 	System.out.println(i3.equals(i1));// auto boxing into Integer  Integer i2 = 2; System.out.println(i3.compareTo(i2)); } /* * Comparable interface, a.compareTo(b) return -1：less,0:equal,1:greater. 0 * should always be returned for objects when the .equals() comparisons * return true. All Java classes that have a natural ordering implement this * (String, Double, BigInteger, ...). * * * Comparator interface: is a util for compare two instance,then you can use * the comparator to sort array and other things * */ }</content>
-    </entry>
-    
-     <entry>
-        <title>Java-AOP-sample</title>
-        <url>https://xiongdahu.github.io/post/java-aop-sample/</url>
-        <categories>
-          <category>编程</category>
-        </categories>
-        <tags>
-          <tag>java</tag><tag>code</tag>
-        </tags>
-        <content type="html"> 找到一个最简单的介绍，不怎么想翻译，直接看原文吧:
-A Simple Introduction to AOP
-提醒个点，使用注解的方式写切面时，增加了一个空方法，即：
-@Pointcut(&amp;#34;execution(* org.bk.inventory.service.*.*(..))&amp;#34;) public void serviceMethods(){ } 在使用xml配置的话，就不需要这个方法了，serviceMethods方法名是后面配置切点的引用。
-如果不想引入spring的话，可以直接使用aspectj或者jboss aop。
-</content>
-    </entry>
-    
-     <entry>
-        <title>Java-concurrency-1-概要</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</url>
+        <title>Java concurrency 1 basic</title>
+        <url>https://xiongdahu.github.io/post/java-concurrency-1-basic/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -559,7 +520,7 @@ Venkat 《Programming concurrency on the JVM》
     </entry>
     
      <entry>
-        <title>Java-concurrency-2-Runnable-Callable-Future-Executor</title>
+        <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
         <url>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</url>
         <categories>
           <category>编程</category>
@@ -587,7 +548,7 @@ ExecutorService executor = Executors.newFixedThreadPool(numberOfThreadsInThePool
     </entry>
     
      <entry>
-        <title>Java-concurrency-3-synchronized-or-Lock</title>
+        <title>Java concurrency 3 synchronized or Lock</title>
         <url>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</url>
         <categories>
           <category>编程</category>
@@ -597,7 +558,7 @@ ExecutorService executor = Executors.newFixedThreadPool(numberOfThreadsInThePool
         </tags>
         <content type="html">  synchronized method和synchronized block的区别 如果是synchronized(this),那么和synchronized 方法没有任何区别，锁定对象都是方法所在的对象。
 synchronized void mymethod() { ... } void mymethod() { synchronized (this) { ... } } 但是synchronized block可以锁定其他对象，而且synchronized block的范围是可以控制更灵活，synchronized 方法的边界只能是整个方法
-private void method() { ... code here ... code here ... code here synchronized( lock ) { ... very few lines of code here } ... code here ... code here ... code here ... code here } 不要忘记synchronized 这个指令是JVM内置的，也是未来可以优化的。如果只是简单的同步一个资源对象，就使用synchronized，而且，使用Lock有就必须出现一堆的try/finally。
+private void method() { // code here  // code here  // code here  synchronized( lock ) { // very few lines of code here  } // code here  // code here  // code here } 不要忘记synchronized 这个指令是JVM内置的，也是未来可以优化的。如果只是简单的同步一个资源对象，就使用synchronized，而且，使用Lock有就必须出现一堆的try/finally。
 使用ReentrantLock场景：
 需要以下高级特性时 ： 可定时的，可轮询的，可中断的锁，公平队列，非块结构。
 stackoverflow回答
@@ -605,7 +566,7 @@ stackoverflow回答
     </entry>
     
      <entry>
-        <title>Java-concurrency-4-CAS-and-atomic</title>
+        <title>Java concurrency 4 CAS and atomic</title>
         <url>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</url>
         <categories>
           <category>编程</category>
@@ -622,7 +583,7 @@ public final boolean compareAndSet(int expect, int update) { return unsafe.compa
     </entry>
     
      <entry>
-        <title>Java-concurrency-5-Synchronizer-and-AQS</title>
+        <title>Java concurrency 5 Synchronizer and AQS</title>
         <url>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</url>
         <categories>
           <category>编程</category>
@@ -632,6 +593,35 @@ public final boolean compareAndSet(int expect, int update) { return unsafe.compa
         </tags>
         <content type="html">  好难，看不懂呀！ 先自己写一个CountDownLatch的示例： CountDownLatch是管理一组线程和一个主线程的先后。主线程wait后就阻塞，直到所有的CountDownLatch调用countDown后主线程接着开始。
 package angus.intrview.concurrent; import java.util.concurrent.CountDownLatch; import java.util.concurrent.TimeUnit; public class CountDownLatchTest { // 这个方法将启动多个任务，并让它们同时执行，计算完成的时间 	public long timer(int taskNums) throws InterruptedException { CountDownLatch startLatch = new CountDownLatch(1); CountDownLatch finishLatch = new CountDownLatch(taskNums); for (int i = 0; i &amp;lt; taskNums; i&#43;&#43;) { Task task = new Task(startLatch, finishLatch, i); new Thread(task).start(); } long start = System.nanoTime(); startLatch.countDown();// 准备好线程后开始同时启动所有任务 	finishLatch.await();// 等待任务完成 	long end = System.nanoTime(); return end - start; } public static void main(String[] args) throws InterruptedException { CountDownLatchTest ct = new CountDownLatchTest(); long time = ct.timer(100); System.out.println(TimeUnit.NANOSECONDS.toSeconds(time) &#43; &amp;#34; SENCODS&amp;#34;); } } class Task implements Runnable { CountDownLatch startLatch; CountDownLatch finishLatch; int time; Task(CountDownLatch startLatch, CountDownLatch finishLatch, int time) { this.startLatch = startLatch; this.finishLatch = finishLatch; this.time = time; } @Override public void run() { try { startLatch.await();// 等待主线程通知任务开始 	System.out.println(&amp;#34;doing the task!&amp;#34;); Thread.sleep(time * 100); // 模拟任务过程 	} catch (InterruptedException e1) { // TODO Auto-generated catch block 	e1.printStackTrace(); } finally { System.out.println(&amp;#34;task done&amp;#34;); finishLatch.countDown();// 告诉主线程任务完成 	} } } CyclicBarrier // pass</content>
+    </entry>
+    
+     <entry>
+        <title>Java-==-and-equal</title>
+        <url>https://xiongdahu.github.io/post/java-and-equal/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>java</tag><tag>code</tag>
+        </tags>
+        <content type="html"> /** * samples for == and equal() * @author hsiung * */ class TestObj { // the class for test == and equal() } public class EqualAndCompare { public static void main(String[] args) { TestObj obj1 = new TestObj(); TestObj obj2 = new TestObj(); TestObj obj3 = obj1; System.out.println(obj1 == obj2);// false , 	// == Compares references, not values 	System.out.println(obj1 == obj3);// true  System.out.println(obj1.equals(obj2));// false, 	// equal() method is derived from java.lang.Object, if not override,nor 	// in superclass,then equal behave as same as == 	// Always remember to override hashCode if you override equals so as not 	// to &amp;#34;break the contract&amp;#34;. 	// As per the API, the result returned from the hashCode() method for 	// two objects must be the same if their equals methods shows that they 	// are equivalent. The converse is not necessarily true.  String s1 = &amp;#34;haha&amp;#34;;// constant pool 	String s2 = new String(&amp;#34;haha&amp;#34;);// defined in ?heap 	System.out.println(s1 == s2);// false ,== Compares references, not 	// values, there is a exception for 	// static field in class, static String 	// in class == and equal both always 	// return *true* 	// for more infomation，see : 	// http://stackoverflow.com/questions/7520432/what-is-the-difference-between-vs-equals-in-java  System.out.println(s1.equals(s2)); // true compare the 	// value  String s3 = s2.intern();// find the same value String in constant pool 	System.out.println(s1 == s3);// true  int i1 = 2;// primitive type has no equal() method 	Integer i3 = Integer.valueOf(2); System.out.println(i1 == i3);// true, i3 automatic unboxing into int; 	System.out.println(i3.equals(i1));// auto boxing into Integer  Integer i2 = 2; System.out.println(i3.compareTo(i2)); } /* * Comparable interface, a.compareTo(b) return -1：less,0:equal,1:greater. 0 * should always be returned for objects when the .equals() comparisons * return true. All Java classes that have a natural ordering implement this * (String, Double, BigInteger, ...). * * * Comparator interface: is a util for compare two instance,then you can use * the comparator to sort array and other things * */ }</content>
+    </entry>
+    
+     <entry>
+        <title>Java-AOP-sample</title>
+        <url>https://xiongdahu.github.io/post/java-aop-sample/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>java</tag><tag>code</tag>
+        </tags>
+        <content type="html"> 找到一个最简单的介绍，不怎么想翻译，直接看原文吧:
+A Simple Introduction to AOP
+提醒个点，使用注解的方式写切面时，增加了一个空方法，即：
+@Pointcut(&amp;#34;execution(* org.bk.inventory.service.*.*(..))&amp;#34;) public void serviceMethods(){ } 在使用xml配置的话，就不需要这个方法了，serviceMethods方法名是后面配置切点的引用。
+如果不想引入spring的话，可以直接使用aspectj或者jboss aop。
+</content>
     </entry>
     
      <entry>
@@ -709,14 +699,14 @@ implement a processor class
 此外，一个产生java文件的重要方法：
 FileObject sourceFile = processingEnv.getFiler().createSourceFile(beanClassName); process() method takes 2 arguments: Set&amp;lt;? extends TypeElement&amp;gt; annotations – the annotation types requested to be processed – subset of the supported annotations RoundEnvironment roundenv – environment for information about the current and prior round – supplies elements annotated with a given annotation or all root elements in the source  一个自定义的注解处理器格式如下：
 @SupportedAnnotationTypes({&amp;#34;Property&amp;#34;}) @SupportedSourceVersion(SourceVersion.RELEASE_6) public class PropertyAnnotationProcessor extends AbstractProcessor { public boolean process(Set&amp;lt;? extends TypeElement&amp;gt; annotations, RoundEnvironment env) { process the source file elements using the mirror API } } jdk1.6 对注解的处理支持建立在对源码的抽象,Element是javax.lang.model.*中定义的,各种Element是对源码抽象数据结构,如：
-package com.example;	// PackageElement public class Foo {	// TypeElement  private int a; // VariableElement  private Foo other; // VariableElement  public Foo () {} // ExecuteableElement  } TypeElement不能提供父类的信息,如果需要这些信息,需要从Element中得到TypeMirror.TypeMirror::element.asType()
+package com.example;	// PackageElement public class Foo {	// TypeElement  private int a; // VariableElement  private Foo other; // VariableElement  public Foo () {} // ExecuteableElement  } TypeElement不能提供父类的信息,如果需要这些信息,需要从Element中得到TypeMirror.TypeMirror::element.asType()
 实例： 动手写注解处理器：3个类,一个定义注解Comparator.java,一个使用注解的类Name.java,一个处理注解MyProcessor.java.
 我将定义一个注解@Comparator,使用在方法上,被注释的方法能够返回一个Comparator.
 一个注解处理器,解析所有被注释的方法,为每一个方法产生一个Comparator类.
 ！！！注意,这里的内容和连接中资料的已经不一样了,资料里给的process方法并不能产生比较器类.
 给出注解定义前看看注解怎么使用：
-// ./Name.java ./表示当前命令行文件夹,后面所有的javc命令都以这个文件夹为准 package java.interview.annotation; public class Name { private final String first; private final String last; public Name(String f, String l) { first = f; last = l; } @Comparator(&amp;#34;NameByFirstNameComparator&amp;#34;) public int compareToByFirstName(Name other) { if (this == other) return 0; int result; if ((result = this.first.compareTo(other.first)) != 0) return result; return this.last.compareTo(other.last); } } 其中被注解注释的方法将产生一个NameByFirstNameComparator.java文件：
-// ./angus/initerview/annotation/NameByFirstNameComparator.java public class NameByFirstNameComparator implements java.util.Comparator&amp;lt;Name&amp;gt; { public int compare(Name o1, Name o2) { return o1.compareToByFirstName(o2); } public boolean equals(Object other) { return this.getClass() == other.getClass(); } } 我们定义注解：
+// ./Name.java // ./ 表示当前命令行文件夹,后面所有的javc命令都以这个文件夹为准 package java.interview.annotation; public class Name { private final String first; private final String last; public Name(String f, String l) { first = f; last = l; } @Comparator(&amp;#34;NameByFirstNameComparator&amp;#34;) public int compareToByFirstName(Name other) { if (this == other) return 0; int result; if ((result = this.first.compareTo(other.first)) != 0) return result; return this.last.compareTo(other.last); } } 其中被注解注释的方法将产生一个NameByFirstNameComparator.java文件：
+// ./angus/initerview/annotation/NameByFirstNameComparator.java  public class NameByFirstNameComparator implements java.util.Comparator&amp;lt;Name&amp;gt; { public int compare(Name o1, Name o2) { return o1.compareToByFirstName(o2); } public boolean equals(Object other) { return this.getClass() == other.getClass(); } } 我们定义注解：
 // ./Comparator.java package angus.interview.annotation; import java.lang.annotation.Documented; import java.lang.annotation.ElementType; import java.lang.annotation.Retention; import java.lang.annotation.RetentionPolicy; import java.lang.annotation.Target; @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.SOURCE) public @interface Comparator { String value(); } 接下来定义我们的注解处理器,有详细注解,特别注意generate源码中的空格和分号不要弄丢了：
 package angus.interview.annotation; import java.io.IOException; import java.io.PrintWriter; import java.util.Set; import javax.annotation.processing.AbstractProcessor; import javax.annotation.processing.RoundEnvironment; import javax.annotation.processing.SupportedAnnotationTypes; import javax.annotation.processing.SupportedSourceVersion; import javax.lang.model.SourceVersion; import javax.lang.model.element.Element; import javax.lang.model.element.ExecutableElement; import javax.lang.model.element.TypeElement; import javax.lang.model.type.PrimitiveType; import javax.lang.model.type.TypeKind; import javax.lang.model.type.TypeMirror; import javax.tools.Diagnostic; import javax.tools.FileObject; @SupportedAnnotationTypes({ &amp;#34;angus.interview.annotation.Comparator&amp;#34; }) @SupportedSourceVersion(SourceVersion.RELEASE_8) public class MyProcessor extends AbstractProcessor { @Override public boolean process(Set&amp;lt;? extends TypeElement&amp;gt; annotations, RoundEnvironment roundEnv) { for( final Element element: roundEnv.getElementsAnnotatedWith( Comparator.class ) ) { if(element instanceof ExecutableElement){ ExecutableElement m = (ExecutableElement) element; TypeElement className = (TypeElement)m.getEnclosingElement(); Comparator a = m.getAnnotation(Comparator.class); if (a != null) { TypeMirror returnType = m.getReturnType(); if (!(returnType instanceof PrimitiveType) || ((PrimitiveType) returnType).getKind() != TypeKind.INT) { processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, &amp;#34;@Comparator can only be applied to methods that return int&amp;#34;); continue; } // prepare for java file generation 	// t m a mean ? 	String comparatorClassName = a.value(); String comparetoMethodName = m.getSimpleName().toString(); String theProcessedClassesName = className.getQualifiedName().toString(); try { writeComparatorFile(theProcessedClassesName, comparatorClassName, comparetoMethodName); } catch (IOException e) { e.printStackTrace(); } } } } return true;// claimed now,no need next processor 	} /* * * public class NameByFirstNameComparator implements java.util.Comparator&amp;lt;Name&amp;gt; { * public int compare(Name o1, Nameo2) { return o1.compareToByFirstName(o2); } * * public boolean equals(Object other) { return this.getClass() == other.getClass(); } } */ //!!!careful with spaces and &amp;#34;;&amp;#34;!!! 	private void writeComparatorFile(String fullClassName, String comparatorClassName, String compareToMethodName) throws IOException { int i = fullClassName.lastIndexOf(&amp;#34;.&amp;#34;); String packageName = fullClassName.substring(0, i); FileObject sourceFile = processingEnv.getFiler().createSourceFile(packageName &#43; &amp;#34;.&amp;#34; &#43; comparatorClassName); if (sourceFile == null) { System.out.println(&amp;#34;create source file failed&amp;#34;); } PrintWriter out = new PrintWriter(sourceFile.openWriter()); if (i &amp;gt; 0) { out.println(&amp;#34;package &amp;#34; &#43; packageName &#43; &amp;#34;;&amp;#34;); } String parametrizedType = fullClassName.substring(i &#43; 1);//!! 	out.println( &amp;#34;public class &amp;#34; &#43; comparatorClassName &#43; &amp;#34; implements java.util.Comparator&amp;lt;&amp;#34; &#43; parametrizedType &#43; &amp;#34;&amp;gt; {&amp;#34;); out.println(); out.println(&amp;#34;public int compare( &amp;#34; &#43; parametrizedType &#43; &amp;#34; o1 , &amp;#34; &#43; parametrizedType &#43; &amp;#34; o2 ){&amp;#34;); out.println(&amp;#34;return o1.&amp;#34; &#43; compareToMethodName &#43; &amp;#34;(o2);&amp;#34;); out.println(&amp;#34;}&amp;#34;); out.println(); out.println(); out.println(&amp;#34;public boolean equals(Object other) {&amp;#34;); out.println(&amp;#34;return this.getClass() == other.getClass();&amp;#34;); out.println(&amp;#34;}&amp;#34;); out.println(&amp;#34;}&amp;#34;); out.close(); } } 测试处理器 两种方法,
 一种是使用 -cp：
@@ -738,11 +728,12 @@ package angus.interview.annotation; import java.io.IOException; import java.io.P
         <tags>
           <tag>java</tag><tag>code</tag>
         </tags>
-        <content type="html">  在看这个之前，希望你已经用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。理解gradle文件的前提是理解一个重要的groovy概念:closure
+        <content type="html"> 在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。
+理解gradle文件的前提是理解一个重要的groovy概念:closure
 closure 一个closure是一个定义在groovy文件中的{}代码块，这个代码块类似js中的匿名函数，它可以被赋值给变量，可以被调用，可以接收参数，还可以作为参数传递给别的函数。
 closure中最重要的两个概念是委托对象和作为参数传递的语法格式（理解gradle文件很重要）。
 groovy方法调用括号的省略 groovy提供非常优雅的方法调用格式，总结起来是:
-//可以省略参数括号，并且链式调用 // equivalent to: turn(left).then(right) turn left then right //groovy数字可以直接转换成字符串 // equivalent to: take(2.pills).of(chloroquinine).after(6.hours) take 2.pills of chloroquinine after 6.hours //两个参数用逗号隔开 // equivalent to: paint(wall).with(red, green).and(yellow) paint wall with red, green and yellow //命名参数用分号 // with named parameters too // equivalent to: check(that: margarita).tastes(good) check that: margarita tastes good //闭包作为参数也可以省略括号 // with closures as parameters // equivalent to: given({}).when({}).then({}) given { } when { } then { } //没有参数的方法必须有括号 // equivalent to: select(all).unique().from(names) select all unique() from names //如果调用链元素为奇数，那么最后一个元素是前面方法链返回对象的属性 //cookies 是take(3)返回值的一个属性 // equivalent to: take(3).cookies // and also this: take(3).getCookies() take 3 cookies 上面调用的格式是dsl的基础。也是看懂gradle文件格式的基础。
+//可以省略参数括号，并且链式调用 // equivalent to: turn(left).then(right) turn left then right //groovy数字可以直接转换成字符串 // equivalent to: take(2.pills).of(chloroquinine).after(6.hours) take 2.pills of chloroquinine after 6.hours //两个参数用逗号隔开 // equivalent to: paint(wall).with(red, green).and(yellow) paint wall with red, green and yellow //命名参数用冒号 // with named parameters too // equivalent to: check(that: margarita).tastes(good) check that: margarita tastes good //闭包作为参数也可以省略括号 // with closures as parameters // equivalent to: given({}).when({}).then({}) given { } when { } then { } //没有参数的方法必须有括号 // equivalent to: select(all).unique().from(names) select all unique() from names //如果调用链元素为奇数，那么最后一个元素是前面方法链返回对象的属性 //cookies 是take(3)返回值的一个属性 // equivalent to: take(3).cookies // and also this: take(3).getCookies() take 3 cookies 上面调用的格式是dsl的基础。也是看懂gradle文件格式的基础。
 让我们再深入一点，上面讲的是调用格式，那么怎么创建这种可以链式调用的方法呢？
  groovy和scala的方法返回值不需要return，最后一行就是返回值。
  closure是一个匿名函数，格式{ [closureParameters -&amp;gt; ] statements }，默认自带一个名为it的参数，所以只接受一个参数时可以省略-&amp;gt;。

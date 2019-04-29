@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Apr 2019 14:36:36 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2019 07:54:00 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Useful Scala Code Snippets</title>
+      <link>https://xiongdahu.github.io/post/useful-scala-code-snippets/</link>
+      <pubDate>Fri, 26 Apr 2019 07:54:00 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/useful-scala-code-snippets/</guid>
+      <description>merge two map and sum its values 多个map合并,key相同时则val</description>
+    </item>
     
     <item>
       <title>Scala Future</title>
@@ -18,15 +27,6 @@
       
       <guid>https://xiongdahu.github.io/post/scala-future/</guid>
       <description>&lt;p&gt;some notes on scala future, includes:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Spring Cache Notes</title>
-      <link>https://xiongdahu.github.io/post/spring-cache-notes/</link>
-      <pubDate>Thu, 18 Apr 2019 09:42:12 +0800</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/spring-cache-notes/</guid>
-      <description>&lt;p&gt;spring的缓存一些技巧和陷阱&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -134,7 +134,52 @@
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
-      <description>资料：Reading and writing text files 不要用File对象，改</description>
+      <description>*[] 重要的类 *[] 文件读写场景 资料：Reading and writing text</description>
+    </item>
+    
+    <item>
+      <title>Java concurrency 1 basic</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-1-basic/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-1-basic/</guid>
+      <description>知识点太多了。先列举一些知识点，然后在分别做一点笔</description>
+    </item>
+    
+    <item>
+      <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
+      <description>定义任务的内容 多线程编程的核心元素就是任务，任务是</description>
+    </item>
+    
+    <item>
+      <title>Java concurrency 3 synchronized or Lock</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
+      <description>synchronized method和synchronized block</description>
+    </item>
+    
+    <item>
+      <title>Java concurrency 4 CAS and atomic</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
+      <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long next = current + 1; if (compareAndSet(current, next)) return next;</description>
+    </item>
+    
+    <item>
+      <title>Java concurrency 5 Synchronizer and AQS</title>
+      <link>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
+      <description>好难，看不懂呀！ 先自己写一个CountDownLa</description>
     </item>
     
     <item>
@@ -153,51 +198,6 @@
       
       <guid>https://xiongdahu.github.io/post/java-aop-sample/</guid>
       <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
-    </item>
-    
-    <item>
-      <title>Java-concurrency-1-概要</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/</guid>
-      <description>知识点太多了。先列举一些知识点，然后在分别做一点笔</description>
-    </item>
-    
-    <item>
-      <title>Java-concurrency-2-Runnable-Callable-Future-Executor</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
-      <description>定义任务的内容 多线程编程的核心元素就是任务，任务是</description>
-    </item>
-    
-    <item>
-      <title>Java-concurrency-3-synchronized-or-Lock</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
-      <description>synchronized method和synchronized block</description>
-    </item>
-    
-    <item>
-      <title>Java-concurrency-4-CAS-and-atomic</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
-      <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long next = current + 1; if (compareAndSet(current, next)) return next;</description>
-    </item>
-    
-    <item>
-      <title>Java-concurrency-5-Synchronizer-and-AQS</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
-      <description>好难，看不懂呀！ 先自己写一个CountDownLa</description>
     </item>
     
     <item>
@@ -224,7 +224,8 @@
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-      <description>在看这个之前，希望你已经用ant或者maven的使</description>
+      <description>&lt;p&gt;在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。&lt;br /&gt;
+理解gradle文件的前提是理解一个重要的groovy概念:closure&lt;/p&gt;</description>
     </item>
     
     <item>

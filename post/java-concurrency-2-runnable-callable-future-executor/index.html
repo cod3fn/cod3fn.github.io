@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-concurrency-2-Runnable-Callable-Future-Executor</title>
+    <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java-concurrency-2-Runnable-Callable-Future-Executor">
+    <meta property="og:title" content="Java concurrency 2 Runnable Callable FutureExecutor">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java-concurrency-2-Runnable-Callable-Future-Executor - 香取" />
+    <meta name="title" content="Java concurrency 2 Runnable Callable FutureExecutor - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
@@ -107,7 +107,7 @@
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/" itemprop="url">
-        Java-concurrency-2-Runnable-Callable-Future-Executor
+        Java concurrency 2 Runnable Callable FutureExecutor
         </a>
       </h1>
       <div class="post-meta">
@@ -165,18 +165,18 @@ Callabe 接口的call方法会返回一个结果，并有可能抛出受检异�
 <p>Future接口描述了任务的生命周期，并提供方法获得任务执行的结果。该接口有一个实现类：FutureTask。该类的实例一定和一个具体任务相关。ExecutorService所有的submit方法都会返回一个Future实例。你也可以直接通过FutureTask构造函数将Runnable/Callable构建一个FutureTask实例。该实例将管理该任务的生命周期</p>
 
 <p>注意，FutureTask   实现了Runnable和Future（通过实现RunnableFuture<V> 接口，如下），所以既可以使用ExecutorService，也可以使用Thread执行任务内容。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public class FutureTask&lt;V&gt; implements RunnableFuture&lt;V&gt;   
-public interface RunnableFuture&lt;V&gt; extends Runnable, Future&lt;V&gt;</pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FutureTask</span>&lt;V&gt; <span style="color:#00f">implements</span> RunnableFuture&lt;V&gt;   
+<span style="color:#00f">public</span> <span style="color:#00f">interface</span> <span style="color:#2b91af">RunnableFuture</span>&lt;V&gt; <span style="color:#00f">extends</span> Runnable, Future&lt;V&gt;</code></pre></div>
 <p>Future.get是一个阻塞方法，如果任务没有结束或者没有抛出异常，那么会一直等待下去，如果需要异步的使用ComletionService。</p>
 
 <h3 id="executorservice">ExecutorService</h3>
 
 <p>执行器框架，root 接口是Executor，只有一个execute方法执行runnable实例。更常用是子接口ExecutorService，除了可以执行runnable，callable，还可以invoke一callable集合：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;T&gt; List&lt;Future&lt;T&gt;&gt;	invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)
-&lt;T&gt; T	invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">&lt;T&gt; List&lt;Future&lt;T&gt;&gt;	invokeAll(Collection&lt;? <span style="color:#00f">extends</span> Callable&lt;T&gt;&gt; tasks)
+&lt;T&gt; T	invokeAny(Collection&lt;? <span style="color:#00f">extends</span> Callable&lt;T&gt;&gt; tasks)
 
 &lt;T&gt; Future&lt;T&gt;	submit(Callable&lt;T&gt; task)
-Future&lt;?&gt;	submit(Runnable task)</pre></div>
+Future&lt;?&gt;	submit(Runnable task)</code></pre></div>
 <h3 id="scheduledexecutorservice">ScheduledExecutorService</h3>
 
 <p>The <code>ScheduledExecutorService</code> interface supplements the methods of its parent <code>ExecutorService</code> with schedule, which executes a <code>Runnable</code> or <code>Callable</code> task after a specified delay. In addition, the interface defines <code>scheduleAtFixedRate</code> and <code>scheduleWithFixedDelay</code>, which executes specified tasks repeatedly, at defined intervals.</p>
@@ -232,16 +232,16 @@ CompletionService&lt;String&gt; completionService = <span style="color:#00f">new
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/" rel="prev" title="Java-concurrency-1-概要">
-            Java-concurrency-1-概要 <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/java-concurrency-1-basic/" rel="prev" title="Java concurrency 1 basic">
+            Java concurrency 1 basic <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="next" title="Java-concurrency-3-synchronized-or-Lock">
-            <i class="fa fa-chevron-right"></i> Java-concurrency-3-synchronized-or-Lock
+        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="next" title="Java concurrency 3 synchronized or Lock">
+            <i class="fa fa-chevron-right"></i> Java concurrency 3 synchronized or Lock
         </a>
         
     </div>

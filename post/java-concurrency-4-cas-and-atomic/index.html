@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-concurrency-4-CAS-and-atomic</title>
+    <title>Java concurrency 4 CAS and atomic</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java-concurrency-4-CAS-and-atomic">
+    <meta property="og:title" content="Java concurrency 4 CAS and atomic">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java-concurrency-4-CAS-and-atomic - 香取" />
+    <meta name="title" content="Java concurrency 4 CAS and atomic - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
@@ -107,7 +107,7 @@
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/" itemprop="url">
-        Java-concurrency-4-CAS-and-atomic
+        Java concurrency 4 CAS and atomic
         </a>
       </h1>
       <div class="post-meta">
@@ -153,18 +153,18 @@
     
 
 <h4 id="atomiclong-code">AtomicLong code:</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public final long incrementAndGet() {
-    for (;;) {
-        long current = get();
-        long next = current + 1;
-        if (compareAndSet(current, next))
-          return next;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">final</span> <span style="color:#2b91af">long</span> incrementAndGet() {
+    <span style="color:#00f">for</span> (;;) {
+        <span style="color:#2b91af">long</span> current = get();
+        <span style="color:#2b91af">long</span> next = current + 1;
+        <span style="color:#00f">if</span> (compareAndSet(current, next))
+          <span style="color:#00f">return</span> next;
     }
 }
-//in java 8:
-public final long incrementAndGet() {
-        return unsafe.getAndAddLong(this, valueOffset, 1L) + 1L;
-}</pre></div>
+<span style="color:#008000">//in java 8:
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">final</span> <span style="color:#2b91af">long</span> incrementAndGet() {
+        <span style="color:#00f">return</span> unsafe.getAndAddLong(<span style="color:#00f">this</span>, valueOffset, 1L) + 1L;
+}</code></pre></div>
 <h4 id="基础">基础</h4>
 
 <p>第一个版本是基于cas的，cas基于一个基础：有三个值，新值N，预期内存中的值E，内存中需要更新的值V，如果V == E,那么将V设置为N,返回V，结束；如果V != E，说明有别的线程动了这个v,那么不做修改直接返回V。cas在X86下对应的是 CMPXCHG 汇编指令</p>
@@ -198,16 +198,16 @@ public final long incrementAndGet() {
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="prev" title="Java-concurrency-3-synchronized-or-Lock">
-            Java-concurrency-3-synchronized-or-Lock <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="prev" title="Java concurrency 3 synchronized or Lock">
+            Java concurrency 3 synchronized or Lock <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/" rel="next" title="Java-concurrency-5-Synchronizer-and-AQS">
-            <i class="fa fa-chevron-right"></i> Java-concurrency-5-Synchronizer-and-AQS
+        <a href="https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/" rel="next" title="Java concurrency 5 Synchronizer and AQS">
+            <i class="fa fa-chevron-right"></i> Java concurrency 5 Synchronizer and AQS
         </a>
         
     </div>

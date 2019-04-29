@@ -231,11 +231,12 @@ PushbackInputStream 的功能是查看最后一个字节，不满意就放入缓
 
 <p>OutputStreamWriter 是OutputStream 到Writer 转换的桥梁，它的子类FileWriter 其实就是一个实现此功能的具体类（具体可以研究一SourceCode）。功能和使用和OutputStream 极其类似，后面会有它们的对应图。</p>
 
-<p>PrintWriter 和PrintStream 极其类似，功能和使用也非常相似。但是还是有不同的，<code>PrintStream</code> prints to an <code>OutputStream</code>, and <code>PrintWriter</code> prints to a <code>Writer</code>.<br />
-<strong>你永远不应该new PrintStream,请用PrintWriter</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">PrintStream stream = new PrintStream(outputStream);
-//With the PrintWriter you can however pass an OutputStreamWriter with a specific encoding.  
-PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, &#34;UTF-8&#34;));</pre></div>
+<p>PrintWriter 和PrintStream 极其类似，功能和使用也非常相似。但是还是有不同的，<code>PrintStream</code> prints to an <code>OutputStream</code>, and <code>PrintWriter</code> prints to a <code>Writer</code>.</p>
+
+<p><strong>你永远不应该new PrintStream,请用PrintWriter</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PrintStream stream = <span style="color:#00f">new</span> PrintStream(outputStream);
+<span style="color:#008000">//With the PrintWriter you can however pass an OutputStreamWriter with a specific encoding.  
+</span><span style="color:#008000"></span>PrintWriter writer = <span style="color:#00f">new</span> PrintWriter(<span style="color:#00f">new</span> OutputStreamWriter(outputStream, <span style="color:#a31515">&#34;UTF-8&#34;</span>));</code></pre></div>
 <h3 id="piped流">Piped流</h3>
 
 <p>这是线程之间通信使用的。后面介绍。</p>
@@ -272,11 +273,11 @@ System.out.format(<span style="color:#a31515">&#34;The square root of %d is %f.%
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Scanner scanner = <span style="color:#00f">new</span> Scanner(System.in);  
 scanner.nextLine();  </code></pre></div>
 <p>从 JDK1.6开始，基本类库中增加了java.io.Console 类，用于获得与当前 Java 虚拟机关联的基于字符的控制台设备。在纯字符的控制台界面下，可以更加方便地读取数据。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">        Console console = System.console();  
-        if (console == null) {  
-            throw new IllegalStateException(&#34;不能使用控制台&#34;);  
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">        Console console = System.console();  
+        <span style="color:#00f">if</span> (console == <span style="color:#00f">null</span>) {  
+            <span style="color:#00f">throw</span> <span style="color:#00f">new</span> IllegalStateException(<span style="color:#a31515">&#34;不能使用控制台&#34;</span>);  
         }  
-        return console.readLine(prompt);  </pre></div>
+        <span style="color:#00f">return</span> console.readLine(prompt);  </code></pre></div>
 <h3 id="data-streams">Data Streams</h3>
 
 <p>Data streams support binary I/O of primitive data type values (boolean, char, byte, short, int, long, float, and double) as well as String values. All data streams implement either the DataInput interface or the DataOutput interface. This section focuses on the most widely-used implementations of these interfaces, DataInputStream and DataOutputStream.</p>

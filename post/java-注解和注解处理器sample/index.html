@@ -217,13 +217,13 @@ RoundEnvironment roundenv
     }
 }</code></pre></div>
 <p>jdk1.6 对注解的处理支持建立在对源码的抽象,Element是<code>javax.lang.model.*</code>中定义的,各种Element是对源码抽象数据结构,如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#00f">package</span> com.example;	        <span style="color:#008000">// PackageElement
-</span><span style="color:#008000"></span>public class Foo {		<span style="color:#008000">// TypeElement
-</span><span style="color:#008000"></span>    private <span style="color:#2b91af">int</span> a;        <span style="color:#008000">// VariableElement
-</span><span style="color:#008000"></span>    private Foo other;    <span style="color:#008000">// VariableElement
-</span><span style="color:#008000"></span>    public Foo () {}      <span style="color:#008000">// ExecuteableElement
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> com.example;	    <span style="color:#008000">// PackageElement
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Foo</span> {		    <span style="color:#008000">// TypeElement
+</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> a;          <span style="color:#008000">// VariableElement
+</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> Foo other;      <span style="color:#008000">// VariableElement
+</span><span style="color:#008000"></span>    <span style="color:#00f">public</span> Foo () {}        <span style="color:#008000">// ExecuteableElement
 </span><span style="color:#008000"></span>
-}</pre></div>
+}</code></pre></div>
 <p>TypeElement不能提供父类的信息,如果需要这些信息,需要从Element中得到TypeMirror.TypeMirror::element.asType()</p>
 
 <h3 id="实例">实例：</h3>
@@ -235,43 +235,44 @@ RoundEnvironment roundenv
 <p>！！！注意,这里的内容和连接中资料的已经不一样了,资料里给的process方法并不能产生比较器类.</p>
 
 <p>给出注解定义前看看注解怎么使用：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#008000">//     ./Name.java  ./表示当前命令行文件夹,后面所有的javc命令都以这个文件夹为准
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// ./Name.java  
+</span><span style="color:#008000">// ./  表示当前命令行文件夹,后面所有的javc命令都以这个文件夹为准
 </span><span style="color:#008000"></span><span style="color:#00f">package</span> java.interview.annotation;
 
-public class Name {
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Name</span> {
 
-	private final String first;
-	private final String last;
+	<span style="color:#00f">private</span> <span style="color:#00f">final</span> String first;
+	<span style="color:#00f">private</span> <span style="color:#00f">final</span> String last;
 
-	public Name(String f, String l) {
+	<span style="color:#00f">public</span> Name(String f, String l) {
 		first = f;
 		last = l;
 	}
 
-	<span style="">@</span>Comparator(<span style="color:#a31515">&#34;NameByFirstNameComparator&#34;</span>)
-	public <span style="color:#2b91af">int</span> compareToByFirstName(Name other) {
-		<span style="color:#00f">if</span> (this == other)
+	@Comparator(<span style="color:#a31515">&#34;NameByFirstNameComparator&#34;</span>)
+	<span style="color:#00f">public</span> <span style="color:#2b91af">int</span> compareToByFirstName(Name other) {
+		<span style="color:#00f">if</span> (<span style="color:#00f">this</span> == other)
 			<span style="color:#00f">return</span> 0;
 		<span style="color:#2b91af">int</span> result;
-		<span style="color:#00f">if</span> ((result = this.first.compareTo(other.first)) != 0)
+		<span style="color:#00f">if</span> ((result = <span style="color:#00f">this</span>.first.compareTo(other.first)) != 0)
 			<span style="color:#00f">return</span> result;
-		<span style="color:#00f">return</span> this.last.compareTo(other.last);
+		<span style="color:#00f">return</span> <span style="color:#00f">this</span>.last.compareTo(other.last);
 	}
-}</pre></div>
+}</code></pre></div>
 <p>其中被注解注释的方法将产生一个NameByFirstNameComparator.java文件：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">// ./angus/initerview/annotation/NameByFirstNameComparator.java
-
-public class NameByFirstNameComparator implements java.util.Comparator&lt;Name&gt; {
-	public int compare(Name o1, Name o2) {
-		return o1.compareToByFirstName(o2);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// ./angus/initerview/annotation/NameByFirstNameComparator.java
+</span><span style="color:#008000"></span>
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">NameByFirstNameComparator</span> <span style="color:#00f">implements</span> java.util.Comparator&lt;Name&gt; {
+	<span style="color:#00f">public</span> <span style="color:#2b91af">int</span> compare(Name o1, Name o2) {
+		<span style="color:#00f">return</span> o1.compareToByFirstName(o2);
 	}
 
-	public boolean equals(Object other) {
-		return this.getClass() == other.getClass();
+	<span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> equals(Object other) {
+		<span style="color:#00f">return</span> <span style="color:#00f">this</span>.getClass() == other.getClass();
 	}
-}</pre></div>
+}</code></pre></div>
 <p>我们定义注解：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#008000">// ./Comparator.java 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// ./Comparator.java 
 </span><span style="color:#008000"></span><span style="color:#00f">package</span> angus.interview.annotation;
 
 <span style="color:#00f">import</span> java.lang.annotation.Documented;
@@ -280,13 +281,13 @@ public class NameByFirstNameComparator implements java.util.Comparator&lt;Name&g
 <span style="color:#00f">import</span> java.lang.annotation.RetentionPolicy;
 <span style="color:#00f">import</span> java.lang.annotation.Target;
 
-<span style="">@</span>Documented
-<span style="">@</span>Target(ElementType.METHOD)
-<span style="">@</span>Retention(RetentionPolicy.SOURCE)
-public <span style="">@</span><span style="color:#00f">interface</span> Comparator {
+@Documented
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.SOURCE)
+<span style="color:#00f">public</span> @interface Comparator {
 	String value();
 
-}</pre></div>
+}</code></pre></div>
 <p>接下来定义我们的注解处理器,有详细注解,特别注意generate源码中的空格和分号不要弄丢了：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> angus.interview.annotation;
 

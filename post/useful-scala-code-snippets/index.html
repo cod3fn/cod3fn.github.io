@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-concurrency-1-概要</title>
+    <title>Useful Scala Code Snippets</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java-concurrency-1-概要">
+    <meta property="og:title" content="Useful Scala Code Snippets">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java-concurrency-1-概要 - 香取" />
+    <meta name="title" content="Useful Scala Code Snippets - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
@@ -106,8 +106,8 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-1-%E6%A6%82%E8%A6%81/" itemprop="url">
-        Java-concurrency-1-概要
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/useful-scala-code-snippets/" itemprop="url">
+        Useful Scala Code Snippets
         </a>
       </h1>
       <div class="post-meta">
@@ -116,8 +116,8 @@
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间:</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
-    2016-01-01
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-04-26">
+    2019-04-26
 </time>
 </span> 
       
@@ -145,84 +145,103 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1004 字 ~3分钟</span>
+    <span class="leancloud-visitors-count">369 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
 
-<p>知识点太多了。先列举一些知识点，然后在分别做一点笔记。</p>
+<h2 id="merge-two-map-and-sum-its-values">merge two map and sum its values</h2>
 
-<h4 id="模式">模式</h4>
+<p>多个map合并,key相同时则value相加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">val</span> map1 <span style="color:#00f">=</span> <span style="color:#2b91af">Map</span>(1 -&gt; 1, 2 -&gt; 2)
+<span style="color:#00f">val</span> map2 <span style="color:#00f">=</span> <span style="color:#2b91af">Map</span>(1 -&gt; 11, 3 -&gt; 3)
+<span style="color:#00f">val</span> map3 <span style="color:#00f">=</span> <span style="color:#2b91af">Map</span>(1 -&gt; 111, 3 -&gt; 3)
 
-<p>1。 共享可变性<br />
-2。 隔离可变性<br />
-3。 纯粹不可变性:STM,</p>
+<span style="color:#00f">val</span> mapList <span style="color:#00f">=</span> <span style="color:#2b91af">List</span>(map1, map2, map3)
 
-<h4 id="io密集型任务和计算密集型任务">IO密集型任务和计算密集型任务</h4>
+<span style="color:#00f">val</span> merged <span style="color:#00f">=</span> mapList.reduce((m1, m2) <span style="color:#00f">=&gt;</span>
 
-<p>读写文件和网络请求这种算IO密集型任务，阻塞时间长，任务阻塞系数接近1；线程池大一点好，<br />
-判断质数的这种任务属于计算密集型任务，阻塞系数约为0。<br />
-poolSize = cores/(1-blockingCofficient); cores 是处理器核心数。</p>
+  m1 ++ m2.map { <span style="color:#00f">case</span> (k, v) <span style="color:#00f">=&gt;</span> k -&gt; (v + m1.getOrElse(k, 0)) }
+)</code></pre></div>
+<h2 id="文件读">文件读</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008000">// &#34;&#34;&#34;&#34;&#34;&#34;可以避免\\符号
+</span><span style="color:#008000"></span><span style="color:#00f">val</span> file <span style="color:#00f">=</span> <span style="color:#a31515">&#34;&#34;&#34;d:\data\file.txt&#34;&#34;&#34;</span>
+<span style="color:#00f">for</span> (line <span style="color:#00f">&lt;-</span> <span style="color:#2b91af">Source</span>.fromFile(file, encoding).getLines()) {
+          print(line)
+}</code></pre></div>
+<h2 id="文件写">文件写</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">  <span style="color:#008000">//资源管理
+</span><span style="color:#008000"></span>  <span style="color:#00f">def</span> using[<span style="color:#2b91af">A</span> <span style="color:#00f">&lt;:</span> {<span style="color:#2b91af">def</span> <span style="color:#2b91af">close</span>() <span style="color:#2b91af">:</span> <span style="color:#2b91af">Unit</span>}, <span style="color:#2b91af">R</span>](resource<span style="color:#00f">:</span> <span style="color:#2b91af">A</span>)(fun<span style="color:#00f">:</span> <span style="color:#2b91af">A</span> =&gt; R)<span style="color:#00f">:</span> <span style="color:#2b91af">R</span> = {
+    <span style="color:#00f">import</span> scala.language.reflectiveCalls
+    <span style="color:#00f">try</span> {
+      fun(resource)
+    } <span style="color:#00f">finally</span> {
+      resource.close()
+    }
+  }
+  
+  using(<span style="color:#00f">new</span> <span style="color:#2b91af">OutputStreamWriter</span>(<span style="color:#00f">new</span> <span style="color:#2b91af">FileOutputStream</span>(outputFile), <span style="color:#2b91af">StandardCharsets</span>.<span style="color:#2b91af">UTF_8</span>)) {
+      writer <span style="color:#00f">=&gt;</span> writer.write(<span style="color:#a31515">s&#34;&#34;&#34;</span><span style="color:#a31515">${</span>line<span style="color:#a31515">}</span><span style="color:#a31515">\n&#34;&#34;&#34;</span>)
+  }</code></pre></div>
+<h2 id="统计词频">统计词频</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"> <span style="color:#00f">val</span> nanoUnit <span style="color:#00f">=</span> 1000000
 
-<p>场景：<br />
-根据网络服务api计算给定股票代码和股票数的资产总值。-IO密集<br />
-判断n以内的所有素数。  &ndash; 计算密集</p>
+  <span style="color:#008000">//分词并统计词频
+</span><span style="color:#008000"></span>  <span style="color:#00f">def</span> main(args<span style="color:#00f">:</span> <span style="color:#2b91af">Array</span>[<span style="color:#2b91af">String</span>])<span style="color:#00f">:</span> <span style="color:#2b91af">Unit</span> = {
+    <span style="color:#00f">val</span> path <span style="color:#00f">=</span> <span style="color:#a31515">&#34;&#34;&#34;D:\code\ideaProjects\scala-notes\data\src\out&#34;&#34;&#34;</span>
+    <span style="color:#00f">val</span> files<span style="color:#00f">:</span> <span style="color:#2b91af">List</span>[<span style="color:#2b91af">File</span>] <span style="color:#00f">=</span> <span style="color:#00f">new</span> <span style="color:#2b91af">File</span>(path).listFiles.filter(<span style="color:#00f">_</span>.isFile).toList
+    <span style="color:#00f">val</span> start <span style="color:#00f">=</span> <span style="color:#2b91af">System</span>.nanoTime()
+    <span style="color:#00f">val</span> wfList <span style="color:#00f">=</span> <span style="color:#2b91af">ListBuffer</span>[<span style="color:#2b91af">mutable.Map</span>[<span style="color:#2b91af">String</span>, <span style="color:#2b91af">Long</span>]]()
+    <span style="color:#00f">val</span> futures <span style="color:#00f">=</span> <span style="color:#00f">for</span> (file <span style="color:#00f">&lt;-</span> files) <span style="color:#00f">yield</span> <span style="color:#2b91af">Future</span> {
+      countWrodsInFile(file, <span style="color:#a31515">&#34;UTF-8&#34;</span>)
+    }
+    <span style="color:#00f">for</span> (f <span style="color:#00f">&lt;-</span> futures) {
+      <span style="color:#00f">val</span> words<span style="color:#00f">:</span> <span style="color:#2b91af">mutable.Map</span>[<span style="color:#2b91af">String</span>, <span style="color:#2b91af">Long</span>] <span style="color:#00f">=</span> <span style="color:#2b91af">Await</span>.result(f, <span style="color:#2b91af">Duration</span>.<span style="color:#2b91af">Inf</span>)
+      wfList += words
+    }
+    <span style="color:#008000">//merge the word frequency map
+</span><span style="color:#008000"></span>    <span style="color:#00f">val</span> finalWf <span style="color:#00f">=</span> wfList.reduce((m1, m2) <span style="color:#00f">=&gt;</span>
+      m1 ++ m2.map { <span style="color:#00f">case</span> (k, v) <span style="color:#00f">=&gt;</span> k -&gt; (v + m1.getOrElse(k, 0L)) }
+    )
+    <span style="color:#00f">val</span> end <span style="color:#00f">=</span> <span style="color:#2b91af">System</span>.nanoTime()
+    println(<span style="color:#a31515">s&#34;container size=</span><span style="color:#a31515">${</span>finalWf.size<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>)
+    <span style="color:#008000">// sort map
+</span><span style="color:#008000"></span>    <span style="color:#00f">val</span> wordsFreq <span style="color:#00f">=</span> finalWf.toList.sortWith(<span style="color:#00f">_</span>._2 &gt; <span style="color:#00f">_</span>._2)
 
-<h4 id="java5以前的一些同步方法api">Java5以前的一些同步方法api</h4>
+    write2file(wordsFreq, <span style="color:#2b91af">Paths</span>.get(path, <span style="color:#a31515">&#34;final.txt&#34;</span>).toFile)
+    println(<span style="color:#a31515">s&#34;total used time = </span><span style="color:#a31515">${</span>(end - start) / nanoUnit<span style="color:#a31515">}</span><span style="color:#a31515"> ms&#34;</span>)
+    println(<span style="color:#a31515">s&#34;cups = </span><span style="color:#a31515">${</span><span style="color:#2b91af">Runtime</span>.getRuntime.availableProcessors()<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>)
+  }
 
-<p>尽量不要使用，但是要理解。wait/notify、join等函数，synchronized volatile关键字的理解。笔记</p>
+  <span style="color:#00f">def</span> countWrodsInFile(file<span style="color:#00f">:</span> <span style="color:#2b91af">File</span>, encoding<span style="color:#00f">:</span> <span style="color:#2b91af">String</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">mutable.Map</span>[<span style="color:#2b91af">String</span>, <span style="color:#2b91af">Long</span>] <span style="color:#00f">=</span> {
+    <span style="color:#00f">val</span> wf <span style="color:#00f">=</span> mutable.<span style="color:#2b91af">Map</span>[<span style="color:#2b91af">String</span>, <span style="color:#2b91af">Long</span>]().withDefaultValue(0)
+    <span style="color:#00f">for</span> (line <span style="color:#00f">&lt;-</span> <span style="color:#2b91af">Source</span>.fromFile(file, encoding).getLines()) {
+      <span style="color:#00f">val</span> l <span style="color:#00f">=</span> line.trim
+      wf.update(l, wf(l) + 1)
+    }
+    println(<span style="color:#a31515">s&#34;</span><span style="color:#a31515">${</span>file.getName<span style="color:#a31515">}</span><span style="color:#a31515"> has words:</span><span style="color:#a31515">${</span>wf.size<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>)
+    wf
+  }
 
-<ul>
-<li>用ExecutorService代替Thread及其方法。笔记<br /></li>
-<li>用Lock和子类的方法代替synchronized。但是不绝对。 笔记<br /></li>
-<li>以前用wait/notify的地方，现在可以用CyclicBaerrier和CountDownLatch同步工具代替。笔记<br />
-<br /></li>
-</ul>
-
-<h4 id="同步容器和并发容器">同步容器和并发容器</h4>
-
-<p>同步容器包括Vector和Hashtable(java.util.Properties 也是一个HashTable)，使用synchronized同步。不建议使用，但是要知道HashTable和HashMap区别：<br />
-Java 中 HashMap 和 HashTable 有几个不同点：</p>
-
-<ul>
-<li>Hashtable 是同步的，然而 HashMap 不是。 这使得HashMap更适合非多线程应用，因为非同步对象通常执行效率优于同步对象。<br /></li>
-<li>Hashtable 不允许 null 值和键。HashMap允许有一个 null 键和一个 NULL 值。<br /></li>
-<li>HashMap的一个子类是LinkedHashMap。所以，如果想预知迭代顺序（默认的插入顺序），只需将HashMap转换成一个LinkedHashMap。用Hashtable就不会这么简单。<br /></li>
-<li>如果同步对你来说不是个问题，我推荐使用HashMap。如果同步成为问题，你可能还要看看ConcurrentHashMap。<br />
-<br /></li>
-</ul>
-
-<p>迭代hashmap最佳方式：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">	 Iterator it = mp.entrySet().iterator();
-	    while (it.hasNext()) {
-	        Map.Entry pair = (Map.Entry)it.next();
-	        System.out.println(pair.getKey() + &#34; = &#34; + pair.getValue());
-	        it.remove(); // avoids a ConcurrentModificationException
-	    }</pre></div>
-<p>并发容器是和java.util.concurrent包一块发布的。包括很多新的并发容器：</p>
-
-<p><a href="http://blog.csdn.net/fenglibing/article/details/37729335">并发容器架构图</a><br />
-图中最底部的都是jdk1.5增加的并发容器：主要有：ConcurrentHashMap,CopyOnWriteList, BlockingQueue等。</p>
-
-<h4 id="参考书籍">参考书籍：</h4>
-
-<p>Doug Lea 《Concurrent Programming in Java》 2004</p>
-
-<p>Brian Goetz 《java concurrency in practice》 2007</p>
-
-<p>Venkat 《Programming concurrency on the JVM》</p>
-
+  <span style="color:#00f">def</span> write2file(wf<span style="color:#00f">:</span> <span style="color:#2b91af">Seq</span>[(<span style="color:#2b91af">String</span>, <span style="color:#2b91af">Long</span>)], out<span style="color:#00f">:</span> <span style="color:#2b91af">File</span>)<span style="color:#00f">:</span> <span style="color:#2b91af">Unit</span> = {
+    using(<span style="color:#00f">new</span> <span style="color:#2b91af">OutputStreamWriter</span>(<span style="color:#00f">new</span> <span style="color:#2b91af">FileOutputStream</span>(out), <span style="color:#2b91af">StandardCharsets</span>.<span style="color:#2b91af">UTF_8</span>)) {
+      writer <span style="color:#00f">=&gt;</span>
+        <span style="color:#00f">for</span> (it <span style="color:#00f">&lt;-</span> wf) {
+          writer.write(<span style="color:#a31515">s&#34;&#34;&#34;</span><span style="color:#a31515">${</span>it._1<span style="color:#a31515">}</span><span style="color:#a31515"> </span><span style="color:#a31515">${</span>it._2<span style="color:#a31515">}</span><span style="color:#a31515">\n&#34;&#34;&#34;</span>)
+        }
+    }
+  }</code></pre></div>
     </div>
     <footer class="post-footer">
      
  
 <div class="post-tags">     
      
-    <a href="https://xiongdahu.github.io/tags/java" rel="tag" title="java">#java#</a>
-    
     <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    
+    <a href="https://xiongdahu.github.io/tags/scala" rel="tag" title="scala">#scala#</a>
     
 </div>
 
@@ -231,16 +250,12 @@ Java 中 HashMap 和 HashTable 有几个不同点：</p>
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-aop-sample/" rel="prev" title="Java-AOP-sample">
-            Java-AOP-sample <i class="fa fa-chevron-left"></i>
-        </a>
-        
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/" rel="next" title="Java-concurrency-2-Runnable-Callable-Future-Executor">
-            <i class="fa fa-chevron-right"></i> Java-concurrency-2-Runnable-Callable-Future-Executor
+        <a href="https://xiongdahu.github.io/post/scala-future/" rel="next" title="Scala Future">
+            <i class="fa fa-chevron-right"></i> Scala Future
         </a>
         
     </div>
@@ -354,17 +369,10 @@ Java 中 HashMap 和 HashTable 有几个不同点：</p>
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#模式">模式</a></li>
-<li><a href="#io密集型任务和计算密集型任务">IO密集型任务和计算密集型任务</a></li>
-<li><a href="#java5以前的一些同步方法api">Java5以前的一些同步方法api</a></li>
-<li><a href="#同步容器和并发容器">同步容器和并发容器</a></li>
-<li><a href="#参考书籍">参考书籍：</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#merge-two-map-and-sum-its-values">merge two map and sum its values</a></li>
+<li><a href="#文件读">文件读</a></li>
+<li><a href="#文件写">文件写</a></li>
+<li><a href="#统计词频">统计词频</a></li>
 </ul></li>
 </ul>
 </nav></div>

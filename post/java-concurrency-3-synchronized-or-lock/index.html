@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-concurrency-3-synchronized-or-Lock</title>
+    <title>Java concurrency 3 synchronized or Lock</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java-concurrency-3-synchronized-or-Lock">
+    <meta property="og:title" content="Java concurrency 3 synchronized or Lock">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java-concurrency-3-synchronized-or-Lock - 香取" />
+    <meta name="title" content="Java concurrency 3 synchronized or Lock - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
@@ -107,7 +107,7 @@
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" itemprop="url">
-        Java-concurrency-3-synchronized-or-Lock
+        Java concurrency 3 synchronized or Lock
         </a>
       </h1>
       <div class="post-meta">
@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">393 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">390 字 ~1分钟</span>
 </span>
       </div>
     </header>
@@ -155,24 +155,23 @@
 <h3 id="synchronized-method和synchronized-block的区别">synchronized method和synchronized block的区别</h3>
 
 <p>如果是synchronized(this),那么和synchronized 方法没有任何区别，锁定对象都是方法所在的对象。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">synchronized void mymethod() { ... }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">synchronized</span> <span style="color:#2b91af">void</span> mymethod() { ... }
 
-void mymethod() {
-  synchronized (this) { ... }
-}</pre></div>
+<span style="color:#2b91af">void</span> mymethod() {
+  <span style="color:#00f">synchronized</span> (<span style="color:#00f">this</span>) { ... }
+}</code></pre></div>
 <p>但是synchronized block可以锁定其他对象，而且synchronized block的范围是可以控制更灵活，synchronized 方法的边界只能是整个方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> private void method() {
-     ... code here
-     ... code here
-     ... code here
-    synchronized( lock ) { 
-        ... very few lines of code here
-    }
-     ... code here
-     ... code here
-     ... code here
-     ... code here
-}</pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#00f">private</span> <span style="color:#2b91af">void</span> method() {
+    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>    <span style="color:#00f">synchronized</span>( lock ) { 
+        <span style="color:#008000">// very few lines of code here
+</span><span style="color:#008000"></span>    }     
+    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
+</span><span style="color:#008000"></span>}</code></pre></div>
 <h3 id="不要忘记synchronized">不要忘记synchronized</h3>
 
 <p>这个指令是JVM内置的，也是未来可以优化的。如果只是简单的同步一个资源对象，就使用synchronized，而且，使用Lock有就必须出现一堆的try/finally。</p>
@@ -199,16 +198,16 @@ void mymethod() {
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/" rel="prev" title="Java-concurrency-2-Runnable-Callable-Future-Executor">
-            Java-concurrency-2-Runnable-Callable-Future-Executor <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/" rel="prev" title="Java concurrency 2 Runnable Callable FutureExecutor">
+            Java concurrency 2 Runnable Callable FutureExecutor <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/" rel="next" title="Java-concurrency-4-CAS-and-atomic">
-            <i class="fa fa-chevron-right"></i> Java-concurrency-4-CAS-and-atomic
+        <a href="https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/" rel="next" title="Java concurrency 4 CAS and atomic">
+            <i class="fa fa-chevron-right"></i> Java concurrency 4 CAS and atomic
         </a>
         
     </div>

@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">302 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">315 字 ~1分钟</span>
 </span>
       </div>
     </header>
@@ -157,13 +157,10 @@
 <li><label><input type="checkbox" checked disabled class="task-list-item"> executor context<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> await future result<br /></label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> callback<br /></label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> recover<br /></label></li>
-<li>[x]<br /></li>
-<li>[x]<br /></li>
-<li>[x]<br /></li>
-<li>[x]<br />
+<li><label><input type="checkbox" disabled class="task-list-item"> recover<br />
 <br />
-<br /></li>
+<br />
+<br /></label></li>
 </ul>
 
 <h1 id="future">future</h1>
@@ -175,12 +172,15 @@
   println(<span style="color:#a31515">s&#34;This is the future at </span><span style="color:#a31515">${</span><span style="color:#2b91af">LocalTime</span>.now<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>)
 }
 println(<span style="color:#a31515">s&#34;This is the present at </span><span style="color:#a31515">${</span><span style="color:#2b91af">LocalTime</span>.now<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>)</code></pre></div>
+<h1 id="executor-context">executor context</h1>
+
+<p>future need a new thread to execute it task. <code>import ExecutionContext.Implicits.global</code> is a implicit threadpool.</p>
+
 <h1 id="await-for-future-result">await for future result</h1>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008000">// for 10.seconds conversion
 </span><span style="color:#008000"></span><span style="color:#00f">import</span> scala.concurrent.duration._
 <span style="color:#00f">val</span> f <span style="color:#00f">=</span> <span style="color:#2b91af">Future</span> { <span style="color:#2b91af">Thread</span>.sleep(10000); 42 }
-<span style="color:#00f">val</span> result <span style="color:#00f">=</span> <span style="color:#2b91af">Await</span>.result(f, 10.seconds)
-
+<span style="color:#00f">val</span> result <span style="color:#00f">=</span> <span style="color:#2b91af">Await</span>.result(f, <span style="color:#2b91af">Duration</span>.<span style="color:#2b91af">Inf</span>)
 
 <span style="color:#008000">// if f throw exception, it will rethrow to Await.result
 </span><span style="color:#008000">// use ready() solve this
@@ -257,12 +257,16 @@ future1 onComplete {
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
+        <a href="https://xiongdahu.github.io/post/useful-scala-code-snippets/" rel="prev" title="Useful Scala Code Snippets">
+            Useful Scala Code Snippets <i class="fa fa-chevron-left"></i>
+        </a>
+        
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/spring-cache-notes/" rel="next" title="Spring Cache Notes">
-            <i class="fa fa-chevron-right"></i> Spring Cache Notes
+        <a href="https://xiongdahu.github.io/post/spring-boot-notes/" rel="next" title="Spring Boot Notes">
+            <i class="fa fa-chevron-right"></i> Spring Boot Notes
         </a>
         
     </div>
@@ -375,6 +379,7 @@ future1 onComplete {
         <div class="post-toc-content"><nav id="TableOfContents">
 <ul>
 <li><a href="#future">future</a></li>
+<li><a href="#executor-context">executor context</a></li>
 <li><a href="#await-for-future-result">await for future result</a></li>
 <li><a href="#callback">callback</a>
 <ul>

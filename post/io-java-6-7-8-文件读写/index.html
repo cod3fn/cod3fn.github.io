@@ -145,12 +145,17 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">961 字 ~2分钟</span>
+    <span class="leancloud-visitors-count">973 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    <p>资料：<a href="http://www.javapractices.com/topic/TopicAction.do?Id=42">Reading and writing text files</a></p>
+    <!-- TODO: 重构这篇，按照场景和目的分别给出java 7和java 8的文件读写方式。 -->
+
+<p>*[] 重要的类<br />
+*[] 文件读写场景</p>
+
+<p>资料：<a href="http://www.javapractices.com/topic/TopicAction.do?Id=42">Reading and writing text files</a></p>
 
 <p>不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文件也是路径的一部分），对于以前的File,可以File.toPath()得到一个Path对象。<br />
 Files是一个静态类，操作文件内容。Paths是静态工具类，操作文件路径，例如拼接文件路径，以前要使用平台无关的分隔符表示：File.pathSeparator， File.separator</p>
@@ -331,8 +336,8 @@ fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-and-equal/" rel="next" title="Java-==-and-equal">
-            <i class="fa fa-chevron-right"></i> Java-==-and-equal
+        <a href="https://xiongdahu.github.io/post/java-concurrency-1-basic/" rel="next" title="Java concurrency 1 basic">
+            <i class="fa fa-chevron-right"></i> Java concurrency 1 basic
         </a>
         
     </div>

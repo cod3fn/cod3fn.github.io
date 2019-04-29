@@ -173,35 +173,35 @@
 
 }</code></pre></div>
 <p>需要被代理的真实的类:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#00f">package</span> angus.interview.proxy;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> angus.interview.proxy;
 
-public class SubjectImpl implements Subject {
-	<span style="">@</span>Override
-	public void request() {
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">SubjectImpl</span> <span style="color:#00f">implements</span> Subject {
+	@Override
+	<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> request() {
 		System.out.println(<span style="color:#a31515">&#34; subject request&#34;</span>);
 	}
 
-}</pre></div>
+}</code></pre></div>
 <p>先创建一个代理类。然后利用反射创建一个用真实类加载器创建的一个对象。该对象调用request方法实际上调用的是代理类的invoke方法。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="color:#00f">package</span> angus.interview.proxy;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> angus.interview.proxy;
 
 <span style="color:#00f">import</span> java.lang.reflect.InvocationHandler;
 <span style="color:#00f">import</span> java.lang.reflect.Method;
 <span style="color:#00f">import</span> java.lang.reflect.Proxy;
 
-public class DynamicProxy implements InvocationHandler {
-	private Object target;
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">DynamicProxy</span> <span style="color:#00f">implements</span> InvocationHandler {
+	<span style="color:#00f">private</span> Object target;
 
-	public Object bind(Object target) {
-		this.target = target;
+	<span style="color:#00f">public</span> Object bind(Object target) {
+		<span style="color:#00f">this</span>.target = target;
 		<span style="color:#00f">return</span> Proxy.newProxyInstance(target.getClass().getClassLoader(),
                                               target.getClass().getInterfaces(), 
-                                              this); 
+                                              <span style="color:#00f">this</span>); 
 		<span style="color:#008000">// 要绑定接口this(这是一个缺陷，cglib弥补了这一缺陷)
 </span><span style="color:#008000"></span>	}
 
-	<span style="">@</span>Override
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+	@Override
+	<span style="color:#00f">public</span> Object invoke(Object proxy, Method method, Object[] args) <span style="color:#00f">throws</span> Throwable {
 		System.out.println(<span style="color:#a31515">&#34;------------------before------------------&#34;</span>);
 		Object result = method.invoke(target, args);
 		System.out.println(<span style="color:#a31515">&#34;-------------------after------------------&#34;</span>);
@@ -211,11 +211,11 @@ public class DynamicProxy implements InvocationHandler {
 }
 
 
-static void main(){
-    DynamicProxy proxy = new DynamicProxy();
+<span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(){
+    DynamicProxy proxy = <span style="color:#00f">new</span> DynamicProxy();
     Subject subject= proxy.bind(SubjectImpl);
     subject.request();
-}</pre></div>
+}</code></pre></div>
 <p>和静态代理模式比较的好处</p>
 
 <p>在静态代理模式时,一个真实角色必须对应一个代理角色,如果大量使用会导致类的急剧膨胀;而动态代理则不会有这个问题，我们将接口中的方法委托给invoke方法，并在invoke中实现拦截。</p>
@@ -519,8 +519,8 @@ m3就是<code>m3 = Class.forName(&quot;angus.interview.proxy.Subject&quot;).getM
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/" rel="prev" title="Java-concurrency-5-Synchronizer-and-AQS">
-            Java-concurrency-5-Synchronizer-and-AQS <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/java-aop-sample/" rel="prev" title="Java-AOP-sample">
+            Java-AOP-sample <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
