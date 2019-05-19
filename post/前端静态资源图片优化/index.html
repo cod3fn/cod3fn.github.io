@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Elasticsearch Query Dsl Notes</title>
+    <title>前端静态资源图片优化</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Elasticsearch Query Dsl Notes">
+    <meta property="og:title" content="前端静态资源图片优化">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Elasticsearch Query Dsl Notes - 香取" />
+    <meta name="title" content="前端静态资源图片优化 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -106,8 +106,8 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://xiongdahu.github.io/post/elasticsearch-query-dsl-notes/" itemprop="url">
-        Elasticsearch Query Dsl Notes
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/" itemprop="url">
+        前端静态资源图片优化
         </a>
       </h1>
       <div class="post-meta">
@@ -116,8 +116,8 @@
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间:</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-05-01">
-    2019-05-01
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-05-19">
+    2019-05-19
 </time>
 </span> 
       
@@ -130,8 +130,8 @@
   <span class="post-meta-item-text">分类:</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
-        <span itemprop="name">编程</span>
+      <a href="https://xiongdahu.github.io/categories/%E7%BF%BB%E8%AF%91" itemprop="url" rel="index">
+        <span itemprop="name">翻译</span>
       </a>
       &nbsp; 
     </span>
@@ -145,106 +145,14 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">394 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">53 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    
+    <p>GTmetrix是一个前端页面测试的网站,可以发现你的站点哪些地方速度较慢,并针对性的优化.<br />
+<a href="https://gtmetrix.com/blog/how-to-optimize-images-a-practical-guide/">How to Optimize Images: A Practical Guide</a></p>
 
-<p>*[] diffs in es 2.x and es 5.x<br />
-*[] query dsl<br />
-*[] aggr query</p>
-
-<h1 id="diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</h1>
-
-<ol>
-<li>没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。<br />
-```json<br />
-{<br />
-&laquo;mappings&raquo;: {<br />
-    &laquo;_doc&raquo;: {<br />
-        &laquo;properties&raquo;: {<br />
-            &laquo;city&raquo;: {<br />
-                &laquo;type&raquo;: &laquo;text&raquo;,<br />
-                &laquo;fields&raquo;: {<br />
-                    &laquo;raw&raquo;: {<br />
-                        &laquo;type&raquo;: &laquo;keyword&raquo;,<br />
-                        &laquo;ignore_above&raquo;: 256<br />
-                    }<br />
-                }<br />
-            }<br />
-        }<br />
-    }<br />
-}<br />
-}<br />
-<br /></li>
-</ol>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">2. default double -&gt; float
-3. geo_point
-```json
-//2.x
-&#34;location&#34;: {
-    &#34;type&#34;: &#34;geo_point&#34;,
-    &#34;lat_lon&#34;: true,
-    &#34;geohash&#34;: true,
-    &#34;geohash_prefix&#34;: true,
-    &#34;geohash_precision&#34;: &#34;1m&#34;
-}
-//5.x
-&#34;location&#34;: {
-    &#34;type&#34;: &#34;geo_point&#34;
-}</pre></div>
-<h1 id="query-dsl">query dsl</h1>
-
-<h2 id="basic-query">basic query</h2>
-
-<p>就像砌房子的砖头，基本查询就是ES查询的砖头。基本查询是组合查询，bool查询的单元。基本查询有：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">match,
-multi_match,
-common,
-fuzzy_like_this,
-geoshape,
-ids,
-match_all,
-query_string,
-simple_query_string,
-range,
-prefix,
-regexp,
-span_term, 
-term,
-terms,
-wildcard
-</code></pre></div>
-<p>其中<code>common, ids, prefix, span_term, term, terms, wildcard</code> 是不分析搜索，<code>match,    multi_match,    query_string,   simple_query_string</code>是全文检索，几乎可以确保可以返回结果。而<code>prefix,regexp,wildcard</code>是模式检索。</p>
-
-<h2 id="组合查询">组合查询</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bool, boosting, constant_score, dis_max, filtered,function_score, has_child, has_parent, indices, nested, span_first, span_multi,span_first, span_multi, span_near, span_not, span_or, span_term, top_children
-</code></pre></div>
-<h3 id="bool">bool</h3>
-
-<p>bool查询的外框架结构为：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    &#34;query&#34;: {
-        &#34;bool&#34;: {
-            &#34;must&#34;: [
-                {}
-            ],
-            &#34;should&#34;: [
-                {}
-            ],
-            &#34;must_not&#34;: [
-                {}
-            ],
-            &#34;filter&#34;: [
-                {}
-            ]
-        }
-    }
-}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//some other parameter for bool:
-</span><span style="color:#008000"></span>boost,minimum_should_match,disable_coord
-</code></pre></div>
     </div>
     <footer class="post-footer">
      
@@ -253,8 +161,6 @@ wildcard
      
     <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
     
-    <a href="https://xiongdahu.github.io/tags/elasticsearch" rel="tag" title="“elasticsearch”">#“elasticsearch”#</a>
-    
 </div>
 
 
@@ -262,16 +168,12 @@ wildcard
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="prev" title="Learn Clojure by Example">
-            Learn Clojure by Example <i class="fa fa-chevron-left"></i>
-        </a>
-        
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/useful-scala-code-snippets/" rel="next" title="Useful Scala Code Snippets">
-            <i class="fa fa-chevron-right"></i> Useful Scala Code Snippets
+        <a href="https://xiongdahu.github.io/post/spring-factorybean-contextaware/" rel="next" title="Spring FactoryBean and ContextAware">
+            <i class="fa fa-chevron-right"></i> Spring FactoryBean and ContextAware
         </a>
         
     </div>
@@ -332,14 +234,14 @@ wildcard
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">    
         <a href="https://xiongdahu.github.io/categories/">      
          
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         
         <span class="site-state-item-name">分类</span>
         
@@ -381,19 +283,7 @@ wildcard
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
     <div class="post-toc">
-        <div class="post-toc-content"><nav id="TableOfContents">
-<ul>
-<li><a href="#diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</a></li>
-<li><a href="#query-dsl">query dsl</a>
-<ul>
-<li><a href="#basic-query">basic query</a></li>
-<li><a href="#组合查询">组合查询</a>
-<ul>
-<li><a href="#bool">bool</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav></div>
+        <div class="post-toc-content"></div>
     </div>
 </section>
 

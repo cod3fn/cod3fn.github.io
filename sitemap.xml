@@ -2,6 +2,20 @@
 <search>
     
      <entry>
+        <title>前端静态资源图片优化</title>
+        <url>https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</url>
+        <categories>
+          <category>翻译</category>
+        </categories>
+        <tags>
+          <tag>code</tag>
+        </tags>
+        <content type="html"> GTmetrix是一个前端页面测试的网站,可以发现你的站点哪些地方速度较慢,并针对性的优化.
+How to Optimize Images: A Practical Guide
+</content>
+    </entry>
+    
+     <entry>
         <title>Spring FactoryBean and ContextAware</title>
         <url>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</url>
         <categories>
@@ -33,8 +47,8 @@ public class Tool { private int id; // standard constructors, getters and setter
     </entry>
     
      <entry>
-        <title>Elasticsearch Query Dsl Notes</title>
-        <url>https://xiongdahu.github.io/post/elasticsearch-query-dsl-notes/</url>
+        <title>Elasticsearch Query DSL</title>
+        <url>https://xiongdahu.github.io/post/elasticsearch-query-dsl/</url>
         <categories>
           <category>编程</category>
         </categories>
