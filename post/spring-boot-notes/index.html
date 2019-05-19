@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">2092 字 ~5分钟</span>
+    <span class="leancloud-visitors-count">2100 字 ~5分钟</span>
 </span>
       </div>
     </header>
@@ -262,11 +262,13 @@ server:
 <p>除了application.properties文件,其他的配置属性文件需要我们自己加载读取.注意,下面的<code>PropertySource</code>无法加载yaml文件.</p>
 
 <h3 id="使用propertysource">使用PropertySource</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Configuration
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-properties" data-lang="properties">cron=0/3 * * * * ?</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@Configuration
 @PropertySource(<span style="color:#a31515">&#34;classpath:foo.properties&#34;</span>)
 <span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">PropertiesWithJavaConfig</span> {
-    <span style="color:#008000">//...
-</span><span style="color:#008000"></span>}
+    @Value(${cron})
+    <span style="color:#00f">private</span> String cron;
+    
+}
 
 <span style="color:#008000">//or
 </span><span style="color:#008000"></span>@PropertySource({ 
@@ -399,8 +401,8 @@ logging:
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="next" title="Learn Clojure by Example">
-            <i class="fa fa-chevron-right"></i> Learn Clojure by Example
+        <a href="https://xiongdahu.github.io/post/pattern-matching-anonymous-function/" rel="next" title="Pattern Matching Anonymous Function">
+            <i class="fa fa-chevron-right"></i> Pattern Matching Anonymous Function
         </a>
         
     </div>
@@ -461,7 +463,7 @@ logging:
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -478,7 +480,7 @@ logging:
     <div class="site-state-item site-state-tags">
         <a href="https://xiongdahu.github.io/tags/">
          
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         
         <span class="site-state-item-name">标签</span>
         </a>

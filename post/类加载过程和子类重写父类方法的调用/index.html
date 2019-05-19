@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1473 字 ~3分钟</span>
+    <span class="leancloud-visitors-count">1468 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -188,9 +188,13 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 
 <p>以上说的执行顺序通过eclipse调试可以确定是正确的。</p>
 
-<p>所以组合起来 创建一个类的实例对象需要下面的顺序：<br />
-<strong>父类P static代码块和static变量初始化 -&gt; 子类S static代码块和static变量初始化  -&gt;  父类P 非static代码块和非static变量初始化 -&gt;父类P构造函数 -&gt; 子类S非static代码块和非static变量初始化 -&gt; 子类S构造函数</strong></p>
-
+<p>所以组合起来 创建一个类的实例对象需要下面的顺序：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-s" data-lang="s">父类P static代码块和static变量初始化 
+-&gt; 子类S static代码块和static变量初始化  
+-&gt; 父类P 非static代码块和非static变量初始化 
+-&gt; 父类P构造函数 
+-&gt; 子类S非static代码块和非static变量初始化 
+-&gt; 子类S构造函数</code></pre></div>
 <p>回到面试题：我们看看创建一个实例对象的调用栈：<br />
 <img src="http://images2015.cnblogs.com/blog/448566/201606/448566-20160614095756354-125586075.jpg" alt="创建实例时调用栈-图片" /></p>
 
@@ -202,7 +206,7 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 
 <p>21行：<code>System.out.println (baseName) ;//Sub的callName()</code></p>
 
-<p>根据前面的分析，这个类没有static代码块和static变量，也没有代码块。所以第一个执行的是父类非静态成员的base=&laquo;base&raquo;;接着执行构造函数Base();这里到了魔法的一步，调用的callName()是子类（21行）的方法。这个行为就是 动态单分派。详细资料看最后。由于子类的非static变量初始化没有完成，所有子类中的base变量是null。输出也是null。</p>
+<p>根据前面的分析，这个类没有static代码块和static变量，也没有代码块。所以第一个执行的是父类非静态成员的base=&laquo;base&raquo;;接着执行构造函数Base();这里到了魔法的一步，调用的callName()是子类（21行）的方法。这个行为就是<strong>动态单分派</strong>。详细资料看最后。由于子类的非static变量初始化没有完成，所有子类中的base变量是null。输出也是null。</p>
 
 <p>！！！所以，不要再构造函数中调用可能会被子类覆盖的方法。</p>
 
@@ -238,7 +242,7 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 
 }</code></pre></div>
 <p>不仅考察单分派，还有重载的静态多分派。<br />
-进阶版问题的解释需要一下知识点：</p>
+进阶版问题的解释需以下知识点：</p>
 
 <p>java的静态分派和动态单分派资料：</p>
 
@@ -345,7 +349,7 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -362,7 +366,7 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
     <div class="site-state-item site-state-tags">
         <a href="https://xiongdahu.github.io/tags/">
          
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         
         <span class="site-state-item-name">标签</span>
         </a>

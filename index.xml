@@ -6,10 +6,37 @@
     <description>Recent content on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 26 Apr 2019 07:54:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 May 2019 22:44:38 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring FactoryBean and ContextAware</title>
+      <link>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</link>
+      <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</guid>
+      <description>FactoryBean 一句话就是FactoryBean用于返回其他对象</description>
+    </item>
+    
+    <item>
+      <title>Learn Clojure by Example</title>
+      <link>https://xiongdahu.github.io/post/learn-clojure-by-example/</link>
+      <pubDate>Mon, 13 May 2019 15:22:05 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/learn-clojure-by-example/</guid>
+      <description>这份笔记试图打造最强的clojure小抄,keep</description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch Query Dsl Notes</title>
+      <link>https://xiongdahu.github.io/post/elasticsearch-query-dsl-notes/</link>
+      <pubDate>Wed, 01 May 2019 10:17:46 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/elasticsearch-query-dsl-notes/</guid>
+      <description>*[] diffs in es 2.x and es 5.x *[] query dsl *[] aggr query diffs in es 2.x and es 5.x 没有st</description>
+    </item>
     
     <item>
       <title>Useful Scala Code Snippets</title>
@@ -36,15 +63,6 @@
       
       <guid>https://xiongdahu.github.io/post/spring-boot-notes/</guid>
       <description>一些容易忘记的spring boot知识要点. 注意,</description>
-    </item>
-    
-    <item>
-      <title>Learn Clojure by Example</title>
-      <link>https://xiongdahu.github.io/post/learn-clojure-by-example/</link>
-      <pubDate>Sat, 13 Apr 2019 15:22:05 +0800</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/learn-clojure-by-example/</guid>
-      <description>这份笔记试图打造最强的clojure小抄,keep</description>
     </item>
     
     <item>

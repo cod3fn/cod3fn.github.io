@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java concurrency 3 synchronized or Lock</title>
+    <title>Elasticsearch Query Dsl Notes</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java concurrency 3 synchronized or Lock">
+    <meta property="og:title" content="Elasticsearch Query Dsl Notes">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java concurrency 3 synchronized or Lock - 香取" />
+    <meta name="title" content="Elasticsearch Query Dsl Notes - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
@@ -106,8 +106,8 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" itemprop="url">
-        Java concurrency 3 synchronized or Lock
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/elasticsearch-query-dsl-notes/" itemprop="url">
+        Elasticsearch Query Dsl Notes
         </a>
       </h1>
       <div class="post-meta">
@@ -116,8 +116,8 @@
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间:</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
-    2016-01-01
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-05-01">
+    2019-05-01
 </time>
 </span> 
       
@@ -145,51 +145,115 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">390 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">394 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
 
-<h3 id="synchronized-method和synchronized-block的区别">synchronized method和synchronized block的区别</h3>
+<p>*[] diffs in es 2.x and es 5.x<br />
+*[] query dsl<br />
+*[] aggr query</p>
 
-<p>如果是synchronized(this),那么和synchronized 方法没有任何区别，锁定对象都是方法所在的对象。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">synchronized</span> <span style="color:#2b91af">void</span> mymethod() { ... }
+<h1 id="diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</h1>
 
-<span style="color:#2b91af">void</span> mymethod() {
-  <span style="color:#00f">synchronized</span> (<span style="color:#00f">this</span>) { ... }
-}</code></pre></div>
-<p>但是synchronized block可以锁定其他对象，而且synchronized block的范围是可以控制更灵活，synchronized 方法的边界只能是整个方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#00f">private</span> <span style="color:#2b91af">void</span> method() {
-    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>    <span style="color:#00f">synchronized</span>( lock ) { 
-        <span style="color:#008000">// very few lines of code here
-</span><span style="color:#008000"></span>    }     
-    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>    <span style="color:#008000">//  code here
-</span><span style="color:#008000"></span>}</code></pre></div>
-<h3 id="不要忘记synchronized">不要忘记synchronized</h3>
+<ol>
+<li>没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。<br />
+```json<br />
+{<br />
+&laquo;mappings&raquo;: {<br />
+    &laquo;_doc&raquo;: {<br />
+        &laquo;properties&raquo;: {<br />
+            &laquo;city&raquo;: {<br />
+                &laquo;type&raquo;: &laquo;text&raquo;,<br />
+                &laquo;fields&raquo;: {<br />
+                    &laquo;raw&raquo;: {<br />
+                        &laquo;type&raquo;: &laquo;keyword&raquo;,<br />
+                        &laquo;ignore_above&raquo;: 256<br />
+                    }<br />
+                }<br />
+            }<br />
+        }<br />
+    }<br />
+}<br />
+}<br />
+<br /></li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">2. default double -&gt; float
+3. geo_point
+```json
+//2.x
+&#34;location&#34;: {
+    &#34;type&#34;: &#34;geo_point&#34;,
+    &#34;lat_lon&#34;: true,
+    &#34;geohash&#34;: true,
+    &#34;geohash_prefix&#34;: true,
+    &#34;geohash_precision&#34;: &#34;1m&#34;
+}
+//5.x
+&#34;location&#34;: {
+    &#34;type&#34;: &#34;geo_point&#34;
+}</pre></div>
+<h1 id="query-dsl">query dsl</h1>
 
-<p>这个指令是JVM内置的，也是未来可以优化的。如果只是简单的同步一个资源对象，就使用synchronized，而且，使用Lock有就必须出现一堆的try/finally。</p>
+<h2 id="basic-query">basic query</h2>
 
-<p>使用ReentrantLock场景：<br />
-需要以下高级特性时 ： 可定时的，可轮询的，可中断的锁，公平队列，非块结构。</p>
+<p>就像砌房子的砖头，基本查询就是ES查询的砖头。基本查询是组合查询，bool查询的单元。基本查询有：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">match,
+multi_match,
+common,
+fuzzy_like_this,
+geoshape,
+ids,
+match_all,
+query_string,
+simple_query_string,
+range,
+prefix,
+regexp,
+span_term, 
+term,
+terms,
+wildcard
+</code></pre></div>
+<p>其中<code>common, ids, prefix, span_term, term, terms, wildcard</code> 是不分析搜索，<code>match,    multi_match,    query_string,   simple_query_string</code>是全文检索，几乎可以确保可以返回结果。而<code>prefix,regexp,wildcard</code>是模式检索。</p>
 
-<p><a href="http://stackoverflow.com/questions/4201713/synchronization-vs-lock">stackoverflow回答</a></p>
+<h2 id="组合查询">组合查询</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bool, boosting, constant_score, dis_max, filtered,function_score, has_child, has_parent, indices, nested, span_first, span_multi,span_first, span_multi, span_near, span_not, span_or, span_term, top_children
+</code></pre></div>
+<h3 id="bool">bool</h3>
 
+<p>bool查询的外框架结构为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    &#34;query&#34;: {
+        &#34;bool&#34;: {
+            &#34;must&#34;: [
+                {}
+            ],
+            &#34;should&#34;: [
+                {}
+            ],
+            &#34;must_not&#34;: [
+                {}
+            ],
+            &#34;filter&#34;: [
+                {}
+            ]
+        }
+    }
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//some other parameter for bool:
+</span><span style="color:#008000"></span>boost,minimum_should_match,disable_coord
+</code></pre></div>
     </div>
     <footer class="post-footer">
      
  
 <div class="post-tags">     
      
-    <a href="https://xiongdahu.github.io/tags/java" rel="tag" title="java">#java#</a>
-    
     <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    
+    <a href="https://xiongdahu.github.io/tags/elasticsearch" rel="tag" title="“elasticsearch”">#“elasticsearch”#</a>
     
 </div>
 
@@ -198,16 +262,16 @@
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/" rel="prev" title="Java concurrency 2 Runnable Callable FutureExecutor">
-            Java concurrency 2 Runnable Callable FutureExecutor <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="prev" title="Learn Clojure by Example">
+            Learn Clojure by Example <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/" rel="next" title="Java concurrency 4 CAS and atomic">
-            <i class="fa fa-chevron-right"></i> Java concurrency 4 CAS and atomic
+        <a href="https://xiongdahu.github.io/post/useful-scala-code-snippets/" rel="next" title="Useful Scala Code Snippets">
+            <i class="fa fa-chevron-right"></i> Useful Scala Code Snippets
         </a>
         
     </div>
@@ -319,12 +383,13 @@
     <div class="post-toc">
         <div class="post-toc-content"><nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</a></li>
+<li><a href="#query-dsl">query dsl</a>
 <ul>
-<li>
+<li><a href="#basic-query">basic query</a></li>
+<li><a href="#组合查询">组合查询</a>
 <ul>
-<li><a href="#synchronized-method和synchronized-block的区别">synchronized method和synchronized block的区别</a></li>
-<li><a href="#不要忘记synchronized">不要忘记synchronized</a></li>
+<li><a href="#bool">bool</a></li>
 </ul></li>
 </ul></li>
 </ul>

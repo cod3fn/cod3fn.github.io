@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 13 Apr 2019 15:22:05 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 15:22:05 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Clojure</title>
       <link>https://xiongdahu.github.io/tags/clojure/</link>
-      <pubDate>Sat, 13 Apr 2019 15:22:05 +0800</pubDate>
+      <pubDate>Mon, 13 May 2019 15:22:05 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/clojure/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>Code</title>
       <link>https://xiongdahu.github.io/tags/code/</link>
-      <pubDate>Fri, 26 Apr 2019 07:54:00 +0800</pubDate>
+      <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/code/</guid>
       <description></description>
@@ -35,6 +35,15 @@
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://xiongdahu.github.io/tags/elasticsearch/</link>
+      <pubDate>Wed, 01 May 2019 10:17:46 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
@@ -86,7 +95,7 @@
     <item>
       <title>Spring</title>
       <link>https://xiongdahu.github.io/tags/spring/</link>
-      <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
+      <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/spring/</guid>
       <description></description>
