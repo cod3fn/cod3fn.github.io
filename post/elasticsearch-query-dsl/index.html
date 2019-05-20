@@ -145,62 +145,65 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">394 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">391 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
 
-<p>*[] diffs in es 2.x and es 5.x<br />
-*[] query dsl<br />
-*[] aggr query</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> diffs in es 2.x and es 5.x<br /></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> query dsl<br /></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> aggr query<br />
+<br /></label></li>
+</ul>
 
 <h1 id="diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</h1>
 
-<ol>
-<li>没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。<br />
-```json<br />
-{<br />
-&laquo;mappings&raquo;: {<br />
-    &laquo;_doc&raquo;: {<br />
-        &laquo;properties&raquo;: {<br />
-            &laquo;city&raquo;: {<br />
-                &laquo;type&raquo;: &laquo;text&raquo;,<br />
-                &laquo;fields&raquo;: {<br />
-                    &laquo;raw&raquo;: {<br />
-                        &laquo;type&raquo;: &laquo;keyword&raquo;,<br />
-                        &laquo;ignore_above&raquo;: 256<br />
-                    }<br />
-                }<br />
-            }<br />
-        }<br />
-    }<br />
-}<br />
-}<br />
-<br /></li>
-</ol>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">2. default double -&gt; float
-3. geo_point
-```json
-//2.x
-&#34;location&#34;: {
-    &#34;type&#34;: &#34;geo_point&#34;,
-    &#34;lat_lon&#34;: true,
-    &#34;geohash&#34;: true,
-    &#34;geohash_prefix&#34;: true,
-    &#34;geohash_precision&#34;: &#34;1m&#34;
+<h2 id="没有string类型-改为text和keyword-2个类型了-text字段可以指定fields来不分词-如下-city字段被ingest为city和city-raw2个字段">没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+    <span style="color:#a31515">&#34;mappings&#34;</span>: {
+        <span style="color:#a31515">&#34;_doc&#34;</span>: {
+            <span style="color:#a31515">&#34;properties&#34;</span>: {
+                <span style="color:#a31515">&#34;city&#34;</span>: {
+                    <span style="color:#a31515">&#34;type&#34;</span>: <span style="color:#a31515">&#34;text&#34;</span>,
+                    <span style="color:#a31515">&#34;fields&#34;</span>: {
+                        <span style="color:#a31515">&#34;raw&#34;</span>: {
+                            <span style="color:#a31515">&#34;type&#34;</span>: <span style="color:#a31515">&#34;keyword&#34;</span>,
+                            <span style="color:#a31515">&#34;ignore_above&#34;</span>: 256
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-//5.x
-&#34;location&#34;: {
-    &#34;type&#34;: &#34;geo_point&#34;
-}</pre></div>
+  
+</code></pre></div>
+<h2 id="default-double-float">default double -&gt; float</h2>
+
+<h2 id="geo-point">geo_point</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//2.x
+</span><span style="color:#008000"></span><span style="color:#a31515">&#34;location&#34;</span>: {
+    <span style="color:#a31515">&#34;type&#34;</span>: <span style="color:#a31515">&#34;geo_point&#34;</span>,
+    <span style="color:#a31515">&#34;lat_lon&#34;</span>: <span style="color:#00f">true</span>,
+    <span style="color:#a31515">&#34;geohash&#34;</span>: <span style="color:#00f">true</span>,
+    <span style="color:#a31515">&#34;geohash_prefix&#34;</span>: <span style="color:#00f">true</span>,
+    <span style="color:#a31515">&#34;geohash_precision&#34;</span>: <span style="color:#a31515">&#34;1m&#34;</span>
+}
+<span style="color:#008000">//5.x
+</span><span style="color:#008000"></span><span style="color:#a31515">&#34;location&#34;</span>: {
+    <span style="color:#a31515">&#34;type&#34;</span>: <span style="color:#a31515">&#34;geo_point&#34;</span>
+}
+</code></pre></div>
 <h1 id="query-dsl">query dsl</h1>
 
 <h2 id="basic-query">basic query</h2>
 
 <p>就像砌房子的砖头，基本查询就是ES查询的砖头。基本查询是组合查询，bool查询的单元。基本查询有：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">match,
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//basic query element
+</span><span style="color:#008000"></span>match,
 multi_match,
 common,
 fuzzy_like_this,
@@ -220,29 +223,33 @@ wildcard
 <p>其中<code>common, ids, prefix, span_term, term, terms, wildcard</code> 是不分析搜索，<code>match,    multi_match,    query_string,   simple_query_string</code>是全文检索，几乎可以确保可以返回结果。而<code>prefix,regexp,wildcard</code>是模式检索。</p>
 
 <h2 id="组合查询">组合查询</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bool, boosting, constant_score, dis_max, filtered,function_score, has_child, has_parent, indices, nested, span_first, span_multi,span_first, span_multi, span_near, span_not, span_or, span_term, top_children
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bool, boosting, constant_score, dis_max, 
+filtered,function_score, has_child, has_parent, 
+indices, nested, span_first, span_multi,span_first, 
+span_multi, span_near, span_not, span_or, span_term, top_children
 </code></pre></div>
 <h3 id="bool">bool</h3>
 
 <p>bool查询的外框架结构为：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    &#34;query&#34;: {
-        &#34;bool&#34;: {
-            &#34;must&#34;: [
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+    <span style="color:#a31515">&#34;query&#34;</span>: {
+        <span style="color:#a31515">&#34;bool&#34;</span>: {
+            <span style="color:#a31515">&#34;must&#34;</span>: [
                 {}
             ],
-            &#34;should&#34;: [
+            <span style="color:#a31515">&#34;should&#34;</span>: [
                 {}
             ],
-            &#34;must_not&#34;: [
+            <span style="color:#a31515">&#34;must_not&#34;</span>: [
                 {}
             ],
-            &#34;filter&#34;: [
+            <span style="color:#a31515">&#34;filter&#34;</span>: [
                 {}
             ]
         }
     }
-}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//some other parameter for bool:
+}
+<span style="color:#008000">//some other parameter for bool:
 </span><span style="color:#008000"></span>boost,minimum_should_match,disable_coord
 </code></pre></div>
     </div>
@@ -332,7 +339,7 @@ wildcard
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -383,7 +390,12 @@ wildcard
     <div class="post-toc">
         <div class="post-toc-content"><nav id="TableOfContents">
 <ul>
-<li><a href="#diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</a></li>
+<li><a href="#diffs-in-es-2-x-and-es-5-x">diffs in es 2.x and es 5.x</a>
+<ul>
+<li><a href="#没有string类型-改为text和keyword-2个类型了-text字段可以指定fields来不分词-如下-city字段被ingest为city和city-raw2个字段">没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。</a></li>
+<li><a href="#default-double-float">default double -&gt; float</a></li>
+<li><a href="#geo-point">geo_point</a></li>
+</ul></li>
 <li><a href="#query-dsl">query dsl</a>
 <ul>
 <li><a href="#basic-query">basic query</a></li>

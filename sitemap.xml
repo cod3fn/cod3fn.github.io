@@ -2,6 +2,26 @@
 <search>
     
      <entry>
+        <title>Scala Collection Tips</title>
+        <url>https://xiongdahu.github.io/post/scala-collection-tips/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>scala</tag>
+        </tags>
+        <content type="html">  scala collection is high-performance,但是需要清楚一些常用的方法:
+reduce fold scan
+ 集合的符号方法
+  reduce fold scan //reduce是一个二元函数,遍历整个集合 List(1, 3, 5).reduceLeft(_ &#43; _) // == ((1&#43;3)&#43;5) //reduceRight start from end of the collection //also you can given initial argument List(1, 3, 5).foldLeft(&amp;#34;&amp;#34;)(_ &#43; _) // == 135 //foldLeft 等价于 \: 操作符 (0 /: List(1, 3, 5)) (_ - _) //folding 常用于替代for-loop val wf1 = scala.collection.mutable.Map[Char, Int]() for (c &amp;lt;- &amp;#34;Mississippi&amp;#34;) wf1(c) = wf1.getOrElse(c, 0) &#43; 1 // Now freq is Map(&amp;#39;i&amp;#39; -&amp;gt; 4, &amp;#39;M&amp;#39; -&amp;gt; 1, &amp;#39;s&amp;#39; -&amp;gt; 4, &amp;#39;p&amp;#39; -&amp;gt; 2)  //注意使用了不可变map val wf = (Map[Char, Int]() /: &amp;#34;Mississippi&amp;#34;) { (m, c) =&amp;gt; m &#43; (c -&amp;gt; (m.getOrElse(c, 0) &#43; 1)) } //scan 方法可以获得每一步中间结果集 (1 to 10).scanLeft(0)(_ &#43; _) //Vector(0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55) 集合的符号方法 //&#43; 表示添加一个元素到无序集合 // :&#43; &#43;:表示添加到有序集合的首/尾 //elem append or prepend to coll (Seq) coll :&#43; elem elem &#43;: coll //add elem to set/map coll &#43; elem coll &#43; (e1,e2,...) coll &#43;&#43; coll2 coll2 &#43;&#43;: coll // prepend to lst elem :: lst lst2 ::: lst // 等价list &#43;&#43;: list2 list ::: list2 // 含有=的表示修改,必须是mutable的集合  // TIP: As you can see, Scala provides many operators for adding and removing // elements. Here is a summary: // 1. Append (:&#43;) or prepend (&#43;:) to a sequence. // 2. Add (&#43;) to an unordered collection. // 3. Remove with the - operator. // 4. Use &#43;&#43; and -- for bulk add and remove. // 5. Mutations are &#43;= &#43;&#43;= -= --=. // 6. For lists, many Scala programmers prefer the :: and ::: operators. // 7. Stay away from &#43;&#43;: &#43;=: &#43;&#43;=:. NOTE: For lists, you can use &#43;: instead of :: for consistency, with one
+exception: Pattern matching (case h::t) does not work with the &#43;: operator.
+scala 2.13 collection 基本重写了.参考这两个文档:
+collections migration 2.13
+the architecture of scala 2.13’s collections
+</content>
+    </entry>
+    
+     <entry>
         <title>前端静态资源图片优化</title>
         <url>https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</url>
         <categories>
@@ -55,32 +75,13 @@ public class Tool { private int id; // standard constructors, getters and setter
         <tags>
           <tag>code</tag><tag>“elasticsearch”</tag>
         </tags>
-        <content type="html">  *[] diffs in es 2.x and es 5.x
-*[] query dsl
-*[] aggr query
-diffs in es 2.x and es 5.x  没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。
-```json
-{
-&amp;laquo;mappings&amp;raquo;: {
-&amp;laquo;_doc&amp;raquo;: {
-&amp;laquo;properties&amp;raquo;: {
-&amp;laquo;city&amp;raquo;: {
-&amp;laquo;type&amp;raquo;: &amp;laquo;text&amp;raquo;,
-&amp;laquo;fields&amp;raquo;: {
-&amp;laquo;raw&amp;raquo;: {
-&amp;laquo;type&amp;raquo;: &amp;laquo;keyword&amp;raquo;,
-&amp;laquo;ignore_above&amp;raquo;: 256
-}
-}
-}
-}
-}
-}
-}
-  2. default double -&amp;gt; float 3. geo_point ```json //2.x &amp;#34;location&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;geo_point&amp;#34;, &amp;#34;lat_lon&amp;#34;: true, &amp;#34;geohash&amp;#34;: true, &amp;#34;geohash_prefix&amp;#34;: true, &amp;#34;geohash_precision&amp;#34;: &amp;#34;1m&amp;#34; } //5.x &amp;#34;location&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;geo_point&amp;#34; } query dsl basic query 就像砌房子的砖头，基本查询就是ES查询的砖头。基本查询是组合查询，bool查询的单元。基本查询有：
-match, multi_match, common, fuzzy_like_this, geoshape, ids, match_all, query_string, simple_query_string, range, prefix, regexp, span_term, term, terms, wildcard  其中common, ids, prefix, span_term, term, terms, wildcard 是不分析搜索，match, multi_match, query_string, simple_query_string是全文检索，几乎可以确保可以返回结果。而prefix,regexp,wildcard是模式检索。
+        <content type="html">  diffs in es 2.x and es 5.x
+ query dsl
+ aggr query
+  diffs in es 2.x and es 5.x 没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不分词。如下： city字段被ingest为city和city.raw2个字段。 { &amp;#34;mappings&amp;#34;: { &amp;#34;_doc&amp;#34;: { &amp;#34;properties&amp;#34;: { &amp;#34;city&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;text&amp;#34;, &amp;#34;fields&amp;#34;: { &amp;#34;raw&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;keyword&amp;#34;, &amp;#34;ignore_above&amp;#34;: 256 } } } } } } }  default double -&amp;gt; float geo_point //2.x &amp;#34;location&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;geo_point&amp;#34;, &amp;#34;lat_lon&amp;#34;: true, &amp;#34;geohash&amp;#34;: true, &amp;#34;geohash_prefix&amp;#34;: true, &amp;#34;geohash_precision&amp;#34;: &amp;#34;1m&amp;#34; } //5.x &amp;#34;location&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;geo_point&amp;#34; }  query dsl basic query 就像砌房子的砖头，基本查询就是ES查询的砖头。基本查询是组合查询，bool查询的单元。基本查询有：
+//basic query element match, multi_match, common, fuzzy_like_this, geoshape, ids, match_all, query_string, simple_query_string, range, prefix, regexp, span_term, term, terms, wildcard  其中common, ids, prefix, span_term, term, terms, wildcard 是不分析搜索，match, multi_match, query_string, simple_query_string是全文检索，几乎可以确保可以返回结果。而prefix,regexp,wildcard是模式检索。
 组合查询 bool, boosting, constant_score, dis_max, filtered,function_score, has_child, has_parent, indices, nested, span_first, span_multi,span_first, span_multi, span_near, span_not, span_or, span_term, top_children  bool bool查询的外框架结构为：
-{ &amp;#34;query&amp;#34;: { &amp;#34;bool&amp;#34;: { &amp;#34;must&amp;#34;: [ {} ], &amp;#34;should&amp;#34;: [ {} ], &amp;#34;must_not&amp;#34;: [ {} ], &amp;#34;filter&amp;#34;: [ {} ] } } }//some other parameter for bool: boost,minimum_should_match,disable_coord </content>
+{ &amp;#34;query&amp;#34;: { &amp;#34;bool&amp;#34;: { &amp;#34;must&amp;#34;: [ {} ], &amp;#34;should&amp;#34;: [ {} ], &amp;#34;must_not&amp;#34;: [ {} ], &amp;#34;filter&amp;#34;: [ {} ] } } } //some other parameter for bool: boost,minimum_should_match,disable_coord </content>
     </entry>
     
      <entry>
