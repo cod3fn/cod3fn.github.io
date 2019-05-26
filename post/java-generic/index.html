@@ -145,7 +145,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">653 字 ~2分钟</span>
+    <span class="leancloud-visitors-count">652 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -204,26 +204,24 @@ String middle = GenericCls.getMiddle(<span style="color:#a31515">&#34;hello&#34;
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Pair&lt;String&gt;[] table = <span style="color:#00f">new</span> Pair&lt;String&gt;[10]; <span style="color:#008000">// Error
 </span><span style="color:#008000"></span>Pair&lt;String&gt;[] table; //声明是合法的,只是无法实例化</code></pre></div>
 <ul>
-<li>借助@SafeVarargs参数化类型的数组<br />
-<code>java
-@SafeVarargs
-public static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts)
-</code><br /></li>
+<li><p>借助@SafeVarargs参数化类型的数组</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@SafeVarargs
+<span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T&gt; <span style="color:#2b91af">void</span> addAll(Collection&lt;T&gt; coll, T... ts)</code></pre></div>
+<ul>
 <li>Class类本身是泛型。 例如，String.daSS 是一个 Class<String> 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型<br /></li>
 <li>泛型类的静态上下文中类型变量无效<br />
 <br /></li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Singleton</span>&lt;T&gt; {
-    <span style="color:#00f">private</span> <span style="color:#00f">static</span> T singlelnstance; <span style="color:#008000">// Error
-</span><span style="color:#008000"></span>    <span style="color:#00f">public</span> <span style="color:#00f">static</span> T getSinglelnstance{<span style="color:#008000">// Error
-</span><span style="color:#008000"></span>        <span style="color:#00f">if</span> (singleinstance == <span style="color:#00f">null</span>) {<span style="color:#008000">//construct new instance of T
-</span><span style="color:#008000"></span>            <span style="color:#00f">return</span> singlelnstance;
-        }
+<span style="color:#00f">private</span> <span style="color:#00f">static</span> T singlelnstance; <span style="color:#008000">// Error
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">static</span> T getSinglelnstance{<span style="color:#008000">// Error
+</span><span style="color:#008000"></span>    <span style="color:#00f">if</span> (singleinstance == <span style="color:#00f">null</span>) {<span style="color:#008000">//construct new instance of T
+</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> singlelnstance;
     }
-}</code></pre></div>
-<ul>
-<li>不能抛出或捕获泛型类的实例<br />
-<br /></li>
+}
+}</code></pre></div></li>
+
+<li><p>不能抛出或捕获泛型类的实例</p></li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Problem</span>&lt;T&gt; <span style="color:#00f">extends</span> Exception { <span style="color:#008000">/* . . . */</span> } // Error can<span style="">&#39;</span>t extend Throwable</code></pre></div>
 <ul>
@@ -265,16 +263,16 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="prev" title="Spark Basic">
-            Spark Basic <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="prev" title="IO-Java-Stream-Write-Reader">
+            IO-Java-Stream-Write-Reader <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="next" title="IO-Java-Stream-Write-Reader">
-            <i class="fa fa-chevron-right"></i> IO-Java-Stream-Write-Reader
+        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="next" title="Spark Basic">
+            <i class="fa fa-chevron-right"></i> Spark Basic
         </a>
         
     </div>
@@ -421,7 +419,7 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.54.0</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

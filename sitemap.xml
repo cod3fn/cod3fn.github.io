@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <search>
+    
+     <entry>
+        <title>Posts</title>
+        <url>https://xiongdahu.github.io/post/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> </content>
+    </entry>
     
      <entry>
         <title>Scala Collection Tips</title>
@@ -281,10 +292,10 @@ var a = 1 a match{ case 1 =&amp;gt; println(&amp;#34;One&amp;#34;) case 2 =&amp;
 隐式参数 //1.隐式参数 class Prefixer(val prefix: String) def addPrefix(s: String)(implicit p: Prefixer) = p.prefix &#43; s // addPrefix需要提供一个隐式实际参数,否则报错.当然可以在调用时显式传递一个参数 implicit val myImplicitPrefixer = new Prefixer(&amp;#34;***&amp;#34;) addPrefix(&amp;#34;abc&amp;#34;) // returns &amp;#34;***abc&amp;#34; 隐式转换 //1. 定义一个含有目标方法的class class BlingString(s:String) { def bling = &amp;#34;*&amp;#34;&#43;s&#43;&amp;#34;*&amp;#34; } //2. 定义隐式转换方法 implicit def str2BlingString(s:String) = new BlingString(s) //3. 使用目标方法 val s = &amp;#34;hello&amp;#34; s.bling // *hello*  //在scala.Predef中定义了大量的隐式转换,例如RichInt,StringOps这些,提供类似mkString这些方法 //太阳底下无新事,scala常用对象的灵活丰富的语法都是通过隐式转换添加的. implicit class 可以看到上面的第1,2步非常的繁琐，于是SIP-13提出一个implicit class,将上面的2步合并:
 implicit class BlingString(s:String) { def bling = &amp;#34;*&amp;#34;&#43;s&#43;&amp;#34;*&amp;#34; } //implicit def str2BlingString(s:String) = new BlingString(s)  val hi = &amp;#34;hello&amp;#34; hi.bling // *hello* 注意，这个只是一个语法糖。去糖后就是上面的那个形式。 implicit class有3个约束和一个注解问题：
  必须要有主一个构造函数且只能一个构造参数（implicit参数除外）。构造参数就是源类型. 这个构造函数即等价上面第2步的隐式转换方法：
-implicit class RichDate(date: java.util.Date) // OK! implicit class Indexer[T](collecton: Seq[T], index: Int) // BAD! implicit class Indexer[T](collecton: Seq[T])(implicit index: Index) // OK! 只能定义在其他trait/class/object中：
-object Helpers { implicit class RichInt(x: Int) // OK! } implicit class RichDouble(x: Double) // BAD! 在当前scope内，不允许有和implicit class同名的方法，对象，变量。因为case class会自动生成同名object对象，所以implicit class不能是case class。
-object Bar implicit class Bar(x: Int) // BAD!  val x = 5 implicit class x(y: Int) // BAD!  //cuz case class has companion object by default implicit case class Baz(x: Int) // BAD! conflict with the companion object 还有就是implicit class的注解在去语法糖后会自动添加到类和方法，除非在注解中指明范围：
-@bar implicit class Foo(n: Int) //desugar @bar implicit def Foo(n: Int): Foo = new Foo(n) @bar class Foo(n:Int) //除非在注解中指明：genClass / method @(bar @genClass) implicit class Foo(n: Int) //desugar得到 @bar class Foo(n: Int) implicit def Foo(n: Int): Foo = new Foo(n)  value class scala 还有一个概念：value class
+implicit class RichDate(date: java.util.Date) // OK! implicit class Indexer[T](collecton: Seq[T], index: Int) // BAD! implicit class Indexer[T](collecton: Seq[T])(implicit index: Index) // OK!  只能定义在其他trait/class/object中：
+  object Helpers { implicit class RichInt(x: Int) // OK! } implicit class RichDouble(x: Double) // BAD! 在当前scope内，不允许有和implicit class同名的方法，对象，变量。因为case class会自动生成同名object对象，所以implicit class不能是case class。
+object Bar implicit class Bar(x: Int) // BAD!  val x = 5 implicit class x(y: Int) // BAD!  //cuz case class has companion object by default implicit case class Baz(x: Int) // BAD! conflict with the companion object  还有就是implicit class的注解在去语法糖后会自动添加到类和方法，除非在注解中指明范围：
+  @bar implicit class Foo(n: Int) //desugar @bar implicit def Foo(n: Int): Foo = new Foo(n) @bar class Foo(n:Int) //除非在注解中指明：genClass / method @(bar @genClass) implicit class Foo(n: Int) //desugar得到 @bar class Foo(n: Int) implicit def Foo(n: Int): Foo = new Foo(n)  value class scala 还有一个概念：value class
 class Wrapper(val underlying: Int) extends AnyVal //1. 一个public val参数表示runtime类型，这里是Int. 编译时是Wrapper类型，所以value class目的是降低分配开销。 //2. value class 需要 extends AnyVal //3. value class 只能有 defs, 不能有vals, vars, or nested traits, classes or objects， // 因为def是通过静态方法实现的，而val，var这些则必须创建相应类型了。 //4. value class 只能扩展通用trait（universal traits）， // universal traits是A universal trait is a trait that extends Any, only has defs as members, and does no initialization. // extension method 当implicit class类型参数是AnyVal子类时，value class和上面的implicit class形式相近，所以可以通过value class降低implicit class的分配开销。例如RichtInt
 implicit class RichInt(val self: Int) extends AnyVal { def toHexString: String = java.lang.Integer.toHexString(self) } 因为RichInt是value class，在运行时（runtime）不会有RichInt这个类，而是Int，而3.toHexString实际是通过静态方法实现的： RichInt$.MODULE$.extension$toHexString(3),这么做好处是减少对象分配开销(avoid the overhead of allocation)。如果implicit class的类型参数不是AnyVal子类，那么在runtime时会有相应类型对象被创建，用户察觉不到区别。
 value class还有其他作用和局限性，可以参考上面链接。如果发现错误，请指出，先谢过。
@@ -356,8 +367,8 @@ wsl安装vs code和中文字体 因为wsl没用中文字体将显示豆腐块.
  安装docker for Windows. 这个就不细说了,注意docker社区版也是需要注册才能下载的.
  启动docker for Windows,右键任务栏的docker图标,&amp;laquo;settings&amp;raquo;,勾上 &amp;laquo;expose the daemon on tcp:/localhost:2375 without TLS&amp;raquo;,这样在wsl可以访问这个docker服务.
  wsl安装docker,详细内容可以参考官方文档,下面仅列出必要bash命令.
-#安装必要组件 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common #gpg签名 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - sudo apt-key fingerprint 0EBFCD88 #添加docker安装源 sudo add-apt-repository &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs)\ stable&amp;#34; sudo apt update sudo apt install -y docker-ce #通过pip安装docker-compose sudo apt install -y python python-pip sudo usermod -aG docker $USER pip install --user docker-compose #验证docker安装是否成功 docker info docker-compose --version #修改docker服务为Windows的docker echo &amp;#34;export DOCKER_HOST=tcp://localhost:2375&amp;#34; &amp;gt;&amp;gt; ~/.bashrc &amp;amp;&amp;amp; source ~/.bashrc #验证是否可以访问Windows的docker服务,看image list命令输出和Windows的命令行下面的image list输出是不是完全一样. 可以先在Windows下用docker拉几个镜像.然后在wsl验证 docker image list  至此,wsl的docker服务也配置完成.
-</content>
+#安装必要组件 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common #gpg签名 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - sudo apt-key fingerprint 0EBFCD88 #添加docker安装源 sudo add-apt-repository &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs)\ stable&amp;#34; sudo apt update sudo apt install -y docker-ce #通过pip安装docker-compose sudo apt install -y python python-pip sudo usermod -aG docker $USER pip install --user docker-compose #验证docker安装是否成功 docker info docker-compose --version #修改docker服务为Windows的docker echo &amp;#34;export DOCKER_HOST=tcp://localhost:2375&amp;#34; &amp;gt;&amp;gt; ~/.bashrc &amp;amp;&amp;amp; source ~/.bashrc #验证是否可以访问Windows的docker服务,看image list命令输出和Windows的命令行下面的image list输出是不是完全一样. 可以先在Windows下用docker拉几个镜像.然后在wsl验证 docker image list 至此,wsl的docker服务也配置完成.
+ </content>
     </entry>
     
      <entry>
@@ -468,10 +479,9 @@ SparkStreaming&#43;Kafka import org.apache.kafka.clients.consumer.ConsumerRecord
  运行时参数类型检查只能检查原始类型
   if (a instanceof Pair&amp;lt;String&amp;gt;) // Error if (a instanceof Pair&amp;lt;T&amp;gt;) // Error Pair&amp;lt;String&amp;gt; p = (Pair&amp;lt;String&amp;gt;) a; //warning  不能创建参数化类型的数组
   Pair&amp;lt;String&amp;gt;[] table = new Pair&amp;lt;String&amp;gt;[10]; // Error Pair&amp;lt;String&amp;gt;[] table; //声明是合法的,只是无法实例化  借助@SafeVarargs参数化类型的数组
-java @SafeVarargs public static &amp;lt;T&amp;gt; void addAll(Collection&amp;lt;T&amp;gt; coll, T... ts) 
- Class类本身是泛型。 例如，String.daSS 是一个 Class 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型
+@SafeVarargs public static &amp;lt;T&amp;gt; void addAll(Collection&amp;lt;T&amp;gt; coll, T... ts)  Class类本身是泛型。 例如，String.daSS 是一个 Class 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型
  泛型类的静态上下文中类型变量无效
-  public class Singleton&amp;lt;T&amp;gt; { private static T singlelnstance; // Error  public static T getSinglelnstance{// Error  if (singleinstance == null) {//construct new instance of T  return singlelnstance; } } }  不能抛出或捕获泛型类的实例
+  public class Singleton&amp;lt;T&amp;gt; { private static T singlelnstance; // Error public static T getSinglelnstance{// Error  if (singleinstance == null) {//construct new instance of T  return singlelnstance; } } } 不能抛出或捕获泛型类的实例
   public class Problem&amp;lt;T&amp;gt; extends Exception { /* . . . */ } // Error can&amp;#39;t extend Throwable  泛型擦除的方法冲突
   public class Pair&amp;lt;T&amp;gt; { T first; T second; public boolean equals(T value) { //error 和Object.equals冲突  return first.equals(value) &amp;amp;&amp;amp; second, equals(value); } } 泛型继承 class Employee class Manager extends Employee //Pair&amp;lt;Employee&amp;gt; 和Pair&amp;lt;Manager&amp;gt; 没用任何继承关系 通配符 和 PECS Pair&amp;lt;? extends Employee〉 Pair&amp;lt;? super Manager 反射和泛型 </content>
     </entry>
@@ -921,18 +931,6 @@ CSDN-类加载机制-深入java虚拟机 读书笔记
 动态单分派 意思是 根据运行期实际类型确定方法执行版本的分派过程叫做动态分派，动态分派最典型的应用就是方法重写。
 同时理解，动态单分派就是多态，java的面向接口编程的根基就是多态。
 </content>
-    </entry>
-    
-     <entry>
-        <title>Posts</title>
-        <url>https://xiongdahu.github.io/post/</url>
-        <categories>
-          
-        </categories>
-        <tags>
-          
-        </tags>
-        <content type="html"> </content>
     </entry>
     
 </search>
