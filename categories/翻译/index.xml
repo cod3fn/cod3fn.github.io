@@ -20,5 +20,14 @@
       <description>GTmetrix是一个前端页面测试的网站,可以发现</description>
     </item>
     
+    <item>
+      <title>使用redis的hash优化内存使用</title>
+      <link>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</guid>
+      <description>原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储</description>
+    </item>
+    
   </channel>
 </rss>

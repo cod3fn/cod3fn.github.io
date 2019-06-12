@@ -48,11 +48,20 @@
     </item>
     
     <item>
-      <title>“elasticsearch”</title>
+      <title>elasticsearch</title>
       <link>https://xiongdahu.github.io/tags/elasticsearch/</link>
       <pubDate>Wed, 01 May 2019 10:17:46 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>https://xiongdahu.github.io/tags/redis/</link>
+      <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/tags/redis/</guid>
       <description></description>
     </item>
     

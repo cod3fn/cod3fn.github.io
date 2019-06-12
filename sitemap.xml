@@ -24,9 +24,11 @@
         <content type="html">  scala collection is high-performance,但是需要清楚一些常用的方法:
 reduce fold scan
  集合的符号方法
+ 数组,tuple
+ 2.13的集合架构
   reduce fold scan //reduce是一个二元函数,遍历整个集合 List(1, 3, 5).reduceLeft(_ &#43; _) // == ((1&#43;3)&#43;5) //reduceRight start from end of the collection //also you can given initial argument List(1, 3, 5).foldLeft(&amp;#34;&amp;#34;)(_ &#43; _) // == 135 //foldLeft 等价于 \: 操作符 (0 /: List(1, 3, 5)) (_ - _) //folding 常用于替代for-loop val wf1 = scala.collection.mutable.Map[Char, Int]() for (c &amp;lt;- &amp;#34;Mississippi&amp;#34;) wf1(c) = wf1.getOrElse(c, 0) &#43; 1 // Now freq is Map(&amp;#39;i&amp;#39; -&amp;gt; 4, &amp;#39;M&amp;#39; -&amp;gt; 1, &amp;#39;s&amp;#39; -&amp;gt; 4, &amp;#39;p&amp;#39; -&amp;gt; 2)  //注意使用了不可变map val wf = (Map[Char, Int]() /: &amp;#34;Mississippi&amp;#34;) { (m, c) =&amp;gt; m &#43; (c -&amp;gt; (m.getOrElse(c, 0) &#43; 1)) } //scan 方法可以获得每一步中间结果集 (1 to 10).scanLeft(0)(_ &#43; _) //Vector(0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55) 集合的符号方法 //&#43; 表示添加一个元素到无序集合 // :&#43; &#43;:表示添加到有序集合的首/尾 //elem append or prepend to coll (Seq) coll :&#43; elem elem &#43;: coll //add elem to set/map coll &#43; elem coll &#43; (e1,e2,...) coll &#43;&#43; coll2 coll2 &#43;&#43;: coll // prepend to lst elem :: lst lst2 ::: lst // 等价list &#43;&#43;: list2 list ::: list2 // 含有=的表示修改,必须是mutable的集合  // TIP: As you can see, Scala provides many operators for adding and removing // elements. Here is a summary: // 1. Append (:&#43;) or prepend (&#43;:) to a sequence. // 2. Add (&#43;) to an unordered collection. // 3. Remove with the - operator. // 4. Use &#43;&#43; and -- for bulk add and remove. // 5. Mutations are &#43;= &#43;&#43;= -= --=. // 6. For lists, many Scala programmers prefer the :: and ::: operators. // 7. Stay away from &#43;&#43;: &#43;=: &#43;&#43;=:. NOTE: For lists, you can use &#43;: instead of :: for consistency, with one
 exception: Pattern matching (case h::t) does not work with the &#43;: operator.
-scala 2.13 collection 基本重写了.参考这两个文档:
+其他 //数组的笔记 val ints = new Array[Int](30) // empty array val ints2 = Array[Int](1, 2, 3, 4) // array with init values val matrix4x9 = Array.ofDim[Double](4, 9) //update ints2(3) = 1000 // or ints2.update(3, 1000) //求和 val ints2Sum = ints2.sum val days = Array(&amp;#34;Monday&amp;#34;, &amp;#34;Tuesday&amp;#34;, &amp;#34;Wednesday&amp;#34;, &amp;#34;Thrusday&amp;#34;, &amp;#34;Friday&amp;#34;, &amp;#34;Saturday&amp;#34;, &amp;#34;Sunday&amp;#34;) //遍历 for (i &amp;lt;- 0 until days.length) println(days(i)) for (day &amp;lt;- days) println(day) days foreach println //遍历中使用index days.zipWithIndex.map { case (e, i) =&amp;gt; (i, e) } //faster for (i &amp;lt;- days.indices) yield (i, days(i)) //Possibly fastest Array.tabulate(days.length) { i =&amp;gt; (i, days(i)) } //肯定最快 val b = new Array[(Int, String)](days.length) var i = 0 while (i &amp;lt; days.length) { b(i) = (i, days(i)) i &#43;= 1 } //filter days.filter(day =&amp;gt; day.length &amp;gt; 4) //map Array(1, 2, 3, 4, 5).map(x =&amp;gt; x * x) //sort Array(3, 6, 2, 0, 8, 5).sortWith((e1, e2) =&amp;gt; e1 &amp;lt; e2) //小的在前 //reduce,下面的会提示使用sum, Array(1, 2, 3, 4, 5).reduce((e1, e2) =&amp;gt; e1 &#43; e2) //不定长数组 import scala.collection.mutable.ArrayBuffer val arr = ArrayBuffer[Int]() //tuple val oneAndTwo = (1, 2) val oneAndTwo1 = Tuple2(1, 2) //Pair is alias of Tuple2 val oneAndTwo2 = Pair(1, &amp;#34;two&amp;#34;) val oneAndTwo3 = 1 -&amp;gt; 2 //访问元素下标是从1开始,这是因为tuple里面每个元素类型不一样,为了能够和list等区分开 //使用了类似Haskell/ML的习惯 val two = oneAndTwo._2 //option val emptyOpt: Option[Int] = None val fullOpt: Option[Int] = Some(42) emptyOpt match { case Some(value) =&amp;gt; println(value) case None =&amp;gt; println(&amp;#34;Empty&amp;#34;) } fullOpt.get //42 emptyOpt.isEmpty //true  //either def divide(a: Double, b: Double): Either[String, Double] = { if (b == 0.0) Left(&amp;#34;Division by zero&amp;#34;) else Right(a / b) } divide(4, 0) def either(flag: Boolean): Either[String, List[Int]] = { if (flag) Right(List(1, 2, 3)) else Left(&amp;#34;Wrong&amp;#34;) } val content = either(true).right.map(_.filter(_ &amp;gt; 0)) //cast Seq(1).toArray Seq(1).toBuffer Seq(1).toList Seq((1, 2)).toMap Seq(1).toStream Seq(1).toString Seq(1).toVector Seq(1).toTraversable Seq(1).toIndexedSeq Seq(1).toIterable Set(1).toSeq Seq(1).toSet //zip, zipAll, zipWithIndex, unzip &amp;#34;abcde&amp;#34; zip 1.to(5) //zipAll:第二个参数是调用者元素缺失使用的默认值,第三个参数是第一个实参不够长的默认值 &amp;#34;abcde&amp;#34;.zipAll(1.to(2), &amp;#34;caller&amp;#34;, &amp;#34;arg&amp;#34;) //尝试自己实现一个zipAll? // &amp;#34;abcde&amp;#34; zipWithIndex Seq((1, 2), (3, 4), (5, 6)) unzip // val s = Seq(&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;) scala 2.13 collection 基本重写了.参考这两个文档:
 collections migration 2.13
 the architecture of scala 2.13’s collections
 </content>
@@ -84,7 +86,7 @@ public class Tool { private int id; // standard constructors, getters and setter
           <category>编程</category>
         </categories>
         <tags>
-          <tag>code</tag><tag>“elasticsearch”</tag>
+          <tag>code</tag><tag>elasticsearch</tag>
         </tags>
         <content type="html">  diffs in es 2.x and es 5.x
  query dsl
@@ -307,6 +309,32 @@ http://blog.higher-order.com/assets/fpiscompanion.pdf
 https://courses.cs.washington.edu/courses/cse341/09au/notes/scala.html
 https://github.com/dnvriend/my-scala-notes
 https://gist.github.com/jamesyang124/d65b067327452792287a
+</content>
+    </entry>
+    
+     <entry>
+        <title>使用redis的hash优化内存使用</title>
+        <url>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</url>
+        <categories>
+          <category>翻译</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>redis</tag>
+        </tags>
+        <content type="html">  原文 Understanding Redis hash-max-ziplist-entries
+问题和方案 场景: 有3亿张图片放在对象存储(DELL ECS/AMAZON EC2)上面,现在需要保存图片的id-&amp;gt;用户id的映射.最直接的思路是:
+set &amp;#34;media:1155220&amp;#34; &amp;#34;user1&amp;#34; set &amp;#34;media:1155221&amp;#34; &amp;#34;user2&amp;#34; 这样设计key之后3亿张图片需要21GB的内存,因为redis的string是线性增长的.
+此时可以使用hash优化内存使用.hash是类似java hashmap的数据结构: key field1 value1 field2 value2 &amp;hellip;
+hash的强大在于它可以只获取一个field的value,而无需返回整个key.
+再仔细想想,hash的key可以类比于分库分表的bucket概念.
+回到上面的问题,Mike Krieger,Instagram的创始人提出将图片的id除以1000分片(sharding)到1000个hash key上:
+HSET &amp;#34;mda-bkt:1155&amp;#34; &amp;#34;1155220&amp;#34; &amp;#34;user1&amp;#34; &amp;#34;1155221&amp;#34; &amp;#34;user2&amp;#34; # mda-bkt:1155 是1155220/1000之后得到的bucket. HGET &amp;#34;mda-bkt:1155&amp;#34; &amp;#34;1155220&amp;#34; # 这里key的前缀*mda-bkt:)只重复了1000次,而上面的string方式重复了3亿次. 因为redis针对hash list zset三种结构使用了ziplist高效存储方案.
+新的问题又来了,redis对于ziplist结构的key数量有限制的,即hash-max-ziplist-entries的含义是: 可使用内部空间优化存储的最多hash key
+使用ziplist的数据结构有三个list hash zset:
+list-max-ziplist-entries 512 list-max-ziplist-value 64 #Limits for ziplist use with LISTs. hash-max-ziplist-entries 512 hash-max-ziplist-value 64 #Limits for ziplist use with HASHes (previous versions of Redis used a different name and encoding for this) #hash-max-zipmap-entries 512 (for Redis &amp;lt; 2.6). zset-max-ziplist-entries 128 zset-max-ziplist-value 64 #Limits for ziplist use with ZSETs. 你可以使用debug_object(key)查看你的key是否使用了ziplist结构.
+建议hash-max-ziplist-entries最大设置为1000,过大会影响redis性能.
+参考资料 redis moemory optimize
+9.1.1 The ziplist representation-EBOOK – REDIS IN ACTION
 </content>
     </entry>
     
