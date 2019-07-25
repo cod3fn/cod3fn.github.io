@@ -78,7 +78,7 @@
       
         <li class="menu-item ">
           <a href="https://xiongdahu.github.io/categories/%E7%BF%BB%E8%AF%91/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />翻译
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />翻译
           </a>
         </li>
       
@@ -150,7 +150,7 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">3650 字 ~8分钟</span>
+    <span class="leancloud-visitors-count">2706 字 ~6分钟</span>
 </span>
       </div>
     </header>
@@ -158,84 +158,49 @@
     
 
 <h2 id="这份笔记试图打造最强的clojure小抄-keep-refactoring-it">这份笔记试图打造最强的clojure小抄,keep refactoring it&hellip;</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>learnclj.core
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00f">ns </span>clj-notes.core
   (<span style="color:#a31515">:gen-class</span>))
-
-<span style="color:#008000">;准备:在leiningen网站下载lein.bat,放到一个目录下</span>
-<span style="color:#008000">;将目录添加到windows的path中</span>
-<span style="color:#008000">;打开cmder,执行 lein self-install</span>
-<span style="color:#008000">;leiningen安装完成后继续执行: lein repl</span>
-(println <span style="color:#a31515">&#34;the joy of clojure&#34;</span>)
-
-<span style="color:#008000">;如果你使用scoop,那么执行`scoop install leiningen`后即可使用: lein repl</span>
-
-(<span style="color:#00f">def </span>-main
-  (println <span style="color:#a31515">&#34;hello clojure&#34;</span>))
+<span style="color:#008000">;:gen-class generate java class file</span>
 
 <span style="color:#008000">;Parameter is variable in the declaration of function.</span>
 <span style="color:#008000">;Argument is the actual value of this variable that gets passed to function.</span>
 <span style="color:#008000">;</span>
+<span style="color:#008000">;install leiningen:</span>
+<span style="color:#008000">;put lein.bat in your PATH</span>
+<span style="color:#008000">;open cmder,run: lein repl</span>
+<span style="color:#008000">;start repl,use exit,(exit),(quit) or ctrl+d to quit repl</span>
+(println <span style="color:#a31515">&#34;hello clojure&#34;</span>)
+
 <span style="color:#008000">;Symbols are used to bind names to values</span>
 <span style="color:#008000">;&#39; will prevent a form from being evaluated</span>
 <span style="color:#008000">;&#39;() same as (quote ())</span>
 
-<span style="color:#008000">;def 定义全局变量</span>
-<span style="color:#008000">;let 局部变量</span>
-(<span style="color:#00f">def </span>color <span style="color:#a31515">&#34;light&#34;</span>)
-(println color)
+<span style="color:#008000">;def global variable</span>
+<span style="color:#008000">;let local variable binding</span>
+(<span style="color:#00f">def </span>object <span style="color:#a31515">&#34;light&#34;</span>)
+(println object)
+
 (<span style="color:#00f">let </span>[x 10
       y 20
-      z 30])
+      z 30]
+  (+ x y z))
+<span style="color:#008000">;=&gt; 60</span>
 
-<span style="color:#008000">;=========data collection</span>
-<span style="color:#008000">;list is the core of clojure</span>
-&#39;(1, 2, <span style="color:#a31515">&#34;jam&#34;</span> <span style="color:#a31515">:marmalade-jar</span>)
-<span style="color:#008000">;逗号在clojure中会被忽略,所以使用空格就好</span>
-<span style="color:#008000">;vector has index,you have fast index access to the elements</span>
-(nth [<span style="color:#a31515">:jar1</span> 1 2 3 <span style="color:#a31515">:jar2</span>] 1)                                 <span style="color:#008000">;return the 0th element-&gt;1</span>
-
-<span style="color:#008000">; conj adds to a collection in the most natural way for the data structure.</span>
-<span style="color:#008000">; For lists, it adds to the beginning.</span>
-<span style="color:#008000">; For vectors, it adds to the end.</span>
-(conj &#39;(<span style="color:#a31515">:toast</span> <span style="color:#a31515">:butter</span>) <span style="color:#a31515">:jam</span> <span style="color:#a31515">:honey</span>)
-<span style="color:#008000">;=&gt; (:honey :jam :toast :butter)</span>
-
+<span style="color:#008000">;data collection</span>
+<span style="color:#008000">;seq is abstract for list vector array</span>
 <span style="color:#008000">;map</span>
 (<span style="color:#00f">def </span>dict {<span style="color:#a31515">:k1</span> <span style="color:#a31515">&#34;v1&#34;</span> <span style="color:#a31515">:k2</span> <span style="color:#a31515">&#34;v2&#34;</span>})
 <span style="color:#008000">;keyword as function</span>
-(<span style="color:#a31515">:k1</span> dict)
-<span style="color:#008000">;=&gt; v1</span>
+(<span style="color:#a31515">:k1</span> dict)                                                  <span style="color:#008000">;return v1</span>
 <span style="color:#008000">;map as function</span>
-(dict <span style="color:#a31515">:k1</span>)
-<span style="color:#008000">;=&gt; v1</span>
+(dict <span style="color:#a31515">:k1</span>)                                                  <span style="color:#008000">;return v1</span>
+(<span style="color:#00f">let </span>[v (dict <span style="color:#a31515">:k1</span>)]
+  (println v))
+
 <span style="color:#008000">;also you can use get on seq or map</span>
 (get {<span style="color:#a31515">:a</span> 1 <span style="color:#a31515">:b</span> 2} <span style="color:#a31515">:b</span>)
-<span style="color:#008000">;also you have keys,vals function on map</span>
-<span style="color:#008000">;and assoc</span>
-(assoc {<span style="color:#a31515">:Apple</span> <span style="color:#a31515">&#34;Mac&#34;</span> <span style="color:#a31515">:Microsoft</span> <span style="color:#a31515">&#34;Windows&#34;</span>} <span style="color:#a31515">:Commodore</span> <span style="color:#a31515">&#34;Amiga&#34;</span>)
-<span style="color:#008000">;=&gt; {:jam2 &#34;black&#34;, :jam1 &#34;orange&#34;}</span>
-(dissoc {<span style="color:#a31515">:jam1</span> <span style="color:#a31515">&#34;strawberry&#34;</span> <span style="color:#a31515">:jam2</span> <span style="color:#a31515">&#34;blackberry&#34;</span>} <span style="color:#a31515">:jam1</span>)
-<span style="color:#008000">;=&gt; {:jam2 &#34;blackberry&#34;}</span>
-(merge {<span style="color:#a31515">:jam1</span> <span style="color:#a31515">&#34;red&#34;</span> <span style="color:#a31515">:jam2</span> <span style="color:#a31515">&#34;black&#34;</span>}
-       {<span style="color:#a31515">:jam1</span> <span style="color:#a31515">&#34;orange&#34;</span> <span style="color:#a31515">:jam3</span> <span style="color:#a31515">&#34;red&#34;</span>}
-       {<span style="color:#a31515">:jam4</span> <span style="color:#a31515">&#34;blue&#34;</span>})
-<span style="color:#008000">;=&gt; {:jam4 &#34;blue&#34;, :jam3 &#34;red&#34;, :jam2 &#34;black&#34;, :jam1 &#34;orange&#34;}</span>
-
-
-<span style="color:#008000">;set</span>
-(<span style="color:#00f">let </span>[s #{<span style="color:#a31515">:red</span> <span style="color:#a31515">:blue</span> <span style="color:#a31515">:white</span> <span style="color:#a31515">:pink</span>}]
-  (println (get s <span style="color:#a31515">:red</span>)))                                   <span style="color:#008000">;:red</span>
-
-(clojure.set/union #{<span style="color:#a31515">:r</span> <span style="color:#a31515">:b</span> <span style="color:#a31515">:w</span>} #{<span style="color:#a31515">:w</span> <span style="color:#a31515">:p</span> <span style="color:#a31515">:y</span>})
-<span style="color:#008000">;=&gt; #{:y :r :w :b :p}</span>
-
-(get #{<span style="color:#a31515">:rabbit</span> <span style="color:#a31515">:door</span> <span style="color:#a31515">:watch</span>} <span style="color:#a31515">:jar</span>)
-<span style="color:#008000">;; =&gt;  nil</span>
-<span style="color:#008000">;remove element from set</span>
-(disj #{<span style="color:#a31515">:rabbit</span> <span style="color:#a31515">:door</span>} <span style="color:#a31515">:door</span>)
-<span style="color:#008000">;=&gt; #{:rabbit}</span>
-
-<span style="color:#008000">;clojure.core/seq is a function that produces a sequence over the given argument.</span>
+<span style="color:#008000">;=&gt; 2</span>
+<span style="color:#008000">;clojure.core/seq is a function that produces a sequence over the given argument. </span>
 <span style="color:#008000">;Data types that clojure.core/seq can produce a sequence over are called seqable:</span>
 <span style="color:#008000">;</span>
 <span style="color:#008000">;Clojure collections</span>
@@ -247,73 +212,24 @@
 <span style="color:#008000">;All types that implement clojure.lang.Seqable interface</span>
 <span style="color:#008000">;nil</span>
 
+<span style="color:#008000">;function for seq or collection</span>
+<span style="color:#008000">;=</span>
+<span style="color:#008000">;count</span>
+<span style="color:#008000">;conj</span>
+<span style="color:#008000">;empty</span>
+<span style="color:#008000">;seq</span>
+<span style="color:#008000">;first</span>
+<span style="color:#008000">;rest</span>
+<span style="color:#008000">;next</span>
+<span style="color:#008000">;count</span>
+<span style="color:#008000">;counted?</span>
+<span style="color:#008000">;conj</span>
+<span style="color:#008000">;get</span>
+<span style="color:#008000">;assoc</span>
 
-<span style="color:#008000">; Test to see if a collection is empty with emtpy?</span>
-<span style="color:#008000">; Test to see if a collection is not empty with seq</span>
-<span style="color:#008000">; Test to see if all the elements test true with every?</span>
-<span style="color:#008000">; Test to see if all of the elements test false with not-any?</span>
-<span style="color:#008000">; Test to see if some of the elements test true with some</span>
-<span style="color:#008000">; true? tests for true values</span>
-<span style="color:#008000">; false? tests for false values</span>
-<span style="color:#008000">; nil is treated the same as logical false</span>
-<span style="color:#008000">; nil is treated the same as logical false (repeated on purpose — false and nil are the</span>
-<span style="color:#008000">; only logically false values)</span>
-<span style="color:#008000">; nil? tests for the absence of a value</span>
-<span style="color:#008000">; not tests for the negation of the value</span>
-<span style="color:#008000">; = tests for equality</span>
-<span style="color:#008000">; not= tests for inequality</span>
 
-<span style="color:#008000">;repeatedly</span>
-(repeatedly 5 (<span style="color:#00f">fn </span>[] (println <span style="color:#a31515">&#34;hi!&#34;</span>)))
-<span style="color:#008000">;for each</span>
-(doseq [animal [<span style="color:#a31515">&#34;cat&#34;</span> <span style="color:#a31515">&#34;dog&#34;</span> <span style="color:#a31515">&#34;horse&#34;</span>]] (println animal))
-
-<span style="color:#008000">;laziness</span>
-(take 5 (range 0 100))
-<span style="color:#008000">;危险!死循环</span>
-(range)
-(take-while neg? [-3 -2 -1 0 1 2 3])
-<span style="color:#008000">;drop will remove the first n elements</span>
-(drop 5 (range 0 10))
-(drop-while neg? [-3 -2 -1 0 1 2 3])
-<span style="color:#008000">;=&gt; (0 1 2 3)</span>
-(remove pos? [-1 -2 3 4])
-<span style="color:#008000">;=&gt; (-1 -2)</span>
-(filter pos? [-1 2 3])
-(partition-by #(&lt; 3 %) [1 2 3 4 5 6])
-<span style="color:#008000">;=&gt; ((1 2 3) (4 5 6))</span>
-(group-by #(&lt; 3 %) [1 2 3 4 5 6 1 2 3])
-<span style="color:#008000">;{false [1 2 3 1 2 3], true [4 5 6]}</span>
-(println (take 5 (iterate inc 0)))
-
-<span style="color:#008000">;for</span>
-(for [x &#39;(1 2 3)]
-  (+ 10 x))
-
-(doc for)
-<span style="color:#008000">;双重for 循环</span>
-(for [x (range 10)
-      y (range 20)
-      <span style="color:#a31515">:while</span> (&lt; y x)]
-  [x y])
-
-<span style="color:#008000">;&lt;==&gt; {x | x &gt;0}</span>
-(for [x &#39;(-1 1 2)
-      <span style="color:#a31515">:when</span> (&gt; x 0)]
-  x)
-
-(for [x [0 1 2 3 4 5]
-      <span style="color:#a31515">:let</span> [y (* x 3)]
-      <span style="color:#a31515">:when</span> (even? y)]
-  y)
-
-<span style="color:#008000">;=========function</span>
 <span style="color:#008000">;defn 定义函数</span>
 <span style="color:#008000">;defn- 定义ns内私有函数</span>
-<span style="color:#008000">;fn 定义匿名函数</span>
-<span style="color:#008000">;函数格式:</span>
-<span style="color:#008000">;(defn name doc-string? attr-map? [params*] prepost-map? body)</span>
-<span style="color:#008000">;(defn name doc-string? attr-map? ([params*] prepost-map? body) + attr-map?)</span>
 (<span style="color:#00f">defn </span>f
   <span style="color:#a31515">&#34;the second line is doc-string&#34;</span>
   {<span style="color:#a31515">:added</span>  <span style="color:#a31515">&#34;1.2&#34;</span>                                            <span style="color:#008000">;this is attr-map</span>
@@ -324,151 +240,58 @@
 (meta (<span style="color:#00f">var </span>f))
 <span style="color:#008000">;#&#39; is the reader macro for var and works the exactly same</span>
 (meta #<span style="color:#a31515">&#39;f</span>)
-<span style="color:#008000">;=&gt;</span>
-<span style="color:#008000">; {:added &#34;1.2&#34;,</span>
-<span style="color:#008000">; :ns #object[clojure.lang.Namespace 0x79876e95 &#34;learnclj.core&#34;],</span>
-<span style="color:#008000">; :name f,</span>
-<span style="color:#008000">; :file &#34;/code/clj/clj-notes/src/learnclj/core.clj&#34;,</span>
-<span style="color:#008000">; :static true,</span>
-<span style="color:#008000">; :column 1,</span>
-<span style="color:#008000">; :line 157,</span>
-<span style="color:#008000">; :arglists ([param]),</span>
-<span style="color:#008000">; :doc &#34;the second line is doc-string&#34;}</span>
 
-<span style="color:#008000">;function can have params type hint</span>
-(<span style="color:#00f">defn </span>round
-  <span style="color:#a31515">&#34;^double here is type hint&#34;</span>
-  [^double d ^long precision]
-  (<span style="color:#00f">let </span>[factor (Math/pow 10 precision)]
-    (/ (Math/floor (* d factor)) factor)))
-
-<span style="color:#008000">;重载函数,即参数可不同</span>
-(<span style="color:#00f">defn </span>bar
-  ([a b] (bar a b 100))
-  ([a b c] (* a b c)))
-
-(bar 5 6)
-(bar 5 6 3)
-
-<span style="color:#008000">;fn create a function object</span>
+<span style="color:#008000">;fn create a function</span>
 (<span style="color:#00f">def </span>f (<span style="color:#00f">fn </span>[] (println <span style="color:#a31515">&#34;this is from fn function&#34;</span>)))
 <span style="color:#008000">;#() is the shortcut for fn</span>
 (<span style="color:#00f">def </span>plus-one #(+ 1 %))
 <span style="color:#008000">;% will be replaced with arguments passed to the function</span>
 <span style="color:#008000">;%1 is for the first argument, %2 is for the second and so on</span>
 
-<span style="color:#008000">;=========boolean and flow control</span>
-<span style="color:#008000">;In Clojure, everything except false and nil are true.</span>
-(<span style="color:#00f">if </span>1
-  (println <span style="color:#a31515">&#34;it is true&#34;</span>)
-  (println <span style="color:#a31515">&#34;will never print&#34;</span>))
-
-<span style="color:#008000">;if</span>
-(<span style="color:#00f">if </span>true
-  (println <span style="color:#a31515">&#34;executed when true&#34;</span>)
-  (println <span style="color:#a31515">&#34;executed when false&#34;</span>))
-
-<span style="color:#008000">;use do to execute multi expressions</span>
-(<span style="color:#00f">if </span>true
-  (do
-    (println <span style="color:#a31515">&#34;one&#34;</span>)
-    (println <span style="color:#a31515">&#34;two&#34;</span>)))
-
-<span style="color:#008000">;if-let:</span>
-(<span style="color:#00f">defn </span>positive-number [numbers]
-  (if-let [pos-nums (not-empty (filter pos? numbers))]
-    pos-nums
-    <span style="color:#a31515">&#34;no positive numbers&#34;</span>))
-
-<span style="color:#008000">;when when-let case cond condp</span>
-<span style="color:#008000">;</span>
-(<span style="color:#00f">defn </span>cond-test
-  [n]
-  (cond
-    (= n 1) <span style="color:#a31515">&#34;n is 1&#34;</span>
-    (and (&gt; n 3) (&lt; n 10)) <span style="color:#a31515">&#34;n is over 3 and under 10&#34;</span>
-    <span style="color:#a31515">:else</span> <span style="color:#a31515">&#34;n is other&#34;</span>))
-
-(cond-test 1000)
-
-<span style="color:#008000">;string</span>
-(<span style="color:#00f">let </span>[first <span style="color:#a31515">&#34;Hirokuni&#34;</span>
-      last <span style="color:#a31515">&#34;Kim&#34;</span>]
-  (str <span style="color:#a31515">&#34;My name is &#34;</span> first <span style="color:#a31515">&#34; &#34;</span> last))
-
-<span style="color:#008000">;format</span>
-(format <span style="color:#a31515">&#34;My name is %s %s&#34;</span> <span style="color:#a31515">&#34;Hirokuni&#34;</span> <span style="color:#a31515">&#34;Kim&#34;</span>)
-
-<span style="color:#008000">;power function</span>
-(<span style="color:#00f">defn </span>power
-  [x n]
-  (reduce * (repeat n x)))
-
-<span style="color:#008000">;bigint,N is a literal for bigint</span>
-<span style="color:#008000">;decimal literal is use M postfix</span>
-(+ 9223372036854775807 10N)
-<span style="color:#008000">;=&gt; 9223372036854775817N</span>
-
-
-<span style="color:#008000">;=========destructing map arguments !!!大杀器</span>
-<span style="color:#008000">;get value of :k1 from argument (map) and binding it to p1(parameter)</span>
 (<span style="color:#00f">defn </span>des
-  [{p1 <span style="color:#a31515">:k1</span>}]
-  (println <span style="color:#a31515">&#34;the :k1 in argument is: &#34;</span> p1))
-(des {<span style="color:#a31515">:k1</span> <span style="color:#a31515">&#34;clojure&#34;</span> <span style="color:#a31515">:k2</span> <span style="color:#a31515">&#34;java&#34;</span>})
-<span style="color:#008000">;=&gt; the :k1 in argument is:  clojure</span>
+  [{k1 <span style="color:#a31515">:k1</span>}]                                                <span style="color:#008000">;get :k1 value from argument (map) and binding it to k1(parameter)</span>
+  (println <span style="color:#a31515">&#34;destructing in map&#34;</span> k1))
 
-<span style="color:#008000">;定义一个计算总价的函数 总价=单价*数量</span>
-<span style="color:#008000">;key don&#39;t have to be keyword,symbol and string is also allowed</span>
-(<span style="color:#00f">defn </span>total-price
-  [{unit <span style="color:#a31515">&#34;unit&#34;</span>}]
-  unit)
-(<span style="color:#00f">defn </span>total-price
-  [{unit <span style="color:#a31515">&#39;unit</span>}]
-  unit)
-
-<span style="color:#008000">;if want to destructing multi key,use :keys,</span>
-<span style="color:#008000">;in this case,parameter name(currency amount)</span>
+(des dict)                                                  <span style="color:#008000">;destructing in map v1</span>
+<span style="color:#008000">;key don&#39;t have to be keyword</span>
+(<span style="color:#00f">defn </span>currency-of
+  [{currency <span style="color:#a31515">&#34;currency&#34;</span>}]
+  currency)
+(<span style="color:#00f">defn </span>currency-of
+  [{currency <span style="color:#a31515">&#39;currency</span>}]
+  currency)
+<span style="color:#008000">;if want to destructing multi key,use :keys, in this case,parameter name(currency amount) </span>
 <span style="color:#008000">;must same as arguments&#39;s keys(:currency :amount),can not use string as key</span>
-(<span style="color:#00f">defn </span>total-price
-  [{<span style="color:#a31515">:keys</span> [unit amount]}]
-  (* unit amount))
+(<span style="color:#00f">defn </span>currency-of
+  [{<span style="color:#a31515">:keys</span> [currency amount]}]
+  (* currency amount))
 
-(total-price {<span style="color:#a31515">:unit</span> 2.0 <span style="color:#a31515">:amount</span> 10})                        <span style="color:#008000">;ok</span>
-(total-price {<span style="color:#a31515">&#34;unit&#34;</span> 2.0 <span style="color:#a31515">&#34;amount&#34;</span> 5})
-<span style="color:#008000">;unit will be nil,you will need use :strs or syms</span>
+(currency-of {<span style="color:#a31515">:currency</span> <span style="color:#a31515">&#34;RMB&#34;</span> <span style="color:#a31515">:amount</span> 100000})              <span style="color:#008000">;ok</span>
+(currency-of {<span style="color:#a31515">&#34;currency&#34;</span> <span style="color:#a31515">&#34;RMB&#34;</span> <span style="color:#a31515">&#34;amount&#34;</span> 100000})            <span style="color:#008000">;currency will be nil,you will need use :strs or syms</span>
 
-(<span style="color:#00f">defn </span>total-price-strs
-  [{<span style="color:#a31515">:strs</span> [unit amount]}]
-  (* unit amount))
-(total-price-strs {<span style="color:#a31515">&#34;unit&#34;</span> 2.0 <span style="color:#a31515">&#34;amount&#34;</span> 5})                  <span style="color:#008000">;ok</span>
+(<span style="color:#00f">defn </span>currency-strs
+  [{<span style="color:#a31515">:strs</span> [currency amount]}]
+  currency)
+(currency-strs {<span style="color:#a31515">&#34;currency&#34;</span> <span style="color:#a31515">&#34;RMB&#34;</span> <span style="color:#a31515">&#34;amount&#34;</span> 100000})          <span style="color:#008000">;ok</span>
 
 
-(<span style="color:#00f">defn </span>total-price-syms
-  [{<span style="color:#a31515">:syms</span> [unit amount]}]
-  (* unit amount))
-(total-price-syms {<span style="color:#a31515">&#39;unit</span> 2.0 <span style="color:#a31515">&#39;amount</span> 5})                    <span style="color:#008000">;ok</span>
+(<span style="color:#00f">defn </span>currency-syms
+  [{<span style="color:#a31515">:syms</span> [currency amount]}]
+  currency)
+(currency-syms {<span style="color:#a31515">&#39;currency</span> <span style="color:#a31515">&#34;CNY&#34;</span> <span style="color:#a31515">&#39;amount</span> 100000})            <span style="color:#008000">;ok</span>
 
 <span style="color:#008000">;use :or to give a default value for parameter</span>
-<span style="color:#008000">;单价默认5元</span>
-(<span style="color:#00f">defn </span>total-price-or
-  [{<span style="color:#a31515">:keys</span> [unit amount] <span style="color:#a31515">:or</span> {unit 5.0}}]
-  (* unit amount))
-(total-price-or {<span style="color:#a31515">:amount</span> 5})
-<span style="color:#008000">;=&gt; 25.0</span>
+(<span style="color:#00f">defn </span>currency-or
+  [{<span style="color:#a31515">:keys</span> [currency amount] <span style="color:#a31515">:or</span> {currency <span style="color:#a31515">&#34;USD&#34;</span>}}]
+  currency)
+(currency-or {<span style="color:#a31515">:amount</span> 100000})                              <span style="color:#008000">;=&gt; &#34;USD&#34;</span>
 
-<span style="color:#008000">;不定长参数</span>
-<span style="color:#008000">;use &amp; for Variadic Functions Parameters</span>
-<span style="color:#008000">;&amp; 表示the rest的意思</span>
-<span style="color:#008000">;!!! There is no &amp; rest for maps.</span>
+<span style="color:#008000">;use &amp; for Variadic Functions parameters</span>
 (<span style="color:#00f">defn </span>log
   [message &amp; args]
   (println <span style="color:#a31515">&#34;args: &#34;</span> args))
-(log <span style="color:#a31515">&#34;this is msg&#34;</span> 2 3)
-<span style="color:#008000">;args:  (2 3)</span>
 
 <span style="color:#008000">;named params , achieved by Variadic Functions destructing</span>
-<span style="color:#008000">;everything but false and nil evaluates to true in Clojure.</span>
 (<span style="color:#00f">defn </span>job-info
   [&amp; {<span style="color:#a31515">:keys</span> [name job income] <span style="color:#a31515">:or</span> {job <span style="color:#a31515">&#34;unemployed&#34;</span> income <span style="color:#a31515">&#34;$0.00&#34;</span>}}]
   (<span style="color:#00f">if </span>name
@@ -478,33 +301,11 @@
 <span style="color:#008000">;cation! arguments to job-info is not a map</span>
 (job-info <span style="color:#a31515">:name</span> <span style="color:#a31515">&#34;Robert&#34;</span> <span style="color:#a31515">:job</span> <span style="color:#a31515">&#34;Engineer&#34;</span>)
 <span style="color:#008000">;[&#34;Robert&#34; &#34;Engineer&#34; &#34;$0.00&#34;]</span>
-<span style="color:#008000">;Without the use of a variadic argument list,</span>
+<span style="color:#008000">;Without the use of a variadic argument list, </span>
 <span style="color:#008000">;you would have to call the function with a single map argument such as</span>
 (job-info {<span style="color:#a31515">:name</span> <span style="color:#a31515">&#34;Robert&#34;</span> <span style="color:#a31515">:job</span> <span style="color:#a31515">&#34;Engineer&#34;</span>})
 
-
-<span style="color:#008000">; :as bind entire map to param</span>
-<span style="color:#008000">;See https://github.com/ring-clojure/ring/wiki/File-Uploads for explanation</span>
-(<span style="color:#00f">defn </span>show-request
-  <span style="color:#008000">; 将整个http请求参数(header body method query-string)绑定到request</span>
-  [{<span style="color:#a31515">:as</span> request}]
-  (println request))
-
-(<span style="color:#00f">defn </span>file-handler
-  <span style="color:#008000">;先绑定request,然后入参map还有一个key为:params,:params也是一个map,里面有个key是&#34;file&#34;(其实就是上传文件表单名),</span>
-  <span style="color:#008000">;&#34;file&#34; 里面2个参数分别是文件对象和上传文件名</span>
-  [{<span style="color:#a31515">:as</span> request {{file <span style="color:#a31515">:tempfile</span> fname <span style="color:#a31515">:filename</span>} <span style="color:#a31515">&#34;file&#34;</span>} <span style="color:#a31515">:params</span>}]
-  (println request)
-  (<span style="color:#00f">let </span>[n (num-lines file)]
-    (response (str <span style="color:#a31515">&#34;File &#34;</span> fname <span style="color:#a31515">&#34; has &#34;</span> n <span style="color:#a31515">&#34; lines &#34;</span>))))
-
-<span style="color:#008000">;总结一下: map的解构,无论是单层还是嵌套map,:keys,:as,:syms这些函数一定是在左边的,右边是形参,例如上面的request</span>
-<span style="color:#008000">;而如要获取具体的某个实参,则实参名在右边(:params,&#34;file&#34;,:filename,:tempfile),形参在左边(file,fname)</span>
-<span style="color:#008000">;:as request 可以放在最前面,也可以放在最后</span>
-<span style="color:#008000">;这里理解的不够,应该是宏有关的知识点</span>
-
-<span style="color:#008000">;vector也可以解构</span>
-<span style="color:#008000">;more destructuring example</span>
+<span style="color:#008000">;destructuring example</span>
 <span style="color:#008000">;https://gist.github.com/john2x/e1dca953548bfdfb9844</span>
 (<span style="color:#00f">def </span>my-vec [1 2 3])
 
@@ -551,53 +352,204 @@
   (println a b not-found all))
 <span style="color:#008000">;; =&gt; A B :) {:a A :b B :c C :d D}</span>
 
-<span style="color:#008000">; 嵌套数组的解构</span>
+<span style="color:#008000">;!!! There is no &amp; rest for maps.</span>
+
+
+
+<span style="color:#008000">;everything but false and nil evaluates to true in Clojure.</span>
+
+<span style="color:#008000">;:as bind entire map to param</span>
+<span style="color:#008000">;See https://github.com/ring-clojure/ring/wiki/File-Uploads for explanation</span>
+(<span style="color:#00f">defn </span>file-handler
+  <span style="color:#008000">;表示入参是一个map,里面有:params这个key,将:params</span>
+  <span style="color:#008000">;[{{{tempfile :tempfile filename :filename} &#34;file&#34;} :params :as request}]</span>
+  [{{{tempfile <span style="color:#a31515">:tempfile</span> filename <span style="color:#a31515">:filename</span>} <span style="color:#a31515">&#34;file&#34;</span>} <span style="color:#a31515">:params</span> <span style="color:#a31515">:as</span> request}]
+  (println request)
+  (<span style="color:#00f">let </span>[n (num-lines tempfile)]
+    (response (str <span style="color:#a31515">&#34;File &#34;</span> filename <span style="color:#a31515">&#34; has &#34;</span> n <span style="color:#a31515">&#34; lines &#34;</span>))))
+
+<span style="color:#008000">;a simple example</span>
 (<span style="color:#00f">defn </span>first-first
-  <span style="color:#008000">;数组的第二维的第一个元素</span>
   [[[i _] _]]
   i)
 
-(first-first [[[5 2] [3 4] [6]]])
-<span style="color:#008000">;=&gt; [5 2]</span>
+(first-first [[1 2] [3 4]])
+<span style="color:#008000">;return 1</span>
 
-<span style="color:#008000">; 使用&amp;实现命名参数,这里的&amp;不是rest,调用的时候传入的实参也不是map</span>
-(<span style="color:#00f">defn </span>named-args-fun [&amp; {<span style="color:#a31515">:keys</span> [function sequence]}]
+<span style="color:#008000">;(defn name doc-string? attr-map? [params*] prepost-map? body)</span>
+<span style="color:#008000">;(defn name doc-string? attr-map? ([params*] prepost-map? body) + attr-map?)</span>
+<span style="color:#008000">;function can have params type hint</span>
+(<span style="color:#00f">defn </span>round
+  <span style="color:#a31515">&#34;^double here is type hint&#34;</span>
+  [^double d ^long precision]
+  (<span style="color:#00f">let </span>[factor (Math/pow 10 precision)]
+    (/ (Math/floor (* d factor)) factor)))
+
+<span style="color:#008000">;不定长参数</span>
+<span style="color:#008000">;重载函数</span>
+(<span style="color:#00f">defn </span>bar
+  ([a b] (bar a b 100))
+  ([a b c] (* a b c)))
+
+(bar 5 6)
+(bar 5 6 3)
+
+
+(<span style="color:#00f">defn </span>keyworded-map [&amp; {<span style="color:#a31515">:keys</span> [function sequence]}]
   (map function sequence))
 
-<span style="color:#008000">; 调用,实参顺序可以和函数声明的不同</span>
-(named-args-fun <span style="color:#a31515">:sequence</span> [1 2 3] <span style="color:#a31515">:function</span> #(+ % 2))
-<span style="color:#008000">;=&gt; (3 4 5)</span>
+(keyworded-map <span style="color:#a31515">:sequence</span> [1 2 3] <span style="color:#a31515">:function</span> #(+ % 2))
 
-<span style="color:#008000">;=========namespace</span>
+<span style="color:#008000">;trampoline</span>
+<span style="color:#008000">;trampoline</span>
+
+
+<span style="color:#008000">;namespace</span>
 <span style="color:#008000">;create-ns create a namespace</span>
 (create-ns <span style="color:#a31515">&#39;com.xiongdahu.clj</span>)
 
 <span style="color:#008000">;in-ns move to a namespace</span>
-
 <span style="color:#008000">;require loads a namespace and</span>
 <span style="color:#008000">;refer refers the namespace.</span>
-<span style="color:#008000">;To do these(require and refer) at once, you can use use</span>
+<span style="color:#008000">;To do these at once, you can use use</span>
 (require <span style="color:#a31515">&#39;clojure.by.example</span>)
 (clojure.by.example/favorite-language)
 (use <span style="color:#a31515">&#39;clojure.by.example</span>)
 <span style="color:#008000">;you can rename namespace</span>
-(require &#39;[clojure.by.example <span style="color:#a31515">:as</span> example])
+(require &#39;[clojure.by.example <span style="color:#a31515">:as</span> temp-ns])
 
 <span style="color:#008000">;ns macro creates a new namespace and gives you an opportunity to load other namespaces at the creation time</span>
 
 <span style="color:#008000">;import java class</span>
 (import java.util.Date)
+(println (str  (<span style="color:#00f">new </span>Date)))
+<span style="color:#008000">;Wed Jul 24 22:55:24 CST 2019</span>
 
-<span style="color:#008000">;========= repl utils functions</span>
+<span style="color:#008000">;boolean</span>
+<span style="color:#008000">;In Clojure, everything except false and nil are true.</span>
+(<span style="color:#00f">if </span>1
+  (println <span style="color:#a31515">&#34;it is true&#34;</span>)
+  (println <span style="color:#a31515">&#34;will never print&#34;</span>))
+
+<span style="color:#008000">;if</span>
+(<span style="color:#00f">if </span>true
+  (println <span style="color:#a31515">&#34;executed when true&#34;</span>)
+  (println <span style="color:#a31515">&#34;executed when false&#34;</span>))
+
+<span style="color:#008000">;use do to execute multi expressions</span>
+(<span style="color:#00f">if </span>true
+  (do
+    (println <span style="color:#a31515">&#34;one&#34;</span>)
+    (println <span style="color:#a31515">&#34;two&#34;</span>)))
+
+<span style="color:#008000">;if-let:</span>
+(<span style="color:#00f">defn </span>positive-number [numbers]
+  (if-let [pos-nums (not-empty (filter pos? numbers))]
+    pos-nums
+    <span style="color:#a31515">&#34;no positive numbers&#34;</span>))
+
+<span style="color:#008000">;when when-let case cond condp</span>
+<span style="color:#008000">;</span>
+(<span style="color:#00f">defn </span>cond-test
+  [n]
+  (cond
+    (= n 1) <span style="color:#a31515">&#34;n is 1&#34;</span>
+    (and (&gt; n 3) (&lt; n 10)) <span style="color:#a31515">&#34;n is over 3 and under 10&#34;</span>
+    <span style="color:#a31515">:else</span> <span style="color:#a31515">&#34;n is other&#34;</span>))
+
+(cond-test 1000)
+
+
+<span style="color:#008000">;string</span>
+(<span style="color:#00f">let </span>[first <span style="color:#a31515">&#34;Hirokuni&#34;</span>
+      last <span style="color:#a31515">&#34;Kim&#34;</span>]
+  (str <span style="color:#a31515">&#34;My name is &#34;</span> first <span style="color:#a31515">&#34; &#34;</span> last))
+
+<span style="color:#008000">;format</span>
+(format <span style="color:#a31515">&#34;My name is %s %s&#34;</span> <span style="color:#a31515">&#34;Hirokuni&#34;</span> <span style="color:#a31515">&#34;Kim&#34;</span>)
+
+<span style="color:#008000">;power function</span>
+(<span style="color:#00f">defn </span>power
+  [x n]
+  (reduce * (repeat n x)))
+
+<span style="color:#008000">;bigint,N is a literal for bigint</span>
+(+ 9223372036854775807 10N)
+
+<span style="color:#008000">;list conj nth count</span>
+&#39;(1 2 3)
+<span style="color:#008000">;vector conj nth count .indexOf</span>
+[1 2 3]
+(.indexOf [1 2 3] 4)
+
+(count [1 2])
+
+<span style="color:#008000">;set conj nth count disj sort contains? subset? superset?</span>
+#{1 2 3}
+
+<span style="color:#008000">;map assoc merge keys vals</span>
+(<span style="color:#00f">let </span>[os {<span style="color:#a31515">:Apple</span> <span style="color:#a31515">&#34;Mac&#34;</span> <span style="color:#a31515">:Microsoft</span> <span style="color:#a31515">&#34;Windows&#34;</span>}]
+  (get os <span style="color:#a31515">:Apple</span>))
+
+(assoc {<span style="color:#a31515">:Apple</span> <span style="color:#a31515">&#34;Mac&#34;</span> <span style="color:#a31515">:Microsoft</span> <span style="color:#a31515">&#34;Windows&#34;</span>} <span style="color:#a31515">:Commodore</span> <span style="color:#a31515">&#34;Amiga&#34;</span>)
+
+<span style="color:#008000">;Sequences are data types that abstract all more concrete data types with unified functions. </span>
+<span style="color:#008000">;These functions are called the Seq library in Clojure.</span>
+<span style="color:#008000">;seq first rest cons concat map reduce into</span>
+<span style="color:#008000">;To add an element to the head of sequence, use cons.</span>
+(cons 4 [1 2 3])
+(into [] `(1 2 3))
+(reverse [1 2 3])
+<span style="color:#008000">;get a sequence of infinite integers with iterate. Be careful, </span>
+<span style="color:#008000">;though. Running this example will freeze your terminal since the evaluation of this expression never returns.</span>
 (doc iterate)
+
+(doc range)
+(repeatedly 5 (<span style="color:#00f">fn </span>[] (println <span style="color:#a31515">&#34;hi!&#34;</span>)))
+<span style="color:#008000">;for each</span>
+(doseq [animal [<span style="color:#a31515">&#34;cat&#34;</span> <span style="color:#a31515">&#34;dog&#34;</span> <span style="color:#a31515">&#34;horse&#34;</span>]] (println animal))
+
+(take 5 (range 0 100))
+(take-while neg? [-3 -2 -1 0 1 2 3])
+<span style="color:#008000">;drop will remove the first n elements</span>
+(drop 5 (range 0 10))
+(drop-while neg? [-3 -2 -1 0 1 2 3])
+<span style="color:#008000">;(0 1 2 3)</span>
+
+(remove pos? [-1 -2 3 4])
+<span style="color:#008000">;(-1 -2)</span>
+
+(filter pos? [-1 2 3])
+(partition-by #(&lt; 3 %) [1 2 3 4 5 6])
+(group-by #(&lt; 3 %) [1 2 3 4 5 6 1 2 3])
+(println (take 5 (iterate inc 0)))
+
+<span style="color:#008000">;for compression</span>
+(for [x &#39;(1 2 3)]
+  (+ 10 x))
+
+(doc for)
+<span style="color:#008000">;双重for 循环</span>
+(for [x (range 10)
+      y (range 20)
+      <span style="color:#a31515">:while</span> (&lt; y x)]
+  [x y])
+
+<span style="color:#008000">;&lt;==&gt; {x | x &gt;0}</span>
+(for [x &#39;(-1 1 2)
+      <span style="color:#a31515">:when</span> (&gt; x 0)]
+  x)
+
+(for [x [0 1 2 3 4 5]
+      <span style="color:#a31515">:let</span> [y (* x 3)]
+      <span style="color:#a31515">:when</span> (even? y)]
+  y)
 
 <span style="color:#008000">;meta data for function parameters</span>
 (<span style="color:#00f">defn </span>round
-  <span style="color:#a31515">&#34;^double 用于IDE的代码提示,可以说非常有用了,但是代码可读性变差了,如果可以有个注解的形式就好了,不要夹杂在函数体里面&#34;</span>
   [^double d ^long precision]
   (<span style="color:#00f">let </span>[factor (Math/pow 10 precision)]
     (/ (Math/floor (* d factor)) factor)))
-
 
 <span style="color:#008000">;# is Dispatch character that tells the Clojure reader how to interpret the next character using a read table</span>
 <span style="color:#008000">;set</span>
@@ -606,6 +558,8 @@
 {<span style="color:#a31515">:a</span> 1, #_#_<span style="color:#a31515">:b</span> 2, <span style="color:#a31515">:c</span> 3}
 <span style="color:#008000">;regular expression</span>
 (re-matches #<span style="color:#a31515">&#34;^test$&#34;</span> <span style="color:#a31515">&#34;test&#34;</span>)
+<span style="color:#008000">;anonymous function</span>
+#(println %)
 <span style="color:#008000">;var quote</span>
 (read-string <span style="color:#a31515">&#34;#&#39;foo&#34;</span>)
 <span style="color:#008000">;symbolic values</span>
@@ -614,7 +568,7 @@
 (type #inst <span style="color:#a31515">&#34;2014-05-19T19:12:37.925-00:00&#34;</span>)                <span style="color:#008000">;java.util.Date</span>
 <span style="color:#008000">;meta</span>
 (meta #<span style="color:#a31515">&#39;fn-name</span>)
-<span style="color:#008000">;reader conditionals</span>
+<span style="color:#008000">;reader conditionals </span>
 #?(<span style="color:#a31515">:clj</span>     (Clojure expression)
    <span style="color:#a31515">:cljs</span>    (ClojureScript expression)
    <span style="color:#a31515">:cljr</span>    (Clojure CLR expression)
@@ -627,7 +581,7 @@
 (read-string <span style="color:#a31515">&#34;#=(+ 3 4)&#34;</span>)                                   <span style="color:#008000">;7</span>
 
 
-<span style="color:#008000">;=========Recursion</span>
+<span style="color:#008000">;Recursion</span>
 <span style="color:#008000">;simple recursion</span>
 (<span style="color:#00f">defn </span>fibo
   <span style="color:#a31515">&#34;this is recursion function&#34;</span>
@@ -648,14 +602,14 @@
     <span style="color:#008000">;fibo is an inner function</span>
     (fibo 0N 1N 0)))
 
-(fibo-recur 1000)                                           <span style="color:#008000">;it is really fast</span>
+(fibo-recur 1000)
+<span style="color:#008000">;it is really fast</span>
 <span style="color:#008000">;notes</span>
-<span style="color:#008000">;with simple recursion, each recursive call creates a stack frame which is</span>
+<span style="color:#008000">;with simple recursion, each recursive call creates a stack frame which is </span>
 <span style="color:#008000">;a data to store the information of the called function on memory.</span>
-<span style="color:#008000">;Doing deep recursion requires large memory for stack frames, but since it cannot,</span>
+<span style="color:#008000">;Doing deep recursion requires large memory for stack frames, but since it cannot, </span>
 <span style="color:#008000">;we get StackOverflowError</span>
-
-<span style="color:#008000">;尾递归:</span>
+<span style="color:#008000">;尾递归</span>
 <span style="color:#008000">;A function is tail recursive when the recursion is happening at the end of it&#39;s definition</span>
 <span style="color:#008000">;In other words, a tail recursive function must return itself as it&#39;s returned value.</span>
 <span style="color:#008000">;When you use recur, it makes sure you are doing tail recursion</span>
@@ -667,12 +621,7 @@
 <span style="color:#008000">;Although you can write code that looks like an imperative loop with loop/recur,</span>
 <span style="color:#008000">;Clojure is doing recursion under the hood.</span>
 
-<span style="color:#008000">;;DON&#34;T EVALUATE THIS OR YOUR REPL WILL CRASH</span>
-<span style="color:#008000">;下面是死循环</span>
-(range)                                                     
-
-
-<span style="color:#008000">;=========macro and thread(不是线程)</span>
+<span style="color:#008000">;</span>
 (<span style="color:#00f">defmacro </span>unless [test then]
   <span style="color:#a31515">&#34;Evaluates then when test evaluates to be falsey&#34;</span>
   (list <span style="color:#a31515">&#39;if</span> (list <span style="color:#a31515">&#39;not</span> test)
@@ -690,7 +639,7 @@
 `(+ ~@(list 1 2 3))
 <span style="color:#008000">;(clojure.core/+ 1 2 3)</span>
 <span style="color:#008000">;The ~@ unquote splice works just like ~ unquote,</span>
-<span style="color:#008000">;except it expands a sequence and splice the contents of</span>
+<span style="color:#008000">;except it expands a sequence and splice the contents of </span>
 <span style="color:#008000">;the sequence into the enclosing syntax-quoted data structure</span>
 
 <span style="color:#008000">;thread first macro</span>
@@ -742,6 +691,11 @@
       (.substring v 1))
 
 
+<span style="color:#008000">;</span>
+<span style="color:#008000">;destructing</span>
+({<span style="color:#a31515">:keys</span> [firstname lastname] <span style="color:#a31515">:as</span> person} {<span style="color:#a31515">:firstname</span> <span style="color:#a31515">&#34;John&#34;</span> <span style="color:#a31515">:lastname</span> <span style="color:#a31515">&#34;Smith&#34;</span>})
+
+
 <span style="color:#008000">;future and deref</span>
 (<span style="color:#00f">let </span>[future-val (future (inc 1))]
   (println (deref future-val)))
@@ -756,6 +710,7 @@
               (Thread/sleep 1000)))
 
 (doc future)
+
 
 <span style="color:#008000">;promise</span>
 (<span style="color:#00f">def </span>my-promise (promise))
@@ -795,7 +750,7 @@
     (swap! user-record merge {<span style="color:#a31515">:age</span> 32}))
 
 
-<span style="color:#008000">;=========Java</span>
+<span style="color:#008000">;Java</span>
 (<span style="color:#00f">new </span>java.util.Date <span style="color:#a31515">&#34;2016/2/19&#34;</span>)
 (java.util.Date.)
 (java.util.Date. <span style="color:#a31515">&#34;2016/2/19&#34;</span>)
@@ -813,38 +768,20 @@
 <span style="color:#008000">;(Classname/staticMethod args*)</span>
 <span style="color:#008000">;Classname/staticField</span>
 
+<span style="color:#008000">;;;</span>
+
+(<span style="color:#00f">defn </span>geohash [lat lng]
+  (println <span style="color:#a31515">&#34;geohash:&#34;</span> lat lng)
+  <span style="color:#008000">;;this function take two separate values as params.</span>
+  <span style="color:#008000">;;and it return a geohash for that position</span>
+  )
+
+(<span style="color:#00f">let </span>[{<span style="color:#a31515">:strs</span> [lat lng] <span style="color:#a31515">:as</span> coord} {<span style="color:#a31515">&#34;lat&#34;</span> 51.503331, <span style="color:#a31515">&#34;lng&#34;</span> -0.119500}]
+  (println <span style="color:#a31515">&#34;calculating geohash for coordinates: &#34;</span> coord)
+  (geohash lat lng))
 
 
-<span style="color:#008000">;=========</span>
-<span style="color:#008000">;;;a ring file upload example</span>
-(<span style="color:#00f">ns </span>learnclj.file-upload
-  (<span style="color:#a31515">:require</span> [ring.middleware.params <span style="color:#a31515">:refer</span> <span style="color:#a31515">:all</span>]
-            [ring.util.response <span style="color:#a31515">:refer</span> <span style="color:#a31515">:all</span>]
-            [ring.middleware.multipart-params <span style="color:#a31515">:refer</span> <span style="color:#a31515">:all</span>]
-            [ring.adapter.jetty <span style="color:#a31515">:as</span> jetty])
-  (<span style="color:#a31515">:gen-class</span>))
-
-(<span style="color:#00f">defn- </span>num-lines
-  [file]
-  (with-open [rdr (clojure.java.io/reader file)]
-    (count (line-seq rdr))))
-
-(<span style="color:#00f">defn </span>file-handler
-  [{{{tempfile <span style="color:#a31515">:tempfile</span> filename <span style="color:#a31515">:filename</span>} <span style="color:#a31515">&#34;file&#34;</span>} <span style="color:#a31515">:params</span> <span style="color:#a31515">:as</span> request}]
-  (println request)
-  (<span style="color:#00f">let </span>[n (num-lines tempfile)]
-    (response (str <span style="color:#a31515">&#34;File &#34;</span> filename <span style="color:#a31515">&#34; has &#34;</span> n <span style="color:#a31515">&#34; lines &#34;</span>))))
-
-
-(<span style="color:#00f">defn </span>-main
-  <span style="color:#a31515">&#34;I start a server which counts lines of text in your .txt files :)&#34;</span>
-  [&amp; args]
-  (jetty/run-jetty (-&gt; file-handler
-                       wrap-params
-                       wrap-multipart-params)
-                   {<span style="color:#a31515">:port</span> 3000}))
-
-<span style="color:#008000">;;;a ring file upload example end</span></code></pre></div>
+<span style="color:#008000">;assoc-in associate使加入</span></code></pre></div>
     </div>
     <footer class="post-footer">
      
@@ -932,14 +869,14 @@
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://xiongdahu.github.io/post/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">    
         <a href="https://xiongdahu.github.io/categories/">      
          
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         
         <span class="site-state-item-name">分类</span>
         
@@ -949,7 +886,7 @@
     <div class="site-state-item site-state-tags">
         <a href="https://xiongdahu.github.io/tags/">
          
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         
         <span class="site-state-item-name">标签</span>
         </a>

@@ -6,10 +6,19 @@
     <description>Recent content on 香取</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 19 May 2019 16:49:14 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 07:58:12 +0800</lastBuildDate>
     
 	<atom:link href="https://xiongdahu.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Devops Maturity Model Checklist</title>
+      <link>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</link>
+      <pubDate>Wed, 24 Jul 2019 07:58:12 +0800</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</guid>
+      <description>之前听说过AWS的软件工程师是需要自己写需求书,代</description>
+    </item>
     
     <item>
       <title>Scala Collection Tips</title>
@@ -17,7 +26,7 @@
       <pubDate>Sun, 19 May 2019 16:49:14 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/post/scala-collection-tips/</guid>
-      <description>scala collection is high-performance,但是需要清</description>
+      <description>scala collection 提供了一整套独立于Java的高性能集合,使用上</description>
     </item>
     
     <item>

@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java concurrency 5 Synchronizer and AQS</title>
+    <title>Devops Maturity Model Checklist</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java concurrency 5 Synchronizer and AQS">
+    <meta property="og:title" content="Devops Maturity Model Checklist">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java concurrency 5 Synchronizer and AQS - 香取" />
+    <meta name="title" content="Devops Maturity Model Checklist - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
     <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
@@ -111,8 +111,8 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/" itemprop="url">
-        Java concurrency 5 Synchronizer and AQS
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/devops-maturity-model-checklist/" itemprop="url">
+        Devops Maturity Model Checklist
         </a>
       </h1>
       <div class="post-meta">
@@ -121,8 +121,8 @@
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间:</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
-    2016-01-01
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-07-24">
+    2019-07-24
 </time>
 </span> 
       
@@ -135,8 +135,8 @@
   <span class="post-meta-item-text">分类:</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
-        <span itemprop="name">编程</span>
+      <a href="https://xiongdahu.github.io/categories/devops" itemprop="url" rel="index">
+        <span itemprop="name">DevOps</span>
       </a>
       &nbsp; 
     </span>
@@ -150,88 +150,109 @@
         <i class="fa fa-eye"></i>
     </span>
     <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">342 字 ~1分钟</span>
+    <span class="leancloud-visitors-count">853 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     
 
-<h4 id="好难-看不懂呀">好难，看不懂呀！</h4>
+<p>之前听说过AWS的软件工程师是需要自己写需求书,代码,测试和上线。还有ins的工程师可以做到python的代码提交后可以在十几个小时后自动部署到生产被用户使用到,感觉这个非常神奇。如果需要做到这个,对组织级可个人都有极高的devops能力成熟度。<br />
+下面列出devops的组织级需要提供的一些能力项。主要涉及的一些要点记录下来。</p>
 
-<h4 id="先自己写一个countdownlatch的示例">先自己写一个CountDownLatch的示例：</h4>
+<p>核心要点就是要有统一的管理系统,系统之间需要联动,例如记录故事的系统,如何和你提交记录关联?测试的缺陷问题如何和你的故事关联?生产正在运行的代码,如何和代码库的某个基线对应上?测试报告/需求说明书是否统一管理并和你的迭代有关联?是否可以做到故事的回滚出发代码的回滚?</p>
 
-<p>CountDownLatch是管理一组线程和一个主线程的先后。主线程wait后就阻塞，直到所有的CountDownLatch调用countDown后主线程接着开始。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> angus.intrview.concurrent;
+<h2 id="版本控制">版本控制</h2>
 
-<span style="color:#00f">import</span> java.util.concurrent.CountDownLatch;
-<span style="color:#00f">import</span> java.util.concurrent.TimeUnit;
+<p>git</p>
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">CountDownLatchTest</span> {
-	<span style="color:#008000">// 这个方法将启动多个任务，并让它们同时执行，计算完成的时间
-</span><span style="color:#008000"></span>	<span style="color:#00f">public</span> <span style="color:#2b91af">long</span> timer(<span style="color:#2b91af">int</span> taskNums) <span style="color:#00f">throws</span> InterruptedException {
-		CountDownLatch startLatch = <span style="color:#00f">new</span> CountDownLatch(1);
-		CountDownLatch finishLatch = <span style="color:#00f">new</span> CountDownLatch(taskNums);
-		<span style="color:#00f">for</span> (<span style="color:#2b91af">int</span> i = 0; i &lt; taskNums; i++) {
-			Task task = <span style="color:#00f">new</span> Task(startLatch, finishLatch, i);
-			<span style="color:#00f">new</span> Thread(task).start();
-		}
+<h2 id="分支管理">分支管理</h2>
 
-		<span style="color:#2b91af">long</span> start = System.nanoTime();
-		startLatch.countDown();<span style="color:#008000">// 准备好线程后开始同时启动所有任务
-</span><span style="color:#008000"></span>		finishLatch.await();<span style="color:#008000">// 等待任务完成
-</span><span style="color:#008000"></span>		<span style="color:#2b91af">long</span> end = System.nanoTime();
-		<span style="color:#00f">return</span> end - start;
+<p>feature分支开发，pr模式合并</p>
 
-	}
+<h2 id="制品管理">制品管理</h2>
 
-	<span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> InterruptedException {
-		CountDownLatchTest ct = <span style="color:#00f">new</span> CountDownLatchTest();
-		<span style="color:#2b91af">long</span> time = ct.timer(100);
-		System.out.println(TimeUnit.NANOSECONDS.toSeconds(time) + <span style="color:#a31515">&#34;   SENCODS&#34;</span>);
-	}
+<p>含maven,npm,python私服</p>
 
-}
+<h2 id="单一可信数据源">单一可信数据源</h2>
 
-<span style="color:#00f">class</span> <span style="color:#2b91af">Task</span> <span style="color:#00f">implements</span> Runnable {
-	CountDownLatch startLatch;
-	CountDownLatch finishLatch;
-	<span style="color:#2b91af">int</span> time;
+<p>制品来源徐统一</p>
 
-	Task(CountDownLatch startLatch, CountDownLatch finishLatch, <span style="color:#2b91af">int</span> time) {
-		<span style="color:#00f">this</span>.startLatch = startLatch;
-		<span style="color:#00f">this</span>.finishLatch = finishLatch;
-		<span style="color:#00f">this</span>.time = time;
-	}
+<h2 id="变更过程">变更过程</h2>
 
-	@Override
-	<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> run() {
-		<span style="color:#00f">try</span> {
-			startLatch.await();<span style="color:#008000">// 等待主线程通知任务开始
-</span><span style="color:#008000"></span>			System.out.println(<span style="color:#a31515">&#34;doing the task!&#34;</span>);
-			Thread.sleep(time * 100); <span style="color:#008000">// 模拟任务过程
-</span><span style="color:#008000"></span>		} <span style="color:#00f">catch</span> (InterruptedException e1) {
-			<span style="color:#008000">// TODO Auto-generated catch block
-</span><span style="color:#008000"></span>			e1.printStackTrace();
-		} <span style="color:#00f">finally</span> {
-			System.out.println(<span style="color:#a31515">&#34;task done&#34;</span>);
-			finishLatch.countDown();<span style="color:#008000">// 告诉主线程任务完成
-</span><span style="color:#008000"></span>		}
+<h2 id="变更追溯">变更追溯</h2>
 
-	}
+<h2 id="构建环境-构建方式-构建计划">构建环境 构建方式 构建计划</h2>
 
-}</code></pre></div>
-<h4 id="cyclicbarrier">CyclicBarrier</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">// pass</code></pre></div>
+<h2 id="集成服务">集成服务</h2>
+
+<p>jenkins,pipeline,sonar,</p>
+
+<h2 id="反馈周期-方式">反馈周期,方式,</h2>
+
+<h2 id="分层方法和策略">分层方法和策略</h2>
+
+<p>金字塔测试模型,冰激凌模型,纺锤模型<br />
+  接口测试和文档,单元测试的设计和文档?非功能性测试（安全,性能,可靠性,兼容性）,探索性测试,<br />
+  测试结果自动分析</p>
+
+<h2 id="测试时机">测试时机</h2>
+
+<p>及早介入（TDD即先测试再写代码）</p>
+
+<h2 id="代码质量规约-code-review-sonar等">代码质量规约,code review,sonar等</h2>
+
+<h2 id="反馈处理">反馈处理</h2>
+
+<h2 id="自动化设计">自动化设计</h2>
+
+<h2 id="自动化开发">自动化开发</h2>
+
+<h2 id="自动化执行-分析">自动化执行 分析</h2>
+
+<h2 id="部署方式-过程-策略-质量">部署方式,过程,策略,质量</h2>
+
+<h2 id="协作模式">协作模式</h2>
+
+<p>审批,系统资源等待<br />
+  团队和系统的关联?是否可以团队独立上线?</p>
+
+<h2 id="过程可视化">过程可视化</h2>
+
+<p>pipeline</p>
+
+<h2 id="环境类型">环境类型</h2>
+
+<p>不要开发人员自己搭建开发环境,保证工具版本的统一;<br />
+  自服务申请的开发环境,测试,UAT环境。<br />
+  统一的配置管理系统（CMDB)</p>
+
+<h2 id="数据来源-数据覆盖-数据变更-数据向下兼容性-数据回滚-数据监控">数据来源,数据覆盖,数据变更,数据向下兼容性,数据回滚,数据监控</h2>
+
+<p>binlog,flyway,<br />
+  向下兼容性：故事需要删除了表字段,那么上线时如何做到应用和数据同时更新,或者数据脚本执行不影响旧应用的运行?</p>
+
+<h2 id="测试数据来源-数据脱敏">测试数据来源,数据脱敏</h2>
+
+<h2 id="度量指标">度量指标</h2>
+
+<p>指标的定义,类型（技术指标,业务指标）<br />
+  技术指标：团队开发效率,缺陷率,构建时长,上线质量,生产事故,<br />
+  业务指标：MAU,DAU,用户数量,登录次数</p>
+
+<h2 id="度量数据的管理和共享">度量数据的管理和共享</h2>
+
+<h2 id="度量数据的更新和时效性">度量数据的更新和时效性</h2>
+
+<h2 id="反馈改进">反馈改进</h2>
+
     </div>
     <footer class="post-footer">
      
  
 <div class="post-tags">     
      
-    <a href="https://xiongdahu.github.io/tags/java" rel="tag" title="java">#java#</a>
-    
-    <a href="https://xiongdahu.github.io/tags/code" rel="tag" title="code">#code#</a>
+    <a href="https://xiongdahu.github.io/tags/code-notes" rel="tag" title="code notes">#code notes#</a>
     
 </div>
 
@@ -240,17 +261,13 @@
      <div class="post-nav">
     <div class="post-nav-prev post-nav-item">
         
-        <a href="https://xiongdahu.github.io/post/java-and-equal/" rel="prev" title="Java-==-and-equal">
-            Java-==-and-equal <i class="fa fa-chevron-left"></i>
+        <a href="https://xiongdahu.github.io/post/scala-collection-tips/" rel="prev" title="Scala Collection Tips">
+            Scala Collection Tips <i class="fa fa-chevron-left"></i>
         </a>
         
     </div>
 
     <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/" rel="next" title="Java concurrency 4 CAS and atomic">
-            <i class="fa fa-chevron-right"></i> Java concurrency 4 CAS and atomic
-        </a>
         
     </div>
 </div>
@@ -362,15 +379,32 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#好难-看不懂呀">好难，看不懂呀！</a></li>
-<li><a href="#先自己写一个countdownlatch的示例">先自己写一个CountDownLatch的示例：</a></li>
-<li><a href="#cyclicbarrier">CyclicBarrier</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#版本控制">版本控制</a></li>
+<li><a href="#分支管理">分支管理</a></li>
+<li><a href="#制品管理">制品管理</a></li>
+<li><a href="#单一可信数据源">单一可信数据源</a></li>
+<li><a href="#变更过程">变更过程</a></li>
+<li><a href="#变更追溯">变更追溯</a></li>
+<li><a href="#构建环境-构建方式-构建计划">构建环境 构建方式 构建计划</a></li>
+<li><a href="#集成服务">集成服务</a></li>
+<li><a href="#反馈周期-方式">反馈周期,方式,</a></li>
+<li><a href="#分层方法和策略">分层方法和策略</a></li>
+<li><a href="#测试时机">测试时机</a></li>
+<li><a href="#代码质量规约-code-review-sonar等">代码质量规约,code review,sonar等</a></li>
+<li><a href="#反馈处理">反馈处理</a></li>
+<li><a href="#自动化设计">自动化设计</a></li>
+<li><a href="#自动化开发">自动化开发</a></li>
+<li><a href="#自动化执行-分析">自动化执行 分析</a></li>
+<li><a href="#部署方式-过程-策略-质量">部署方式,过程,策略,质量</a></li>
+<li><a href="#协作模式">协作模式</a></li>
+<li><a href="#过程可视化">过程可视化</a></li>
+<li><a href="#环境类型">环境类型</a></li>
+<li><a href="#数据来源-数据覆盖-数据变更-数据向下兼容性-数据回滚-数据监控">数据来源,数据覆盖,数据变更,数据向下兼容性,数据回滚,数据监控</a></li>
+<li><a href="#测试数据来源-数据脱敏">测试数据来源,数据脱敏</a></li>
+<li><a href="#度量指标">度量指标</a></li>
+<li><a href="#度量数据的管理和共享">度量数据的管理和共享</a></li>
+<li><a href="#度量数据的更新和时效性">度量数据的更新和时效性</a></li>
+<li><a href="#反馈改进">反馈改进</a></li>
 </ul></li>
 </ul>
 </nav></div>
