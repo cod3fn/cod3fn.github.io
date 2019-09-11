@@ -1,21 +1,45 @@
 <search>
     
      <entry>
+        <title>Posts</title>
+        <url>https://xiongdahu.github.io/post/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> </content>
+    </entry>
+    
+     <entry>
+        <title>git useful tips</title>
+        <url>https://xiongdahu.github.io/post/git-useful-tips/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>git</tag><tag>code</tag>
+        </tags>
+        <content type="html">  delete all history commit and keep current content as commit git checkout --orphan tmp_branch &amp;amp;&amp;amp; git add -A &amp;amp;&amp;amp; git commit -am &amp;#34;first commit&amp;#34; &amp;amp;&amp;amp; git branch -D master &amp;amp;&amp;amp; git branch -m master &amp;amp;&amp;amp; git push -f origin master store password in local git config credential.helper store git stash git rebase git pull request git cherry-pick </content>
+    </entry>
+    
+     <entry>
         <title>Devops Maturity Model Checklist</title>
         <url>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</url>
         <categories>
           <category>DevOps</category>
         </categories>
         <tags>
-          <tag>code notes</tag>
+          <tag>code</tag>
         </tags>
-        <content type="html">  之前听说过AWS的软件工程师是需要自己写需求书,代码,测试和上线。还有ins的工程师可以做到python的代码提交后可以在十几个小时后自动部署到生产被用户使用到,感觉这个非常神奇。如果需要做到这个,对组织级可个人都有极高的devops能力成熟度。
+        <content type="html">  之前听说过AWS的软件工程师是需要自己写需求说明书,前后端代码,测试和上线。还有ins的工程师可以做到python的代码提交如果合并到主分支后可以在一个小时内自动部署到生产被用户使用到,感觉这个非常神奇。如果需要做到这个,对组织级可个人都有极高的devops能力成熟度。
 下面列出devops的组织级需要提供的一些能力项。主要涉及的一些要点记录下来。
 核心要点就是要有统一的管理系统,系统之间需要联动,例如记录故事的系统,如何和你提交记录关联?测试的缺陷问题如何和你的故事关联?生产正在运行的代码,如何和代码库的某个基线对应上?测试报告/需求说明书是否统一管理并和你的迭代有关联?是否可以做到故事的回滚出发代码的回滚?
 版本控制 git
 分支管理 feature分支开发，pr模式合并
 制品管理 含maven,npm,python私服
-单一可信数据源 制品来源徐统一
+单一可信数据源 制品来源统一
 变更过程 变更追溯 构建环境 构建方式 构建计划 集成服务 jenkins,pipeline,sonar,
 反馈周期,方式, 分层方法和策略 金字塔测试模型,冰激凌模型,纺锤模型
 接口测试和文档,单元测试的设计和文档?非功能性测试（安全,性能,可靠性,兼容性）,探索性测试,
@@ -33,18 +57,6 @@
 技术指标：团队开发效率,缺陷率,构建时长,上线质量,生产事故,
 业务指标：MAU,DAU,用户数量,登录次数
 度量数据的管理和共享 度量数据的更新和时效性 反馈改进 </content>
-    </entry>
-    
-     <entry>
-        <title>Posts</title>
-        <url>https://xiongdahu.github.io/post/</url>
-        <categories>
-          
-        </categories>
-        <tags>
-          
-        </tags>
-        <content type="html"> </content>
     </entry>
     
      <entry>
@@ -301,7 +313,7 @@ setup with maven
   setup with maven 目前用sbt的项目比较少,maven的更多. 而且sbt烧cpu. maven项目使用scala参考我的gist:scala_maven_pom.xml
 学习scala可以使用scala插件的worksheet,这是一个基于脚本互动的REPL. 本文后面的代码全部在worksheet中测试.
 import scala的import语句很灵活，可以在任何地方导入class内部外部，方法内部，代码块内部，这样做有一个好处，限制导入方法和对象的scope，防止污染变量。在后面学了implicit隐式转换后，就知道import scope有多重要了。
-import scala.math._ // import everything in math package import java.util.{ ArrayList =&amp;gt; _, _} //第一个下划线表示隐藏ArrayList，第二个表示通配符，导入所有  //默认，scala导入: java.lang._ scala._ scala.Predef._ //推荐看一下Predef的源代码包括： //Predef中定义的方法和属性 //常用方法和类 //打印方法 println等 //一些调试和错误方法 //一个特殊的方法表示方法未实现 def ??? : Nothing = throw new NotImplementedError //Predef还有大量的隐式转换和隐式参数 == and eq scala里面==等价于java的equals方法即内容比较,并且可以正确处理null(还记得java规范里面烦人的 &amp;quot;A&amp;quot;.equals(m)规范么?). 而地址(应用)比较使用eq 方法,这个方法其实很少用到,应用代码一般无需比较2个变量的地址.
+import scala.math._ // import everything in math package import java.util.{ ArrayList =&amp;gt; _, _} //第一个下划线表示隐藏ArrayList，第二个表示通配符，导入所有  //默认，scala导入: java.lang._ scala._ scala.Predef._ //推荐看一下Predef的源代码包括： //Predef中定义的方法和属性 //常用方法和类 //打印方法 println等 //一些调试和错误方法 //一个特殊的方法表示方法未实现 def ??? : Nothing = throw new NotImplementedError //Predef还有大量的隐式转换和隐式参数 == and eq scala里面==等价于java的equals方法即内容比较,并且可以正确处理null(还记得java规范里面烦人的 &amp;quot;A&amp;quot;.equals(m)规范么?). 而地址(引用)比较使用eq 方法,这个方法其实很少用到,应用代码一般无需比较2个变量的地址.
 case class case class类似data class,即java的pojo bean,但是提供了更多的方法.
 // 5个特性 // 1.添加companion object,apply方法,unapply方法 // 2.toString, hashCode and equals and copy methods case class Student(name: String, marks: Int) val s1 = Student(&amp;#34;Rams&amp;#34;, 550) val s2 = s1.copy() val s3 = s1.copy(marks = 590) s2 == s1 //true s3 == s1 //false  // 3. 构造函数参数自动成为成员变量,即自动给构造参数添加val前缀 // 4. 可以用于模式匹配 // 5. 默认的,case class和case object是可序列化的(实现Serializable),也即是可以网络传输的 for&amp;hellip;yield  Scala’s “for comprehensions” are syntactic sugar for composition of multiple operations with foreach, map, flatMap, filter or withFilter
 scala的for推导其实就是组合多个foreach, map, flatMap, filter or withFilter的语法糖.
