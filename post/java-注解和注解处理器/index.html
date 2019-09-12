@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-注解和注解处理器sample</title>
+    <title>Java-注解和注解处理器 - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
-    <meta property="og:title" content="Java-注解和注解处理器sample">
+    <meta property="og:title" content="Java-注解和注解处理器">
     <meta property="og:site_name" content="香取">
     <meta property="og:image" content="/img/author.jpg"> 
-    <meta name="title" content="Java-注解和注解处理器sample - 香取" />
+    <meta name="title" content="Java-注解和注解处理器 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -111,8 +121,8 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/" itemprop="url">
-        Java-注解和注解处理器sample
+        <a class="post-title-link" href="https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/" itemprop="url">
+        Java-注解和注解处理器
         </a>
       </h1>
       <div class="post-meta">
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
     2016-01-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">2206 字 ~5分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">2206 字 ~5分钟</span>
 </span>
       </div>
     </header>
@@ -211,20 +221,20 @@ Set&lt;? <span style="color:#00f">extends</span> TypeElement&gt; annotations
 <span style="">–</span> subset of the supported annotations  
 
 RoundEnvironment roundenv  
-<span style="">–</span> environment <span style="color:#00f">for</span> information about the current and prior round  
+<span style="">–</span> environment for information about the current and prior round  
 <span style="">–</span> supplies elements annotated with a given annotation or all root elements in the source  </code></pre></div>
 <p>一个自定义的注解处理器格式如下：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@SupportedAnnotationTypes({<span style="color:#a31515">&#34;Property&#34;</span>})
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">PropertyAnnotationProcessor</span> <span style="color:#00f">extends</span> AbstractProcessor {
-    <span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> process(Set&lt;? <span style="color:#00f">extends</span> TypeElement&gt; annotations, RoundEnvironment env) {
+<span style="color:#00f">public</span> class PropertyAnnotationProcessor extends AbstractProcessor {
+    <span style="color:#00f">public</span> boolean process(Set&lt;? <span style="color:#00f">extends</span> TypeElement&gt; annotations, RoundEnvironment env) {
         process the source file elements using the mirror API
     }
 }</code></pre></div>
 <p>jdk1.6 对注解的处理支持建立在对源码的抽象,Element是<code>javax.lang.model.*</code>中定义的,各种Element是对源码抽象数据结构,如：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">package</span> com.example;	    <span style="color:#008000">// PackageElement
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Foo</span> {		    <span style="color:#008000">// TypeElement
-</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> a;          <span style="color:#008000">// VariableElement
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> class Foo {		    <span style="color:#008000">// TypeElement
+</span><span style="color:#008000"></span>    <span style="color:#00f">private</span> int a;          <span style="color:#008000">// VariableElement
 </span><span style="color:#008000"></span>    <span style="color:#00f">private</span> Foo other;      <span style="color:#008000">// VariableElement
 </span><span style="color:#008000"></span>    <span style="color:#00f">public</span> Foo () {}        <span style="color:#008000">// ExecuteableElement
 </span><span style="color:#008000"></span>
@@ -244,10 +254,10 @@ RoundEnvironment roundenv
 </span><span style="color:#008000">// ./  表示当前命令行文件夹,后面所有的javc命令都以这个文件夹为准
 </span><span style="color:#008000"></span><span style="color:#00f">package</span> java.interview.annotation;
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Name</span> {
+<span style="color:#00f">public</span> class Name {
 
-	<span style="color:#00f">private</span> <span style="color:#00f">final</span> String first;
-	<span style="color:#00f">private</span> <span style="color:#00f">final</span> String last;
+	<span style="color:#00f">private</span> final String first;
+	<span style="color:#00f">private</span> final String last;
 
 	<span style="color:#00f">public</span> Name(String f, String l) {
 		first = f;
@@ -255,7 +265,7 @@ RoundEnvironment roundenv
 	}
 
 	@Comparator(<span style="color:#a31515">&#34;NameByFirstNameComparator&#34;</span>)
-	<span style="color:#00f">public</span> <span style="color:#2b91af">int</span> compareToByFirstName(Name other) {
+	<span style="color:#00f">public</span> int compareToByFirstName(Name other) {
 		<span style="color:#00f">if</span> (<span style="color:#00f">this</span> == other)
 			<span style="color:#00f">return</span> 0;
 		<span style="color:#2b91af">int</span> result;
@@ -267,12 +277,12 @@ RoundEnvironment roundenv
 <p>其中被注解注释的方法将产生一个NameByFirstNameComparator.java文件：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// ./angus/initerview/annotation/NameByFirstNameComparator.java
 </span><span style="color:#008000"></span>
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">NameByFirstNameComparator</span> <span style="color:#00f">implements</span> java.util.Comparator&lt;Name&gt; {
-	<span style="color:#00f">public</span> <span style="color:#2b91af">int</span> compare(Name o1, Name o2) {
+<span style="color:#00f">public</span> class NameByFirstNameComparator implements java.util.Comparator&lt;Name&gt; {
+	<span style="color:#00f">public</span> int compare(Name o1, Name o2) {
 		<span style="color:#00f">return</span> o1.compareToByFirstName(o2);
 	}
 
-	<span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> equals(Object other) {
+	<span style="color:#00f">public</span> boolean equals(Object other) {
 		<span style="color:#00f">return</span> <span style="color:#00f">this</span>.getClass() == other.getClass();
 	}
 }</code></pre></div>
@@ -316,14 +326,14 @@ RoundEnvironment roundenv
 
 @SupportedAnnotationTypes({ <span style="color:#a31515">&#34;angus.interview.annotation.Comparator&#34;</span> })
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MyProcessor</span> <span style="color:#00f">extends</span> AbstractProcessor {
+<span style="color:#00f">public</span> class MyProcessor extends AbstractProcessor {
 
 	@Override
-	<span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> process(Set&lt;? <span style="color:#00f">extends</span> TypeElement&gt; annotations, RoundEnvironment roundEnv) {
+	<span style="color:#00f">public</span> boolean process(Set&lt;? <span style="color:#00f">extends</span> TypeElement&gt; annotations, RoundEnvironment roundEnv) {
 		
 		
 		<span style="color:#00f">for</span>( <span style="color:#00f">final</span> Element element: roundEnv.getElementsAnnotatedWith( Comparator.class ) ) {
-			<span style="color:#00f">if</span>(element <span style="color:#00f">instanceof</span> ExecutableElement){
+			<span style="color:#00f">if</span>(element instanceof ExecutableElement){
 				ExecutableElement m = (ExecutableElement) element;
 				TypeElement className = (TypeElement)m.getEnclosingElement();
 				Comparator a = m.getAnnotation(Comparator.class);
@@ -331,7 +341,7 @@ RoundEnvironment roundenv
 
 					TypeMirror returnType = m.getReturnType();
 
-					<span style="color:#00f">if</span> (!(returnType <span style="color:#00f">instanceof</span> PrimitiveType)
+					<span style="color:#00f">if</span> (!(returnType instanceof PrimitiveType)
 							|| ((PrimitiveType) returnType).getKind() != TypeKind.INT) {
 						processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
 								<span style="color:#a31515">&#34;@Comparator can only be applied to methods that return int&#34;</span>);
@@ -366,7 +376,7 @@ RoundEnvironment roundenv
 </span><span style="color:#008000">	 */</span>
 
 	<span style="color:#008000">//!!!careful with spaces and &#34;;&#34;!!!
-</span><span style="color:#008000"></span>	<span style="color:#00f">private</span> <span style="color:#2b91af">void</span> writeComparatorFile(String fullClassName, String comparatorClassName, String compareToMethodName)
+</span><span style="color:#008000"></span>	<span style="color:#00f">private</span> void writeComparatorFile(String fullClassName, String comparatorClassName, String compareToMethodName)
 			<span style="color:#00f">throws</span> IOException {
 		<span style="color:#2b91af">int</span> i = fullClassName.lastIndexOf(<span style="color:#a31515">&#34;.&#34;</span>);
 		String packageName = fullClassName.substring(0, i);
@@ -432,33 +442,23 @@ RoundEnvironment roundenv
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="prev" title="gradle笔记1-理解build脚本基本语法">
-            gradle笔记1-理解build脚本基本语法 <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" rel="next" title="Java-动态代理">
+        <i class="fa fa-chevron-left"></i> Java-动态代理
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" rel="next" title="Java-动态代理">
-            <i class="fa fa-chevron-right"></i> Java-动态代理
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="单例模式和序列化">
+        单例模式和序列化 <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -545,8 +545,9 @@ RoundEnvironment roundenv
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -583,7 +584,7 @@ RoundEnvironment roundenv
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -627,8 +628,19 @@ RoundEnvironment roundenv
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

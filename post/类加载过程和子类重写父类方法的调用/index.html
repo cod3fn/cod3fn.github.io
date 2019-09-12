@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>面试题-类加载过程和子类重写父类方法的调用</title>
+    <title>面试题-类加载过程和子类重写父类方法的调用 - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="面试题-类加载过程和子类重写父类方法的调用">
@@ -13,8 +13,8 @@
     <meta name="title" content="面试题-类加载过程和子类重写父类方法的调用 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
     2016-01-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,19 +154,19 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1468 字 ~3分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1468 字 ~3分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     <p>最近一道非常火的携程面试题:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Base</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Base
 {
     <span style="color:#00f">private</span> String baseName = <span style="color:#a31515">&#34;base&#34;</span>;
     <span style="color:#00f">public</span> Base()
@@ -164,20 +174,20 @@
         callName();
     }
  
-    <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> callName()
+    <span style="color:#00f">public</span> void callName()
     {
         System.out.println(baseName);
     }
  
-    <span style="color:#00f">static</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Sub</span> <span style="color:#00f">extends</span> Base
+    <span style="color:#00f">static</span> class Sub extends Base
     {
         <span style="color:#00f">private</span> String baseName = <span style="color:#a31515">&#34;sub&#34;</span>;
-        <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> callName()
+        <span style="color:#00f">public</span> void callName()
         {
             System.out.println(baseName) ;
         }
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args)
+    <span style="color:#00f">public</span> static <span style="color:#2b91af">void</span> main(String[] args)
     {
         Base b = <span style="color:#00f">new</span> Sub();<span style="color:#008000">//输出？
 </span><span style="color:#008000"></span>    }
@@ -218,8 +228,8 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 <p>有的面试题会出现陷阱:在调用callName()方法改为this.callName(). 其实都是一样的。在调用Base构造函数时没有Base的实例对象，调用者其实还是Base$Sub这个类。</p>
 
 <p>还有一个进阶版：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Basic</span> {
-	<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> add(<span style="color:#2b91af">int</span> i) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Basic {
+	<span style="color:#00f">public</span> void add(<span style="color:#2b91af">int</span> i) {
 		System.out.println(<span style="color:#a31515">&#34;Basic add&#34;</span>);
 	}
 
@@ -227,21 +237,21 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 		add(<span style="color:#a31515">&#39;a&#39;</span>);
 	}
 
-	<span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
+	<span style="color:#00f">public</span> static <span style="color:#2b91af">void</span> main(String[] args) {
 		Basic a = <span style="color:#00f">new</span> A();
 		B b = <span style="color:#00f">new</span> B();
 	}
 
 }
 
-<span style="color:#00f">class</span> <span style="color:#2b91af">A</span> <span style="color:#00f">extends</span> Basic {
-	<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> add(<span style="color:#2b91af">int</span> i) {
+<span style="color:#00f">class</span> A <span style="color:#00f">extends</span> Basic {
+	<span style="color:#00f">public</span> void add(<span style="color:#2b91af">int</span> i) {
 		System.out.println(<span style="color:#a31515">&#34;A add&#34;</span>);
 	}
 }
 
-<span style="color:#00f">class</span> <span style="color:#2b91af">B</span> <span style="color:#00f">extends</span> Basic {
-	<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> add(<span style="color:#2b91af">char</span> i) {
+<span style="color:#00f">class</span> B <span style="color:#00f">extends</span> Basic {
+	<span style="color:#00f">public</span> void add(<span style="color:#2b91af">char</span> i) {
 		System.out.println(<span style="color:#a31515">&#34;B add&#34;</span>);
 	}
 
@@ -282,33 +292,23 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/about/" rel="prev" title="熊打虎">
-            熊打虎 <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="单例模式和序列化">
+        <i class="fa fa-chevron-left"></i> 单例模式和序列化
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="单例模式和序列化">
-            <i class="fa fa-chevron-right"></i> 单例模式和序列化
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/about/" rel="prev" title="熊打虎">
+        熊打虎 <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -395,8 +395,9 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -420,7 +421,7 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -464,8 +465,19 @@ class 的(clinit)方法和(init)方法不同：这两个方法一个是虚拟机
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

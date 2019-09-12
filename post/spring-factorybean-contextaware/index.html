@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Spring FactoryBean and ContextAware</title>
+    <title>Spring FactoryBean and ContextAware - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="Spring FactoryBean and ContextAware">
@@ -13,8 +13,8 @@
     <meta name="title" content="Spring FactoryBean and ContextAware - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-05-16">
     2019-05-16
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">282 字 ~1分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">282 字 ~1分钟</span>
 </span>
       </div>
     </header>
@@ -161,17 +171,17 @@
 
 <p>一句话就是FactoryBean用于返回其他对象实例的,而不是自身类型的实例.<br />
 例如:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Tool</span> {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Tool {
  
-    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> id;
+    <span style="color:#00f">private</span> int id;
  
     <span style="color:#008000">// standard constructors, getters and setters
 </span><span style="color:#008000"></span>}
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">ToolFactory</span> <span style="color:#00f">implements</span> FactoryBean&lt;Tool&gt; {
+<span style="color:#00f">public</span> class ToolFactory implements FactoryBean&lt;Tool&gt; {
  
-    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> factoryId;
-    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> toolId;
+    <span style="color:#00f">private</span> int factoryId;
+    <span style="color:#00f">private</span> int toolId;
  
     @Override
     <span style="color:#00f">public</span> Tool getObject() <span style="color:#00f">throws</span> Exception {
@@ -184,7 +194,7 @@
     }
  
     @Override
-    <span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> isSingleton() {
+    <span style="color:#00f">public</span> boolean isSingleton() {
         <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
     }
  
@@ -210,25 +220,25 @@
 <p>使用Tool:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { <span style="color:#a31515">&#34;classpath:factorybean-spring-ctx.xml&#34;</span> })
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FactoryBeanXmlConfigTest</span> {
+<span style="color:#00f">public</span> class FactoryBeanXmlConfigTest {
     @Autowired
     <span style="color:#00f">private</span> Tool tool;
  
     @Test
-    <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> testConstructWorkerByXml() {
+    <span style="color:#00f">public</span> void testConstructWorkerByXml() {
         assertThat(tool.getId(), equalTo(1));
     }
 }</code></pre></div>
 <p>访问ToolFactory,在bean id前面添加 <code>&amp;</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { <span style="color:#a31515">&#34;classpath:factorybean-spring-ctx.xml&#34;</span> })
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FactoryBeanXmlConfigTest</span> {
+<span style="color:#00f">public</span> class FactoryBeanXmlConfigTest {
  
     @Resource(name = <span style="color:#a31515">&#34;&amp;tool&#34;</span>)
     <span style="color:#00f">private</span> ToolFactory toolFactory;
  
     @Test
-    <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> testConstructWorkerByXml() {
+    <span style="color:#00f">public</span> void testConstructWorkerByXml() {
         assertThat(toolFactory.getFactoryId(), equalTo(9090));
     }
 }</code></pre></div>
@@ -251,33 +261,23 @@
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="prev" title="Learn Clojure by Example">
-            Learn Clojure by Example <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/" rel="next" title="前端静态资源图片优化">
+        <i class="fa fa-chevron-left"></i> 前端静态资源图片优化
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/" rel="next" title="前端静态资源图片优化">
-            <i class="fa fa-chevron-right"></i> 前端静态资源图片优化
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/learn-clojure-by-example/" rel="prev" title="Learn Clojure by Example">
+        Learn Clojure by Example <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -364,8 +364,9 @@
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -397,7 +398,7 @@
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -441,8 +442,19 @@
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

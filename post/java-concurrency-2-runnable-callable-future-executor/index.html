@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
+    <title>Java concurrency 2 Runnable Callable FutureExecutor - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="Java concurrency 2 Runnable Callable FutureExecutor">
@@ -13,8 +13,8 @@
     <meta name="title" content="Java concurrency 2 Runnable Callable FutureExecutor - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
     2016-01-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">1314 字 ~3分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1314 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -170,8 +180,8 @@ Callabe 接口的call方法会返回一个结果，并有可能抛出受检异�
 <p>Future接口描述了任务的生命周期，并提供方法获得任务执行的结果。该接口有一个实现类：FutureTask。该类的实例一定和一个具体任务相关。ExecutorService所有的submit方法都会返回一个Future实例。你也可以直接通过FutureTask构造函数将Runnable/Callable构建一个FutureTask实例。该实例将管理该任务的生命周期</p>
 
 <p>注意，FutureTask   实现了Runnable和Future（通过实现RunnableFuture<V> 接口，如下），所以既可以使用ExecutorService，也可以使用Thread执行任务内容。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FutureTask</span>&lt;V&gt; <span style="color:#00f">implements</span> RunnableFuture&lt;V&gt;   
-<span style="color:#00f">public</span> <span style="color:#00f">interface</span> <span style="color:#2b91af">RunnableFuture</span>&lt;V&gt; <span style="color:#00f">extends</span> Runnable, Future&lt;V&gt;</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class FutureTask&lt;V&gt; implements RunnableFuture&lt;V&gt;   
+public <span style="color:#00f">interface</span> RunnableFuture&lt;V&gt; extends Runnable, Future&lt;V&gt;</code></pre></div>
 <p>Future.get是一个阻塞方法，如果任务没有结束或者没有抛出异常，那么会一直等待下去，如果需要异步的使用ComletionService。</p>
 
 <h3 id="executorservice">ExecutorService</h3>
@@ -235,33 +245,23 @@ CompletionService&lt;String&gt; completionService = <span style="color:#00f">new
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="prev" title="Java concurrency 3 synchronized or Lock">
-            Java concurrency 3 synchronized or Lock <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/java-concurrency-1-basic/" rel="next" title="Java concurrency 1 basic">
+        <i class="fa fa-chevron-left"></i> Java concurrency 1 basic
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-concurrency-1-basic/" rel="next" title="Java concurrency 1 basic">
-            <i class="fa fa-chevron-right"></i> Java concurrency 1 basic
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/" rel="prev" title="Java concurrency 3 synchronized or Lock">
+        Java concurrency 3 synchronized or Lock <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -348,8 +348,9 @@ CompletionService&lt;String&gt; completionService = <span style="color:#00f">new
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -386,7 +387,7 @@ CompletionService&lt;String&gt; completionService = <span style="color:#00f">new
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -430,8 +431,19 @@ CompletionService&lt;String&gt; completionService = <span style="color:#00f">new
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

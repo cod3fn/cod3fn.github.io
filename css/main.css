@@ -491,7 +491,7 @@ body {
 pre,
 .highlight {
   overflow: auto;
-  margin: 1px 0;
+  margin: 20px 0;
   padding: 0;
   font-size: 13px;
   color: #4d4d4c;
@@ -500,14 +500,14 @@ pre,
 }
 pre,
 code {
-  font-family: "Fira Code", Consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: 'droid sans mono','fira code', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  padding: 0px 0px;
+  padding: 2px 4px;
   word-break: break-all;
   color: #555;
   background: #eee;
-  border-radius: 1px;
+  border-radius: 4px;
   font-size: 13px;
 }
 pre code {
@@ -522,7 +522,7 @@ pre code {
 .highlight pre {
   border: none;
   margin: 0;
-  padding: 0 0;
+  padding: 10px 0;
 }
 .highlight table {
   margin: 0;
@@ -537,7 +537,7 @@ pre code {
   font-size: 1em;
   color: #4d4d4c;
   line-height: 1em;
-  margin-bottom: 0.05em;
+  margin-bottom: 1em;
 }
 .highlight figcaption:before,
 .highlight figcaption:after {
@@ -1009,6 +1009,11 @@ pre .javascript .function {
 .post-body {
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
+.post-body h1 {
+  border-left: solid 5px #428bca;
+  padding: 5px;
+  margin: 10px 0;
+}
 @media (max-width: 767px) {
   .post-body {
     word-break: break-word;
@@ -1049,11 +1054,11 @@ pre .javascript .function {
   }
   .post-body pre,
   .post-body .highlight {
-    padding: 0px;
+    padding: 2px;
   }
   .post-body pre .gutter pre,
   .post-body .highlight .gutter pre {
-    padding-right: 10px;
+    padding-right: 2px;
   }
 }
 @media (min-width: 992px) {
@@ -1139,7 +1144,7 @@ pre .javascript .function {
 }
 .posts-collapse .collection-title {
   position: relative;
-  margin: 15px 0;
+  margin: 60px 0;
 }
 .posts-collapse .collection-title h2 {
   margin-left: 20px;
@@ -1160,7 +1165,7 @@ pre .javascript .function {
   border-radius: 50%;
 }
 .posts-collapse .post {
-  margin: 10px 0;
+  margin: 30px 0;
 }
 .posts-collapse .post-header {
   position: relative;
@@ -1369,16 +1374,16 @@ pre .javascript .function {
   left: 0;
   font-size: 12px;
 }
-.post-nav-prev a {
+.post-nav-next a {
   padding-left: 15px;
 }
-.post-nav-next {
+.post-nav-prev {
   text-align: right;
 }
-.post-nav-next a {
+.post-nav-prev a {
   padding-right: 15px;
 }
-.post-nav-next .fa {
+.post-nav-prev .fa {
   right: 0;
   left: auto;
 }

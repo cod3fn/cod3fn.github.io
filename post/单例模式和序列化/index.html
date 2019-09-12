@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>单例模式和序列化</title>
+    <title>单例模式和序列化 - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="单例模式和序列化">
@@ -13,8 +13,8 @@
     <meta name="title" content="单例模式和序列化 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
     2016-01-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">543 字 ~2分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">532 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -160,68 +170,67 @@
 <p><a href="http://www.hollischuang.com/archives/205">参考资料</a></p>
 
 <h3 id="饱汉式">饱汉式</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Singleton</span> {  
-    <span style="color:#00f">private</span> <span style="color:#00f">static</span> Singleton instance = <span style="color:#00f">null</span>  
-    <span style="color:#00f">private</span> Singleton (){}   
-	    <span style="color:#00f">public</span> <span style="color:#00f">static</span> Singleton getInstance() {  
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Singleton {  
+    <span style="color:#00f">private</span> static Singleton instance = <span style="color:#00f">null</span>  
+    private Singleton (){}   
+	    <span style="color:#00f">public</span> static Singleton getInstance() {  
 	        <span style="color:#00f">if</span>(instance == <span style="color:#00f">null</span>)             instance = <span style="color:#00f">new</span> Singleton();         <span style="color:#00f">return</span> instance;  
     }  
 }  //饱汉式<span style="">，</span>使用时创建</code></pre></div>
 <h3 id="饿汉式">饿汉式</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#008000">//加载时创建对象 static
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Singleton</span> {  
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> class Singleton {  
     <span style="color:#00f">private</span> Singleton instance = <span style="color:#00f">null</span>;  
     <span style="color:#00f">static</span> {  
         instance = <span style="color:#00f">new</span> Singleton();  
     }  
     <span style="color:#00f">private</span> Singleton (){}  
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> Singleton getInstance() {  
+    <span style="color:#00f">public</span> static Singleton getInstance() {  
         <span style="color:#00f">return</span> <span style="color:#00f">this</span>.instance;  
     }  
-} 
-
-<span style="">```</span>	
-
-<span style="">###</span> 静态内部类</code></pre></div>
-<p>public class Singleton {</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">private Singleton (){} 
-private static class SingletonHolder {  
-        private static final Singleton INSTANCE = new Singleton();  
- }  
-
-public static final Singleton getInstance() {  
-  return SingletonHolder.INSTANCE;  
-}  </pre></div>
-<p>}<br />
-  //这个比较好，线程安全，也达到了延迟加载效果。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 枚举类</pre></div>
-<p>//这个是最好的 这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public enum Singleton {  
-INSTANCE;  
-public void whateverMethod() {  
-}  </pre></div>
-<p>}<br />
-访问这个单例 Singleton.INSTANCE</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 双重校验锁
-其实是不安全的，多线程开销很大，甚至死锁。原因在于指令重排序。</pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public class Singleton {  
-private volatile static Singleton singleton;  
-private Singleton (){}  
-public static Singleton getSingleton() {  
-if (singleton == null) {  
-    synchronized (Singleton.class) {  
-    if (singleton == null) {  
-        singleton = new Singleton();  
+} </code></pre></div>
+<h3 id="静态内部类">静态内部类</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public class Singleton { 
+	private Singleton (){} 
+	private static class SingletonHolder {  
+            private static final Singleton INSTANCE = new Singleton();  
+     }  
+     
+    public static final Singleton getInstance() {  
+      return SingletonHolder.INSTANCE;  
     }  
+}
+  //这个比较好，线程安全，也达到了延迟加载效果。</pre></div>
+<h3 id="枚举类">枚举类</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">//这个是最好的 这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊
+	public enum Singleton {  
+    INSTANCE;  
+    public void whateverMethod() {  
+    }  
+}
+访问这个单例 Singleton.INSTANCE </pre></div>
+<h3 id="双重校验锁">双重校验锁</h3>
+
+<p>其实是不安全的，多线程开销很大，甚至死锁。原因在于指令重排序。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">	public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
+        if (singleton == null) {  
+            singleton = new Singleton();  
+        }  
+        }  
+    }  
+    return singleton;  
     }  
 }  
-return singleton;  
-}  </pre></div>
-<p>}</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">### 序列化
-使用静态内部类举例，只要提供一个readResolve方法
+	</pre></div>
+<h3 id="序列化">序列化</h3>
 
-```	
-public class Singleton { 
+<p>使用静态内部类举例，只要提供一个readResolve方法</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">public class Singleton { 
 		private Singleton (){} 
 	    
 	     private static class SingletonHolder {  
@@ -254,33 +263,23 @@ public class Singleton {
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/" rel="prev" title="面试题-类加载过程和子类重写父类方法的调用">
-            面试题-类加载过程和子类重写父类方法的调用 <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/" rel="next" title="Java-注解和注解处理器">
+        <i class="fa fa-chevron-left"></i> Java-注解和注解处理器
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="next" title="gradle笔记1-理解build脚本基本语法">
-            <i class="fa fa-chevron-right"></i> gradle笔记1-理解build脚本基本语法
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/" rel="prev" title="面试题-类加载过程和子类重写父类方法的调用">
+        面试题-类加载过程和子类重写父类方法的调用 <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -367,8 +366,9 @@ public class Singleton {
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -381,6 +381,10 @@ public class Singleton {
 <ul>
 <li><a href="#饱汉式">饱汉式</a></li>
 <li><a href="#饿汉式">饿汉式</a></li>
+<li><a href="#静态内部类">静态内部类</a></li>
+<li><a href="#枚举类">枚举类</a></li>
+<li><a href="#双重校验锁">双重校验锁</a></li>
+<li><a href="#序列化">序列化</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -403,7 +407,7 @@ public class Singleton {
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -447,8 +451,19 @@ public class Singleton {
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

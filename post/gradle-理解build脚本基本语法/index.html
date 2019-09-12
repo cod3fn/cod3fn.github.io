@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>gradle笔记1-理解build脚本基本语法</title>
+    <title>gradle笔记1-理解build脚本基本语法 - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="gradle笔记1-理解build脚本基本语法">
@@ -13,8 +13,8 @@
     <meta name="title" content="gradle笔记1-理解build脚本基本语法 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-01-01">
     2016-01-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">4111 字 ~9分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">4111 字 ~9分钟</span>
 </span>
       </div>
     </header>
@@ -206,11 +216,9 @@
 <li>groovy和scala的方法返回值不需要return，最后一行就是返回值。<br /></li>
 <li>closure是一个匿名函数，格式<code>{ [closureParameters -&gt; ] statements }</code>，默认自带一个名为it的参数，所以只接受一个参数时可以省略-&gt;。<br /></li>
 <li>closure可以访问scope（作用域）内任何变量。并且这个scope是可以通过委托来改变的。<br /></li>
-<li>groovy中Map对象的value如果是closure，那么可以接着调用:<code>mapp.keyy({closure})</code><br />
-有了上面的基础，我们看一个简单的例子:<br />
-<br />
-<br /></li>
-</ul>
+
+<li><p>groovy中Map对象的value如果是closure，那么可以接着调用:<code>mapp.keyy({closure})</code><br />
+有了上面的基础，我们看一个简单的例子:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#008000">//将closure赋值给一个变量，这个closure接收一个参数，参数名是默认的，it
 </span><span style="color:#008000"></span>show = { println it }
 square_root = { Math.sqrt(it) }
@@ -221,14 +229,16 @@ square_root = { Math.sqrt(it) }
 </span><span style="color:#008000">//这个closure接收一个closure，并返回一个map，这个map的of的value又是一个closure(不要晕了)
 </span><span style="color:#008000">//最后一个closure接收一个参数n。
 </span><span style="color:#008000"></span><span style="color:#2b91af">def</span> please(Closure action) {
-     [the: { Closure what -&gt;
-        [of: { n -&gt; action(what(n)) }]
-    }]
+ [the: { Closure what -&gt;
+    [of: { n -&gt; action(what(n)) }]
+}]
 }
 <span style="color:#008000">//调用:
 </span><span style="color:#008000">// 等价: please(show).the(square_root).of(100)
 </span><span style="color:#008000"></span>please show the square_root of 100
-<span style="color:#a31515">//</span> ==&gt; 10.0</code></pre></div>
+<span style="color:#a31515">//</span> ==&gt; 10.0</code></pre></div></li>
+</ul>
+
 <p>总结一下就是，将你需要的操作封装成一个closure，给一个直观的命名，保证整个DSL调用语句有语义，定义返回一个map的函数作为入口，map的key是方法名，value是closure，这样可以在key后面传递一个closure接着调用这个value。</p>
 
 <h3 id="委托对象">委托对象</h3>
@@ -445,33 +455,23 @@ Task task(String name) <span style="color:#00f">throws</span> InvalidUserDataExc
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="单例模式和序列化">
-            单例模式和序列化 <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" rel="next" title="Java-6-7-8-文件读写">
+        <i class="fa fa-chevron-left"></i> Java-6-7-8-文件读写
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/" rel="next" title="Java-注解和注解处理器sample">
-            <i class="fa fa-chevron-right"></i> Java-注解和注解处理器sample
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/java-aop-example/" rel="prev" title="Java AOP example">
+        Java AOP example <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -558,8 +558,9 @@ Task task(String name) <span style="color:#00f">throws</span> InvalidUserDataExc
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -610,7 +611,7 @@ Task task(String name) <span style="color:#00f">throws</span> InvalidUserDataExc
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -654,8 +655,19 @@ Task task(String name) <span style="color:#00f">throws</span> InvalidUserDataExc
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

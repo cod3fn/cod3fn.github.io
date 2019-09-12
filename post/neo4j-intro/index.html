@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>neo4j intro</title>
+    <title>neo4j intro - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="neo4j intro">
@@ -13,8 +13,8 @@
     <meta name="title" content="neo4j intro - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2018-12-01">
     2018-12-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">4473 字 ~9分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">4473 字 ~9分钟</span>
 </span>
       </div>
     </header>
@@ -240,16 +250,16 @@ neo4j browser自带一个教程和电影关系的数据库初始化脚本.方便
 <p><code>PROFILE/EXPLAIN</code>语句只会cache其去掉<code>PROFILE/EXPLAIN</code>之后的部分.例如:<code>MATCH (n) return COUNT(n);</code>和<code>PROFILE MATCH (n) return COUNT(n);</code>的cache是一致的.</p>
 
 <ul>
-<li>AST cache<br />
+<li><p>AST cache<br />
 编程语言都有语法树.如果在string cache中没有找到缓存.那么会将查询正规化,得到语法树并将其缓存.正规化的同时也会做一些优化,例如<br />
-<code>match (n:Person {id:101}) return n;</code>在正规化之后得到<code>match (n:Person) where n.id={param1} return n;   {param1: 101}</code>,AST cache不区分大小写,空格等,所以以下查询是一致的:<br />
-<br /></li>
-</ul>
+<code>match (n:Person {id:101}) return n;</code>在正规化之后得到<code>match (n:Person) where n.id={param1} return n;   {param1: 101}</code>,AST cache不区分大小写,空格等,所以以下查询是一致的:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-s" data-lang="s">match (n:Person) where n.id=101 <span style="color:#00f">return</span> n;
 match (n:Person {id:101}) <span style="color:#00f">return</span> n;
 
 MATCH ( n:Person { id : 101 } )
-RETURN n;</code></pre></div>
+RETURN n;</code></pre></div></li>
+</ul>
+
 <h4 id="execution-plan">execution plan</h4>
 
 <p>当cypher引擎收到查询语句后如果没用找到对应的缓存,那么Cypher query planner会将语句规范化,优化后编译得到一个执行计划(execution plan).这个执行计划会缓存一切且可以复用. 当查询缓存过多,或者数据库的数据变化大时(设置参数是)这个执行计划则失效被移除.在查询中使用参数而不是字面量值,可以提高一个执行计划的复用率.<br />
@@ -338,33 +348,23 @@ RETURN m</code></pre></div>
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="prev" title="Spark Basic">
-            Spark Basic <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/wsl-docker-environment/" rel="next" title="wsl-docker-environment">
+        <i class="fa fa-chevron-left"></i> wsl-docker-environment
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/wsl-docker-environment/" rel="next" title="wsl-docker-environment">
-            <i class="fa fa-chevron-right"></i> wsl-docker-environment
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="prev" title="Spark Basic">
+        Spark Basic <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -451,8 +451,9 @@ RETURN m</code></pre></div>
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -508,7 +509,7 @@ RETURN m</code></pre></div>
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -552,8 +553,19 @@ RETURN m</code></pre></div>
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

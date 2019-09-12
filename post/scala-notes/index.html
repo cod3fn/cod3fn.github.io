@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Scala Notes</title>
+    <title>Scala Notes - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="Scala Notes">
@@ -13,8 +13,8 @@
     <meta name="title" content="Scala Notes - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-03-31">
     2019-03-31
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">6598 字 ~14分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">6598 字 ~14分钟</span>
 </span>
       </div>
     </header>
@@ -536,11 +546,9 @@ hi.bling // *hello*</code></pre></div>
 <li><p>必须要有主一个构造函数且只能一个构造参数（implicit参数除外）。构造参数就是源类型. 这个构造函数即等价上面第2步的隐式转换方法：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">RichDate</span>(date<span style="color:#00f">:</span> <span style="color:#2b91af">java.util.Date</span>) <span style="color:#008000">// OK!
 </span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Indexer</span>[<span style="color:#2b91af">T</span>](collecton<span style="color:#00f">:</span> <span style="color:#2b91af">Seq</span>[<span style="color:#2b91af">T</span>], index<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) <span style="color:#008000">// BAD!
-</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Indexer</span>[<span style="color:#2b91af">T</span>](collecton<span style="color:#00f">:</span> <span style="color:#2b91af">Seq</span>[<span style="color:#2b91af">T</span>])(<span style="color:#00f">implicit</span> index<span style="color:#00f">:</span> <span style="color:#2b91af">Index</span>) // <span style="color:#2b91af">OK</span>!</code></pre></div>
-<ol>
-<li>只能定义在其他trait/class/object中：<br />
-<br /></li>
-</ol>
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Indexer</span>[<span style="color:#2b91af">T</span>](collecton<span style="color:#00f">:</span> <span style="color:#2b91af">Seq</span>[<span style="color:#2b91af">T</span>])(<span style="color:#00f">implicit</span> index<span style="color:#00f">:</span> <span style="color:#2b91af">Index</span>) // <span style="color:#2b91af">OK</span>!</code></pre></div></li>
+
+<li><p>只能定义在其他trait/class/object中：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#00f">object</span> <span style="color:#2b91af">Helpers</span> {
 <span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">RichInt</span>(x<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) <span style="color:#008000">// OK!
 </span><span style="color:#008000"></span>}
@@ -554,11 +562,9 @@ hi.bling // *hello*</code></pre></div>
 <span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">x</span>(y<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) <span style="color:#008000">// BAD!
 </span><span style="color:#008000"></span>
 <span style="color:#008000">//cuz case class has companion object by default 
-</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">case</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Baz</span>(x<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) // <span style="color:#2b91af">BAD</span>! conflict <span style="color:#00f">with</span> the companion object</code></pre></div>
-<ol>
-<li>还有就是implicit class的注解在去语法糖后会自动添加到类和方法，除非在注解中指明范围：<br />
-<br /></li>
-</ol>
+</span><span style="color:#008000"></span><span style="color:#00f">implicit</span> <span style="color:#00f">case</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Baz</span>(x<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>) // <span style="color:#2b91af">BAD</span>! conflict <span style="color:#00f">with</span> the companion object</code></pre></div></li>
+
+<li><p>还有就是implicit class的注解在去语法糖后会自动添加到类和方法，除非在注解中指明范围：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">@bar
 <span style="color:#00f">implicit</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Foo</span>(n<span style="color:#00f">:</span> <span style="color:#2b91af">Int</span>)
 
@@ -718,33 +724,23 @@ res1<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> 
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/" rel="prev" title="使用redis的hash优化内存使用">
-            使用redis的hash优化内存使用 <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/scala-type-class/" rel="next" title="Scala Type Class">
+        <i class="fa fa-chevron-left"></i> Scala Type Class
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/scala-type-class/" rel="next" title="Scala Type Class">
-            <i class="fa fa-chevron-right"></i> Scala Type Class
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/" rel="prev" title="使用redis的hash优化内存使用">
+        使用redis的hash优化内存使用 <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -831,8 +827,9 @@ res1<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> 
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -889,7 +886,7 @@ res1<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> 
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -933,8 +930,19 @@ res1<span style="color:#00f">:</span> <span style="color:#2b91af">String</span> 
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

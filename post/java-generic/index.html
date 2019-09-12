@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>java generic</title>
+    <title>java generic - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="java generic">
@@ -13,8 +13,8 @@
     <meta name="title" content="java generic - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-05-01">
     2016-05-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">652 字 ~2分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">652 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -159,13 +169,13 @@
 
 <h3 id="泛型">泛型</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// 类
-</span><span style="color:#008000"></span><span style="color:#00f">class</span> <span style="color:#2b91af">Tuple</span>&lt;T, S&gt; {
+</span><span style="color:#008000"></span><span style="color:#00f">class</span> Tuple&lt;T, S&gt; {
     <span style="color:#00f">private</span> T first;
     <span style="color:#00f">private</span> S second;
 }
 <span style="color:#008000">// 泛型方法也可在非泛型类里面
-</span><span style="color:#008000"></span><span style="color:#00f">class</span> <span style="color:#2b91af">ArrayAlg</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T&gt; T getMiddle(T... a) {
+</span><span style="color:#008000"></span><span style="color:#00f">class</span> ArrayAlg {
+    <span style="color:#00f">public</span> static &lt;T&gt; T getMiddle(T... a) {
         <span style="color:#00f">return</span> a[a.length / 2];
     }
 
@@ -177,73 +187,68 @@ String middle = GenericCls.getMiddle(<span style="color:#a31515">&#34;hello&#34;
 </span><span style="color:#008000">//     推断: java.lang.Object&amp;java.io.Serializable&amp;java.lang.Comparable&lt;? extends java.lang.Object&amp;java.io.Serializable&amp;java.lang.Comparable&lt;?&gt;&gt;
 </span><span style="color:#008000"></span>//     上限: java.lang.String,java.lang.Object </code></pre></div>
 <h4 id="类型限定">类型限定</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T <span style="color:#00f">extends</span> Comparable&gt; T min(T a)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> static &lt;T extends Comparable&gt; T min(T a)
 
 <span style="color:#008000">// 如果多个类型，则：T extends Comparable &amp; Serializable
 </span><span style="color:#008000"></span>// 只能有一个类<span style="">，</span>且类必须紧跟extends<span style="">，</span>但是可以有多个接口</code></pre></div>
 <h3 id="类型擦除">类型擦除</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//Tuple&lt;T,S&gt;在虚拟机变为
-</span><span style="color:#008000"></span><span style="color:#00f">class</span> <span style="color:#2b91af">Tuple</span> {
+</span><span style="color:#008000"></span><span style="color:#00f">class</span> Tuple {
     <span style="color:#00f">private</span> Object first;<span style="color:#008000">//当调用getFirst时,则发生强制转换
 </span><span style="color:#008000"></span>    <span style="color:#00f">private</span> Object second;
 }
 
 <span style="color:#008000">//泛型方法同样有擦除
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T <span style="color:#00f">extends</span> Comparable&gt; T min(T a)
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> static &lt;T extends Comparable&gt; T min(T a)
 <span style="color:#008000">// =&gt;
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">static</span> Comparable min(Comparable a)</code></pre></div>
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> static Comparable min(Comparable a)</code></pre></div>
 <h3 id="约束">约束</h3>
 
 <ul>
 <li>不能用基本类型实例化泛型,<code>Pair&lt;double&gt;</code>不允许<br /></li>
-<li>运行时参数类型检查只能检查原始类型<br />
-<br /></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">if</span> (a <span style="color:#00f">instanceof</span> Pair&lt;String&gt;) <span style="color:#008000">// Error
-</span><span style="color:#008000"></span><span style="color:#00f">if</span> (a <span style="color:#00f">instanceof</span> Pair&lt;T&gt;) <span style="color:#008000">// Error
-</span><span style="color:#008000"></span>Pair&lt;String&gt; p = (Pair&lt;String&gt;) a; //warning</code></pre></div>
-<ul>
-<li>不能创建参数化类型的数组<br />
-<br /></li>
-</ul>
+
+<li><p>运行时参数类型检查只能检查原始类型</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">if</span> (a instanceof Pair&lt;String&gt;) <span style="color:#008000">// Error
+</span><span style="color:#008000"></span><span style="color:#00f">if</span> (a instanceof Pair&lt;T&gt;) <span style="color:#008000">// Error
+</span><span style="color:#008000"></span>Pair&lt;String&gt; p = (Pair&lt;String&gt;) a; //warning</code></pre></div></li>
+
+<li><p>不能创建参数化类型的数组</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Pair&lt;String&gt;[] table = <span style="color:#00f">new</span> Pair&lt;String&gt;[10]; <span style="color:#008000">// Error
-</span><span style="color:#008000"></span>Pair&lt;String&gt;[] table; //声明是合法的,只是无法实例化</code></pre></div>
-<ul>
+</span><span style="color:#008000"></span>Pair&lt;String&gt;[] table; //声明是合法的,只是无法实例化</code></pre></div></li>
+
 <li><p>借助@SafeVarargs参数化类型的数组</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@SafeVarargs
-<span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T&gt; <span style="color:#2b91af">void</span> addAll(Collection&lt;T&gt; coll, T... ts)</code></pre></div>
-<ul>
-<li>Class类本身是泛型。 例如，String.daSS 是一个 Class<String> 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型<br /></li>
-<li>泛型类的静态上下文中类型变量无效<br />
-<br /></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Singleton</span>&lt;T&gt; {
-<span style="color:#00f">private</span> <span style="color:#00f">static</span> T singlelnstance; <span style="color:#008000">// Error
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">static</span> T getSinglelnstance{<span style="color:#008000">// Error
+<span style="color:#00f">public</span> static &lt;T&gt; void addAll(Collection&lt;T&gt; coll, T... ts)</code></pre></div></li>
+
+<li><p>Class类本身是泛型。 例如，String.daSS 是一个 Class<String> 的实例（事实上，它是唯一的实例。) 因此，makePair 方法能够推断出 pair 的类型</p></li>
+
+<li><p>泛型类的静态上下文中类型变量无效</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Singleton&lt;T&gt; {
+<span style="color:#00f">private</span> static T singlelnstance; <span style="color:#008000">// Error
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> static T getSinglelnstance{<span style="color:#008000">// Error
 </span><span style="color:#008000"></span>    <span style="color:#00f">if</span> (singleinstance == <span style="color:#00f">null</span>) {<span style="color:#008000">//construct new instance of T
 </span><span style="color:#008000"></span>        <span style="color:#00f">return</span> singlelnstance;
     }
 }
 }</code></pre></div></li>
 
-<li><p>不能抛出或捕获泛型类的实例</p></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Problem</span>&lt;T&gt; <span style="color:#00f">extends</span> Exception { <span style="color:#008000">/* . . . */</span> } // Error can<span style="">&#39;</span>t extend Throwable</code></pre></div>
-<ul>
-<li>泛型擦除的方法冲突<br />
-<br /></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Pair</span>&lt;T&gt; {
-    T first;
-    T second;
+<li><p>不能抛出或捕获泛型类的实例</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Problem&lt;T&gt; extends Exception { <span style="color:#008000">/* . . . */</span> } // Error can<span style="">&#39;</span>t extend Throwable</code></pre></div></li>
 
-    <span style="color:#00f">public</span> <span style="color:#2b91af">boolean</span> equals(T value) { <span style="color:#008000">//error 和Object.equals冲突
-</span><span style="color:#008000"></span>        <span style="color:#00f">return</span> first.equals(value) &amp;&amp; second, equals(value);
-    }
-}</code></pre></div>
+<li><p>泛型擦除的方法冲突</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> class Pair&lt;T&gt; {
+T first;
+T second;
+
+<span style="color:#00f">public</span> boolean equals(T value) { <span style="color:#008000">//error 和Object.equals冲突
+</span><span style="color:#008000"></span>    <span style="color:#00f">return</span> first.equals(value) &amp;&amp; second, equals(value);
+}
+}</code></pre></div></li>
+</ul>
+
 <h3 id="泛型继承">泛型继承</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#2b91af">Employee</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Manager</span> <span style="color:#00f">extends</span> Employee
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> Employee
+<span style="color:#00f">class</span> Manager <span style="color:#00f">extends</span> Employee
 
 //Pair&lt;Employee&gt; 和Pair&lt;Manager&gt; 没用任何继承关系</code></pre></div>
 <h3 id="通配符-和-pecs">通配符 和 PECS</h3>
@@ -266,33 +271,23 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="prev" title="IO-Java-Stream-Write-Reader">
-            IO-Java-Stream-Write-Reader <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="next" title="Spark Basic">
+        <i class="fa fa-chevron-left"></i> Spark Basic
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/spark-basic/" rel="next" title="Spark Basic">
-            <i class="fa fa-chevron-right"></i> Spark Basic
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="prev" title="IO-Java-Stream-Write-Reader">
+        IO-Java-Stream-Write-Reader <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -379,8 +374,9 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -422,7 +418,7 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -466,8 +462,19 @@ Pair&lt;? <span style="color:#00f">super</span> Manager</code></pre></div>
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

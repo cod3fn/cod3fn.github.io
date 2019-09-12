@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>Java-6-7-8-文件读写</title>
+    <title>Java-6-7-8-文件读写 - 香取</title>
     <meta name="keywords" content="读书,思考,代码,架构,JVM,Java,Clojure,Scala,Python">
     
     <meta property="og:title" content="Java-6-7-8-文件读写">
@@ -13,8 +13,8 @@
     <meta name="title" content="Java-6-7-8-文件读写 - 香取" />
     <meta name="description" content="编程是一门手艺"> 
     <link rel="shortcut icon" href="https://xiongdahu.github.io/img/favicon.ico" />
-    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/touch-icon.png" />
+    <link rel="apple-touch-icon" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://xiongdahu.github.io/img/apple-touch-icon.png" />
     <link href="https://xiongdahu.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://xiongdahu.github.io/css/main.css" rel="stylesheet" type="text/css" />
@@ -94,9 +94,19 @@
           </a>
         </li>
       
-      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
     </ul>
-    
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
 </nav>
 
  </div>
@@ -120,7 +130,7 @@
 <span class="post-meta-item-icon">
     <i class="fa fa-calendar-o"></i>
 </span>
-<span class="post-meta-item-text">时间:</span>
+<span class="post-meta-item-text">时间：</span>
 <time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2016-02-01">
     2016-02-01
 </time>
@@ -132,7 +142,7 @@
   <span class="post-meta-item-icon">
     <i class="fa fa-folder-o"></i>
   </span>
-  <span class="post-meta-item-text">分类:</span>
+  <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
       <a href="https://xiongdahu.github.io/categories/%E7%BC%96%E7%A8%8B" itemprop="url" rel="index">
@@ -144,13 +154,13 @@
 </span>
 
 
-      <span>
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-    </span>
-    <span class="post-meta-item-text">阅读:</span>
-    <span class="leancloud-visitors-count">973 字 ~2分钟</span>
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">973 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -181,8 +191,8 @@ Files是一个静态类，操作文件内容。Paths是静态工具类，操作�
 <span style="color:#00f">import</span> java.nio.file.Files;
 <span style="color:#00f">import</span> java.nio.file.Paths;
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FileToStringJava678</span> {
-	<span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> IOException {
+<span style="color:#00f">public</span> class FileToStringJava678 {
+	<span style="color:#00f">public</span> static <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> IOException {
 		<span style="color:#008000">// How to read file into String before Java 7
 </span><span style="color:#008000"></span>		InputStream is = <span style="color:#00f">new</span> FileInputStream(<span style="color:#a31515">&#34;filetoStringjava678.txt&#34;</span>);
 		BufferedReader buf = <span style="color:#00f">new</span> BufferedReader(<span style="color:#00f">new</span> InputStreamReader(is));
@@ -216,8 +226,8 @@ Files是一个静态类，操作文件内容。Paths是静态工具类，操作�
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">// 记住，bytes 到string 永远指定字符集，即使目前只是英文文件。
 </span><span style="color:#008000">// ### java 8按行读取：
 </span><span style="color:#008000"></span>
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
+<span style="color:#00f">public</span> class Main {
+    <span style="color:#00f">public</span> static <span style="color:#2b91af">void</span> main(String[] args) {
         String fileName = <span style="color:#a31515">&#34;c:/lines.txt&#34;</span>;
         <span style="color:#00f">try</span> (Stream&lt;String&gt; stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(System.out::println);<span style="color:#008000">//or other thing you do with stream
@@ -239,8 +249,8 @@ Files是一个静态类，操作文件内容。Paths是静态工具类，操作�
 </span><span style="color:#008000"></span>Files.copy(inputStream,filepath,StandardCopyOption.REPLACE_EXISTING);
 
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Java7IO</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> IOException {
+<span style="color:#00f">public</span> class Java7IO {
+    <span style="color:#00f">public</span> static <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> IOException {
 <span style="color:#008000">//读取所有字节：
 </span><span style="color:#008000"></span>        Path path = Paths.get(<span style="color:#a31515">&#34;alice.txt&#34;</span>);
         String content = <span style="color:#00f">new</span> String(Files.readAllBytes(path), StandardCharsets.UTF_8);
@@ -315,7 +325,7 @@ ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 FileOutputStream fos = <span style="color:#00f">new</span> FileOutputStream(url.getFile().substring(1));
 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
-//FileChannel的抽象方法abstract <span style="color:#2b91af">long</span>	transferFrom(ReadableByteChannel src, <span style="color:#2b91af">long</span> position, <span style="color:#2b91af">long</span> count) </code></pre></div>
+//FileChannel的抽象方法abstract long	transferFrom(ReadableByteChannel src, <span style="color:#2b91af">long</span> position, <span style="color:#2b91af">long</span> count) </code></pre></div>
     </div>
     <footer class="post-footer">
      
@@ -331,33 +341,23 @@ fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
 
      <div class="post-nav">
-    <div class="post-nav-prev post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/java-concurrency-1-basic/" rel="prev" title="Java concurrency 1 basic">
-            Java concurrency 1 basic <i class="fa fa-chevron-left"></i>
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="next" title="IO-Java-Stream-Write-Reader">
+        <i class="fa fa-chevron-left"></i> IO-Java-Stream-Write-Reader
         </a>
-        
+    
     </div>
 
-    <div class="post-nav-next post-nav-item">
-        
-        <a href="https://xiongdahu.github.io/post/io-java-stream-write-reader/" rel="next" title="IO-Java-Stream-Write-Reader">
-            <i class="fa fa-chevron-right"></i> IO-Java-Stream-Write-Reader
-        </a>
-        
-    </div>
-</div>
-     <div class="post-nav">
-    <div
-        style="border: 1px dashed #e0e0e0; padding: 10px 10px 10px 10px; background-color: #fffeee; background-repeat: no-repeat; background-attachment: scroll; background-position: 1% 50%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+    <div class="post-nav-prev post-nav-item">
     
-        <div>
-            作者：<a target="_blank" href="https://xiongdahu.github.io/">熊打虎</a>
-            <br />声明：自由转载-非商用-非衍生-保持署名（创作共享3.0许可证）            
-        </div>
+        <a href="https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="prev" title="gradle笔记1-理解build脚本基本语法">
+        gradle笔记1-理解build脚本基本语法 <i class="fa fa-chevron-right"></i>
+        </a>
+    
     </div>
-    <div class="clear"></div>
 </div>
+      
      
      
      
@@ -444,8 +444,9 @@ fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
     
 </div>
 
+
       
-      
+
     </section>
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
@@ -469,7 +470,7 @@ fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
   <span class="author" itemprop="copyrightHolder">香取</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.55.6</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.58.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -513,8 +514,19 @@ fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
 <script type="text/javascript" src="https://xiongdahu.github.io/js/bootstrap.js"></script>
 
-
-
-
+<script type="text/javascript" src="https://xiongdahu.github.io/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
 </body>
 </html>

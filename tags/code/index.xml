@@ -62,7 +62,7 @@
       <pubDate>Mon, 13 May 2019 15:22:05 +0800</pubDate>
       
       <guid>https://xiongdahu.github.io/post/learn-clojure-by-example/</guid>
-      <description>这份笔记试图打造最强的clojure小抄,keep</description>
+      <description>clojure 入门 这份笔记试图打造最强的clojure小抄,k</description>
     </item>
     
     <item>
@@ -201,6 +201,25 @@
     </item>
     
     <item>
+      <title>gradle笔记1-理解build脚本基本语法</title>
+      <link>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <description>&lt;p&gt;在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。&lt;br /&gt;
+理解gradle文件的前提是理解一个重要的groovy概念:closure&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java AOP example</title>
+      <link>https://xiongdahu.github.io/post/java-aop-example/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xiongdahu.github.io/post/java-aop-example/</guid>
+      <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
+    </item>
+    
+    <item>
       <title>Java concurrency 1 basic</title>
       <link>https://xiongdahu.github.io/post/java-concurrency-1-basic/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
@@ -255,15 +274,6 @@
     </item>
     
     <item>
-      <title>Java-AOP-sample</title>
-      <link>https://xiongdahu.github.io/post/java-aop-sample/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/java-aop-sample/</guid>
-      <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
-    </item>
-    
-    <item>
       <title>Java-动态代理</title>
       <link>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
@@ -273,22 +283,12 @@
     </item>
     
     <item>
-      <title>Java-注解和注解处理器sample</title>
-      <link>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/</link>
+      <title>Java-注解和注解处理器</title>
+      <link>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8sample/</guid>
+      <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</guid>
       <description>注解处理 注解是jdk1.5出现的,但是自定义处理注</description>
-    </item>
-    
-    <item>
-      <title>gradle笔记1-理解build脚本基本语法</title>
-      <link>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-      <description>&lt;p&gt;在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。&lt;br /&gt;
-理解gradle文件的前提是理解一个重要的groovy概念:closure&lt;/p&gt;</description>
     </item>
     
     <item>
