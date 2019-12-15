@@ -447,7 +447,6 @@ body {
 }
 .container {
   position: relative;
-  margin-right: 300px;
   min-height: 100%;
 }
 .header-inner {
@@ -2346,7 +2345,7 @@ body {
   float: right;
   box-sizing: border-box;
   padding: 40px;
-  width: 948px;
+  width: 900px;
   background: #fff;
   min-height: 700px;
 }
