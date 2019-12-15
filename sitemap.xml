@@ -9,19 +9,8 @@
         <tags>
           <tag>git</tag><tag>code</tag>
         </tags>
-        <content type="html">  delete all history commit and keep current content as commit git checkout --orphan tmp_branch &amp;amp;&amp;amp; git add -A &amp;amp;&amp;amp; git commit -am &amp;#34;first commit&amp;#34; &amp;amp;&amp;amp; git branch -D master &amp;amp;&amp;amp; git branch -m master &amp;amp;&amp;amp; git push -f origin master store password in local git config credential.helper store git stash git rebase git pull request git cherry-pick </content>
-    </entry>
-    
-     <entry>
-        <title>Posts</title>
-        <url>https://xiongdahu.github.io/post/</url>
-        <categories>
-          
-        </categories>
-        <tags>
-          
-        </tags>
-        <content type="html"> </content>
+        <content type="html">  copyright all these git tips are from oh shit git and stackoverflow.
+delete all history commit and commit current content git checkout --orphan tmp_branch &amp;amp;&amp;amp; git add -A &amp;amp;&amp;amp; git commit -am &amp;#34;first commit&amp;#34; &amp;amp;&amp;amp; git branch -D master &amp;amp;&amp;amp; git branch -m master &amp;amp;&amp;amp; git push -f origin master store password in local git config credential.helper store git reflog git reflog # you will see a list of every thing you&amp;#39;ve # done in git, across all branches! # each one has an index HEAD@{index} # find the one before you broke everything git reset HEAD@{index} # magic time machine git commit &amp;ndash;amend # make your change git add . # or add individual files git commit --amend --no-edit # now your last commit contains that change! # WARNING: never amend public(remote) commits!!! # I need to change the message on my last commit! git commit --amend # follow prompts to change the commit message undo a commit # Oh shit, I need to undo a commit from like 5 commits ago! # find the commit you need to undo git log # use the arrow keys to scroll up and down in history # once you&amp;#39;ve found your commit, save the hash git revert [saved hash] # git will create a new commit that undoes that commit # follow prompts to edit the commit message # or just save and commit undo a file&amp;rsquo;s changes # find a hash for a commit before the file was changed git log # use the arrow keys to scroll up and down in history # once you&amp;#39;ve found your commit, save the hash git checkout [saved hash] -- path/to/file # the old version of the file will be in your index git commit -m &amp;#34;Wow, you don&amp;#39;t have to copy-paste to undo&amp;#34; git stash # 如果临时想要将代码恢复到最近一次commit,帮助同事复现他的问题 # 使用git stash 暂存当前修改,这个不是stage,也不是commit git stash # 显示当前暂存历史 git stash list # 找回暂存 git stash apply # or spec which the stash git stash apply stash@{1} git rebase git pull request git cherry-pick commit change in submodule # submodule is a independent repo, # so you need commit/push change in submodule first and then # update(commit) the main project to refer a new submodule commit hash # step 1 cd path/to/submodule git add &amp;lt;stuff&amp;gt; git commit -m &amp;#34;comment&amp;#34; git push # step 2 cd /main/project git add path/to/submodule git commit -m &amp;#34;updated my submodule&amp;#34; git push</content>
     </entry>
     
      <entry>
