@@ -17,7 +17,7 @@
       <pubDate>Wed, 01 May 2019 10:17:46 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/elasticsearch-query-dsl/</guid>
-      <description>diffs in es 2.x and es 5.x query dsl aggr query diffs in es 2.x and es 5.x 没有strin</description>
+      <description>diffs in es 2.x and es 5.x query dsl aggr query diffs in es 2.x and es 5.x 没有string类型，改为text和keyword 2个类型了。text字段可以指定fields来不</description>
     </item>
     
   </channel>

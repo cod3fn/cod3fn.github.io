@@ -227,7 +227,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    一些容易忘记的spring boot知识要点. 注意,
+    一些容易忘记的spring boot知识要点. 注意,.yaml和.yml文件没任何区别. 配置 SpringBootApplication注
     </div>
     
     <div class="post-more-link text-center">
@@ -286,7 +286,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    Scala中很多使用if的地方都可以用match c
+    Scala中很多使用if的地方都可以用match case来替换.常见的就是下面的这种写法: val res = msg match { case it if it.contains(&#34;H&#34;) =&gt; &#34;Hello&#34; case _ =&gt; &#34;Other&#34; } //更常见
     </div>
     
     <div class="post-more-link text-center">
@@ -345,7 +345,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&gt; y :: List() case z
+    intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&gt; y :: List() case z :: zs =&gt; if (y &lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&gt; List() case y :: ys =&gt; insert(y, insertionSort(ys)) } } 假设有个排序算法
     </div>
     
     <div class="post-more-link text-center">
@@ -404,7 +404,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    scala-notes some notes on scala, includes: setup with maven import == and eq case class for&hellip;yield companion object and class method and function(def val) _
+    scala-notes some notes on scala, includes: setup with maven import == and eq case class for&hellip;yield companion object and class method and function(def val) _ in scala =&gt; in scala () {} in scala implicit string setup with maven 目前用sbt的项目比较少,maven的更多. 而且sbt烧
     </div>
     
     <div class="post-more-link text-center">
@@ -463,7 +463,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储
+    原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储(DELL ECS/AMAZON EC2)上面,现在需要保存图片的id-&gt;用户id的映射.最直接的思
     </div>
     
     <div class="post-more-link text-center">

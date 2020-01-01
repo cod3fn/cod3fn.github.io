@@ -17,7 +17,7 @@
       <pubDate>Mon, 13 May 2019 15:22:05 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/learn-clojure-by-example/</guid>
-      <description>clojure 入门 这份笔记试图打造最强的clojure小抄,k</description>
+      <description>clojure 入门 这份笔记试图打造最强的clojure小抄,keep refactoring it&amp;hellip; (ns clj-notes.core (:gen-class)) ;:gen-class generate java class file ;Parameter is variable in the declaration of function. ;Argument is the actual value of this variable that gets passed to function. ; ;install leiningen: ;put lein.bat in your PATH</description>
     </item>
     
   </channel>

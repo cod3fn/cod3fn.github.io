@@ -17,7 +17,7 @@
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://cod3fn.github.io/post/neo4j-intro/</guid>
-      <description>neo4j图数据库介绍 neo4j是目前排名最高的图</description>
+      <description>neo4j图数据库介绍 neo4j是目前排名最高的图数据库,分为商业和社区版本,社区版只支持单机,而且查询的运行时(runtime)不同</description>
     </item>
     
   </channel>

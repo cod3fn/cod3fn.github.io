@@ -17,7 +17,7 @@
       <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/spring-factorybean-contextaware/</guid>
-      <description>FactoryBean 一句话就是FactoryBean用于返回其他对象</description>
+      <description>FactoryBean 一句话就是FactoryBean用于返回其他对象实例的,而不是自身类型的实例. 例如: public class Tool { private int id; // standard constructors, getters and setters } public class ToolFactory implements FactoryBean&amp;lt;Tool&amp;gt; { private int factoryId; private</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/spring-boot-notes/</guid>
-      <description>一些容易忘记的spring boot知识要点. 注意,</description>
+      <description>一些容易忘记的spring boot知识要点. 注意,.yaml和.yml文件没任何区别. 配置 SpringBootApplication注</description>
     </item>
     
   </channel>

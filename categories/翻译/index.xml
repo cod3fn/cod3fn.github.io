@@ -17,7 +17,7 @@
       <pubDate>Sun, 19 May 2019 11:07:26 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</guid>
-      <description>GTmetrix是一个前端页面测试的网站,可以发现</description>
+      <description>GTmetrix是一个前端页面测试的网站,可以发现你的站点哪些地方速度较慢,并针对性的优化. How to Optimize Images: A Practical Guide</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</guid>
-      <description>原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储</description>
+      <description>原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储(DELL ECS/AMAZON EC2)上面,现在需要保存图片的id-&amp;gt;用户id的映射.最直接的思</description>
     </item>
     
   </channel>
