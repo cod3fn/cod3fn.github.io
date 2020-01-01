@@ -1,21 +1,22 @@
 <search>
     
      <entry>
-        <title>git useful tips</title>
-        <url>https://xiongdahu.github.io/post/git-useful-tips/</url>
+        <title>git 常用命令备忘录</title>
+        <url>https://cod3fn.github.io/post/git-useful-tips/</url>
         <categories>
           <category>编程</category>
         </categories>
         <tags>
           <tag>git</tag><tag>code</tag>
         </tags>
-        <content type="html">  copyright all these git tips are from oh shit git and stackoverflow.
+        <content type="html">  记录日常开发中偶尔会遇到的但是总是记不住的git命令.
+以下技巧都来自于oh shit git 和 stackoverflow. 版权归作者所有.
 delete all history commit and commit current content git checkout --orphan tmp_branch &amp;amp;&amp;amp; git add -A &amp;amp;&amp;amp; git commit -am &amp;#34;first commit&amp;#34; &amp;amp;&amp;amp; git branch -D master &amp;amp;&amp;amp; git branch -m master &amp;amp;&amp;amp; git push -f origin master store password in local git config credential.helper store git reflog git reflog # you will see a list of every thing you&amp;#39;ve # done in git, across all branches! # each one has an index HEAD@{index} # find the one before you broke everything git reset HEAD@{index} # magic time machine git commit &amp;ndash;amend # make your change git add . # or add individual files git commit --amend --no-edit # now your last commit contains that change! # WARNING: never amend public(remote) commits!!! # I need to change the message on my last commit! git commit --amend # follow prompts to change the commit message undo a commit # Oh shit, I need to undo a commit from like 5 commits ago! # find the commit you need to undo git log # use the arrow keys to scroll up and down in history # once you&amp;#39;ve found your commit, save the hash git revert [saved hash] # git will create a new commit that undoes that commit # follow prompts to edit the commit message # or just save and commit undo a file&amp;rsquo;s changes # find a hash for a commit before the file was changed git log # use the arrow keys to scroll up and down in history # once you&amp;#39;ve found your commit, save the hash git checkout [saved hash] -- path/to/file # the old version of the file will be in your index git commit -m &amp;#34;Wow, you don&amp;#39;t have to copy-paste to undo&amp;#34; git stash # 如果临时想要将代码恢复到最近一次commit,帮助同事复现他的问题 # 使用git stash 暂存当前修改,这个不是stage,也不是commit git stash # 显示当前暂存历史 git stash list # 找回暂存 git stash apply # or spec which the stash git stash apply stash@{1} git rebase git pull request git cherry-pick commit change in submodule # submodule is a independent repo, # so you need commit/push change in submodule first and then # update(commit) the main project to refer a new submodule commit hash # step 1 cd path/to/submodule git add &amp;lt;stuff&amp;gt; git commit -m &amp;#34;comment&amp;#34; git push # step 2 cd /main/project git add path/to/submodule git commit -m &amp;#34;updated my submodule&amp;#34; git push</content>
     </entry>
     
      <entry>
-        <title>Devops Maturity Model Checklist</title>
-        <url>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</url>
+        <title>DevOps 成熟度检查清单</title>
+        <url>https://cod3fn.github.io/post/devops-maturity-model-checklist/</url>
         <categories>
           <category>DevOps</category>
         </categories>
@@ -50,7 +51,7 @@ delete all history commit and commit current content git checkout --orphan tmp_b
     
      <entry>
         <title>Scala Collection Tips</title>
-        <url>https://xiongdahu.github.io/post/scala-collection-tips/</url>
+        <url>https://cod3fn.github.io/post/scala-collection-tips/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -72,7 +73,7 @@ the architecture of scala 2.13’s collections
     
      <entry>
         <title>前端静态资源图片优化</title>
-        <url>https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</url>
+        <url>https://cod3fn.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</url>
         <categories>
           <category>翻译</category>
         </categories>
@@ -86,7 +87,7 @@ How to Optimize Images: A Practical Guide
     
      <entry>
         <title>Spring FactoryBean and ContextAware</title>
-        <url>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</url>
+        <url>https://cod3fn.github.io/post/spring-factorybean-contextaware/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -105,7 +106,7 @@ public class Tool { private int id; // standard constructors, getters and setter
     
      <entry>
         <title>Learn Clojure by Example</title>
-        <url>https://xiongdahu.github.io/post/learn-clojure-by-example/</url>
+        <url>https://cod3fn.github.io/post/learn-clojure-by-example/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -113,12 +114,12 @@ public class Tool { private int id; // standard constructors, getters and setter
           <tag>code</tag><tag>clojure</tag>
         </tags>
         <content type="html">  clojure 入门 这份笔记试图打造最强的clojure小抄,keep refactoring it&amp;hellip;
-(ns clj-notes.core (:gen-class)) ;:gen-class generate java class file ;Parameter is variable in the declaration of function. ;Argument is the actual value of this variable that gets passed to function. ; ;install leiningen: ;put lein.bat in your PATH ;open cmder,run: lein repl ;start repl,use exit,(exit),(quit) or ctrl&#43;d to quit repl (println &amp;#34;hello clojure&amp;#34;) ;Symbols are used to bind names to values ;&amp;#39; will prevent a form from being evaluated ;&amp;#39;() same as (quote ()) ;def global variable ;let local variable binding (def object &amp;#34;light&amp;#34;) (println object) (let [x 10 y 20 z 30] (&#43; x y z)) ;=&amp;gt; 60 ;data collection ;seq is abstract for list vector array ;map (def dict {:k1 &amp;#34;v1&amp;#34; :k2 &amp;#34;v2&amp;#34;}) ;keyword as function (:k1 dict) ;return v1 ;map as function (dict :k1) ;return v1 (let [v (dict :k1)] (println v)) ;also you can use get on seq or map (get {:a 1 :b 2} :b) ;=&amp;gt; 2 ;clojure.core/seq is a function that produces a sequence over the given argument.  ;Data types that clojure.core/seq can produce a sequence over are called seqable: ; ;Clojure collections ;Java maps ;All iterable types (types that implement java.util.Iterable) ;Java collections (java.util.Set, java.util.List, etc) ;Java arrays ;All types that implement java.lang.CharSequence interface, including Java strings ;All types that implement clojure.lang.Seqable interface ;nil ;function for seq or collection ;= ;count ;conj ;empty ;seq ;first ;rest ;next ;count ;counted? ;conj ;get ;assoc ;defn 定义函数 ;defn- 定义ns内私有函数 (defn f &amp;#34;the second line is doc-string&amp;#34; {:added &amp;#34;1.2&amp;#34; ;this is attr-map :static true} [param] (print &amp;#34;hello &amp;#34; param)) (meta (var f)) ;#&amp;#39; is the reader macro for var and works the exactly same (meta #&amp;#39;f) ;fn create a function (def f (fn [] (println &amp;#34;this is from fn function&amp;#34;))) ;#() is the shortcut for fn (def plus-one #(&#43; 1 %)) ;% will be replaced with arguments passed to the function ;%1 is for the first argument, %2 is for the second and so on (defn des [{k1 :k1}] ;get :k1 value from argument (map) and binding it to k1(parameter) (println &amp;#34;destructing in map&amp;#34; k1)) (des dict) ;destructing in map v1 ;key don&amp;#39;t have to be keyword (defn currency-of [{currency &amp;#34;currency&amp;#34;}] currency) (defn currency-of [{currency &amp;#39;currency}] currency) ;if want to destructing multi key,use :keys, in this case,parameter name(currency amount)  ;must same as arguments&amp;#39;s keys(:currency :amount),can not use string as key (defn currency-of [{:keys [currency amount]}] (* currency amount)) (currency-of {:currency &amp;#34;RMB&amp;#34; :amount 100000}) ;ok (currency-of {&amp;#34;currency&amp;#34; &amp;#34;RMB&amp;#34; &amp;#34;amount&amp;#34; 100000}) ;currency will be nil,you will need use :strs or syms (defn currency-strs [{:strs [currency amount]}] currency) (currency-strs {&amp;#34;currency&amp;#34; &amp;#34;RMB&amp;#34; &amp;#34;amount&amp;#34; 100000}) ;ok (defn currency-syms [{:syms [currency amount]}] currency) (currency-syms {&amp;#39;currency &amp;#34;CNY&amp;#34; &amp;#39;amount 100000}) ;ok ;use :or to give a default value for parameter (defn currency-or [{:keys [currency amount] :or {currency &amp;#34;USD&amp;#34;}}] currency) (currency-or {:amount 100000}) ;=&amp;gt; &amp;#34;USD&amp;#34; ;use &amp;amp; for Variadic Functions parameters (defn log [message &amp;amp; args] (println &amp;#34;args: &amp;#34; args)) ;named params , achieved by Variadic Functions destructing (defn job-info [&amp;amp; {:keys [name job income] :or {job &amp;#34;unemployed&amp;#34; income &amp;#34;$0.00&amp;#34;}}] (if name [name job income] (println &amp;#34;No name specified&amp;#34;))) ;cation! arguments to job-info is not a map (job-info :name &amp;#34;Robert&amp;#34; :job &amp;#34;Engineer&amp;#34;) ;[&amp;#34;Robert&amp;#34; &amp;#34;Engineer&amp;#34; &amp;#34;$0.00&amp;#34;] ;Without the use of a variadic argument list,  ;you would have to call the function with a single map argument such as (job-info {:name &amp;#34;Robert&amp;#34; :job &amp;#34;Engineer&amp;#34;}) ;destructuring example ;https://gist.github.com/john2x/e1dca953548bfdfb9844 (def my-vec [1 2 3]) (let [[a b c d] my-vec] (println a b c d)) ;1 2 3 nil (let [[a b &amp;amp; the-rest] my-vec] (println &amp;#34;a=&amp;#34; a &amp;#34;b=&amp;#34; b &amp;#34;the-rest=&amp;#34; the-rest)) ;a= 1 b= 2 the-rest= (3) (let [[:as all] my-vec] (println all)) ;[1 2 3] (let [[a :as all] my-vec] (println a all)) ;1 [1 2 3] (let [[a b &amp;amp; the-rest :as all] my-vec] (println a b the-rest all)) ;1 2 (3) [1 2 3] ;note: &amp;amp; the-rest convert vector to list, ;but :as preserves them (as a list, or as a vector) (def my-vec [&amp;#34;first&amp;#34; &amp;#34;second&amp;#34;]) (let [{a 0 b 1} my-vec] (println a b)) ;=&amp;gt; &amp;#34;first second&amp;#34; ;optional arguments to functions (defn foo [a b &amp;amp; more-args] (println a b more-args)) (foo :a :b) ;; =&amp;gt; :a :b nil (foo :a :b :x) ;; =&amp;gt; :a :b (:x) (foo :a :b :x :y :z) ;; =&amp;gt; :a :b (:x :y :z) ;map destructuring (def my-hashmap {:a &amp;#34;A&amp;#34; :b &amp;#34;B&amp;#34; :c &amp;#34;C&amp;#34; :d &amp;#34;D&amp;#34;}) (def my-nested-hashmap {:a &amp;#34;A&amp;#34; :b &amp;#34;B&amp;#34; :c &amp;#34;C&amp;#34; :d &amp;#34;D&amp;#34; :q {:x &amp;#34;X&amp;#34; :y &amp;#34;Y&amp;#34; :z &amp;#34;Z&amp;#34;}}) (let [{a :a d :d} my-hashmap] (println a d)) ;; =&amp;gt; A D (let [{a :a, b :b, {x :x, y :y} :q} my-nested-hashmap] (println a b x y)) ;; =&amp;gt; A B X Y (let [{a :a, b :b, not-found :not-found, :or {not-found &amp;#34;:)&amp;#34;}, :as all} my-hashmap] (println a b not-found all)) ;; =&amp;gt; A B :) {:a A :b B :c C :d D} ;!!! There is no &amp;amp; rest for maps. ;everything but false and nil evaluates to true in Clojure. ;:as bind entire map to param ;See https://github.com/ring-clojure/ring/wiki/File-Uploads for explanation (defn file-handler ;表示入参是一个map,里面有:params这个key,将:params ;[{{{tempfile :tempfile filename :filename} &amp;#34;file&amp;#34;} :params :as request}] [{{{tempfile :tempfile filename :filename} &amp;#34;file&amp;#34;} :params :as request}] (println request) (let [n (num-lines tempfile)] (response (str &amp;#34;File &amp;#34; filename &amp;#34; has &amp;#34; n &amp;#34; lines &amp;#34;)))) ;a simple example (defn first-first [[[i _] _]] i) (first-first [[1 2] [3 4]]) ;return 1 ;(defn name doc-string? attr-map? [params*] prepost-map? body) ;(defn name doc-string? attr-map? ([params*] prepost-map? body) &#43; attr-map?) ;function can have params type hint (defn round &amp;#34;^double here is type hint&amp;#34; [^double d ^long precision] (let [factor (Math/pow 10 precision)] (/ (Math/floor (* d factor)) factor))) ;不定长参数 ;重载函数 (defn bar ([a b] (bar a b 100)) ([a b c] (* a b c))) (bar 5 6) (bar 5 6 3) (defn keyworded-map [&amp;amp; {:keys [function sequence]}] (map function sequence)) (keyworded-map :sequence [1 2 3] :function #(&#43; % 2)) ;trampoline ;trampoline ;namespace ;create-ns create a namespace (create-ns &amp;#39;com.xiongdahu.clj) ;in-ns move to a namespace ;require loads a namespace and ;refer refers the namespace. ;To do these at once, you can use use (require &amp;#39;clojure.by.example) (clojure.by.example/favorite-language) (use &amp;#39;clojure.by.example) ;you can rename namespace (require &amp;#39;[clojure.by.example :as temp-ns]) ;ns macro creates a new namespace and gives you an opportunity to load other namespaces at the creation time ;import java class (import java.util.Date) (println (str (new Date))) ;Wed Jul 24 22:55:24 CST 2019 ;boolean ;In Clojure, everything except false and nil are true. (if 1 (println &amp;#34;it is true&amp;#34;) (println &amp;#34;will never print&amp;#34;)) ;if (if true (println &amp;#34;executed when true&amp;#34;) (println &amp;#34;executed when false&amp;#34;)) ;use do to execute multi expressions (if true (do (println &amp;#34;one&amp;#34;) (println &amp;#34;two&amp;#34;))) ;if-let: (defn positive-number [numbers] (if-let [pos-nums (not-empty (filter pos? numbers))] pos-nums &amp;#34;no positive numbers&amp;#34;)) ;when when-let case cond condp ; (defn cond-test [n] (cond (= n 1) &amp;#34;n is 1&amp;#34; (and (&amp;gt; n 3) (&amp;lt; n 10)) &amp;#34;n is over 3 and under 10&amp;#34; :else &amp;#34;n is other&amp;#34;)) (cond-test 1000) ;string (let [first &amp;#34;Hirokuni&amp;#34; last &amp;#34;Kim&amp;#34;] (str &amp;#34;My name is &amp;#34; first &amp;#34; &amp;#34; last)) ;format (format &amp;#34;My name is %s %s&amp;#34; &amp;#34;Hirokuni&amp;#34; &amp;#34;Kim&amp;#34;) ;power function (defn power [x n] (reduce * (repeat n x))) ;bigint,N is a literal for bigint (&#43; 9223372036854775807 10N) ;list conj nth count &amp;#39;(1 2 3) ;vector conj nth count .indexOf [1 2 3] (.indexOf [1 2 3] 4) (count [1 2]) ;set conj nth count disj sort contains? subset? superset? #{1 2 3} ;map assoc merge keys vals (let [os {:Apple &amp;#34;Mac&amp;#34; :Microsoft &amp;#34;Windows&amp;#34;}] (get os :Apple)) (assoc {:Apple &amp;#34;Mac&amp;#34; :Microsoft &amp;#34;Windows&amp;#34;} :Commodore &amp;#34;Amiga&amp;#34;) ;Sequences are data types that abstract all more concrete data types with unified functions.  ;These functions are called the Seq library in Clojure. ;seq first rest cons concat map reduce into ;To add an element to the head of sequence, use cons. (cons 4 [1 2 3]) (into [] `(1 2 3)) (reverse [1 2 3]) ;get a sequence of infinite integers with iterate. Be careful,  ;though. Running this example will freeze your terminal since the evaluation of this expression never returns. (doc iterate) (doc range) (repeatedly 5 (fn [] (println &amp;#34;hi!&amp;#34;))) ;for each (doseq [animal [&amp;#34;cat&amp;#34; &amp;#34;dog&amp;#34; &amp;#34;horse&amp;#34;]] (println animal)) (take 5 (range 0 100)) (take-while neg? [-3 -2 -1 0 1 2 3]) ;drop will remove the first n elements (drop 5 (range 0 10)) (drop-while neg? [-3 -2 -1 0 1 2 3]) ;(0 1 2 3) (remove pos? [-1 -2 3 4]) ;(-1 -2) (filter pos? [-1 2 3]) (partition-by #(&amp;lt; 3 %) [1 2 3 4 5 6]) (group-by #(&amp;lt; 3 %) [1 2 3 4 5 6 1 2 3]) (println (take 5 (iterate inc 0))) ;for compression (for [x &amp;#39;(1 2 3)] (&#43; 10 x)) (doc for) ;双重for 循环 (for [x (range 10) y (range 20) :while (&amp;lt; y x)] [x y]) ;&amp;lt;==&amp;gt; {x | x &amp;gt;0} (for [x &amp;#39;(-1 1 2) :when (&amp;gt; x 0)] x) (for [x [0 1 2 3 4 5] :let [y (* x 3)] :when (even? y)] y) ;meta data for function parameters (defn round [^double d ^long precision] (let [factor (Math/pow 10 precision)] (/ (Math/floor (* d factor)) factor))) ;# is Dispatch character that tells the Clojure reader how to interpret the next character using a read table ;set #{1 2 3} ;discard {:a 1, #_#_:b 2, :c 3} ;regular expression (re-matches #&amp;#34;^test$&amp;#34; &amp;#34;test&amp;#34;) ;anonymous function #(println %) ;var quote (read-string &amp;#34;#&amp;#39;foo&amp;#34;) ;symbolic values (/ 1.0 0.0) ;##Inf ;tagged literals (type #inst &amp;#34;2014-05-19T19:12:37.925-00:00&amp;#34;) ;java.util.Date ;meta (meta #&amp;#39;fn-name) ;reader conditionals  #?(:clj (Clojure expression) :cljs (ClojureScript expression) :cljr (Clojure CLR expression) :default (fallthrough expression)) ;#?@ splicing reader conditional (defn build-list [] (list #?@(:clj [5 6 7 8] :cljs [1 2 3 4]))) ;return [5 6 7 8] when run on clojure ;#= allows the reader to evaluate an arbitrary form during read time (read-string &amp;#34;#=(&#43; 3 4)&amp;#34;) ;7 ;Recursion ;simple recursion (defn fibo &amp;#34;this is recursion function&amp;#34; [n] (if (or (= n 0) (= n 1)) n (&#43; (fibo (- n 1)) (fibo (- n 2))))) ;do not do this!!! take a long time to finish (fibo 1000) ;use recur (defn fibo-recur [iteration] (let [fibo (fn [one two n] (if (= iteration n) one (recur two (&#43; one two) (inc n))))] ;recur re-binds it&amp;#39;s arguments to new values and call the function with the new values ;fibo is an inner function (fibo 0N 1N 0))) (fibo-recur 1000) ;it is really fast ;notes ;with simple recursion, each recursive call creates a stack frame which is  ;a data to store the information of the called function on memory. ;Doing deep recursion requires large memory for stack frames, but since it cannot,  ;we get StackOverflowError ;尾递归 ;A function is tail recursive when the recursion is happening at the end of it&amp;#39;s definition ;In other words, a tail recursive function must return itself as it&amp;#39;s returned value. ;When you use recur, it makes sure you are doing tail recursion (doc loop) ;loop/recur is merely a friendly way to write recursion code. ;All imperative loops can be converted to recursions and all recursions can be converted to loops, ;so Clojure chose recursions. ;Although you can write code that looks like an imperative loop with loop/recur, ;Clojure is doing recursion under the hood. ; (defmacro unless [test then] &amp;#34;Evaluates then when test evaluates to be falsey&amp;#34; (list &amp;#39;if (list &amp;#39;not test) then)) (macroexpand &amp;#39;(unless false (println &amp;#34;hi&amp;#34;))) ;&amp;#39; quoting ;` syntax-quoting returns the fully qualified namespace. ;Using fully qualified namespace is very important in order to avoid name conflicts when defining macro. ;~ unquote `(&#43; ~(list 1 2 3)) ;(clojure.core/&#43; (1 2 3)) `(&#43; ~@(list 1 2 3)) ;(clojure.core/&#43; 1 2 3) ;The ~@ unquote splice works just like ~ unquote, ;except it expands a sequence and splice the contents of  ;the sequence into the enclosing syntax-quoted data structure ;thread first macro (-&amp;gt; [] (conj 1) (conj 2) (conj 3)) ;[1 2 3] (first (.split (.replace (.toUpperCase &amp;#34;a b c d&amp;#34;) &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) &amp;#34; &amp;#34;)) ;&amp;#34;X&amp;#34; ;;Perhaps easier to read: ;-&amp;gt; 后面是初始参数,第2行开始每一行是一个函数调用, ;且上一行的返回值会作为这一行第一个参数(这就是thread first)的first含义 ;这里的thread是管道的意思,而不是并发编程的线程 ;如果省略(),那么野生符号(bare symbol)和keyword都会当作一个函数调用, ;例如,这里的.toUpperCase是bare symbol,等效于(.toUpperCase ,,,) ;clojure中 逗号等于空白符,所以上面用,,,表示将会插入的参数(即&amp;#34;a b c d&amp;#34;) (-&amp;gt; &amp;#34;a b c d&amp;#34; .toUpperCase (.replace &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) (.split &amp;#34; &amp;#34;) first) ;same as follow, ,,, is equals whitespace (-&amp;gt; &amp;#34;a b c d&amp;#34; (.toUpperCase,,,) (.replace &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) (.split &amp;#34; &amp;#34;) first) ;suppose a function (defn calculate [] (reduce &#43; (map #(* % %) (filter odd? (range 10))))) ;same as ;上一行的结果作为最后一个参数插入,这叫thread last (defn calculate* [] (-&amp;gt;&amp;gt; (range 10) (filter odd?,,,) (map #(* % %),,,) (reduce &#43;,,,))) ;如果想要指定每次插入的位置那么需要用 as-&amp;gt; ;v是每一行的返回值的名称,这样你可以在下一行任意参数位置指定 (as-&amp;gt; [:foo :bar] v (map name v) (first v) (.substring v 1)) ; ;destructing ({:keys [firstname lastname] :as person} {:firstname &amp;#34;John&amp;#34; :lastname &amp;#34;Smith&amp;#34;}) ;future and deref (let [future-val (future (inc 1))] (println (deref future-val))) ;deref == @ (let [future-val (future (inc 1))] (println @future-val)) (def my-future (future (Thread/sleep 5000))) (repeatedly 6 (fn [] (println (realized? my-future)) (Thread/sleep 1000))) (doc future) ;promise (def my-promise (promise)) ;you define a promise (def listen-and-callback (fn [] (println &amp;#34;Start listening...&amp;#34;) (future (println &amp;#34;Callback fired: &amp;#34; @my-promise)))) (defn do-time-consuming-job [] (Thread/sleep 5000) (deliver my-promise &amp;#34;delivered value&amp;#34;)) (listen-and-callback) (do-time-consuming-job) ;atom is like mutable var in other languages but atom is thread safe ;ref dosync ref-set alter (def my-ref (ref 0)) (dosync (alter my-ref (fn [current_ref] (inc current_ref)))) (print @my-ref) (def user (ref {})) (dosync (alter user merge {:name &amp;#34;Kim&amp;#34;}) (throw (Exception. &amp;#34;something wrong happens!&amp;#34;)) (alter user merge {:age 32})) (def user-record (atom {})) (do (swap! user-record merge {:name &amp;#34;Kim&amp;#34;}) (throw (Exception. &amp;#34;something wrong happens!&amp;#34;)) (swap! user-record merge {:age 32})) ;Java (new java.util.Date &amp;#34;2016/2/19&amp;#34;) (java.util.Date.) (java.util.Date. &amp;#34;2016/2/19&amp;#34;) (Math/pow 2 3) ;static method (def rnd (new java.util.Random)) (. rnd nextInt 10) (let [date1 (new java.util.Date) date2 (new java.util.Date)] (.equals date1 date2)) ;(.instanceMember instance args*) ;(.instanceMember Classname args*) ;(.-instanceField instance) ;(Classname/staticMethod args*) ;Classname/staticField ;;; (defn geohash [lat lng] (println &amp;#34;geohash:&amp;#34; lat lng) ;;this function take two separate values as params. ;;and it return a geohash for that position ) (let [{:strs [lat lng] :as coord} {&amp;#34;lat&amp;#34; 51.503331, &amp;#34;lng&amp;#34; -0.119500}] (println &amp;#34;calculating geohash for coordinates: &amp;#34; coord) (geohash lat lng)) ;assoc-in associate使加入</content>
+(ns clj-notes.core (:gen-class)) ;:gen-class generate java class file ;Parameter is variable in the declaration of function. ;Argument is the actual value of this variable that gets passed to function. ; ;install leiningen: ;put lein.bat in your PATH ;open cmder,run: lein repl ;start repl,use exit,(exit),(quit) or ctrl&#43;d to quit repl (println &amp;#34;hello clojure&amp;#34;) ;Symbols are used to bind names to values ;&amp;#39; will prevent a form from being evaluated ;&amp;#39;() same as (quote ()) ;def global variable ;let local variable binding (def object &amp;#34;light&amp;#34;) (println object) (let [x 10 y 20 z 30] (&#43; x y z)) ;=&amp;gt; 60 ;data collection ;seq is abstract for list vector array ;map (def dict {:k1 &amp;#34;v1&amp;#34; :k2 &amp;#34;v2&amp;#34;}) ;keyword as function (:k1 dict) ;return v1 ;map as function (dict :k1) ;return v1 (let [v (dict :k1)] (println v)) ;also you can use get on seq or map (get {:a 1 :b 2} :b) ;=&amp;gt; 2 ;clojure.core/seq is a function that produces a sequence over the given argument.  ;Data types that clojure.core/seq can produce a sequence over are called seqable: ; ;Clojure collections ;Java maps ;All iterable types (types that implement java.util.Iterable) ;Java collections (java.util.Set, java.util.List, etc) ;Java arrays ;All types that implement java.lang.CharSequence interface, including Java strings ;All types that implement clojure.lang.Seqable interface ;nil ;function for seq or collection ;= ;count ;conj ;empty ;seq ;first ;rest ;next ;count ;counted? ;conj ;get ;assoc ;defn 定义函数 ;defn- 定义ns内私有函数 (defn f &amp;#34;the second line is doc-string&amp;#34; {:added &amp;#34;1.2&amp;#34; ;this is attr-map :static true} [param] (print &amp;#34;hello &amp;#34; param)) (meta (var f)) ;#&amp;#39; is the reader macro for var and works the exactly same (meta #&amp;#39;f) ;fn create a function (def f (fn [] (println &amp;#34;this is from fn function&amp;#34;))) ;#() is the shortcut for fn (def plus-one #(&#43; 1 %)) ;% will be replaced with arguments passed to the function ;%1 is for the first argument, %2 is for the second and so on (defn des [{k1 :k1}] ;get :k1 value from argument (map) and binding it to k1(parameter) (println &amp;#34;destructing in map&amp;#34; k1)) (des dict) ;destructing in map v1 ;key don&amp;#39;t have to be keyword (defn currency-of [{currency &amp;#34;currency&amp;#34;}] currency) (defn currency-of [{currency &amp;#39;currency}] currency) ;if want to destructing multi key,use :keys, in this case,parameter name(currency amount)  ;must same as arguments&amp;#39;s keys(:currency :amount),can not use string as key (defn currency-of [{:keys [currency amount]}] (* currency amount)) (currency-of {:currency &amp;#34;RMB&amp;#34; :amount 100000}) ;ok (currency-of {&amp;#34;currency&amp;#34; &amp;#34;RMB&amp;#34; &amp;#34;amount&amp;#34; 100000}) ;currency will be nil,you will need use :strs or syms (defn currency-strs [{:strs [currency amount]}] currency) (currency-strs {&amp;#34;currency&amp;#34; &amp;#34;RMB&amp;#34; &amp;#34;amount&amp;#34; 100000}) ;ok (defn currency-syms [{:syms [currency amount]}] currency) (currency-syms {&amp;#39;currency &amp;#34;CNY&amp;#34; &amp;#39;amount 100000}) ;ok ;use :or to give a default value for parameter (defn currency-or [{:keys [currency amount] :or {currency &amp;#34;USD&amp;#34;}}] currency) (currency-or {:amount 100000}) ;=&amp;gt; &amp;#34;USD&amp;#34; ;use &amp;amp; for Variadic Functions parameters (defn log [message &amp;amp; args] (println &amp;#34;args: &amp;#34; args)) ;named params , achieved by Variadic Functions destructing (defn job-info [&amp;amp; {:keys [name job income] :or {job &amp;#34;unemployed&amp;#34; income &amp;#34;$0.00&amp;#34;}}] (if name [name job income] (println &amp;#34;No name specified&amp;#34;))) ;cation! arguments to job-info is not a map (job-info :name &amp;#34;Robert&amp;#34; :job &amp;#34;Engineer&amp;#34;) ;[&amp;#34;Robert&amp;#34; &amp;#34;Engineer&amp;#34; &amp;#34;$0.00&amp;#34;] ;Without the use of a variadic argument list,  ;you would have to call the function with a single map argument such as (job-info {:name &amp;#34;Robert&amp;#34; :job &amp;#34;Engineer&amp;#34;}) ;destructuring example ;https://gist.github.com/john2x/e1dca953548bfdfb9844 (def my-vec [1 2 3]) (let [[a b c d] my-vec] (println a b c d)) ;1 2 3 nil (let [[a b &amp;amp; the-rest] my-vec] (println &amp;#34;a=&amp;#34; a &amp;#34;b=&amp;#34; b &amp;#34;the-rest=&amp;#34; the-rest)) ;a= 1 b= 2 the-rest= (3) (let [[:as all] my-vec] (println all)) ;[1 2 3] (let [[a :as all] my-vec] (println a all)) ;1 [1 2 3] (let [[a b &amp;amp; the-rest :as all] my-vec] (println a b the-rest all)) ;1 2 (3) [1 2 3] ;note: &amp;amp; the-rest convert vector to list, ;but :as preserves them (as a list, or as a vector) (def my-vec [&amp;#34;first&amp;#34; &amp;#34;second&amp;#34;]) (let [{a 0 b 1} my-vec] (println a b)) ;=&amp;gt; &amp;#34;first second&amp;#34; ;optional arguments to functions (defn foo [a b &amp;amp; more-args] (println a b more-args)) (foo :a :b) ;; =&amp;gt; :a :b nil (foo :a :b :x) ;; =&amp;gt; :a :b (:x) (foo :a :b :x :y :z) ;; =&amp;gt; :a :b (:x :y :z) ;map destructuring (def my-hashmap {:a &amp;#34;A&amp;#34; :b &amp;#34;B&amp;#34; :c &amp;#34;C&amp;#34; :d &amp;#34;D&amp;#34;}) (def my-nested-hashmap {:a &amp;#34;A&amp;#34; :b &amp;#34;B&amp;#34; :c &amp;#34;C&amp;#34; :d &amp;#34;D&amp;#34; :q {:x &amp;#34;X&amp;#34; :y &amp;#34;Y&amp;#34; :z &amp;#34;Z&amp;#34;}}) (let [{a :a d :d} my-hashmap] (println a d)) ;; =&amp;gt; A D (let [{a :a, b :b, {x :x, y :y} :q} my-nested-hashmap] (println a b x y)) ;; =&amp;gt; A B X Y (let [{a :a, b :b, not-found :not-found, :or {not-found &amp;#34;:)&amp;#34;}, :as all} my-hashmap] (println a b not-found all)) ;; =&amp;gt; A B :) {:a A :b B :c C :d D} ;!!! There is no &amp;amp; rest for maps. ;everything but false and nil evaluates to true in Clojure. ;:as bind entire map to param ;See https://github.com/ring-clojure/ring/wiki/File-Uploads for explanation (defn file-handler ;表示入参是一个map,里面有:params这个key,将:params ;[{{{tempfile :tempfile filename :filename} &amp;#34;file&amp;#34;} :params :as request}] [{{{tempfile :tempfile filename :filename} &amp;#34;file&amp;#34;} :params :as request}] (println request) (let [n (num-lines tempfile)] (response (str &amp;#34;File &amp;#34; filename &amp;#34; has &amp;#34; n &amp;#34; lines &amp;#34;)))) ;a simple example (defn first-first [[[i _] _]] i) (first-first [[1 2] [3 4]]) ;return 1 ;(defn name doc-string? attr-map? [params*] prepost-map? body) ;(defn name doc-string? attr-map? ([params*] prepost-map? body) &#43; attr-map?) ;function can have params type hint (defn round &amp;#34;^double here is type hint&amp;#34; [^double d ^long precision] (let [factor (Math/pow 10 precision)] (/ (Math/floor (* d factor)) factor))) ;不定长参数 ;重载函数 (defn bar ([a b] (bar a b 100)) ([a b c] (* a b c))) (bar 5 6) (bar 5 6 3) (defn keyworded-map [&amp;amp; {:keys [function sequence]}] (map function sequence)) (keyworded-map :sequence [1 2 3] :function #(&#43; % 2)) ;trampoline ;trampoline ;namespace ;create-ns create a namespace (create-ns &amp;#39;com.cod3fn.clj) ;in-ns move to a namespace ;require loads a namespace and ;refer refers the namespace. ;To do these at once, you can use use (require &amp;#39;clojure.by.example) (clojure.by.example/favorite-language) (use &amp;#39;clojure.by.example) ;you can rename namespace (require &amp;#39;[clojure.by.example :as temp-ns]) ;ns macro creates a new namespace and gives you an opportunity to load other namespaces at the creation time ;import java class (import java.util.Date) (println (str (new Date))) ;Wed Jul 24 22:55:24 CST 2019 ;boolean ;In Clojure, everything except false and nil are true. (if 1 (println &amp;#34;it is true&amp;#34;) (println &amp;#34;will never print&amp;#34;)) ;if (if true (println &amp;#34;executed when true&amp;#34;) (println &amp;#34;executed when false&amp;#34;)) ;use do to execute multi expressions (if true (do (println &amp;#34;one&amp;#34;) (println &amp;#34;two&amp;#34;))) ;if-let: (defn positive-number [numbers] (if-let [pos-nums (not-empty (filter pos? numbers))] pos-nums &amp;#34;no positive numbers&amp;#34;)) ;when when-let case cond condp ; (defn cond-test [n] (cond (= n 1) &amp;#34;n is 1&amp;#34; (and (&amp;gt; n 3) (&amp;lt; n 10)) &amp;#34;n is over 3 and under 10&amp;#34; :else &amp;#34;n is other&amp;#34;)) (cond-test 1000) ;string (let [first &amp;#34;Hirokuni&amp;#34; last &amp;#34;Kim&amp;#34;] (str &amp;#34;My name is &amp;#34; first &amp;#34; &amp;#34; last)) ;format (format &amp;#34;My name is %s %s&amp;#34; &amp;#34;Hirokuni&amp;#34; &amp;#34;Kim&amp;#34;) ;power function (defn power [x n] (reduce * (repeat n x))) ;bigint,N is a literal for bigint (&#43; 9223372036854775807 10N) ;list conj nth count &amp;#39;(1 2 3) ;vector conj nth count .indexOf [1 2 3] (.indexOf [1 2 3] 4) (count [1 2]) ;set conj nth count disj sort contains? subset? superset? #{1 2 3} ;map assoc merge keys vals (let [os {:Apple &amp;#34;Mac&amp;#34; :Microsoft &amp;#34;Windows&amp;#34;}] (get os :Apple)) (assoc {:Apple &amp;#34;Mac&amp;#34; :Microsoft &amp;#34;Windows&amp;#34;} :Commodore &amp;#34;Amiga&amp;#34;) ;Sequences are data types that abstract all more concrete data types with unified functions.  ;These functions are called the Seq library in Clojure. ;seq first rest cons concat map reduce into ;To add an element to the head of sequence, use cons. (cons 4 [1 2 3]) (into [] `(1 2 3)) (reverse [1 2 3]) ;get a sequence of infinite integers with iterate. Be careful,  ;though. Running this example will freeze your terminal since the evaluation of this expression never returns. (doc iterate) (doc range) (repeatedly 5 (fn [] (println &amp;#34;hi!&amp;#34;))) ;for each (doseq [animal [&amp;#34;cat&amp;#34; &amp;#34;dog&amp;#34; &amp;#34;horse&amp;#34;]] (println animal)) (take 5 (range 0 100)) (take-while neg? [-3 -2 -1 0 1 2 3]) ;drop will remove the first n elements (drop 5 (range 0 10)) (drop-while neg? [-3 -2 -1 0 1 2 3]) ;(0 1 2 3) (remove pos? [-1 -2 3 4]) ;(-1 -2) (filter pos? [-1 2 3]) (partition-by #(&amp;lt; 3 %) [1 2 3 4 5 6]) (group-by #(&amp;lt; 3 %) [1 2 3 4 5 6 1 2 3]) (println (take 5 (iterate inc 0))) ;for compression (for [x &amp;#39;(1 2 3)] (&#43; 10 x)) (doc for) ;双重for 循环 (for [x (range 10) y (range 20) :while (&amp;lt; y x)] [x y]) ;&amp;lt;==&amp;gt; {x | x &amp;gt;0} (for [x &amp;#39;(-1 1 2) :when (&amp;gt; x 0)] x) (for [x [0 1 2 3 4 5] :let [y (* x 3)] :when (even? y)] y) ;meta data for function parameters (defn round [^double d ^long precision] (let [factor (Math/pow 10 precision)] (/ (Math/floor (* d factor)) factor))) ;# is Dispatch character that tells the Clojure reader how to interpret the next character using a read table ;set #{1 2 3} ;discard {:a 1, #_#_:b 2, :c 3} ;regular expression (re-matches #&amp;#34;^test$&amp;#34; &amp;#34;test&amp;#34;) ;anonymous function #(println %) ;var quote (read-string &amp;#34;#&amp;#39;foo&amp;#34;) ;symbolic values (/ 1.0 0.0) ;##Inf ;tagged literals (type #inst &amp;#34;2014-05-19T19:12:37.925-00:00&amp;#34;) ;java.util.Date ;meta (meta #&amp;#39;fn-name) ;reader conditionals  #?(:clj (Clojure expression) :cljs (ClojureScript expression) :cljr (Clojure CLR expression) :default (fallthrough expression)) ;#?@ splicing reader conditional (defn build-list [] (list #?@(:clj [5 6 7 8] :cljs [1 2 3 4]))) ;return [5 6 7 8] when run on clojure ;#= allows the reader to evaluate an arbitrary form during read time (read-string &amp;#34;#=(&#43; 3 4)&amp;#34;) ;7 ;Recursion ;simple recursion (defn fibo &amp;#34;this is recursion function&amp;#34; [n] (if (or (= n 0) (= n 1)) n (&#43; (fibo (- n 1)) (fibo (- n 2))))) ;do not do this!!! take a long time to finish (fibo 1000) ;use recur (defn fibo-recur [iteration] (let [fibo (fn [one two n] (if (= iteration n) one (recur two (&#43; one two) (inc n))))] ;recur re-binds it&amp;#39;s arguments to new values and call the function with the new values ;fibo is an inner function (fibo 0N 1N 0))) (fibo-recur 1000) ;it is really fast ;notes ;with simple recursion, each recursive call creates a stack frame which is  ;a data to store the information of the called function on memory. ;Doing deep recursion requires large memory for stack frames, but since it cannot,  ;we get StackOverflowError ;尾递归 ;A function is tail recursive when the recursion is happening at the end of it&amp;#39;s definition ;In other words, a tail recursive function must return itself as it&amp;#39;s returned value. ;When you use recur, it makes sure you are doing tail recursion (doc loop) ;loop/recur is merely a friendly way to write recursion code. ;All imperative loops can be converted to recursions and all recursions can be converted to loops, ;so Clojure chose recursions. ;Although you can write code that looks like an imperative loop with loop/recur, ;Clojure is doing recursion under the hood. ; (defmacro unless [test then] &amp;#34;Evaluates then when test evaluates to be falsey&amp;#34; (list &amp;#39;if (list &amp;#39;not test) then)) (macroexpand &amp;#39;(unless false (println &amp;#34;hi&amp;#34;))) ;&amp;#39; quoting ;` syntax-quoting returns the fully qualified namespace. ;Using fully qualified namespace is very important in order to avoid name conflicts when defining macro. ;~ unquote `(&#43; ~(list 1 2 3)) ;(clojure.core/&#43; (1 2 3)) `(&#43; ~@(list 1 2 3)) ;(clojure.core/&#43; 1 2 3) ;The ~@ unquote splice works just like ~ unquote, ;except it expands a sequence and splice the contents of  ;the sequence into the enclosing syntax-quoted data structure ;thread first macro (-&amp;gt; [] (conj 1) (conj 2) (conj 3)) ;[1 2 3] (first (.split (.replace (.toUpperCase &amp;#34;a b c d&amp;#34;) &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) &amp;#34; &amp;#34;)) ;&amp;#34;X&amp;#34; ;;Perhaps easier to read: ;-&amp;gt; 后面是初始参数,第2行开始每一行是一个函数调用, ;且上一行的返回值会作为这一行第一个参数(这就是thread first)的first含义 ;这里的thread是管道的意思,而不是并发编程的线程 ;如果省略(),那么野生符号(bare symbol)和keyword都会当作一个函数调用, ;例如,这里的.toUpperCase是bare symbol,等效于(.toUpperCase ,,,) ;clojure中 逗号等于空白符,所以上面用,,,表示将会插入的参数(即&amp;#34;a b c d&amp;#34;) (-&amp;gt; &amp;#34;a b c d&amp;#34; .toUpperCase (.replace &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) (.split &amp;#34; &amp;#34;) first) ;same as follow, ,,, is equals whitespace (-&amp;gt; &amp;#34;a b c d&amp;#34; (.toUpperCase,,,) (.replace &amp;#34;A&amp;#34; &amp;#34;X&amp;#34;) (.split &amp;#34; &amp;#34;) first) ;suppose a function (defn calculate [] (reduce &#43; (map #(* % %) (filter odd? (range 10))))) ;same as ;上一行的结果作为最后一个参数插入,这叫thread last (defn calculate* [] (-&amp;gt;&amp;gt; (range 10) (filter odd?,,,) (map #(* % %),,,) (reduce &#43;,,,))) ;如果想要指定每次插入的位置那么需要用 as-&amp;gt; ;v是每一行的返回值的名称,这样你可以在下一行任意参数位置指定 (as-&amp;gt; [:foo :bar] v (map name v) (first v) (.substring v 1)) ; ;destructing ({:keys [firstname lastname] :as person} {:firstname &amp;#34;John&amp;#34; :lastname &amp;#34;Smith&amp;#34;}) ;future and deref (let [future-val (future (inc 1))] (println (deref future-val))) ;deref == @ (let [future-val (future (inc 1))] (println @future-val)) (def my-future (future (Thread/sleep 5000))) (repeatedly 6 (fn [] (println (realized? my-future)) (Thread/sleep 1000))) (doc future) ;promise (def my-promise (promise)) ;you define a promise (def listen-and-callback (fn [] (println &amp;#34;Start listening...&amp;#34;) (future (println &amp;#34;Callback fired: &amp;#34; @my-promise)))) (defn do-time-consuming-job [] (Thread/sleep 5000) (deliver my-promise &amp;#34;delivered value&amp;#34;)) (listen-and-callback) (do-time-consuming-job) ;atom is like mutable var in other languages but atom is thread safe ;ref dosync ref-set alter (def my-ref (ref 0)) (dosync (alter my-ref (fn [current_ref] (inc current_ref)))) (print @my-ref) (def user (ref {})) (dosync (alter user merge {:name &amp;#34;Kim&amp;#34;}) (throw (Exception. &amp;#34;something wrong happens!&amp;#34;)) (alter user merge {:age 32})) (def user-record (atom {})) (do (swap! user-record merge {:name &amp;#34;Kim&amp;#34;}) (throw (Exception. &amp;#34;something wrong happens!&amp;#34;)) (swap! user-record merge {:age 32})) ;Java (new java.util.Date &amp;#34;2016/2/19&amp;#34;) (java.util.Date.) (java.util.Date. &amp;#34;2016/2/19&amp;#34;) (Math/pow 2 3) ;static method (def rnd (new java.util.Random)) (. rnd nextInt 10) (let [date1 (new java.util.Date) date2 (new java.util.Date)] (.equals date1 date2)) ;(.instanceMember instance args*) ;(.instanceMember Classname args*) ;(.-instanceField instance) ;(Classname/staticMethod args*) ;Classname/staticField ;;; (defn geohash [lat lng] (println &amp;#34;geohash:&amp;#34; lat lng) ;;this function take two separate values as params. ;;and it return a geohash for that position ) (let [{:strs [lat lng] :as coord} {&amp;#34;lat&amp;#34; 51.503331, &amp;#34;lng&amp;#34; -0.119500}] (println &amp;#34;calculating geohash for coordinates: &amp;#34; coord) (geohash lat lng)) ;assoc-in associate使加入</content>
     </entry>
     
      <entry>
         <title>Elasticsearch Query DSL</title>
-        <url>https://xiongdahu.github.io/post/elasticsearch-query-dsl/</url>
+        <url>https://cod3fn.github.io/post/elasticsearch-query-dsl/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -142,7 +143,7 @@ term terms //不要用于text字段 GET /_search { &amp;#34;query&amp;#34;: { &a
     
      <entry>
         <title>Useful Scala Code Snippets</title>
-        <url>https://xiongdahu.github.io/post/useful-scala-code-snippets/</url>
+        <url>https://cod3fn.github.io/post/useful-scala-code-snippets/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -155,7 +156,7 @@ val map1 = Map(1 -&amp;gt; 1, 2 -&amp;gt; 2) val map2 = Map(1 -&amp;gt; 11, 3 -&
     
      <entry>
         <title>Scala Future</title>
-        <url>https://xiongdahu.github.io/post/scala-future/</url>
+        <url>https://cod3fn.github.io/post/scala-future/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -174,7 +175,7 @@ await for future result // for 10.seconds conversion import scala.concurrent.dur
     
      <entry>
         <title>Spring Boot Notes</title>
-        <url>https://xiongdahu.github.io/post/spring-boot-notes/</url>
+        <url>https://cod3fn.github.io/post/spring-boot-notes/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -235,7 +236,7 @@ spring: profiles: active: ${ENV_TYP:PRD} # 读取ENV_TYP环境变量的值作为
     
      <entry>
         <title>Pattern Matching Anonymous Function</title>
-        <url>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</url>
+        <url>https://cod3fn.github.io/post/pattern-matching-anonymous-function/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -257,7 +258,7 @@ val pf: PartialFunction[(String, Int), String] = { case (word, freq) if freq &am
     
      <entry>
         <title>Scala Type Class</title>
-        <url>https://xiongdahu.github.io/post/scala-type-class/</url>
+        <url>https://cod3fn.github.io/post/scala-type-class/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -275,12 +276,12 @@ type class由3部分组件：
  type class：a trait with type parameter,即Ordering[T]
  type class instance: 即上面的val stringOrdering: Ordering[String]，一般为implicit
  interface for user: 即上面的FruitOps，是一个implicit class.
-  one more example class Person(val name: String, val address: String) //type class trait HtmlWriter[A] { def write(data: A): String } // a type class instance implicit object PersonWriter extends HtmlWriter[Person] { override def write(data: Person): String = { s&amp;#34;&amp;lt;span&amp;gt;${data.name}and ${data.address}&amp;lt;/span&amp;gt; &amp;#34; } } // type class interface for user implicit class HtmlUtil[A](data:A){ def toHtml(implicit writer: HtmlWriter[A]):String={ writer.write(data) } } val p = new Person(&amp;#34;xiongdahu&amp;#34;,&amp;#34;beijing&amp;#34;) p.toHtml</content>
+  one more example class Person(val name: String, val address: String) //type class trait HtmlWriter[A] { def write(data: A): String } // a type class instance implicit object PersonWriter extends HtmlWriter[Person] { override def write(data: Person): String = { s&amp;#34;&amp;lt;span&amp;gt;${data.name}and ${data.address}&amp;lt;/span&amp;gt; &amp;#34; } } // type class interface for user implicit class HtmlUtil[A](data:A){ def toHtml(implicit writer: HtmlWriter[A]):String={ writer.write(data) } } val p = new Person(&amp;#34;cod3fn&amp;#34;,&amp;#34;beijing&amp;#34;) p.toHtml</content>
     </entry>
     
      <entry>
-        <title>Scala Notes</title>
-        <url>https://xiongdahu.github.io/post/scala-notes/</url>
+        <title>Scala 学习笔记</title>
+        <url>https://cod3fn.github.io/post/scala-notes/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -357,7 +358,7 @@ https://gist.github.com/jamesyang124/d65b067327452792287a
     
      <entry>
         <title>使用redis的hash优化内存使用</title>
-        <url>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</url>
+        <url>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</url>
         <categories>
           <category>翻译</category>
         </categories>
@@ -383,24 +384,24 @@ list-max-ziplist-entries 512 list-max-ziplist-value 64 #Limits for ziplist use w
     
      <entry>
         <title>使用travis自动发布markdown到博客</title>
-        <url>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</url>
+        <url>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</url>
         <categories>
           <category>编程</category>
         </categories>
         <tags>
           <tag>code</tag><tag>github</tag>
         </tags>
-        <content type="html"> github给个人和组织免费提供github pages功能. 就是说如果有个repo的名字为 xiongdahu.github.io (xiongdahu为你的github username), 那么这个repo里面的master或者gh-page分支的内容如果存在index.html, 那么其他人可以通过 https://xiongdahu.github.io 访问这个站点.
+        <content type="html"> github给个人和组织免费提供github pages功能. 就是说如果有个repo的名字为 cod3fn.github.io (cod3fn为你的github username), 那么这个repo里面的master或者gh-page分支的内容如果存在index.html, 那么其他人可以通过 https://cod3fn.github.io 访问这个站点.
 借助于一些static gen工具,你可以将你的markdown转换为一个静态网站(html,js,css). 然后把静态网站的内容上传到刚说的repo中, 就有一个自己的博客站点了. static gen工具非常多, github推荐的是Jekyll(ruby), 主流的还有hexo(js)和hugo(go), hexo因为是基于js的,所以高质量的主题多(因为做主题是需要js,css技能), hugo的编译快些, 但是好看的主题不多. 高质量的主题除了美观可能还需要考虑移动端(responsive),评论, 访问统计等各种功能. 每个gen工具都有自己的主题站点. hugo的主题在这里找: hugo themes.
-制作github pages站点的一般做法是把代码(放图片和markdown)放在master分支,static gen编译后的(html,js,css,image)内容放在gh-pages分支.然后在settings里面设置. 这样就可以得到一个站点了. 这么做有个缺点,就是markdown文件会被别人整个下载过去,之前就遇到过一次. 正好github现在有3个免费私有仓库. 所以我把源码放在私有仓库xiongdahu.github.io.src里面,而编译后的内容发布的 https://xiongdahu.github.io上面去.
-自动编译发布这个过程就是持续集成(continue integration,CI)了, 即我提交一个markdown文件,我的主页会自动看到这篇文章, 不需要我在本地编译再提交编译结果文件.travis-ci 提供了免费的github CI服务. 使用github账号登录就会有提示操作. 这里勾选私有仓库xiongdahu.github.io.src, 然后在项目里面添加.travis.yml文件告诉travis如何编译和发布内容到个人站点.
+制作github pages站点的一般做法是把代码(放图片和markdown)放在master分支,static gen编译后的(html,js,css,image)内容放在gh-pages分支.然后在settings里面设置. 这样就可以得到一个站点了. 这么做有个缺点,就是markdown文件会被别人整个下载过去,之前就遇到过一次. 正好github现在有3个免费私有仓库. 所以我把源码放在私有仓库cod3fn.github.io.src里面,而编译后的内容发布的 https://cod3fn.github.io上面去.
+自动编译发布这个过程就是持续集成(continue integration,CI)了, 即我提交一个markdown文件,我的主页会自动看到这篇文章, 不需要我在本地编译再提交编译结果文件.travis-ci 提供了免费的github CI服务. 使用github账号登录就会有提示操作. 这里勾选私有仓库cod3fn.github.io.src, 然后在项目里面添加.travis.yml文件告诉travis如何编译和发布内容到个人站点.
 markdown渲染设置 hugo使用BlackFriday渲染markdown文件,默认的设置有几个过于严格:
  没有硬换行,需要使用\来表示换行
  标题和#之间必须有空格
  代码块前面必须有空行
   在config.toml可以修改这些配置:
 # markdown解析引擎blackfriday配置,  # extensions : noEmptyLineBeforeBlock-代码块前面无需空行,hardLineBreak-换行无需使用backslash # extensionsmask spaceHeaders-标题之间无需空格 [blackfriday] angledQuotes = true extensions = [&amp;#34;hardLineBreak&amp;#34;,&amp;#34;noEmptyLineBeforeBlock&amp;#34;] extensionsmask = [&amp;#34;spaceHeaders&amp;#34;] fractions = false plainIDAnchors = true travis-ci配置 就是从一个私有的源码仓库编译,然后将编译后的文件强制覆盖到个人主页(即username.github.io这个仓库)的仓库中.具体的配置就不说了,注意是需要一个github的personal-access-key. 下面是.travis.yml内容:
-dist: xenial language: python python: 3.7 # Handle git submodules yourself git: submodules: false # Use sed to replace the SSH URL with the public URL, then initialize submodules before_install: - sudo apt update -qq - sudo apt -yq install apt-transport-https - echo -e &amp;#34;Host github.com\n\tStrictHostKeyChecking no\n&amp;#34; &amp;gt;&amp;gt; ~/.ssh/config - git config --global user.email ${GITHUB_EMAIL} - git config --global user.name ${GITHUB_USERNAME} - sed -i &amp;#39;s/git@github.com:/https:\/\/github.com\//&amp;#39; .gitmodules - git submodule update --init --recursive install: # install latest hugo release version # - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n &amp;#39;/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*&amp;#34;([^&amp;#34;]*)&amp;#34;.*@\1@g;p;q}}&amp;#39; | xargs wget # use local hugo pkg for speed - sudo dpkg -i hugo*.deb - rm -rf public 2&amp;gt; /dev/null # compile src to dist script: - hugo -d ./dist/ after_success: - git clone https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git - cd xiongdahu.github.io - git rm -rf . &amp;amp;&amp;amp; git clean -fxd - mv -v ../dist/* . - git add . - git commit -m &amp;#34;update site&amp;#34; - git remote set-url origin https://xiongdahu:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git - git remote -v - git push -q -f 要点:
+dist: xenial language: python python: 3.7 # Handle git submodules yourself git: submodules: false # Use sed to replace the SSH URL with the public URL, then initialize submodules before_install: - sudo apt update -qq - sudo apt -yq install apt-transport-https - echo -e &amp;#34;Host github.com\n\tStrictHostKeyChecking no\n&amp;#34; &amp;gt;&amp;gt; ~/.ssh/config - git config --global user.email ${GITHUB_EMAIL} - git config --global user.name ${GITHUB_USERNAME} - sed -i &amp;#39;s/git@github.com:/https:\/\/github.com\//&amp;#39; .gitmodules - git submodule update --init --recursive install: # install latest hugo release version # - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n &amp;#39;/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*&amp;#34;([^&amp;#34;]*)&amp;#34;.*@\1@g;p;q}}&amp;#39; | xargs wget # use local hugo pkg for speed - sudo dpkg -i hugo*.deb - rm -rf public 2&amp;gt; /dev/null # compile src to dist script: - hugo -d ./dist/ after_success: - git clone https://cod3fn:${GITHUB_TOKEN}@github.com/cod3fn/cod3fn.github.io.git - cd cod3fn.github.io - git rm -rf . &amp;amp;&amp;amp; git clean -fxd - mv -v ../dist/* . - git add . - git commit -m &amp;#34;update site&amp;#34; - git remote set-url origin https://cod3fn:${GITHUB_TOKEN}@github.com/cod3fn/cod3fn.github.io.git - git remote -v - git push -q -f 要点:
  在项目的源码中放了hugo的deb安装包,省去下载的过程
  主题以submodules放在themes目录中,所以编译前一定要git submodule update --init --recursive更新主题到本地.
  目标repo的远程仓库一定要在push前重新设置:git remote set-url origin xxx
@@ -409,7 +410,7 @@ dist: xenial language: python python: 3.7 # Handle git submodules yourself git: 
     
      <entry>
         <title>wsl-docker-environment</title>
-        <url>https://xiongdahu.github.io/post/wsl-docker-environment/</url>
+        <url>https://cod3fn.github.io/post/wsl-docker-environment/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -444,7 +445,7 @@ wsl安装vs code和中文字体 因为wsl没用中文字体将显示豆腐块.
     
      <entry>
         <title>neo4j intro</title>
-        <url>https://xiongdahu.github.io/post/neo4j-intro/</url>
+        <url>https://cod3fn.github.io/post/neo4j-intro/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -466,7 +467,7 @@ neo4j browser介绍 和大多数数据库一样,neo4j是server-client的数据�
 neo4j browser自带一个教程和电影关系的数据库初始化脚本.方便你可以学习.下面介绍几个常用的命令.
  :help  help命令显示各种帮助提示. 常见的topic有 :help cypher :help commands :help keys :help param
  :play 交互式学习命令. 例如,:play movie graph 进入基于电影数据库的教程.
- :param 命令,设置变量. :param usrname =&amp;gt; &amp;laquo;xiongdahu&amp;raquo;,注意,变量名和=&amp;gt;之间有空格.设置变量之后可以使用变量MATCH (n:Person) WHERE n.name = $usrname
+ :param 命令,设置变量. :param usrname =&amp;gt; &amp;laquo;cod3fn&amp;raquo;,注意,变量名和=&amp;gt;之间有空格.设置变量之后可以使用变量MATCH (n:Person) WHERE n.name = $usrname
  :params 显示当前已经设置的所有变量. 也可以使用:params {name: &amp;lsquo;Stella&amp;rsquo;, age: 24} 覆盖目前的变量. 但是这个命令没用类型安全.
   spring-neo4j配置 pass
 cypher调优 cypher是一种声明式的,模式匹配的查询语言.模式在cypher语言中非常重要.如何合理地设计查询中的模式是cypher性能可调优空间最大的地方.下面给出常见的优化建议.
@@ -502,7 +503,7 @@ MATCH (p:Person)-[:ACTED_IN]-(m) WHERE p.name = &amp;#34;Tom Hanks&amp;#34; RETU
     
      <entry>
         <title>Spark Basic</title>
-        <url>https://xiongdahu.github.io/post/spark-basic/</url>
+        <url>https://cod3fn.github.io/post/spark-basic/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -539,7 +540,7 @@ SparkStreaming&#43;Kafka import org.apache.kafka.clients.consumer.ConsumerRecord
     
      <entry>
         <title>java generic</title>
-        <url>https://xiongdahu.github.io/post/java-generic/</url>
+        <url>https://cod3fn.github.io/post/java-generic/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -559,7 +560,7 @@ public class Pair&amp;lt;T&amp;gt; { T first; T second; public boolean equals(T 
     
      <entry>
         <title>IO-Java-Stream-Write-Reader</title>
-        <url>https://xiongdahu.github.io/post/io-java-stream-write-reader/</url>
+        <url>https://cod3fn.github.io/post/io-java-stream-write-reader/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -613,7 +614,7 @@ Console console = System.console(); if (console == null) { throw new IllegalStat
     
      <entry>
         <title>Java-6-7-8-文件读写</title>
-        <url>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</url>
+        <url>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -634,7 +635,7 @@ package angus.java.interview; import java.io.BufferedReader; import java.io.File
     
      <entry>
         <title>gradle笔记1-理解build脚本基本语法</title>
-        <url>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+        <url>https://cod3fn.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -704,7 +705,7 @@ more tips gradle-tips
     
      <entry>
         <title>Java AOP example</title>
-        <url>https://xiongdahu.github.io/post/java-aop-example/</url>
+        <url>https://cod3fn.github.io/post/java-aop-example/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -721,7 +722,7 @@ A Simple Introduction to AOP
     
      <entry>
         <title>Java concurrency 1 basic</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-1-basic/</url>
+        <url>https://cod3fn.github.io/post/java-concurrency-1-basic/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -760,7 +761,7 @@ Venkat 《Programming concurrency on the JVM》
     
      <entry>
         <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</url>
+        <url>https://cod3fn.github.io/post/java-concurrency-2-runnable-callable-future-executor/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -788,7 +789,7 @@ ExecutorService executor = Executors.newFixedThreadPool(numberOfThreadsInThePool
     
      <entry>
         <title>Java concurrency 3 synchronized or Lock</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</url>
+        <url>https://cod3fn.github.io/post/java-concurrency-3-synchronized-or-lock/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -806,7 +807,7 @@ stackoverflow回答
     
      <entry>
         <title>Java concurrency 4 CAS and atomic</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</url>
+        <url>https://cod3fn.github.io/post/java-concurrency-4-cas-and-atomic/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -823,7 +824,7 @@ public final boolean compareAndSet(int expect, int update) { return unsafe.compa
     
      <entry>
         <title>Java concurrency 5 Synchronizer and AQS</title>
-        <url>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</url>
+        <url>https://cod3fn.github.io/post/java-concurrency-5-synchronizer-and-aqs/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -836,7 +837,7 @@ package angus.intrview.concurrent; import java.util.concurrent.CountDownLatch; i
     
      <entry>
         <title>Java-==-and-equal</title>
-        <url>https://xiongdahu.github.io/post/java-and-equal/</url>
+        <url>https://cod3fn.github.io/post/java-and-equal/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -848,7 +849,7 @@ package angus.intrview.concurrent; import java.util.concurrent.CountDownLatch; i
     
      <entry>
         <title>Java-动态代理</title>
-        <url>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+        <url>https://cod3fn.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -884,7 +885,7 @@ import angus.interview.proxy.Subject; import java.lang.reflect.InvocationHandler
     
      <entry>
         <title>Java-注解和注解处理器</title>
-        <url>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</url>
+        <url>https://cod3fn.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -943,7 +944,7 @@ package angus.interview.annotation; import java.io.IOException; import java.io.P
     
      <entry>
         <title>单例模式和序列化</title>
-        <url>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+        <url>https://cod3fn.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</url>
         <categories>
           <category>编程</category>
         </categories>
@@ -959,7 +960,7 @@ public class Singleton { private Singleton (){} private static class SingletonHo
     
      <entry>
         <title>面试题-类加载过程和子类重写父类方法的调用</title>
-        <url>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</url>
+        <url>https://cod3fn.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</url>
         <categories>
           <category>编程</category>
         </categories>

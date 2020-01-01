@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>spring on 香取海</title>
-    <link>https://xiongdahu.github.io/tags/spring/</link>
+    <link>https://cod3fn.github.io/tags/spring/</link>
     <description>Recent content in spring on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 16 May 2019 22:44:38 +0800</lastBuildDate>
     
-	<atom:link href="https://xiongdahu.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cod3fn.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Spring FactoryBean and ContextAware</title>
-      <link>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</link>
+      <link>https://cod3fn.github.io/post/spring-factorybean-contextaware/</link>
       <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</guid>
+      <guid>https://cod3fn.github.io/post/spring-factorybean-contextaware/</guid>
       <description>FactoryBean 一句话就是FactoryBean用于返回其他对象</description>
     </item>
     
     <item>
       <title>Spring Boot Notes</title>
-      <link>https://xiongdahu.github.io/post/spring-boot-notes/</link>
+      <link>https://cod3fn.github.io/post/spring-boot-notes/</link>
       <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/spring-boot-notes/</guid>
+      <guid>https://cod3fn.github.io/post/spring-boot-notes/</guid>
       <description>一些容易忘记的spring boot知识要点. 注意,</description>
     </item>
     

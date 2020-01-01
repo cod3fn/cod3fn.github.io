@@ -2,148 +2,148 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>java on 香取海</title>
-    <link>https://xiongdahu.github.io/tags/java/</link>
+    <link>https://cod3fn.github.io/tags/java/</link>
     <description>Recent content in java on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 01 May 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://xiongdahu.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cod3fn.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>java generic</title>
-      <link>https://xiongdahu.github.io/post/java-generic/</link>
+      <link>https://cod3fn.github.io/post/java-generic/</link>
       <pubDate>Sun, 01 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-generic/</guid>
+      <guid>https://cod3fn.github.io/post/java-generic/</guid>
       <description>泛型 // 类 class Tuple&amp;lt;T, S&amp;gt; { private T first; private S second; } // 泛型方法也可在非泛</description>
     </item>
     
     <item>
       <title>IO-Java-Stream-Write-Reader</title>
-      <link>https://xiongdahu.github.io/post/io-java-stream-write-reader/</link>
+      <link>https://cod3fn.github.io/post/io-java-stream-write-reader/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/io-java-stream-write-reader/</guid>
+      <guid>https://cod3fn.github.io/post/io-java-stream-write-reader/</guid>
       <description>java reader writer stream 上次总结了java 678 中不同读写文件的方法，</description>
     </item>
     
     <item>
       <title>Java-6-7-8-文件读写</title>
-      <link>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
+      <link>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
+      <guid>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
       <description>*[] 重要的类 *[] 文件读写场景 资料：Reading and writing text</description>
     </item>
     
     <item>
       <title>gradle笔记1-理解build脚本基本语法</title>
-      <link>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <link>https://cod3fn.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <guid>https://cod3fn.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
       <description>&lt;p&gt;在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。&lt;br /&gt;
 理解gradle文件的前提是理解一个重要的groovy概念:closure&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Java AOP example</title>
-      <link>https://xiongdahu.github.io/post/java-aop-example/</link>
+      <link>https://cod3fn.github.io/post/java-aop-example/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-aop-example/</guid>
+      <guid>https://cod3fn.github.io/post/java-aop-example/</guid>
       <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
     </item>
     
     <item>
       <title>Java concurrency 1 basic</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-1-basic/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-1-basic/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-1-basic/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-1-basic/</guid>
       <description>知识点太多了。先列举一些知识点，然后在分别做一点笔</description>
     </item>
     
     <item>
       <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
       <description>定义任务的内容 多线程编程的核心元素就是任务，任务是</description>
     </item>
     
     <item>
       <title>Java concurrency 3 synchronized or Lock</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
       <description>synchronized method和synchronized block</description>
     </item>
     
     <item>
       <title>Java concurrency 4 CAS and atomic</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-4-cas-and-atomic/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
       <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long next = current + 1; if (compareAndSet(current, next)) return next;</description>
     </item>
     
     <item>
       <title>Java concurrency 5 Synchronizer and AQS</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
       <description>好难，看不懂呀！ 先自己写一个CountDownLa</description>
     </item>
     
     <item>
       <title>Java-==-and-equal</title>
-      <link>https://xiongdahu.github.io/post/java-and-equal/</link>
+      <link>https://cod3fn.github.io/post/java-and-equal/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-and-equal/</guid>
+      <guid>https://cod3fn.github.io/post/java-and-equal/</guid>
       <description>/** * samples for == and equal() * @author hsiung * */ class TestObj { // the class for test == and equal() } public</description>
     </item>
     
     <item>
       <title>Java-动态代理</title>
-      <link>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+      <link>https://cod3fn.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://cod3fn.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
       <description>好文 Java 动态代理机制分析及扩展 更深入的一篇: java</description>
     </item>
     
     <item>
       <title>Java-注解和注解处理器</title>
-      <link>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</link>
+      <link>https://cod3fn.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</guid>
+      <guid>https://cod3fn.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</guid>
       <description>注解处理 注解是jdk1.5出现的,但是自定义处理注</description>
     </item>
     
     <item>
       <title>单例模式和序列化</title>
-      <link>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+      <link>https://cod3fn.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+      <guid>https://cod3fn.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
       <description>参考资料 饱汉式 public class Singleton { private static Singleton instance = null private Singleton (){} public static Singleton getInstance() {</description>
     </item>
     
     <item>
       <title>面试题-类加载过程和子类重写父类方法的调用</title>
-      <link>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</link>
+      <link>https://cod3fn.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
+      <guid>https://cod3fn.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
       <description>最近一道非常火的携程面试题: public class Base { private String baseName = &amp;#34;base&amp;#34;; public Base()</description>
     </item>
     

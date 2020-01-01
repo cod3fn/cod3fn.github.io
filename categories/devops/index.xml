@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DevOps on 香取海</title>
-    <link>https://xiongdahu.github.io/categories/devops/</link>
+    <link>https://cod3fn.github.io/categories/devops/</link>
     <description>Recent content in DevOps on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 24 Jul 2019 07:58:12 +0800</lastBuildDate>
     
-	<atom:link href="https://xiongdahu.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cod3fn.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Devops Maturity Model Checklist</title>
-      <link>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</link>
+      <title>DevOps 成熟度检查清单</title>
+      <link>https://cod3fn.github.io/post/devops-maturity-model-checklist/</link>
       <pubDate>Wed, 24 Jul 2019 07:58:12 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</guid>
+      <guid>https://cod3fn.github.io/post/devops-maturity-model-checklist/</guid>
       <description>之前听说过AWS的软件工程师是需要自己写需求说明书</description>
     </item>
     

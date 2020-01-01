@@ -2,337 +2,337 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>香取海</title>
-    <link>https://xiongdahu.github.io/</link>
+    <link>https://cod3fn.github.io/</link>
     <description>Recent content on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 01 Sep 2019 21:01:06 +0800</lastBuildDate>
     
-	<atom:link href="https://xiongdahu.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cod3fn.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>git useful tips</title>
-      <link>https://xiongdahu.github.io/post/git-useful-tips/</link>
+      <title>git 常用命令备忘录</title>
+      <link>https://cod3fn.github.io/post/git-useful-tips/</link>
       <pubDate>Sun, 01 Sep 2019 21:01:06 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/git-useful-tips/</guid>
-      <description>copyright all these git tips are from oh shit git and stackoverflow. delete all history commit and commit current content git checkout --orphan tmp_branch &amp;amp;&amp;amp;</description>
+      <guid>https://cod3fn.github.io/post/git-useful-tips/</guid>
+      <description>记录日常开发中偶尔会遇到的但是总是记不住的git命</description>
     </item>
     
     <item>
-      <title>Devops Maturity Model Checklist</title>
-      <link>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</link>
+      <title>DevOps 成熟度检查清单</title>
+      <link>https://cod3fn.github.io/post/devops-maturity-model-checklist/</link>
       <pubDate>Wed, 24 Jul 2019 07:58:12 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/devops-maturity-model-checklist/</guid>
+      <guid>https://cod3fn.github.io/post/devops-maturity-model-checklist/</guid>
       <description>之前听说过AWS的软件工程师是需要自己写需求说明书</description>
     </item>
     
     <item>
       <title>Scala Collection Tips</title>
-      <link>https://xiongdahu.github.io/post/scala-collection-tips/</link>
+      <link>https://cod3fn.github.io/post/scala-collection-tips/</link>
       <pubDate>Sun, 19 May 2019 16:49:14 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/scala-collection-tips/</guid>
+      <guid>https://cod3fn.github.io/post/scala-collection-tips/</guid>
       <description>scala collection 提供了一整套独立于Java的高性能集合,使用上</description>
     </item>
     
     <item>
       <title>前端静态资源图片优化</title>
-      <link>https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</link>
+      <link>https://cod3fn.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</link>
       <pubDate>Sun, 19 May 2019 11:07:26 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</guid>
+      <guid>https://cod3fn.github.io/post/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</guid>
       <description>GTmetrix是一个前端页面测试的网站,可以发现</description>
     </item>
     
     <item>
       <title>Spring FactoryBean and ContextAware</title>
-      <link>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</link>
+      <link>https://cod3fn.github.io/post/spring-factorybean-contextaware/</link>
       <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/spring-factorybean-contextaware/</guid>
+      <guid>https://cod3fn.github.io/post/spring-factorybean-contextaware/</guid>
       <description>FactoryBean 一句话就是FactoryBean用于返回其他对象</description>
     </item>
     
     <item>
       <title>Learn Clojure by Example</title>
-      <link>https://xiongdahu.github.io/post/learn-clojure-by-example/</link>
+      <link>https://cod3fn.github.io/post/learn-clojure-by-example/</link>
       <pubDate>Mon, 13 May 2019 15:22:05 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/learn-clojure-by-example/</guid>
+      <guid>https://cod3fn.github.io/post/learn-clojure-by-example/</guid>
       <description>clojure 入门 这份笔记试图打造最强的clojure小抄,k</description>
     </item>
     
     <item>
       <title>Elasticsearch Query DSL</title>
-      <link>https://xiongdahu.github.io/post/elasticsearch-query-dsl/</link>
+      <link>https://cod3fn.github.io/post/elasticsearch-query-dsl/</link>
       <pubDate>Wed, 01 May 2019 10:17:46 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/elasticsearch-query-dsl/</guid>
+      <guid>https://cod3fn.github.io/post/elasticsearch-query-dsl/</guid>
       <description>diffs in es 2.x and es 5.x query dsl aggr query diffs in es 2.x and es 5.x 没有strin</description>
     </item>
     
     <item>
       <title>Useful Scala Code Snippets</title>
-      <link>https://xiongdahu.github.io/post/useful-scala-code-snippets/</link>
+      <link>https://cod3fn.github.io/post/useful-scala-code-snippets/</link>
       <pubDate>Fri, 26 Apr 2019 07:54:00 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/useful-scala-code-snippets/</guid>
+      <guid>https://cod3fn.github.io/post/useful-scala-code-snippets/</guid>
       <description>merge two map and sum its values 多个map合并,key相同时则val</description>
     </item>
     
     <item>
       <title>Scala Future</title>
-      <link>https://xiongdahu.github.io/post/scala-future/</link>
+      <link>https://cod3fn.github.io/post/scala-future/</link>
       <pubDate>Sun, 21 Apr 2019 14:36:36 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/scala-future/</guid>
+      <guid>https://cod3fn.github.io/post/scala-future/</guid>
       <description>&lt;p&gt;some notes on scala future, includes:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Spring Boot Notes</title>
-      <link>https://xiongdahu.github.io/post/spring-boot-notes/</link>
+      <link>https://cod3fn.github.io/post/spring-boot-notes/</link>
       <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/spring-boot-notes/</guid>
+      <guid>https://cod3fn.github.io/post/spring-boot-notes/</guid>
       <description>一些容易忘记的spring boot知识要点. 注意,</description>
     </item>
     
     <item>
       <title>Pattern Matching Anonymous Function</title>
-      <link>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</link>
+      <link>https://cod3fn.github.io/post/pattern-matching-anonymous-function/</link>
       <pubDate>Sun, 31 Mar 2019 13:10:41 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/pattern-matching-anonymous-function/</guid>
+      <guid>https://cod3fn.github.io/post/pattern-matching-anonymous-function/</guid>
       <description>Scala中很多使用if的地方都可以用match c</description>
     </item>
     
     <item>
       <title>Scala Type Class</title>
-      <link>https://xiongdahu.github.io/post/scala-type-class/</link>
+      <link>https://cod3fn.github.io/post/scala-type-class/</link>
       <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/scala-type-class/</guid>
+      <guid>https://cod3fn.github.io/post/scala-type-class/</guid>
       <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z</description>
     </item>
     
     <item>
-      <title>Scala Notes</title>
-      <link>https://xiongdahu.github.io/post/scala-notes/</link>
+      <title>Scala 学习笔记</title>
+      <link>https://cod3fn.github.io/post/scala-notes/</link>
       <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/scala-notes/</guid>
+      <guid>https://cod3fn.github.io/post/scala-notes/</guid>
       <description>scala-notes some notes on scala, includes: setup with maven import == and eq case class for&amp;hellip;yield companion object and class method and function(def val) _</description>
     </item>
     
     <item>
       <title>使用redis的hash优化内存使用</title>
-      <link>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</link>
+      <link>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sun, 31 Mar 2019 00:11:50 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</guid>
       <description>原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储</description>
     </item>
     
     <item>
       <title>使用travis自动发布markdown到博客</title>
-      <link>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Sat, 30 Mar 2019 10:56:47 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</guid>
-      <description>&lt;p&gt;github给个人和组织免费提供github pages功能. 就是说如果有个repo的名字为 xiongdahu.github.io (xiongdahu为你的github username), 那么这个repo里面的master或者gh-page分支的内容如果存在index.html, 那么其他人可以通过 &lt;a href=&#34;https://xiongdahu.github.io&#34;&gt;https://xiongdahu.github.io&lt;/a&gt; 访问这个站点.&lt;/p&gt;</description>
+      <guid>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8travis%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83markdown%E5%88%B0%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;github给个人和组织免费提供github pages功能. 就是说如果有个repo的名字为 cod3fn.github.io (cod3fn为你的github username), 那么这个repo里面的master或者gh-page分支的内容如果存在index.html, 那么其他人可以通过 &lt;a href=&#34;https://cod3fn.github.io&#34;&gt;https://cod3fn.github.io&lt;/a&gt; 访问这个站点.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>wsl-docker-environment</title>
-      <link>https://xiongdahu.github.io/post/wsl-docker-environment/</link>
+      <link>https://cod3fn.github.io/post/wsl-docker-environment/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/wsl-docker-environment/</guid>
+      <guid>https://cod3fn.github.io/post/wsl-docker-environment/</guid>
       <description>&lt;p&gt;使用wsl,MobaXterm,cmder,docker打造可视化的linux开发环境&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>neo4j intro</title>
-      <link>https://xiongdahu.github.io/post/neo4j-intro/</link>
+      <link>https://cod3fn.github.io/post/neo4j-intro/</link>
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/neo4j-intro/</guid>
+      <guid>https://cod3fn.github.io/post/neo4j-intro/</guid>
       <description>neo4j图数据库介绍 neo4j是目前排名最高的图</description>
     </item>
     
     <item>
       <title>Spark Basic</title>
-      <link>https://xiongdahu.github.io/post/spark-basic/</link>
+      <link>https://cod3fn.github.io/post/spark-basic/</link>
       <pubDate>Sat, 31 Mar 2018 00:17:30 +0800</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/spark-basic/</guid>
+      <guid>https://cod3fn.github.io/post/spark-basic/</guid>
       <description>引言 大数据计算和普通的程序并无本质区别：数据输入=</description>
     </item>
     
     <item>
+      <title>cod3fn</title>
+      <link>https://cod3fn.github.io/about/</link>
+      <pubDate>Sun, 09 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cod3fn.github.io/about/</guid>
+      <description>2017- 杭州 2014-2017 上海 2010-2014 西安</description>
+    </item>
+    
+    <item>
       <title>java generic</title>
-      <link>https://xiongdahu.github.io/post/java-generic/</link>
+      <link>https://cod3fn.github.io/post/java-generic/</link>
       <pubDate>Sun, 01 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-generic/</guid>
+      <guid>https://cod3fn.github.io/post/java-generic/</guid>
       <description>泛型 // 类 class Tuple&amp;lt;T, S&amp;gt; { private T first; private S second; } // 泛型方法也可在非泛</description>
     </item>
     
     <item>
       <title>IO-Java-Stream-Write-Reader</title>
-      <link>https://xiongdahu.github.io/post/io-java-stream-write-reader/</link>
+      <link>https://cod3fn.github.io/post/io-java-stream-write-reader/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/io-java-stream-write-reader/</guid>
+      <guid>https://cod3fn.github.io/post/io-java-stream-write-reader/</guid>
       <description>java reader writer stream 上次总结了java 678 中不同读写文件的方法，</description>
     </item>
     
     <item>
       <title>Java-6-7-8-文件读写</title>
-      <link>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
+      <link>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
+      <guid>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
       <description>*[] 重要的类 *[] 文件读写场景 资料：Reading and writing text</description>
     </item>
     
     <item>
       <title>gradle笔记1-理解build脚本基本语法</title>
-      <link>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <link>https://cod3fn.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <guid>https://cod3fn.github.io/post/gradle-%E7%90%86%E8%A7%A3build%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
       <description>&lt;p&gt;在看这个之前，希望你有用ant或者maven的使用经验，还有，对groovy的语法有一个简单的了解，不懂也没关系，下面会介绍。&lt;br /&gt;
 理解gradle文件的前提是理解一个重要的groovy概念:closure&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Java AOP example</title>
-      <link>https://xiongdahu.github.io/post/java-aop-example/</link>
+      <link>https://cod3fn.github.io/post/java-aop-example/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-aop-example/</guid>
+      <guid>https://cod3fn.github.io/post/java-aop-example/</guid>
       <description>找到一个最简单的介绍，不怎么想翻译，直接看原文吧:</description>
     </item>
     
     <item>
       <title>Java concurrency 1 basic</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-1-basic/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-1-basic/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-1-basic/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-1-basic/</guid>
       <description>知识点太多了。先列举一些知识点，然后在分别做一点笔</description>
     </item>
     
     <item>
       <title>Java concurrency 2 Runnable Callable FutureExecutor</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-2-runnable-callable-future-executor/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-2-runnable-callable-future-executor/</guid>
       <description>定义任务的内容 多线程编程的核心元素就是任务，任务是</description>
     </item>
     
     <item>
       <title>Java concurrency 3 synchronized or Lock</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-3-synchronized-or-lock/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-3-synchronized-or-lock/</guid>
       <description>synchronized method和synchronized block</description>
     </item>
     
     <item>
       <title>Java concurrency 4 CAS and atomic</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-4-cas-and-atomic/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-4-cas-and-atomic/</guid>
       <description>AtomicLong code: public final long incrementAndGet() { for (;;) { long current = get(); long next = current + 1; if (compareAndSet(current, next)) return next;</description>
     </item>
     
     <item>
       <title>Java concurrency 5 Synchronizer and AQS</title>
-      <link>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
+      <link>https://cod3fn.github.io/post/java-concurrency-5-synchronizer-and-aqs/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
+      <guid>https://cod3fn.github.io/post/java-concurrency-5-synchronizer-and-aqs/</guid>
       <description>好难，看不懂呀！ 先自己写一个CountDownLa</description>
     </item>
     
     <item>
       <title>Java-==-and-equal</title>
-      <link>https://xiongdahu.github.io/post/java-and-equal/</link>
+      <link>https://cod3fn.github.io/post/java-and-equal/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-and-equal/</guid>
+      <guid>https://cod3fn.github.io/post/java-and-equal/</guid>
       <description>/** * samples for == and equal() * @author hsiung * */ class TestObj { // the class for test == and equal() } public</description>
     </item>
     
     <item>
       <title>Java-动态代理</title>
-      <link>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+      <link>https://cod3fn.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://cod3fn.github.io/post/java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
       <description>好文 Java 动态代理机制分析及扩展 更深入的一篇: java</description>
     </item>
     
     <item>
       <title>Java-注解和注解处理器</title>
-      <link>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</link>
+      <link>https://cod3fn.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</guid>
+      <guid>https://cod3fn.github.io/post/java-%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%B3%A8%E8%A7%A3%E5%A4%84%E7%90%86%E5%99%A8/</guid>
       <description>注解处理 注解是jdk1.5出现的,但是自定义处理注</description>
     </item>
     
     <item>
       <title>单例模式和序列化</title>
-      <link>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+      <link>https://cod3fn.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
+      <guid>https://cod3fn.github.io/post/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
       <description>参考资料 饱汉式 public class Singleton { private static Singleton instance = null private Singleton (){} public static Singleton getInstance() {</description>
     </item>
     
     <item>
       <title>面试题-类加载过程和子类重写父类方法的调用</title>
-      <link>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</link>
+      <link>https://cod3fn.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</link>
       <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
+      <guid>https://cod3fn.github.io/post/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8/</guid>
       <description>最近一道非常火的携程面试题: public class Base { private String baseName = &amp;#34;base&amp;#34;; public Base()</description>
     </item>
     
     <item>
-      <title>熊打虎</title>
-      <link>https://xiongdahu.github.io/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://xiongdahu.github.io/about/</guid>
-      <description>2017- 杭州 2014-2017 上海 2010-2014 西安</description>
-    </item>
-    
-    <item>
       <title></title>
-      <link>https://xiongdahu.github.io/gallery/</link>
+      <link>https://cod3fn.github.io/gallery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/gallery/</guid>
+      <guid>https://cod3fn.github.io/gallery/</guid>
       <description>相册    生活点滴 Twitter Facebook Instagram 500px Email  --   20160828_西湖  20181013_满觉陇  豫园灯会    20190203_可爱的外甥  20181130_迪士尼  上海1933    豫园灯会  南京东路     Photos by Wtt &amp;copy; All rights reserved.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://xiongdahu.github.io/rose/</link>
+      <link>https://cod3fn.github.io/rose/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xiongdahu.github.io/rose/</guid>
+      <guid>https://cod3fn.github.io/rose/</guid>
       <description>玫瑰   你是不是也觉得,
 这里应该放一句情话
  var canvas = document.getElementsByTagName(&#39;canvas&#39;)[0]; var context = canvas.getContext(&#39;2d&#39;); var a = context; var b = document.body; var c = canvas; document.</description>
