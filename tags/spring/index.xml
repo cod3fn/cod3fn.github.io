@@ -6,10 +6,19 @@
     <description>Recent content in spring on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 May 2019 22:44:38 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Feb 2020 11:30:55 +0800</lastBuildDate>
     
 	<atom:link href="https://cod3fn.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringBoot应用和Rust应用的Dockerfile最佳实践</title>
+      <link>https://cod3fn.github.io/post/dockerfile-best-practices/</link>
+      <pubDate>Mon, 03 Feb 2020 11:30:55 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/dockerfile-best-practices/</guid>
+      <description>&lt;p&gt;记录spring boot和rust项目的Dockerfile的最佳实践.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Spring FactoryBean and ContextAware</title>

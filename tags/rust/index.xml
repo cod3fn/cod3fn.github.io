@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rust on 香取海</title>
+    <link>https://cod3fn.github.io/tags/rust/</link>
+    <description>Recent content in rust on 香取海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 03 Feb 2020 11:30:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://cod3fn.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringBoot应用和Rust应用的Dockerfile最佳实践</title>
+      <link>https://cod3fn.github.io/post/dockerfile-best-practices/</link>
+      <pubDate>Mon, 03 Feb 2020 11:30:55 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/dockerfile-best-practices/</guid>
+      <description>&lt;p&gt;记录spring boot和rust项目的Dockerfile的最佳实践.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rust Packages Crates Mod Notes</title>
+      <link>https://cod3fn.github.io/post/rust-packages-crates-mod/</link>
+      <pubDate>Sun, 12 Jan 2020 20:03:33 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/rust-packages-crates-mod/</guid>
+      <description>&lt;p&gt;初学rust对于项目的package和crate的关系,module和文件的关系有点理不清.做了一点笔记.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

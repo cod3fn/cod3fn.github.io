@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thoughts on 香取海</title>
+    <link>https://cod3fn.github.io/tags/thoughts/</link>
+    <description>Recent content in thoughts on 香取海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 12 Jan 2020 20:35:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://cod3fn.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>编程随想</title>
+      <link>https://cod3fn.github.io/post/thoughts-on-programming/</link>
+      <pubDate>Sun, 12 Jan 2020 20:35:00 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/thoughts-on-programming/</guid>
+      <description>&lt;p&gt;开个坑,春节一定要完成.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

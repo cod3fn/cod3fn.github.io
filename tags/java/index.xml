@@ -35,7 +35,7 @@
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
-      <description>*[] 重要的类 *[] 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认</description>
+      <description>重要的类 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文</description>
     </item>
     
     <item>

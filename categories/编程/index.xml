@@ -6,10 +6,65 @@
     <description>Recent content in 编程 on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 01 Sep 2019 21:01:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Feb 2020 11:30:55 +0800</lastBuildDate>
     
 	<atom:link href="https://cod3fn.github.io/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringBoot应用和Rust应用的Dockerfile最佳实践</title>
+      <link>https://cod3fn.github.io/post/dockerfile-best-practices/</link>
+      <pubDate>Mon, 03 Feb 2020 11:30:55 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/dockerfile-best-practices/</guid>
+      <description>&lt;p&gt;记录spring boot和rust项目的Dockerfile的最佳实践.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker CMD ENTRYPOINT区别</title>
+      <link>https://cod3fn.github.io/post/docker-cmd-entrypoint-diff/</link>
+      <pubDate>Sun, 02 Feb 2020 21:10:18 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/docker-cmd-entrypoint-diff/</guid>
+      <description>&lt;p&gt;记录docker中exec form和shell form的区别,CMD和ENTRYPOINT区别,以及最佳实践.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>scala uniform access principle</title>
+      <link>https://cod3fn.github.io/post/scala-uniform-access-principle/</link>
+      <pubDate>Fri, 31 Jan 2020 18:40:10 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/scala-uniform-access-principle/</guid>
+      <description>&lt;p&gt;虽然代码写的很水,但是我对各种编程语言一直比较感兴趣. 除了工作中使用的Java之外,自己也了解Python,Groovy,Scala,Kotlin,Clojure,Go,Rust.其中Python和Scala在工作中也偶尔使用. 了解不同的编程语言语法对于编程思维的影响还是蛮有意思的.&lt;br /&gt;
+例如, 只会Java的开发者可能没有听过模式匹配(pattern match).在我学习了Scala之后,我对模式匹配的理解就是更强更优雅的switch+if. 而在我看过rust和elixir语言中关于模式匹配之后,我对模式匹配的理解就完全不一样了.&lt;/p&gt;
+
+&lt;p&gt;这些语言中,论说对编程思维改变最大的当属Clojure莫属. Lisp语言是一种非常优雅的语言. 这种优雅的最大特点就是Lisp(Clojure)从语法上面做到了代码即数据.即Clojure的代码形式和其数据结构list的形式是一样的(这也是lisp名字由来,LISt Processor).&lt;br /&gt;
+这个特点的好处就是Clojure赋予了list这种数据结构强大的表达能力,可以在使用极其简练的语法在list数据结构实现复杂的逻辑.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;laquo;It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures.&amp;raquo; —Alan Perlis&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;尽可能的减少语法的规则,这种语法特点在Scala上面也有体现.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Highlights in Scala for Impatient 2nd</title>
+      <link>https://cod3fn.github.io/post/highlights-in-scala-for-impatient-2nd/</link>
+      <pubDate>Wed, 15 Jan 2020 21:42:33 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/highlights-in-scala-for-impatient-2nd/</guid>
+      <description>&lt;p&gt;key points in scala-for-impatient 2nd book, best book for java developer to use scala in a rush&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rust Packages Crates Mod Notes</title>
+      <link>https://cod3fn.github.io/post/rust-packages-crates-mod/</link>
+      <pubDate>Sun, 12 Jan 2020 20:03:33 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/rust-packages-crates-mod/</guid>
+      <description>&lt;p&gt;初学rust对于项目的package和crate的关系,module和文件的关系有点理不清.做了一点笔记.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>git 常用命令备忘录</title>
@@ -170,7 +225,7 @@
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>https://cod3fn.github.io/post/io-java-6-7-8-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
-      <description>*[] 重要的类 *[] 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认</description>
+      <description>重要的类 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文</description>
     </item>
     
     <item>
