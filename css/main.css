@@ -500,7 +500,7 @@ pre,
 }
 pre,
 code {
-  font-family: 'droid sans mono','fira code', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: thesans, 'fira code', 'droid sans mono', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
   padding: 2px 4px;
