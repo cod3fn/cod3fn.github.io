@@ -45,7 +45,7 @@
       <pubDate>Sun, 19 May 2019 16:49:14 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/scala-collection-tips/</guid>
-      <description>scala collection 提供了一整套独立于Java的高性能集合,使用上非常灵活,所以需要清楚一些常用的方法: reduce fold scan 集合的符号方法 数组,tuple 2.13的</description>
+      <description>scala collection 提供了一整套独立于Java的高性能集合,使用上非常灵活,所以需要清楚一些常用的方法: reduce fold scan 集合的符号方法 数组,tuple 2.13的集合架构 reduce fold scan //reduce是一个二元函数,遍历整个集合 List(1, 3, 5).reduceLeft(_ + _) // == ((1+3)+5) //reduceRight start from end of the collection //also you can given initial argument List(1, 3, 5).foldLeft(&amp;#34;&amp;#34;)(_</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@
       <pubDate>Fri, 26 Apr 2019 07:54:00 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/useful-scala-code-snippets/</guid>
-      <description>merge two map and sum its values 多个map合并,key相同时则value相加 val map1 = Map(1 -&amp;gt; 1, 2 -&amp;gt; 2) val map2 = Map(1 -&amp;gt; 11, 3 -&amp;gt; 3) val map3 = Map(1 -&amp;gt; 111, 3 -&amp;gt; 3) val mapList = List(map1, map2, map3) val merged = mapList.reduce((m1, m2)</description>
+      <description>merge two map and sum its values 多个map合并,key相同时则value相加 val map1 = Map(1 -&amp;gt; 1, 2 -&amp;gt; 2) val map2 = Map(1 -&amp;gt; 11, 3 -&amp;gt; 3) val map3 = Map(1 -&amp;gt; 111, 3 -&amp;gt; 3) val mapList = List(map1, map2, map3) val merged = mapList.reduce((m1, m2) =&amp;gt; m1 ++ m2.map { case (k, v) =&amp;gt; k -&amp;gt; (v + m1.getOrElse(k, 0)) } ) 文件读 // &amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;可以</description>
     </item>
     
     <item>
@@ -72,7 +72,7 @@
       <pubDate>Sun, 31 Mar 2019 13:10:41 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/pattern-matching-anonymous-function/</guid>
-      <description>Scala中很多使用if的地方都可以用match case来替换.常见的就是下面的这种写法: val res = msg match { case it if it.contains(&amp;#34;H&amp;#34;) =&amp;gt; &amp;#34;Hello&amp;#34; case _ =&amp;gt; &amp;#34;Other&amp;#34; } //更常见</description>
+      <description>Scala中很多使用if的地方都可以用match case来替换.常见的就是下面的这种写法: val res = msg match { case it if it.contains(&amp;#34;H&amp;#34;) =&amp;gt; &amp;#34;Hello&amp;#34; case _ =&amp;gt; &amp;#34;Other&amp;#34; } //更常见的用法是去匹配参数的模式: case class Player(name: String, score: Int) def message(player: Player) = player match { case Player(_, score) if score &amp;gt; 100000 =&amp;gt; &amp;#34;Get a job, dude!&amp;#34; case Player(name, _) =&amp;gt; &amp;#34;Hey, $name, nice to see you again!&amp;#34; } def printMessage(player: Player)</description>
     </item>
     
     <item>
@@ -81,7 +81,7 @@
       <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/scala-type-class/</guid>
-      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (y &amp;lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } 假设有个排序算法</description>
+      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (y &amp;lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } 假设有个排序算法如上，代码的第一个问题就是没有泛型，只能对Int排序。那如果改成insertionSort[T](xs: List[T]):</description>
     </item>
     
   </channel>

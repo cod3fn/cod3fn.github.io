@@ -10,7 +10,8 @@
           <tag>code</tag><tag>python</tag>
         </tags>
         <content type="html"> 很久以前写的一个答案,四年来一直有人评论感谢,说只有我的方法是有效的.非常意外也很高兴. 也放到博客中里备份吧.
-# https://www.zhihu.com/question/25404709/answer/67672003 import matplotlib.font_manager as fm # 微软雅黑,如果需要宋体,可以用simsun.ttc myfont = fm.FontProperties(fname=&amp;#39;C:/Windows/Fonts/msyh.ttc&amp;#39;) # Linux字体目录在&amp;#34;/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc&amp;#34;,  # 需要先安装字体&amp;#34;&amp;gt;sudo apt install fonts-noto-cjk -y&amp;#34; # MacOS中文字体文件在&amp;#34;/System/Library/Fonts/PingFang.ttc&amp;#34; # Win10,Linux已测试,MacOS未验证 import matplotlib.pyplot as plt plt.clf() # 清空画布 plt.plot([1, 2, 3], [4, 5, 6]) plt.xlabel(&amp;#34;横轴&amp;#34;,fontproperties=myfont) plt.ylabel(&amp;#34;纵轴&amp;#34;,fontproperties=myfont) plt.title(&amp;#34;pythoner.com&amp;#34;,fontproperties=myfont) plt.legend([&amp;#39;图例&amp;#39;],prop=myfont) plt.show()</content>
+zhihu.com
+# https://www.zhihu.com/question/25404709/answer/67672003 import matplotlib.font_manager as fm # 微软雅黑,如果需要宋体,可以用simsun.ttc myfont = fm.FontProperties(fname=&amp;#39;C:/Windows/Fonts/msyh.ttc&amp;#39;) # Linux字体在&amp;#34;/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc&amp;#34;,  # 需要先安装字体&amp;#34;&amp;gt;sudo apt install fonts-noto-cjk -y&amp;#34; # MacOS中文字体文件在&amp;#34;/System/Library/Fonts/PingFang.ttc&amp;#34; # Win10,Linux已测试,MacOS未验证 import matplotlib.pyplot as plt plt.clf() # 清空画布 plt.plot([1, 2, 3], [4, 5, 6]) plt.xlabel(&amp;#34;横轴&amp;#34;,fontproperties=myfont) plt.ylabel(&amp;#34;纵轴&amp;#34;,fontproperties=myfont) plt.title(&amp;#34;pythoner.com&amp;#34;,fontproperties=myfont) plt.legend([&amp;#39;图例&amp;#39;],prop=myfont) plt.show()</content>
     </entry>
     
      <entry>

@@ -1227,7 +1227,7 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
-  font-size: 26px;
+  font-size: 22px;
   text-align: center;
   word-break: break-word;
   font-weight: 300;
@@ -1275,7 +1275,7 @@ pre .javascript .function {
   font-size: 16px;
 }
 .posts-expand .post-meta {
-  margin: 3px 0 60px 0;
+  margin: 3px 0 30px 0;
   color: #999;
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
@@ -1319,14 +1319,15 @@ pre .javascript .function {
   }
 }
 .post-more-link {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 .post-more-link .btn {
-  color: #555;
+  color: #888;
   font-size: 14px;
   background: #fff;
   border-radius: 2px;
   line-height: 2;
+  border: 0px solid #888;
 }
 .posts-expand .post-tags {
   margin-top: 40px;
@@ -1389,7 +1390,7 @@ pre .javascript .function {
 }
 .posts-expand .post-eof {
   display: block;
-  margin: 80px auto 60px;
+  margin: 40px auto 30px;
   width: 8%;
   height: 1px;
   background: #ccc;
@@ -2348,6 +2349,7 @@ body {
   width: 900px;
   background: #fff;
   min-height: 700px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {

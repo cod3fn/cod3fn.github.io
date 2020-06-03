@@ -26,7 +26,7 @@
       <pubDate>Thu, 16 May 2019 22:44:38 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/spring-factorybean-contextaware/</guid>
-      <description>FactoryBean 一句话就是FactoryBean用于返回其他对象实例的,而不是自身类型的实例. 例如: public class Tool { private int id; // standard constructors, getters and setters } public class ToolFactory implements FactoryBean&amp;lt;Tool&amp;gt; { private int factoryId; private</description>
+      <description>FactoryBean 一句话就是FactoryBean用于返回其他对象实例的,而不是自身类型的实例. 例如: public class Tool { private int id; // standard constructors, getters and setters } public class ToolFactory implements FactoryBean&amp;lt;Tool&amp;gt; { private int factoryId; private int toolId; @Override public Tool getObject() throws Exception { return new Tool(toolId); } @Override public Class&amp;lt;?&amp;gt; getObjectType() { return Tool.class; } @Override public boolean isSingleton() { return false; } // standard setters and getters } 注册Tool: &amp;lt;!-- factorybean-spring-ctx.xml --&amp;gt; &amp;lt;beans ...&amp;gt; &amp;lt;bean id=&amp;#34;tool&amp;#34; class=&amp;#34;com.baeldung.factorybean.ToolFactory&amp;#34;&amp;gt; &amp;lt;property name=&amp;#34;factoryId&amp;#34; value=&amp;#34;9090&amp;#34;/&amp;gt;</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 14 Apr 2019 18:33:22 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/spring-boot-notes/</guid>
-      <description>一些容易忘记的spring boot知识要点. 注意,.yaml和.yml文件没任何区别. 配置 SpringBootApplication注</description>
+      <description>一些容易忘记的spring boot知识要点. 注意,.yaml和.yml文件没任何区别. 配置 SpringBootApplication注解 @SpringBootApplication &amp;lt;=等价=&amp;gt; @Configuration @ComponentScan @EnableAutoConfiguration 自动配置 spring的自动配置依赖以下注解: 配置文件 任何时候硬编码的配置</description>
     </item>
     
   </channel>

@@ -168,7 +168,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    引言 大数据计算和普通的程序并无本质区别：数据输入=&gt;计算=&gt;输出和结果的持久化。这里的挑战在于计算的效率和容错性。由于数据
+    引言 大数据计算和普通的程序并无本质区别：数据输入=&gt;计算=&gt;输出和结果的持久化。这里的挑战在于计算的效率和容错性。由于数据输入巨大，计算的效率是基本的要求。为了在通用硬件上高效完成大量计算，唯一的途径就是将计算任务拆分分布式计算
     </div>
     
     <div class="post-more-link text-center">
@@ -227,7 +227,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    泛型 // 类 class Tuple&lt;T, S&gt; { private T first; private S second; } // 泛型方法也可在非泛型类里面 class ArrayAlg { public static &lt;T&gt; T getMiddle(T... a) { return a[a.length / 2]; } }String middle = ArrayAlg.&lt;String&gt;getMiddle(&#34;]ohnM, &#34;Q.n, &#34;Public&#34;);// right,&lt;String&
+    泛型 // 类 class Tuple&lt;T, S&gt; { private T first; private S second; } // 泛型方法也可在非泛型类里面 class ArrayAlg { public static &lt;T&gt; T getMiddle(T... a) { return a[a.length / 2]; } }String middle = ArrayAlg.&lt;String&gt;getMiddle(&#34;]ohnM, &#34;Q.n, &#34;Public&#34;);// right,&lt;String&gt;可以省略 String middle = GenericCls.getMiddle(&#34;hello&#34;,0,null);// error // Errr:(7, 45) java: 不兼容的类型: 推断类型不符合上限 // 推断: java.lang.Object&amp;java.io.Serializable&amp;java.lang.Comparable&lt;? extends java.lang.Object&amp;java.io.Serializable&amp;java.lang.Comparable&lt;?&gt;&gt; // 上限: java.lang.String,java.lang.Object 类型限定 public static &lt;T extends Comparable&gt;
     </div>
     
     <div class="post-more-link text-center">
@@ -286,7 +286,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    java reader writer stream 上次总结了java 678 中不同读写文件的方法，这次总结一下基本的IO流。网上的总结大部分是以Stream和Reader、Write
+    java reader writer stream 上次总结了java 678 中不同读写文件的方法，这次总结一下基本的IO流。网上的总结大部分是以Stream和Reader、Writer来介绍的。这次从封装层次来介绍。 首先是byte流，每次read()读取8 bits，并用一个int的低八位
     </div>
     
     <div class="post-more-link text-center">
@@ -345,7 +345,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    重要的类 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文
+    重要的类 文件读写场景 资料：Reading and writing text files 不要用File对象，改用Path对象，该对象既表示文件路径，也表示文件文本（应该认为文件也是路径的一部分），对于以前的File,可以File.toPath()得到一个Path对象。 Files是
     </div>
     
     <div class="post-more-link text-center">
@@ -464,7 +464,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    找到一个最简单的介绍，不怎么想翻译，直接看原文吧: A Simple Introduction to AOP 提醒个点，使用注解的方式写切面时，增加了一个空方法，即： @Pointcut(&#34;execution(* org.bk.inventory.service.*.*(..))&#34;) public void serviceMethods(){ } 在使用
+    找到一个最简单的介绍，不怎么想翻译，直接看原文吧: A Simple Introduction to AOP 提醒个点，使用注解的方式写切面时，增加了一个空方法，即： @Pointcut(&#34;execution(* org.bk.inventory.service.*.*(..))&#34;) public void serviceMethods(){ } 在使用xml配置的话，就不需要这个方法了，serviceMethods方法名是后面配置切点的引用。 如果不想引入s
     </div>
     
     <div class="post-more-link text-center">
@@ -523,7 +523,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    知识点太多了。先列举一些知识点，然后在分别做一点笔记。 模式 1。 共享可变性 2。 隔离可变性 3。 纯粹不可变性:STM, IO密集型任务和计算密
+    知识点太多了。先列举一些知识点，然后在分别做一点笔记。 模式 1。 共享可变性 2。 隔离可变性 3。 纯粹不可变性:STM, IO密集型任务和计算密集型任务 读写文件和网络请求这种算IO密集型任务，阻塞时间长，任务阻塞系数接近1；线程池大一点好， 判断质数的
     </div>
     
     <div class="post-more-link text-center">
@@ -582,7 +582,7 @@
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    定义任务的内容 多线程编程的核心元素就是任务，任务是独立的活动。不依赖其他任务的状态，结果，以及边界效应。 定义任务的内容使用Runnab
+    定义任务的内容 多线程编程的核心元素就是任务，任务是独立的活动。不依赖其他任务的状态，结果，以及边界效应。 定义任务的内容使用Runnable和Callable。 Runnable 接口表示没有返回的一个过程（procedure），没有受检异常。 Callabe 接口的call
     </div>
     
     <div class="post-more-link text-center">
