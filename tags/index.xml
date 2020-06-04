@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 香取海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 01 May 2020 19:18:05 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2020 21:31:01 +0800</lastBuildDate>
     
 	<atom:link href="https://cod3fn.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>code</title>
       <link>https://cod3fn.github.io/tags/code/</link>
-      <pubDate>Fri, 01 May 2020 19:18:05 +0800</pubDate>
+      <pubDate>Thu, 04 Jun 2020 21:31:01 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/tags/code/</guid>
       <description></description>
@@ -23,9 +23,18 @@
     <item>
       <title>python</title>
       <link>https://cod3fn.github.io/tags/python/</link>
-      <pubDate>Fri, 01 May 2020 19:18:05 +0800</pubDate>
+      <pubDate>Thu, 04 Jun 2020 21:30:31 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scala</title>
+      <link>https://cod3fn.github.io/tags/scala/</link>
+      <pubDate>Thu, 04 Jun 2020 21:30:31 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/tags/scala/</guid>
       <description></description>
     </item>
     
@@ -53,15 +62,6 @@
       <pubDate>Mon, 03 Feb 2020 11:30:55 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scala</title>
-      <link>https://cod3fn.github.io/tags/scala/</link>
-      <pubDate>Fri, 31 Jan 2020 18:40:10 +0800</pubDate>
-      
-      <guid>https://cod3fn.github.io/tags/scala/</guid>
       <description></description>
     </item>
     
