@@ -189,7 +189,7 @@
       <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/scala-type-class/</guid>
-      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (y &amp;lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } 假设有个排序算法如上，代码的第一个问题就是没有泛型，只能对Int排序。那如果改成insertionSort[T](xs: List[T]):</description>
+      <description>关于scala type class非常好的文章 核心知识点 //scala没有专门的type class语法，而是借助trait + implicit + context bound来实现的， //所以很多时候识别type class比较困难。 //type class 由三部分构成 //1. type class: 即下面的Show，定义一个行</description>
     </item>
     
     <item>
@@ -199,6 +199,15 @@
       
       <guid>https://cod3fn.github.io/post/scala-notes/</guid>
       <description>scala-notes some notes on scala, includes: setup with maven import == and eq case class for&amp;hellip;yield companion object and class method and function(def val) _ in scala =&amp;gt; in scala () {} in scala implicit string setup with maven 目前用sbt的项目比较少,maven的更多. 而且sbt烧cpu. maven项目使用scala参考我的gist:scala_maven_pom.xml 学习scala</description>
+    </item>
+    
+    <item>
+      <title>Scala Implicit</title>
+      <link>https://cod3fn.github.io/post/scala-implicit/</link>
+      <pubDate>Sat, 30 Mar 2019 12:58:17 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/scala-implicit/</guid>
+      <description>隐式参数 //隐式参数是在调用时可以自动填充的参数， 需要在调用范围内（scope)有一个隐式变量可供填充。 def addInt(i:Int)(implicit n: Int) = i + n //需要提供一个隐式变量n implicit val sn = 1 addInt(2) // 3 //如果有两个满足类型的隐式变量，则在编译addInt(2)时报错 //scal</description>
     </item>
     
     <item>

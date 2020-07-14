@@ -260,7 +260,7 @@ replace-with = <span style="color:#a31515">&#39;ustc&#39;</span>
 <span style="color:#00f">[source.ustc]</span>
 registry = <span style="color:#a31515">&#34;git://mirrors.ustc.edu.cn/crates.io-index&#34;</span></code></pre></div></li>
 
-<li><p>build中使用了cargo缓存,即先将项目Cargo.toml和Cargo.lock复制到一个空项目中编译,然后再将远吗复制进去编译.</p></li>
+<li><p>build中使用了cargo缓存,即先将项目Cargo.toml和Cargo.lock复制到一个空项目中编译,然后再将源码复制进去编译.</p></li>
 
 <li><p><code>RUN rm ./target/release/deps/rs_notes*</code>,注意这里的<code>rs_notes</code>是下划线.cargo中package name转换为crate name的默认规则.</p></li>
 </ol>
@@ -358,7 +358,7 @@ var disqus_config = function () {
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://cod3fn.github.io/post/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>

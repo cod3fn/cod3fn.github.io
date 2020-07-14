@@ -207,7 +207,7 @@
       <pubDate>Sun, 31 Mar 2019 12:58:17 +0800</pubDate>
       
       <guid>https://cod3fn.github.io/post/scala-type-class/</guid>
-      <description>intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (y &amp;lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } 假设有个排序算法如上，代码的第一个问题就是没有泛型，只能对Int排序。那如果改成insertionSort[T](xs: List[T]):</description>
+      <description>关于scala type class非常好的文章 核心知识点 //scala没有专门的type class语法，而是借助trait + implicit + context bound来实现的， //所以很多时候识别type class比较困难。 //type class 由三部分构成 //1. type class: 即下面的Show，定义一个行</description>
     </item>
     
     <item>
@@ -226,6 +226,15 @@
       
       <guid>https://cod3fn.github.io/post/%E4%BD%BF%E7%94%A8redis%E7%9A%84hash%E4%BC%98%E5%8C%96%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8/</guid>
       <description>原文 Understanding Redis hash-max-ziplist-entries 问题和方案 场景: 有3亿张图片放在对象存储(DELL ECS/AMAZON EC2)上面,现在需要保存图片的id-&amp;gt;用户id的映射.最直接的思路是: set &amp;#34;media:1155220&amp;#34; &amp;#34;user1&amp;#34; set &amp;#34;media:1155221&amp;#34; &amp;#34;user2&amp;#34; 这样设计key之后3亿张图片需要21GB的内存,因为redis的string是线性增长的</description>
+    </item>
+    
+    <item>
+      <title>Scala Implicit</title>
+      <link>https://cod3fn.github.io/post/scala-implicit/</link>
+      <pubDate>Sat, 30 Mar 2019 12:58:17 +0800</pubDate>
+      
+      <guid>https://cod3fn.github.io/post/scala-implicit/</guid>
+      <description>隐式参数 //隐式参数是在调用时可以自动填充的参数， 需要在调用范围内（scope)有一个隐式变量可供填充。 def addInt(i:Int)(implicit n: Int) = i + n //需要提供一个隐式变量n implicit val sn = 1 addInt(2) // 3 //如果有两个满足类型的隐式变量，则在编译addInt(2)时报错 //scal</description>
     </item>
     
     <item>
@@ -270,7 +279,7 @@
       <pubDate>Sun, 09 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://cod3fn.github.io/about/</guid>
-      <description>2020- 上海 2017-2020 杭州 2014-2017 上海 2010-2014 西安 一个Java/Scala程序员, 也了解Python,Go. 文档写的比代码多, 我制作的等宽字体，在用的是TheSans.</description>
+      <description>2017- 杭州 2014-2017 上海 2010-2014 西安 一个Java/Scala程序员, 也了解Python,Go. 文档写的比代码多, 我制作的等宽字体，在用的是TheSans.</description>
     </item>
     
     <item>

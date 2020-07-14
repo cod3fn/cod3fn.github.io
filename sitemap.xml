@@ -100,7 +100,7 @@ Dockerfile的最终版:
   rust应用Dockerfile # pull the latest version of RustFROMrust:latest AS builder# create a new empty shell projectRUN USER=root cargo new --bin prjWORKDIR/prj# copy over your manifestsCOPY ./Cargo.lock ./Cargo.toml ./# change the crate.io sourceCOPY ./config $CARGO_HOME/# this build step will cache your dependenciesRUN cargo build --releaseRUN rm -r src/*# copy your source files to WORKDIR/srcCOPY ./src ./srcCOPY ./static ./static# build for release, note! the Cargo.toml package name in deps is _, not -RUN rm ./target/release/deps/rs_notes*RUN cargo build --releaseRUN mv ./target/release/rs-notes .## 2 stage build# our final baseFROMdebian:stretch-slim AS app# for connecting to postgres and TLS hosts# RUN apt update -y &amp;amp;&amp;amp; apt install -y libpq-dev openssl libssl1.0-dev ca-certificates# copy the build artifact and static resources from the build stageCOPY --from=builder /prj/rs-notes ./COPY --from=builder /prj/static ./static# set the startup command to run your binaryCMD[&amp;#34;./rs-notes&amp;#34;] 要点:
  如果使用scratch或者alpine镜像,那么需要将编译目标设置为MUSL,网络上有教程,个人感觉不需要.rust应用使用debian-slim基本在60M左右,只有spring boot应用镜像的一半大小.
  在国内由于网络问题,所以修改了cargo的crate.io mirror地址:COPY ./config $CARGO_HOME/. config内容如下:
-[source.crates-io] registry = &amp;#34;https://github.com/rust-lang/crates.io-index&amp;#34; replace-with = &amp;#39;ustc&amp;#39; [source.ustc] registry = &amp;#34;git://mirrors.ustc.edu.cn/crates.io-index&amp;#34; build中使用了cargo缓存,即先将项目Cargo.toml和Cargo.lock复制到一个空项目中编译,然后再将远吗复制进去编译.
+[source.crates-io] registry = &amp;#34;https://github.com/rust-lang/crates.io-index&amp;#34; replace-with = &amp;#39;ustc&amp;#39; [source.ustc] registry = &amp;#34;git://mirrors.ustc.edu.cn/crates.io-index&amp;#34; build中使用了cargo缓存,即先将项目Cargo.toml和Cargo.lock复制到一个空项目中编译,然后再将源码复制进去编译.
  RUN rm ./target/release/deps/rs_notes*,注意这里的rs_notes是下划线.cargo中package name转换为crate name的默认规则.
  </content>
     </entry>
@@ -485,18 +485,16 @@ val pf: PartialFunction[(String, Int), String] = { case (word, freq) if freq &am
         <tags>
           <tag>code</tag><tag>scala</tag>
         </tags>
-        <content type="html">  intro def insertionSort(xs: List[Int]): List[Int] = { def insert(y: Int, ys: List[Int]): List[Int] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (y &amp;lt; z) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } 假设有个排序算法如上，代码的第一个问题就是没有泛型，只能对Int排序。那如果改成insertionSort[T](xs: List[T]): List[T]显然不行，因为只有Number类型才有y &amp;lt; z方法。为了让这个函数实现多态（polymorphic ），需要将y &amp;lt; z这部分参数化。修改函数形式：
-def insertionSort[T](xs: List[T])(lessThan: (T, T) =&amp;gt; Boolean) = { def insert(y: T, ys: List[T]): List[T] = ys match { //...omit some lines  case z :: zs =&amp;gt; if (lessThan(y, z)) y :: z :: zs else … } xs match { //...omit some lines  case y :: ys =&amp;gt; insert(y, insertionSort(ys)(lessThan)) } } 这样可以对任意类型排序，只要你提供排序方法lessThan.例如：
-val fruits = List(&amp;#34;apple&amp;#34;, &amp;#34;pear&amp;#34;, &amp;#34;orange&amp;#34;, &amp;#34;pineapple&amp;#34;) insertionSort(fruits)((x: String, y: String) =&amp;gt; x.compareTo(y) &amp;lt; 0) 既然lessThan方法如此重要，我们定义一个trait:
-trait Ordering[A]{ def lessThan(x:A,y:A):Int } 然后排序函数接受一个Ordering实例进行排序：
-def insertionSort[T](xs: List[T])(ord: Ordering[T]): List[T] = { def insert(y: T, ys: List[T]): List[T] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (ord.lessThan(y, z)) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)(ord)) } } 现在这个排序函数比较完美了，如果借助隐式参数，那么调用可以更简洁：
-def insertionSort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = { def insert(y: T, ys: List[T]): List[T] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (ord.lessThan(y, z)) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertionSort(ys)) } } //implicit val for insertionSort function implicit val stringOrdering: Ordering[String] = new Ordering[String] { def lessThan(x: String, y: String): Boolean = x.compareTo(y) &amp;lt; 0 } val fruits = List(&amp;#34;apple&amp;#34;, &amp;#34;pear&amp;#34;, &amp;#34;orange&amp;#34;, &amp;#34;pineapple&amp;#34;) insertionSort(fruits) insertionSort(fruits)的调用形式看上去不够优雅（不够OO),我们希望调用的形式是：fruits.insertionSort 得到排序后的list。通过之前文章的隐式转换很容易想到，我们需要将insertionSort方法作为一个implicit class的方法，这样即可通过隐式转换得到fruits.insertionSort:
-//1. 注意原函数的参数改为class参数传入 //2. 由于原函数用了递归，所以这里加了一层函数 implicit class FruitOps[T](list: List[T])(implicit ord: Ordering[T]) { def insertionSort(): List[T] = { insertSortInternal(list)(ord) } def insertSortInternal[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = { def insert(y: T, ys: List[T]): List[T] = ys match { case List() =&amp;gt; y :: List() case z :: zs =&amp;gt; if (ord.lessThan(y, z)) y :: z :: zs else z :: insert(y, zs) } xs match { case List() =&amp;gt; List() case y :: ys =&amp;gt; insert(y, insertSortInternal(ys)) } } } // val fruits = List(&amp;#34;apple&amp;#34;, &amp;#34;pear&amp;#34;, &amp;#34;orange&amp;#34;, &amp;#34;pineapple&amp;#34;) fruits.insertionSort //List(pear, apple, orange, pineapple) type class 类型参数化和隐式参数结合即scala的type class，实现在不修改原有代码的前提下对type(这里是List[String])增加行为和属性。例如，已有类型Person，想要增加一个print方法实现打印个人简历。如果通过继承，那么Person代码会被改变，且print方法不能随意替换。如果通过Printer工具类同样Person只能有一种print实现（或者多个Printer工具类）。通过type class和，可以实现person.print的调用格式，且print的具体实现是由当前scope的implicit type class instance决定，在不同的scope可以通过提供不同的type class实例达到不同的print效果。
-type class由3部分组件：
- type class：a trait with type parameter,即Ordering[T]
- type class instance: 即上面的val stringOrdering: Ordering[String]，一般为implicit
- interface for user: 即上面的FruitOps，是一个implicit class.
-  one more example class Person(val name: String, val address: String) //type class trait HtmlWriter[A] { def write(data: A): String } // a type class instance implicit object PersonWriter extends HtmlWriter[Person] { override def write(data: Person): String = { s&amp;#34;&amp;lt;span&amp;gt;${data.name}and ${data.address}&amp;lt;/span&amp;gt; &amp;#34; } } // type class interface for user implicit class HtmlUtil[A](data:A){ def toHtml(implicit writer: HtmlWriter[A]):String={ writer.write(data) } } val p = new Person(&amp;#34;cod3fn&amp;#34;,&amp;#34;beijing&amp;#34;) p.toHtml</content>
+        <content type="html">  关于scala type class非常好的文章
+核心知识点 //scala没有专门的type class语法，而是借助trait &#43; implicit &#43; context bound来实现的， //所以很多时候识别type class比较困难。 //type class 由三部分构成 //1. type class: 即下面的Show，定义一个行为toHtml。 //2. type class instances：希望实现toHtml方法的类型实例 //3. user interface: type class中伴生对象的同名方法或者隐式转换方法。  // type class trait Show[A] { def toHtml(a: A): String } // 定义在伴生对象的好处就是implicit变量自动处于scope内 object Show { //利用伴生对象apply特点实现下面Show[A].toHtml调用方式，即隐藏implicit sh  def apply[A](implicit sh: Show[A]): Show[A] = sh //如果没有apply，那么下面的toHtml需要一个隐式参数：  //def toHtml[A](a: A)(implicit sh: Show[A]): String = sh.toHtml(a)  //或者：  //def toHtml[A: Show](a: A): String = implicitly[Show[A]].toHtml(a)  //对外接口，提供toHtml(&amp;#34;type&amp;#34;)的调用形式  def toHtml[A: Show](a: A) = Show[A].toHtml(a) //对外接口，通过隐式转换提供10 toHtml的调用形式  implicit class ShowOps[A: Show](a: A) { // 惯例使用TypeCls&#43;Ops  def toHtml = Show[A].toHtml(a) } //为了避免运行开销，可以将Ops类定义为value class：  // implicit class ShowOps[A](val a: A) extends AnyVal {  // def toHtml(implicit sh: Show[A]) = sh.toHtml(a)  // }  //上面两个对外接口都利用了伴生对象的apply方法和context bound  //type class instance int  implicit val intCanShow: Show[Int] = int =&amp;gt; s&amp;#34;&amp;lt;int&amp;gt;$int&amp;lt;/int&amp;gt;&amp;#34; //type class instance string  implicit val stringCanShow: Show[String] = str =&amp;gt; s&amp;#34;&amp;lt;string&amp;gt;$str&amp;lt;/string&amp;gt;&amp;#34; } //use type class import Show._ print(10 toHtml) print(toHtml(&amp;#34;type&amp;#34;)) 若使用import Show._导入全部内容，则用户无法自己实现一些 type class instance则会覆盖默认实例导致歧义。
+可以将对外接口移动到单独的ops对象中：
+trait Show[A] { def toHtml(a: A): String } object Show { def apply[A](implicit sh: Show[A]): Show[A] = sh object ops { def toHtml[A: Show](a: A) = Show[A].toHtml(a) implicit class ShowOps[A: Show](a: A) { // 惯例使用TypeCls&#43;Ops  def toHtml = Show[A].toHtml(a) } } implicit val intCanShow: Show[Int] = int =&amp;gt; s&amp;#34;&amp;lt;int&amp;gt;$int&amp;lt;/int&amp;gt;&amp;#34; implicit val stringCanShow: Show[String] = str =&amp;gt; s&amp;#34;&amp;lt;string&amp;gt;$str&amp;lt;/string&amp;gt;&amp;#34; } 使用：
+import xxx.Show //如果需要实现自定义的type class instance则需要 import xxx.Show.ops._ 自定义 case class Person(name: String, age: Int) implicit val personOps: Show[Person] = p =&amp;gt; s&amp;#34;&amp;lt;person&amp;gt;name=${p.name},age=${p.age}&amp;lt;/person&amp;gt;&amp;#34; print(Person(&amp;#34;lee&amp;#34;, 19) toHtml)//&amp;lt;person&amp;gt;name=lee,age=19&amp;lt;/person&amp;gt; Simulacrum Simulacrum通过宏为 type class 添加便捷语法，是否使用取决于个人判断。
+若使用 Simulacrum，则可以一眼找出代码中所有的 type class，并且可省去很多样板代码。
+另一方面，使用 @typeclass（Simulacrum 主要注解）则意味着需要依赖 macro paradise 编译器插件。
+使用 Simulacrum 重写我们的 Show type class：
+import simulacrum._ @typeclass trait Show[A] { def toHtml(a: A): String } 有了 Simulacrum，type class 定义变得非常简洁，我们在其伴生对象中添加 Show[String] 实例：
+//Simulacrum 会为 Show 自动生成 ops 对象，与前面自定义的基本一致。 object Show { implicit val stringShow: Show[String] = s ⇒ s&amp;#34;String: $s&amp;#34; }</content>
     </entry>
     
      <entry>
@@ -599,6 +597,31 @@ list-max-ziplist-entries 512 list-max-ziplist-value 64 #Limits for ziplist use w
 建议hash-max-ziplist-entries最大设置为1000,过大会影响redis性能.
 参考资料 redis moemory optimize
 9.1.1 The ziplist representation-EBOOK – REDIS IN ACTION
+</content>
+    </entry>
+    
+     <entry>
+        <title>Scala Implicit</title>
+        <url>https://cod3fn.github.io/post/scala-implicit/</url>
+        <categories>
+          <category>编程</category>
+        </categories>
+        <tags>
+          <tag>code</tag><tag>scala</tag>
+        </tags>
+        <content type="html">  隐式参数 //隐式参数是在调用时可以自动填充的参数， 需要在调用范围内（scope)有一个隐式变量可供填充。 def addInt(i:Int)(implicit n: Int) = i &#43; n //需要提供一个隐式变量n implicit val sn = 1 addInt(2) // 3  //如果有两个满足类型的隐式变量，则在编译addInt(2)时报错  //scala的方法中ExecutionContext一般作为implicit参数。 隐式转换方法 如果想要给String实现一个mkStr方法,简单的给String添加一个Ops!前缀再返回。
+//1. 首先实现一个包含目标方法的类型，实现该方法 class StrOps(s:String) { def mkStr(): String = { return &amp;#34;Ops! &amp;#34; &#43; s } } //2. 告诉scala编译器String可以通过类型转换获得mkStr这个方法： implicit final def string2StrOps(s: String) = new StrOps(s) //3. 现在用户可以直接认为String有mkStr方法 val s = &amp;#34;who changed my string&amp;#34; s.mkStr() //res2: String = Ops! who changed my string  //在scala.Predef中定义了大量的隐式转换,例如RichInt,RichDouble,StringOps这些 implicit class 可以看到第2步非常的冗余，于是SIP-13提出一个implicit class,将上面的1,2步合并:
+implicit class StrOps(s:String) { def mkStr(): String = { return &amp;#34;Ops! &amp;#34; &#43; s } } 注意，这个只是一个语法糖。去糖后就是上面的那个形式。 implicit class有3个约束和一个注解问题：
+ 必须要有主一个构造函数且只能一个构造参数（implicit参数除外）。构造参数就是源类型. 这个构造函数即等价上面第2步的隐式转换方法：
+implicit class RichDate(date: java.util.Date) // OK! implicit class Indexer[T](collecton: Seq[T], index: Int) // BAD! implicit class Indexer[T](collecton: Seq[T])(implicit index: Index) // OK! 只能定义在其他trait/class/object中：
+object Helpers { implicit class RichInt(x: Int) // OK! } implicit class RichDouble(x: Double) // BAD! 在当前scope内，不允许有和implicit class同名的方法，对象，变量。因为case class会自动生成同名object对象，所以implicit class不能是case class。
+object Bar implicit class Bar(x: Int) // BAD!  val x = 5 implicit class x(y: Int) // BAD!  //cuz case class has companion object by default implicit case class Baz(x: Int) // BAD! conflict with the companion object 还有就是implicit class的注解在去语法糖后会自动添加到类和方法，除非在注解中指明范围：
+@bar implicit class Foo(n: Int) //desugar @bar implicit def Foo(n: Int): Foo = new Foo(n) @bar class Foo(n:Int) //除非在注解中指明：genClass / method @(bar @genClass) implicit class Foo(n: Int) //desugar得到 @bar class Foo(n: Int) implicit def Foo(n: Int): Foo = new Foo(n)  implicitly方法 scala的PreDef中有有一个implicitly方法，表示在当前scope征召一个隐式变量并返回该变量。
+//PreDef @inline def implicitly[T](implicit e: T) = e  implitly[T] means return implicit value of type T in the context
+implicit class Foo(val i: Int) { def addValue(v: Int): Int = i &#43; v } implicit val foo:Foo = Foo(1) val fooImplicitly = implicitly[Foo] // Foo(1) value class scala 还有一个概念：value class
+class Wrapper(val underlying: Int) extends AnyVal //1. 一个public val参数表示runtime类型，这里是Int. 编译时是Wrapper类型，所以value class目的是降低分配开销。 //2. value class 需要 extends AnyVal //3. value class 只能有 defs, 不能有vals, vars, or nested traits, classes or objects， // 因为def是通过静态方法实现的，而val，var这些则必须创建相应类型了。 //4. value class 只能扩展 通用trait（universal traits）， // universal traits是A universal trait is a trait that extends Any, only has defs as members, and does no initialization. extension method 当implicit class类型参数是AnyVal子类时，value class和上面的implicit class形式相近，所以可以通过value class降低implicit class的分配开销。例如RichtInt
+implicit class RichInt(val self: Int) extends AnyVal { def toHexString: String = java.lang.Integer.toHexString(self) } 因为RichInt是value class，在运行时（runtime）不会有RichInt这个类，而是Int，而3.toHexString实际是通过静态方法实现的： RichInt$.MODULE$.extension$toHexString(3),这么做好处是减少对象分配开销（avoid the overhead of allocation）。如果implicit class的类型参数不是AnyVal子类，那么在runtime时会有相应类型对象被创建，用户察觉不到区别。
+value class还有其他作用和局限性，可以参考上面链接.
 </content>
     </entry>
     
