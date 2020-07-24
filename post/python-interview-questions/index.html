@@ -160,7 +160,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">542 字 ~2分钟</span>
+<span class="leancloud-visitors-count">540 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -171,8 +171,8 @@
 
 <ol>
 <li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> change(v):
-    v[1] = 4
-    <span style="color:#00f">return</span> v
+v[1] = 4
+<span style="color:#00f">return</span> v
     
     
 a = [1, 2, 3]
@@ -180,28 +180,28 @@ a = [1, 2, 3]
 <span style="color:#00f">print</span>(a)    </code></pre></div></li>
 
 <li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> append1(x=[]):
-    x.append(1)
-    <span style="color:#00f">return</span> x
+x.append(1)
+<span style="color:#00f">return</span> x
     
     
 <span style="color:#00f">def</span> now(n=time.time()):
-    time.sleep(1)
-    <span style="color:#00f">return</span> n
+time.sleep(1)
+<span style="color:#00f">return</span> n
     
 <span style="color:#00f">print</span>(append1(), append1()) <span style="color:#008000">#?</span>
 <span style="color:#00f">print</span>(now(), now()) <span style="color:#008000">#?</span>
     </code></pre></div></li>
 
 <li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> arr_multi():
-    x = [[0] * 3] * 3
-    x[0][0] = 42
-    <span style="color:#00f">return</span> x
+x = [[0] * 3] * 3
+x[0][0] = 42
+<span style="color:#00f">return</span> x
     
 <span style="color:#00f">print</span>(arr_multi())</code></pre></div></li>
 
 <li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> fn_for():
-    f = [<span style="color:#00f">lambda</span> x: x * i <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]
-    <span style="color:#00f">print</span>(f[0](1), f[1](1), f[2](1))
+f = [<span style="color:#00f">lambda</span> x: x * i <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]
+<span style="color:#00f">print</span>(f[0](1), f[1](1), f[2](1))
     
 <span style="color:#00f">print</span>(fn_for())</code></pre></div></li>
 </ol>
@@ -225,8 +225,10 @@ id(arr1[0]) == id(arr2[0])
 
 <span style="color:#008000">#deepcopy</span>
 arr3 = deepcopy(arr1) <span style="color:#008000"># elements id is new </span></code></pre></div></li>
+</ol>
 
-<li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#008000"># 结果:</span>
+<p>2.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#008000"># 结果:</span>
 [1, 1] [1, 1]
 1590544209.9695618 1590544209.9695618
 
@@ -239,31 +241,30 @@ y = append1()  <span style="color:#008000"># id(y) == id(x), y=[1,1]</span>
 
 <span style="">最好不要使用</span>[]<span style="">作为默认参数</span>,<span style="">使用下面的形式</span>:
 <span style="color:#00f">def</span> my_func(working_list=None):
-<span style="color:#00f">if</span> working_list <span style="color:#00f">is</span> None: 
-    working_list = []
+    <span style="color:#00f">if</span> working_list <span style="color:#00f">is</span> None: 
+        working_list = []
 
-working_list.append(<span style="color:#a31515">&#34;a&#34;</span>)
-<span style="color:#00f">print</span>(working_list)</code></pre></div></li>
-
+    working_list.append(<span style="color:#a31515">&#34;a&#34;</span>)
+    <span style="color:#00f">print</span>(working_list)</code></pre></div>
+<ol>
 <li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">[[42, 0, 0], [42, 0, 0], [42, 0, 0]]
 <span style="color:#008000"># list 是mutable, []*3表示是引用复制三次.</span>
 
 <span style="color:#008000"># 赋值后为什么只改变列的值？</span></code></pre></div></li>
 
-<li><p>答案：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2 2 2
-None</code></pre></div>
+<li><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">2 2 2
+None</code></pre></div></li>
+</ol>
+
 <p>本意其实是想得到一个函数列表[0*x,1*x,2*x]，<br />
 但是 <strong>Python’s closures are <em>late binding</em>. This means that the values of variables used in closures are looked up at the time the inner function is called.</strong><br />
 解决方案是偏函数partial</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> functools <span style="color:#00f">import</span> partial
 <span style="color:#00f">def</span> fix_fn_for():
-f = [partial(<span style="color:#00f">lambda</span> y, x: y * x, x=i) <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]
-<span style="color:#00f">print</span>(f[0](1), f[1](1), f[2](1))</code></pre></div>
+    f = [partial(<span style="color:#00f">lambda</span> y, x: y * x, x=i) <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]
+    <span style="color:#00f">print</span>(f[0](1), f[1](1), f[2](1))</code></pre></div>
 <p>或：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fl=[<span style="color:#00f">lambda</span> x, i=i: x*i <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]</code></pre></div></li>
-</ol>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fl=[<span style="color:#00f">lambda</span> x, i=i: x*i <span style="color:#00f">for</span> i <span style="color:#00f">in</span> range(3)]</code></pre></div>
 <p><a href="https://docs.python-guide.org/writing/gotchas/">常见python陷阱</a><br />
 <a href="https://www.toptal.com/python/top-10-mistakes-that-python-programmers-make">The 10 Most Common Mistakes in Python</a><br />
 <a href="https://8thlight.com/blog/shibani-mookerjee/2019/05/07/some-common-gotchas-in-python.html">Some Common Gotchas in Python</a></p>
@@ -465,12 +466,12 @@ var disqus_config = function () {
     window.Promise = null;
   }
 </script>
-<script type="text/javascript" src="https://cod3fn.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
-<script type="text/javascript" src="https://cod3fn.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
-<script type="text/javascript" src="https://cod3fn.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-<script type="text/javascript" src="https://cod3fn.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
-<script type="text/javascript" src="https://cod3fn.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="https://cod3fn.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js"></script> 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery_lazyload@1.9.3/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="https://libs.jshub.com/velocity/1.2.3/velocity.min.js"></script>
+<script type="text/javascript" src="https://libs.jshub.com/velocity/1.2.3/velocity.ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0.7.21/dist/ua-parser.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/fancybox@2.1.5/dist/css/jquery.fancybox.css"></script>
 
